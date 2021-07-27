@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59'
+    compile group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '3.141.59'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.4.0'
+    implementation group: 'io.rest-assured', name: 'json-path', version: '4.4.0'
+    implementation group:'com.fasterxml.jackson.core', name:'jackson-annotations', version: '2.12.4'
+    implementation group:'com.fasterxml.jackson.core', name:'jackson-databind', version: '2.12.4'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.4'
+    implementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.10.4'
+}
+
+checkstyle {
+    toolVersion '8.44'
+    configFile file('checkstyle.xml')
+    checkstyleMain.source = "src/main/"
+    checkstyleMain.excludes = ["**/src/test/**"]
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/main/java'
+}
+
+test.finalizedBy("checkstyleMain")
+check.dependsOn build
+
+test {
+    useTestNG()
+}
+
