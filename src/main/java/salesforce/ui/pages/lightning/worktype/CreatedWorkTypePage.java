@@ -70,5 +70,4 @@ public class CreatedWorkTypePage extends BasePage {
     public String getNameCreatorTxt() {
         return webElementAction.getTextOfElement(nameCreatorTxt);
     }
-
 }
