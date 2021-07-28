@@ -1,10 +1,10 @@
 package api.salesforce;
 
+import static io.restassured.RestAssured.given;
+
 import api.salesforce.entities.Token;
 import core.utils.PropertiesReader;
 import java.util.Properties;
-
-import static io.restassured.RestAssured.given;
 
 /**
  * This class builds a token.
@@ -27,8 +27,8 @@ public class Authentication {
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .log().all()
-                .when().
-                        post(properties.getProperty("LOGIN"))
+                .when()
+                .post(properties.getProperty("LOGIN"))
                 .as(Token.class);
     }
 }

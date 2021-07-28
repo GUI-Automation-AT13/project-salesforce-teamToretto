@@ -28,7 +28,7 @@ dependencies {
 
 checkstyle {
     toolVersion '8.44'
-    configFile file('checkstyle.xml')
+    configFile file('config/checkstyle/checkstyle.xml')
     checkstyleMain.source = "src/main/"
     checkstyleMain.excludes = ["**/src/test/**"]
 }

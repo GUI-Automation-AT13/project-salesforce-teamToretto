@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * Page object model for the salesforce classic contracts page.
+ */
 public class ClassicContractsPage extends BasePage {
 
     @FindBy(css = "input[title='New']")
@@ -26,14 +29,15 @@ public class ClassicContractsPage extends BasePage {
     /**
      * Closes a popup.
      */
-    public void clickPopUP() {
+    public void clickPopUp() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(By.id("tryLexDialogX")));
         popup.click();
     }
+
     /**
      * Clicks on a new contract button.
      *
-     * @return a new NewContractPage.
+     * @return a new NewContractPage
      */
     public ClassicNewContractPage clickNew() {
         newContractButton.click();

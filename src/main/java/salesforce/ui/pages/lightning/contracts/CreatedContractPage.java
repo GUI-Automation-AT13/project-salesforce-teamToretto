@@ -1,10 +1,13 @@
 package salesforce.ui.pages.lightning.contracts;
 
+import java.util.HashMap;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
-import java.util.HashMap;
 
+/**
+ * Page Object Model for the salesforce created contract page.
+ */
 public class CreatedContractPage extends BasePage {
 
     @FindBy(xpath = "(//span[text()='Details'])[last()]")
@@ -47,6 +50,7 @@ public class CreatedContractPage extends BasePage {
     private WebElement description;
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
+
     static {
         XPATH_COMPLEMENTS.put("Contract Owner", "//a");
         XPATH_COMPLEMENTS.put("Status", "//span//span");
@@ -74,11 +78,12 @@ public class CreatedContractPage extends BasePage {
         webElementAction.dropDownTillTheEnd();
         return this;
     }
+
     /**
      * Gets the text inside the element.
      *
-     * @param field
-     * @return the text set on the field requested contract.
+     * @param field represents the text to be introduced
+     * @return the text set on the field requested contract
      */
     public String getTextByField(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);

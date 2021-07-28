@@ -1,6 +1,5 @@
 /**
  * Copyright (c) 2021 Fundacion Jala.
- * <p>
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
  * Information and shall use it only in accordance with the terms of the
@@ -8,14 +7,18 @@
  *
  * @author Jorge Rodrigo Cáceres Velasco
  */
+
 package core.date;
 
-import org.openqa.selenium.InvalidArgumentException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import org.openqa.selenium.InvalidArgumentException;
 
+/**
+ * Handles dates formats to return them on a certain format.
+ */
 public class DateManager {
     private String dateToConvert;
     public Calendar calendar;
@@ -60,6 +63,7 @@ public class DateManager {
         }
         throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
     }
+
     /**
      * Converts a word to a Date.
      *

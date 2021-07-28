@@ -18,6 +18,7 @@ public enum ApiStatusCode {
     ApiStatusCode(final int newResponseCode) {
         this.responseCode = newResponseCode;
     }
+    
     /**
      * Gets the responseCode response.
      *

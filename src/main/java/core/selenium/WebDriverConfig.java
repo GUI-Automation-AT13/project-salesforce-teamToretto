@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package core.selenium;
 
 import core.utils.PropertiesReader;
@@ -38,6 +39,7 @@ public class WebDriverConfig {
         }
         return instance;
     }
+
     /**
      * Sets all the values to be configured.
      */
@@ -57,6 +59,7 @@ public class WebDriverConfig {
     public String getBrowser() {
         return browser;
     }
+
     /**
      * Returns the implicitWaitTime.
      *
@@ -65,6 +68,7 @@ public class WebDriverConfig {
     public int getImplicitWaitTime() {
         return implicitWaitTime;
     }
+
     /**
      * Returns the explicitWaitTime.
      *
@@ -73,6 +77,7 @@ public class WebDriverConfig {
     public int getExplicitWaitTime() {
         return explicitWaitTime;
     }
+
     /**
      * Returns the waitSleepTime.
      *

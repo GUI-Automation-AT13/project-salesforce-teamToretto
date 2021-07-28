@@ -30,6 +30,7 @@ public class Token {
     public String getAccessToken() {
         return accessToken;
     }
+
     /**
      * Sets the accessToken.
      *
@@ -39,6 +40,7 @@ public class Token {
     public void setAccessToken(final String newAccessToken) {
         this.accessToken = newAccessToken;
     }
+
     /**
      * Gets the instanceUrl.
      *
@@ -48,6 +50,7 @@ public class Token {
     public String getInstanceUrl() {
         return instanceUrl;
     }
+
     /**
      * Sets the instanceUrl.
      *
@@ -57,6 +60,7 @@ public class Token {
     public void setInstanceUrl(final String newInstanceUrl) {
         this.instanceUrl = newInstanceUrl;
     }
+
     /**
      * Gets the id.
      *
@@ -65,6 +69,7 @@ public class Token {
     public String getId() {
         return id;
     }
+
     /**
      * Sets the id.
      *
@@ -73,6 +78,7 @@ public class Token {
     public void setId(final String newId) {
         this.id = newId;
     }
+
     /**
      * Gets the tokenType.
      *
@@ -82,6 +88,7 @@ public class Token {
     public String getTokenType() {
         return tokenType;
     }
+
     /**
      * Sets the tokenType.
      *
@@ -91,6 +98,7 @@ public class Token {
     public void setTokenType(final String newTokenType) {
         this.tokenType = newTokenType;
     }
+
     /**
      * Gets the issuedAt.
      *
@@ -100,6 +108,7 @@ public class Token {
     public String getIssuedAt() {
         return issuedAt;
     }
+
     /**
      * Sets the issuedAt.
      *
@@ -109,6 +118,7 @@ public class Token {
     public void setIssuedAt(final String newIssuedAt) {
         this.issuedAt = newIssuedAt;
     }
+
     /**
      * Gets the signature.
      *
@@ -117,6 +127,7 @@ public class Token {
     public String getSignature() {
         return signature;
     }
+
     /**
      * Sets the signature.
      *

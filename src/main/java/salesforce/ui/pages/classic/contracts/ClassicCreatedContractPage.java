@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.classic.ClassicHomePageObjects;
 
+/**
+ * Page object model for the salesforce classic contract page.
+ */
 public class ClassicCreatedContractPage extends BasePage {
 
     @FindBy(css = "div[id*=\"ctrc7_ileinner\"]")

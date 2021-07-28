@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * Page object model for the salesforce classic new contract page.
+ */
 public class ClassicNewContractPage extends BasePage {
     @FindBy(css = "#ctrc7")
     private WebElement accountName;
@@ -56,7 +59,7 @@ public class ClassicNewContractPage extends BasePage {
     /**
      * Sets the account name on a contract.
      *
-     * @param newAccountName
+     * @param newAccountName represents an account name
      */
     public void setAccountName(final String newAccountName) {
         this.accountName.sendKeys(newAccountName);
@@ -129,16 +132,22 @@ public class ClassicNewContractPage extends BasePage {
         switch (newOwnerExpirationNotice) {
             case "15 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '15 Days']")).click();
+                break;
             case "30 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '30 Days']")).click();
+                break;
             case "45 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '45 Days']")).click();
+                break;
             case "60 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '60 Days']")).click();
+                break;
             case "90 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '90 Days']")).click();
+                break;
             case "120 Days":
                 ownerExpirationNotice.findElement(By.xpath("//option[. = '120 Days']")).click();
+                break;
             default:
                 break;
         }

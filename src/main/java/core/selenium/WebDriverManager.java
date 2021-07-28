@@ -5,12 +5,13 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package core.selenium;
 
 import core.drivermanager.DriverFactory;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
 
 /**
  * This class Manages a Web driver.
@@ -27,6 +28,7 @@ public class WebDriverManager {
     public WebDriverManager() {
         initialize();
     }
+
     /**
      * Returns a webDriver instance.
      *
@@ -35,6 +37,7 @@ public class WebDriverManager {
     public WebDriver getWebDriver() {
         return webDriver;
     }
+
     /**
      * Returns a webDriver wait.
      *
@@ -43,18 +46,21 @@ public class WebDriverManager {
     public WebDriverWait getWait() {
         return wait;
     }
+
     /**
      * Quit the web driver.
      */
     public void quitWebDriver() {
         webDriver.quit();
     }
+
     /**
      * Closes the web driver.
      */
     public void closeWebDriver() {
         webDriver.close();
     }
+
     /**
      * Returns a webDriverManager instance.
      *
@@ -66,6 +72,7 @@ public class WebDriverManager {
         }
         return instance;
     }
+
     /**
      * Initializes the webDriverManager configuration.
      */

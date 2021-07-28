@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 
+/**
+ * Page object model for the classic salesforce home page.
+ */
 public class ClassicHomePageObjects extends BasePage {
 
     @FindBy(css = ".listRelatedObject.contractBlock.title")
@@ -17,6 +20,7 @@ public class ClassicHomePageObjects extends BasePage {
     protected void waitForPageLoaded() {
         webElementAction.waitForVisible(contractBtn);
     }
+
     /**
      * Clicks on the add object button.
      *
