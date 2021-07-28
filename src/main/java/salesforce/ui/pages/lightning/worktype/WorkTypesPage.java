@@ -4,6 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * This class has webElement for work types page.
+ */
 public class WorkTypesPage extends BasePage {
     @FindBy(xpath = "//a[@class='forceActionLink'][@role='button']")
     protected WebElement newBtn;

@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * This class has webElement for work type page form.
+ */
 public class NewWorkTypePage extends BasePage {
 
     @FindBy(css = ".select[aria-required='true']")

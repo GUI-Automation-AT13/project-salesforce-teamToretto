@@ -1,10 +1,12 @@
 package salesforce.ui.pages.lightning.worktype;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * This class has webElement for work type created.
+ */
 public class CreatedWorkTypePage extends BasePage {
     @FindBy(xpath = "//*[@class='uiOutputText']")
     protected WebElement nameWorkTypeTxt;
