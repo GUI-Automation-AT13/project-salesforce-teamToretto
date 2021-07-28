@@ -115,7 +115,6 @@ public class WebElementAction {
         return WebDriverManager.getInstance().getWebDriver().findElement(selector).getText();
     }
 
-
     /**
      * Returns the text from a Web Element given a parametrized By selector and its value.
      *

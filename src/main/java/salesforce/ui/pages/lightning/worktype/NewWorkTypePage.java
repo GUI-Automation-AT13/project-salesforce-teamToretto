@@ -61,7 +61,8 @@ public class NewWorkTypePage extends BasePage {
     public void setComboBoxField(final String nameComboBox, final String selectValue) {
         countComboBox++;
         xpathComboBox = String.format("//*[contains(text(),'%s')]/../..//a[@class='select']", nameComboBox);
-        webElementAction.selectByAction(WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(xpathComboBox)));
+        webElementAction.selectByAction(WebDriverManager.getInstance().getWebDriver()
+                .findElement(By.xpath(xpathComboBox)));
         String xpathValue = String.format("(//a[normalize-space()='%s'])[%d]", selectValue, countComboBox);
         webElementAction.getTextOfElementByField(xpathValue);
     }

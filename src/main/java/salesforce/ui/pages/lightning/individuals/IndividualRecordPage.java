@@ -22,14 +22,10 @@ public class IndividualRecordPage extends BasePage {
     private By editHeaderButton = By.cssSelector("div[title=\"Edit\"]");
     private By deleteHeaderButton = By.cssSelector("div[title=\"Delete\"]");
     private By cloneHeaderButton = By.cssSelector("div[title=\"Clone\"]");
-
     private By confirmDeleteIndividualButton = By.cssSelector("button[title=\"Delete\"] span");
-
     private final String relatedFeatureLink = "h2 [title=\"%s\"]";
-
     private final String newFeatureButton = "//span[@title=\"%s\"]/ancestor::div[contains("
             + "@class,\"slds-grid\")]//div[@title=\"New\"]";
-
     private By labelNameDetail = By.xpath("//span[contains(text(),\"Name\")]/../.."
             + "//span[@class=\"uiOutputText\"]");
     private By labelBirthdateDetail = By.xpath("//span[contains(text(),\"Birth Date\")]"
