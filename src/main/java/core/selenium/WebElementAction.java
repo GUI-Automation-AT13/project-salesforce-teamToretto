@@ -14,11 +14,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * This class the common web element actions.
  */
 public class WebElementAction {
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     /**
      * Waits until a text box is visible and writes a text.
@@ -99,5 +102,36 @@ public class WebElementAction {
         Actions builder = new Actions(WebDriverManager.getInstance().getWebDriver());
         Action action = builder.click(webElement).build();
         action.perform();
+    }
+
+    /**
+     * Clicks on a WebElement.
+     *
+     * @param element for click
+     */
+    public void clickElement(final WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.click();
+    }
+
+    /**
+     * Waits for a web element to be visible.
+     *
+     * @param webElement web element to wait for.
+     */
+    public void waitForVisibilityOfElement(final WebElement webElement) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    /**
+     * Sets the text of an input field.
+     *
+     * @param webElement webElement to be set.
+     * @param text       text as value that will be set.
+     */
+    public void setTextInputField(final WebElement webElement, final String text) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.clear();
+        webElement.sendKeys(text);
     }
 }
