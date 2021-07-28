@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.By;
@@ -79,15 +87,15 @@ public class CreateCampaignPage extends BasePage {
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfElement(saveButton);
-        webElementAction.waitForVisibilityOfElement(campaignNameTextBox);
-        webElementAction.waitForVisibilityOfElement(startDateTextBox);
-        webElementAction.waitForVisibilityOfElement(endDateTextBox);
-        webElementAction.waitForVisibilityOfElement(expectedRevenueInCampaignTextBox);
-        webElementAction.waitForVisibilityOfElement(budgetedCostInCampaignTextBox);
-        webElementAction.waitForVisibilityOfElement(actualCostInCampaignTextBox);
-        webElementAction.waitForVisibilityOfElement(numSentInCampaignTextBox);
-        webElementAction.waitForVisibilityOfElement(descriptionTextArea);
+        webElementAction.waitForVisible(saveButton);
+        webElementAction.waitForVisible(campaignNameTextBox);
+        webElementAction.waitForVisible(startDateTextBox);
+        webElementAction.waitForVisible(endDateTextBox);
+        webElementAction.waitForVisible(expectedRevenueInCampaignTextBox);
+        webElementAction.waitForVisible(budgetedCostInCampaignTextBox);
+        webElementAction.waitForVisible(actualCostInCampaignTextBox);
+        webElementAction.waitForVisible(numSentInCampaignTextBox);
+        webElementAction.waitForVisible(descriptionTextArea);
     }
 
     /**
@@ -98,7 +106,7 @@ public class CreateCampaignPage extends BasePage {
      * @return a this object.
      */
     public CreateCampaignPage setInputField(final String fieldName, final String value) {
-        webElementAction.setTextInputField(driver.findElement(By.xpath(
+        webElementAction.setInputField(driver.findElement(By.xpath(
                 String.format(INPUT_XPATH, inputFieldNames.get(fieldName)))), value);
         return this;
     }
@@ -131,7 +139,7 @@ public class CreateCampaignPage extends BasePage {
      * @return this class.
      */
     public CreateCampaignPage setExpectedResponse(final String expectedResponse) {
-        webElementAction.setTextInputField(expectedResponseTextBox, expectedResponse);
+        webElementAction.setInputField(expectedResponseTextBox, expectedResponse);
         return this;
     }
 
@@ -142,7 +150,7 @@ public class CreateCampaignPage extends BasePage {
      * @return this class.
      */
     public CreateCampaignPage setDescription(final String description) {
-        webElementAction.setTextInputField(descriptionTextArea, description);
+        webElementAction.setInputField(descriptionTextArea, description);
         return this;
     }
 

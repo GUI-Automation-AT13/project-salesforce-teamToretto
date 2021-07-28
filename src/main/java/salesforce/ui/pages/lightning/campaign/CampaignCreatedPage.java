@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.WebElement;
@@ -28,7 +36,6 @@ public class CampaignCreatedPage extends BasePage {
     @FindBy(xpath = "//span[text()='Created By']/../../div/span/span")
     private WebElement createBy;
 
-
     public MenuPage clickCreatedCampaignOptionBtn() {
         createdCampaignOptionBtn.click();
         return new MenuPage();
@@ -36,8 +43,8 @@ public class CampaignCreatedPage extends BasePage {
 
     @Override
     protected void waitForPageLoaded() {
-        wait.until(ExpectedConditions.visibilityOf(alertSuccess));
-        wait.until(ExpectedConditions.visibilityOf(createdCampaingTitle));
+        webElementAction.waitForVisible(alertSuccess);
+        webElementAction.waitForVisible(createdCampaingTitle);
     }
 
     /**
@@ -62,7 +69,7 @@ public class CampaignCreatedPage extends BasePage {
      * Clicks details menu tabs.
      */
     public void clickDetailTab() {
-        webElementAction.clickElement(detailsTab);
+        webElementAction.clickField(detailsTab);
     }
 
     /**
