@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.classic.ClassicHomePage;
 import salesforce.ui.pages.lightning.HomePage;
 
+/**
+ * Page object model for the salesforce login page.
+ */
 public class LoginPage extends BasePage {
 
     @FindBy(id = "username")
@@ -68,12 +71,13 @@ public class LoginPage extends BasePage {
         clickLoginBtn();
         return new ClassicHomePage();
     }
+
     /**
      * login with successful values.
      *
-     * @param userName to be set.
-     * @param password to be set.
-     * @return the home page.
+     * @param userName to be set
+     * @param password to be set
+     * @return the home page
      */
     public HomePage loginSuccessful(final String userName, final String password) {
         setUserName(userName);

@@ -6,9 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * Page Object Model for the salesforce contracts page.
+ */
 public class ContractsPage extends BasePage {
     @FindBy(css = "a[title='New']")
     private WebElement newContractButton;
+
     /**
      * Waits for the page to be loaded.
      */
@@ -16,6 +20,7 @@ public class ContractsPage extends BasePage {
     protected void waitForPageLoaded() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(newContractButton));
     }
+
     /**
      * Logs in successfully.
      *

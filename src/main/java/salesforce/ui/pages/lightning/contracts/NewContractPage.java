@@ -1,10 +1,13 @@
 package salesforce.ui.pages.lightning.contracts;
 
+import java.util.HashMap;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
-import java.util.HashMap;
 
+/**
+ * Page Object Model for the salesforce new contract page.
+ */
 public class NewContractPage extends BasePage {
     @FindBy(css = "input[placeholder='Search Accounts...']")
     private WebElement accountName;

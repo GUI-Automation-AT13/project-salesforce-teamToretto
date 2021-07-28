@@ -1,8 +1,9 @@
 package api;
 
+import static io.restassured.RestAssured.given;
+
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import static io.restassured.RestAssured.given;
 
 /**
  * This manages the api requests.
@@ -12,6 +13,7 @@ public class ApiManager {
 
     /**
      * Builds the response of the apiRequest.
+     *
      * @param apiRequest with the request´s especifications
      * @return the response.
      */
@@ -23,10 +25,11 @@ public class ApiManager {
                 .params(apiRequest.getParams())
                 .log().all();
     }
+
     /**
      * Executes a request according to the apiRequest information.
      *
-     * @param apiRequest with the api information to be requested.
+     * @param apiRequest  with the api information to be requested.
      * @param apiResponse with the response of the execution
      */
     public static void execute(final ApiRequest apiRequest, final ApiResponse apiResponse) {

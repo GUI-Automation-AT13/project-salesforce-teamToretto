@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package core.selenium;
 
 import org.openqa.selenium.By;
@@ -42,6 +43,17 @@ public class WebElementAction {
     }
 
     /**
+     * Sends keys to the given WebElement.
+     *
+     * @param selector represents a selector
+     * @param input is the data to introduce
+     */
+    public void setInputField(final By selector, final String input) {
+        WebDriverManager.getInstance().getWebDriver().findElement(selector).clear();
+        WebDriverManager.getInstance().getWebDriver().findElement(selector).sendKeys(input);
+    }
+
+    /**
      * Clicks a webElement.
      *
      * @param webElement is what we want to click.
@@ -50,6 +62,7 @@ public class WebElementAction {
         waitForVisible(webElement);
         webElement.click();
     }
+
     /**
      * Clicks a webElement.
      *
@@ -88,6 +101,109 @@ public class WebElementAction {
      */
     public String getTextOfElementByField(final String field) {
         return WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).getText();
+    }
+
+    /**
+     * Returns the text from a Web Element.
+     *
+     * @param selector represents a selector
+     * @return String represents the text from the web element
+     */
+    public String getText(final By selector) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(WebDriverManager
+                .getInstance().getWebDriver().findElement(selector)));
+        return WebDriverManager.getInstance().getWebDriver().findElement(selector).getText();
+    }
+
+    /**
+     * Returns the text from a Web Element given a parametrized By selector and its value.
+     *
+     * @param parametrizedSelector represents a selector
+     * @param value represents the custom value for the parametrized selector
+     * @return String
+     */
+    public String getText(final String parametrizedSelector, final String value) {
+        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(WebDriverManager
+                .getInstance().getWebDriver().findElement(withParameter(parametrizedSelector, value))));
+        return WebDriverManager.getInstance().getWebDriver()
+                .findElement(withParameter(parametrizedSelector, value)).getText();
+    }
+
+    /**
+     * Clicks on the given WebElement.
+     *
+     * @param selector represents a selector
+     */
+    public void clickOnElement(final By selector) {
+        WebDriverManager.getInstance().getWebDriver().findElement(selector).click();
+    }
+
+    /**
+     * Clicks on the given WebElement.
+     *
+     * @param parametrizedSelector selector represents a parametrized selector
+     * @param value represents the custom value for the parametrized selector
+     */
+    public void clickOnElement(final String parametrizedSelector, final String value) {
+        WebDriverManager.getInstance().getWebDriver().findElement(withParameter(parametrizedSelector, value)).click();
+    }
+
+    /**
+     * Returns a By selector given a parametrized selector and its value.
+     * Distinguishes xpath from css and accepts both.
+     *
+     * @param parametrizedSelector selector represents a parametrized selector
+     * @param value represents the custom value for the parametrized selector
+     * @return By
+     */
+    private static By withParameter(final String parametrizedSelector, final String value) {
+        if (parametrizedSelector.startsWith("//")) {
+            return By.xpath(String.format(parametrizedSelector, value));
+        } else {
+            return By.cssSelector(String.format(parametrizedSelector, value));
+        }
+    }
+
+    /**
+     * Checks if the element is displayed.
+     *
+     * @param selector represents a selector
+     * @return boolean
+     */
+    public boolean isDisplayed(final By selector) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(selector).isDisplayed();
+    }
+
+    /**
+     * Checks if the element is selected.
+     *
+     * @param selector represents a selector
+     * @return boolean
+     */
+    public boolean isSelected(final By selector) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(selector).isSelected();
+    }
+
+    /**
+     * Checks if the element is selected given a parametrized Selector.
+     *
+     * @param parametrizedSelector selector represents a parametrized selector
+     * @param value represents the custom value for the parametrized selector
+     * @return boolean
+     */
+    public boolean isSelected(final String parametrizedSelector, final String value) {
+        return WebDriverManager.getInstance().getWebDriver()
+                .findElement(withParameter(parametrizedSelector, value)).isSelected();
+    }
+
+    /**
+     * Returns a Web Element out of a By selector.
+     *
+     * @param selector represents a selector
+     * @return WebElement
+     */
+    public WebElement getElement(final By selector) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(selector);
     }
 
     /**

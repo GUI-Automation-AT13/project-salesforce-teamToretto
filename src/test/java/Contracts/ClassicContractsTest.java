@@ -24,7 +24,7 @@ public class ClassicContractsTest extends BaseTests {
         classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getUser(),
                 EnvConfig.getInstance().getPassword());
         classicContractsPage = pageTransporter.navigateToContractsPage();
-        classicContractsPage.clickPopUP();
+        classicContractsPage.clickPopUp();
         classicNewContractPage = classicContractsPage.clickNew();
         classicNewContractPage.setAccountName(accountName);
         classicNewContractPage.setContractTermMonths("2");
@@ -39,7 +39,7 @@ public class ClassicContractsTest extends BaseTests {
         classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getUser(),
                 EnvConfig.getInstance().getPassword());
         classicContractsPage = pageTransporter.navigateToContractsPage();
-        classicContractsPage.clickPopUP();
+        classicContractsPage.clickPopUp();
         classicNewContractPage = classicContractsPage.clickNew();
         classicNewContractPage.setAccountName(accountName);
         classicNewContractPage.setContractTermMonths("2");
