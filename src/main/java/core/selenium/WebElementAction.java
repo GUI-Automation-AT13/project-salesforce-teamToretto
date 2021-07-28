@@ -9,7 +9,10 @@ package core.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
@@ -33,7 +36,7 @@ public class WebElementAction {
      * @param typeText   value that will set.
      */
     public void setInputField(final WebElement webElement, final String typeText) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        waitForVisible(webElement);
         webElement.clear();
         webElement.sendKeys(typeText);
     }
@@ -44,7 +47,7 @@ public class WebElementAction {
      * @param webElement is what we want to click.
      */
     public void clickField(final WebElement webElement) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        waitForVisible(webElement);
         webElement.click();
     }
     /**
@@ -73,7 +76,7 @@ public class WebElementAction {
      * @return web element's text
      */
     public String getTextOfElement(final WebElement webElement) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        waitForVisible(webElement);
         return webElement.getText();
     }
 
@@ -85,5 +88,16 @@ public class WebElementAction {
      */
     public String getTextOfElementByField(final String field) {
         return WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).getText();
+    }
+
+    /**
+     * Selects a webElement isn't able to click.
+     *
+     * @param webElement type WebElement object.
+     */
+    public void selectByAction(final WebElement webElement) {
+        Actions builder = new Actions(WebDriverManager.getInstance().getWebDriver());
+        Action action = builder.click(webElement).build();
+        action.perform();
     }
 }
