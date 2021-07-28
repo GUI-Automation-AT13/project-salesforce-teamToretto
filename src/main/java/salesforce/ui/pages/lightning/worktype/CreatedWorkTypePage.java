@@ -14,7 +14,8 @@ public class CreatedWorkTypePage extends BasePage {
     @FindBy(xpath = "//*[@class='uiOutputTextArea']")
     protected WebElement descriptionTxt;
 
-    @FindBy(xpath = "//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime forceOutputModStampWithPreview']")
+    @FindBy(xpath = "//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
+            + "forceOutputModStampWithPreview']")
     protected WebElement dateCreateByTxt;
 
     @FindBy(xpath = "//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']")

@@ -23,14 +23,16 @@ public class Account {
     public String getId() {
         return id;
     }
+
     /**
      * Sets the Id.
      *
-     * @param  newId name
+     * @param newId name
      */
     public void setId(final String newId) {
         this.id = newId;
     }
+
     /**
      * gets name.
      *
@@ -39,10 +41,11 @@ public class Account {
     public String getName() {
         return name;
     }
+
     /**
      * Sets the Id.
      *
-     * @param  newName name
+     * @param newName name
      */
     public void setName(final String newName) {
         this.name = newName;

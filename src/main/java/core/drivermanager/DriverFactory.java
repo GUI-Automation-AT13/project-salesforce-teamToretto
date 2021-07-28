@@ -1,6 +1,5 @@
 /**
  * Copyright (c) 2021 Fundacion Jala.
- *
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
  * Information and shall use it only in accordance with the terms of the
@@ -8,6 +7,7 @@
  *
  * @author Jorge Rodrigo Cáceres Velasco
  */
+
 package core.drivermanager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -40,6 +40,7 @@ public final class DriverFactory {
             case "FIREFOX":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
+                break;
             default:
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();

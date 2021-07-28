@@ -22,6 +22,7 @@ public abstract class BasePage {
         PageFactory.initElements(WebDriverManager.getInstance().getWebDriver(), this);
         waitForPageLoaded();
     }
+
     /**
      * Waits for the page to be loaded.
      */

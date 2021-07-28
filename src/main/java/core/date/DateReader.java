@@ -1,6 +1,5 @@
 /**
  * Copyright (c) 2021 Fundacion Jala.
- * <p>
  * This software is the confidential and proprietary information of Fundacion Jala
  * ("Confidential Information"). You shall not disclose such Confidential
  * Information and shall use it only in accordance with the terms of the
@@ -8,12 +7,17 @@
  *
  * @author Jorge Rodrigo Cáceres Velasco
  */
+
 package core.date;
 
-import org.openqa.selenium.InvalidArgumentException;
 import java.util.Calendar;
+import org.openqa.selenium.InvalidArgumentException;
 
+/**
+ * Parses a String Date.
+ */
 public class DateReader {
+
     private int timeUnit;
     private int quantity;
 

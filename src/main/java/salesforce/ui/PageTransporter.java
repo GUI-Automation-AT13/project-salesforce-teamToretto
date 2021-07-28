@@ -5,6 +5,7 @@
  * Information and shall use it only in accordance with the terms of the
  * license agreement you entered into with Fundacion Jala
  */
+
 package salesforce.ui;
 
 import core.selenium.WebDriverManager;
@@ -12,15 +13,19 @@ import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 
+/**
+ * Navigates to a page's url.
+ */
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
+
     /**
      * Goes directly to a page by an url.
      *
      * @param url to go.
      */
-    public void goToURL(final String url) {
+    public void goToUrl(final String url) {
         WebDriverManager.getInstance().getWebDriver().navigate().to(url);
     }
 
@@ -30,16 +35,17 @@ public class PageTransporter {
      * @return Contracts' instance.
      */
     public ClassicContractsPage navigateToContractsPage() {
-        goToURL(baseUrl.concat("800/o"));
+        goToUrl(baseUrl.concat("800/o"));
         return new ClassicContractsPage();
     }
+
     /**
      * Navigates to Contracts page on lightning version.
      *
      * @return Contracts' instance.
      */
     public ContractsPage navigateToContractsPageLightning() {
-        goToURL(baseUrl.concat("lightning/o/Contract/list?filterName=Recent"));
+        goToUrl(baseUrl.concat("lightning/o/Contract/list?filterName=Recent"));
         return new ContractsPage();
     }
 }
