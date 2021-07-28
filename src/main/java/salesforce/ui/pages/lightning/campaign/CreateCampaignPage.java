@@ -164,4 +164,3 @@ public class CreateCampaignPage extends BasePage {
         return new CampaignCreatedPage();
     }
 }
-
