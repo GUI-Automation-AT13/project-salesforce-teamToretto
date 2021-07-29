@@ -28,3 +28,7 @@ build/
 .idea/
 
 config.properties
+
+.classpath
+.project
+.settings/
