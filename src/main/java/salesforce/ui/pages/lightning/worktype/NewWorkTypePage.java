@@ -72,9 +72,8 @@ public class NewWorkTypePage extends BasePage implements IFeatureNew {
         webElementAction.selectByAction(WebDriverManager.getInstance().getWebDriver()
                 .findElement(By.xpath(xpathComboBox)));
         String xpathValue = String.format("(//a[normalize-space()='%s'])[%d]", selectValue, countComboBox);
-        webElementAction.clickField(WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(xpathValue)));
-        webElementAction.clickField(WebDriverManager.getInstance().getWebDriver()
-                .findElement(By.xpath("//div[@class='actionsContainer']")));
+        webElementAction.clickByLocator(By.xpath(xpathValue));
+        webElementAction.clickByLocator(By.xpath("//div[@class='actionsContainer']"));
     }
 
     /**

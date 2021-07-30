@@ -1,5 +1,14 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.utlis.strategy;
 
+import org.openqa.selenium.InvalidArgumentException;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
@@ -18,7 +27,7 @@ public class MapPages {
             case "contract":
                 return new ContractsPage();
             default:
-                return new WorkTypesPage();
+                throw new InvalidArgumentException("Invalid feature");
         }
     }
 }

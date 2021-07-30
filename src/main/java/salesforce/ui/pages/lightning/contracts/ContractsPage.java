@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.contracts;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utlis.strategy.IFeatureNew;
 import salesforce.utlis.strategy.IFeaturesPage;
 
 /**
@@ -35,5 +36,10 @@ public class ContractsPage extends BasePage implements IFeaturesPage {
     public NewContractPage clickNewContractButton() {
         webElementAction.clickByLocator(newContractButton);
         return new NewContractPage();
+    }
+
+    @Override
+    public IFeatureNew clickNewButton() {
+        return null;
     }
 }

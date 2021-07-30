@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utlis.strategy.ICreatedFeature;
 import salesforce.utlis.strategy.IFeatureNew;
 
 /**
@@ -265,5 +266,10 @@ public class NewContractPage extends BasePage implements IFeatureNew {
     @Override
     public void fillUpField(Map<String, String> table) {
 
+    }
+
+    @Override
+    public ICreatedFeature clickSaveButton() {
+        return null;
     }
 }
