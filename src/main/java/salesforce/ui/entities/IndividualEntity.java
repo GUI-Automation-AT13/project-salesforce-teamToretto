@@ -8,18 +8,97 @@
 
 package salesforce.ui.entities;
 
-import java.util.Date;
-
 /**
- * Represents a salesforce Entity.
+ * Represents a Salesforce Individual Object.
  */
 public class IndividualEntity {
 
+    private String salutation;
+
+    public String getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
     private String firstname;
     private String lastname;
-    private Date birthdate;
+    private String birthdate;
+    private boolean dontProcess;
     private boolean dontMarket;
-    private String age;
+    private boolean exportIndividualsData;
+    private boolean okToStorePiiDataElsewhere;
+    private boolean blockGeolocationTracking;
+    private boolean dontProfile;
+    private boolean dontTrack;
+    private boolean forgetThisIndividual;
+    private String individualsAge;
+
+    public boolean isDontProcess() {
+        return dontProcess;
+    }
+
+    public void setDontProcess(boolean dontProcess) {
+        this.dontProcess = dontProcess;
+    }
+
+    public boolean isExportIndividualsData() {
+        return exportIndividualsData;
+    }
+
+    public void setExportIndividualsData(boolean exportIndividualsData) {
+        this.exportIndividualsData = exportIndividualsData;
+    }
+
+    public boolean isOkToStorePiiDataElsewhere() {
+        return okToStorePiiDataElsewhere;
+    }
+
+    public void setOkToStorePiiDataElsewhere(boolean okToStorePiiDataElsewhere) {
+        this.okToStorePiiDataElsewhere = okToStorePiiDataElsewhere;
+    }
+
+    public boolean isBlockGeolocationTracking() {
+        return blockGeolocationTracking;
+    }
+
+    public void setBlockGeolocationTracking(boolean blockGeolocationTracking) {
+        this.blockGeolocationTracking = blockGeolocationTracking;
+    }
+
+    public boolean isDontProfile() {
+        return dontProfile;
+    }
+
+    public void setDontProfile(boolean dontProfile) {
+        this.dontProfile = dontProfile;
+    }
+
+    public boolean isDontTrack() {
+        return dontTrack;
+    }
+
+    public void setDontTrack(boolean dontTrack) {
+        this.dontTrack = dontTrack;
+    }
+
+    public boolean isForgetThisIndividual() {
+        return forgetThisIndividual;
+    }
+
+    public void setForgetThisIndividual(boolean forgetThisIndividual) {
+        this.forgetThisIndividual = forgetThisIndividual;
+    }
+
+    public String getIndividualsAge() {
+        return individualsAge;
+    }
+
+    public void setIndividualsAge(String individualsAge) {
+        this.individualsAge = individualsAge;
+    }
 
     /**
      * Gets the firstname value.
@@ -33,7 +112,7 @@ public class IndividualEntity {
     /**
      * Sets the firstname value.
      *
-     * @param firstnameValue represents the firstname
+     * @param firstnameValue represents the Individual firstname
      */
     public void setFirstname(final String firstnameValue) {
         this.firstname = firstnameValue;
@@ -51,7 +130,7 @@ public class IndividualEntity {
     /**
      * Sets the lastname value.
      *
-     * @param lastnameValue represents the lastname
+     * @param lastnameValue represents the Individual lastname
      */
     public void setLastname(final String lastnameValue) {
         this.lastname = lastnameValue;
@@ -62,16 +141,16 @@ public class IndividualEntity {
      *
      * @return Date
      */
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
     /**
      * Sets the birthdate value.
      *
-     * @param birthdateValue represents the birthdate date
+     * @param birthdateValue represents the Individual birthdate date
      */
-    public void setBirthdate(final Date birthdateValue) {
+    public void setBirthdate(final String birthdateValue) {
         this.birthdate = birthdateValue;
     }
 
@@ -87,27 +166,27 @@ public class IndividualEntity {
     /**
      * Sets the Don't Market value.
      *
-     * @param dontMarketValue represents the boolean for the dont market checkbox
+     * @param dontMarketValue represents the boolean value for the individual dont market value option
      */
     public void setDontMarket(final boolean dontMarketValue) {
         this.dontMarket = dontMarketValue;
     }
 
     /**
-     * Gets the Age value.
+     * Returns the full name.
      *
      * @return String
      */
-    public String getAge() {
-        return age;
+    public String getFullName() {
+        return this.firstname.concat(" ").concat(lastname);
     }
 
     /**
-     * Sets the Age value.
+     * Returns the full name with salutation.
      *
-     * @param ageValue represents an age
+     * @return String
      */
-    public void setAge(final String ageValue) {
-        this.age = ageValue;
+    public String getFullnameWithSalutation() {
+        return String.format("%s %s %s", salutation, firstname, lastname);
     }
 }

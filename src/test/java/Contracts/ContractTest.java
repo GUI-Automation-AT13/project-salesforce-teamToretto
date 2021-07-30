@@ -21,20 +21,20 @@ public class ContractTest extends ContractBaseTest {
         homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
                 EnvConfig.getInstance().getPassword());
         contractsPage = pageTransporter.navigateToContractsPageLightning();
-        newContractPage = contractsPage.clickNewButton();
+        newContractPage = contractsPage.clickNewContractButton();
         newContractPage.setAccountName("TestAccount");
         newContractPage.clickAccountSelector();
         newContractPage.setContractTermMonths("2");
-        newContractPage.setContractStartDate("7/7/2021");
+        newContractPage.setContractStartDate("7/15/2021");
         newContractPage.setCustomerSignedBy("TestContact");
         newContractPage.clickContactSelector();
         newContractPage.setCustomerSignedTittle("tittle");
-        newContractPage.setCustomerSignedDate("7/9/2021");
+        newContractPage.setCustomerSignedDate("7/15/2021");
         newContractPage.setPriceBook("Standard");
         newContractPage.selectPriceBook();
         newContractPage.clickOwnerExpirationNotice();
         newContractPage.selectOwnerExpirationNotice("30 Days");
-        newContractPage.setCompanySignedDate("7/8/2021");
+        newContractPage.setCompanySignedDate("7/19/2021");
         newContractPage.setBillingStreet("Billing Street");
         newContractPage.setBillingCity("Billing City");
         newContractPage.setBillingStreet("Billing Street");
@@ -43,29 +43,29 @@ public class ContractTest extends ContractBaseTest {
         newContractPage.setBillingCountry("Billing country");
         newContractPage.setSpecialTerms("SpecialTerms");
         newContractPage.setDescription("Description");
-        createdContractPage = newContractPage.clickSaveButton();
+        createdContractPage = newContractPage.clickSave();
         createdContractPage.clickDetails();
-        softAssert.assertEquals(createdContractPage.getTextByField("Account Name"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Account Name"),
                 "TestAccount");
-        softAssert.assertEquals(createdContractPage.getTextByField("Contract Term (months)"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Contract Term (months)"),
                 "2");
         softAssert.assertEquals(createdContractPage.contractStartDateText(),
-                "7/7/2021");
-        softAssert.assertEquals(createdContractPage.getTextByField("Customer Signed By"),
+                "7/15/2021");
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Customer Signed By"),
                 "TestContact");
-        softAssert.assertEquals(createdContractPage.getTextByField("Customer Signed Title"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Customer Signed Title"),
                 "tittle");
-        softAssert.assertEquals(createdContractPage.getTextByField("Customer Signed Date"),
-                "7/9/2021");
-        softAssert.assertEquals(createdContractPage.getTextByField("Price Book"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Customer Signed Date"),
+                "7/15/2021");
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Price Book"),
                 "Standard");
-        softAssert.assertEquals(createdContractPage.getTextByField("Owner Expiration Notice"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Owner Expiration Notice"),
                 "30 Days");
-        softAssert.assertEquals(createdContractPage.getTextByField("Company Signed Date"),
-                "7/8/2021");
-        softAssert.assertEquals(createdContractPage.getTextByField("Special Terms"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Company Signed Date"),
+                "7/19/2021");
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Special Terms"),
                 "SpecialTerms");
-        softAssert.assertEquals(createdContractPage.getTextByField("Description"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Description"),
                 "Description");
         softAssert.assertAll();
     }
@@ -76,16 +76,16 @@ public class ContractTest extends ContractBaseTest {
         homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
                 EnvConfig.getInstance().getPassword());
         contractsPage = pageTransporter.navigateToContractsPageLightning();
-        newContractPage = contractsPage.clickNewButton();
+        newContractPage = contractsPage.clickNewContractButton();
         newContractPage.setAccountName("TestAccount");
         newContractPage.clickAccountSelector();
         newContractPage.setContractTermMonths("2");
         newContractPage.setContractStartDate("7/15/2021");
-        createdContractPage = newContractPage.clickSaveButton();
+        createdContractPage = newContractPage.clickSave();
         createdContractPage.clickDetails();
-        softAssert.assertEquals(createdContractPage.getTextByField("Account Name"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Account Name"),
                 "TestAccount");
-        softAssert.assertEquals(createdContractPage.getTextByField("Contract Term (months)"),
+        softAssert.assertEquals(createdContractPage.getTextByFieldName("Contract Term (months)"),
                 "2");
         softAssert.assertEquals(createdContractPage.contractStartDateText(),
                 "7/15/2021");

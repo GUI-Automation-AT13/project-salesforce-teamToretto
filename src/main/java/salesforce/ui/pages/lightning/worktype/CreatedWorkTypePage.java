@@ -1,37 +1,37 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.worktype;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utlis.strategy.ICreatedFeature;
 import salesforce.utlis.supplier.StringSupplier;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.IntSupplier;
 
 /**
  * This class has webElement for work type created.
  */
 public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
-    @FindBy(xpath = "//*[@class='uiOutputText']")
-    protected WebElement nameWorkTypeTxt;
 
-    @FindBy(xpath = "//*[@class='uiOutputTextArea']")
-    protected WebElement descriptionTxt;
-
-    @FindBy(xpath = "//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
-            + "forceOutputModStampWithPreview']")
-    protected WebElement dateCreateByTxt;
-
-    @FindBy(xpath = "//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']")
-    protected WebElement nameCreatorTxt;
+    protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
+    protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
+    protected By dateCreateByTxt = By
+            .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
+            + "forceOutputModStampWithPreview']");
+    protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(nameWorkTypeTxt);
+        webElementAction.waitForVisibilityOfLocator(nameWorkTypeTxt);
     }
 
     /**
@@ -40,7 +40,7 @@ public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
      * @return name of worktype.
      */
     public String getNameOfWorkType() {
-        return nameWorkTypeTxt.getText();
+        return webElementAction.getTextOfByFieldByLocator(nameWorkTypeTxt);
     }
 
     /**
@@ -49,7 +49,7 @@ public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
      * @return description of worktype.
      */
     public String getDescription() {
-        return descriptionTxt.getText();
+        return webElementAction.getTextOfByFieldByLocator(descriptionTxt);
     }
 
     /**
@@ -70,7 +70,7 @@ public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
      * @return a String to date
      */
     public String getCreatedByTxt() {
-        return webElementAction.getTextOfElement(dateCreateByTxt);
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     /**
@@ -79,7 +79,7 @@ public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
      * @return a String to date
      */
     public String getNameCreatorTxt() {
-        return webElementAction.getTextOfElement(nameCreatorTxt);
+        return webElementAction.getTextOfByFieldByLocator(nameCreatorTxt);
     }
 
 

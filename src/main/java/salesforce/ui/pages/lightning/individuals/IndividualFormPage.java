@@ -21,28 +21,27 @@ import salesforce.ui.pages.BasePage;
  */
 public class IndividualFormPage extends BasePage {
 
-    private By salutationSelector = By.cssSelector(".salutation a");
 
     private final String generalSalutationOptionSelector = "[title=\"%s\"]";
     private final String generalCheckboxSelector = "//div[label[contains(.,\"%s\")]]/input";
+    private final String ageGeneralSelector = "//a[contains(text(),\'%s\')]";
 
+    private By salutationSelector = By.cssSelector(".salutation a");
     private By firstnameTextbox = By.cssSelector(".firstName");
     private By lastnameTextbox = By.cssSelector(".lastName");
     private By birthdateDateField = By.cssSelector("input[class=' input']");
-
     private By individualAgeSelector = By.xpath("//div[span[span[contains(text(),'Age')]]]/div//a");
     private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
     private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
     private By saveButton = By.cssSelector("button[title=\"Save\"]");
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
-
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 
     /**
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
-        webElementAction.clickOnElement(salutationSelector);
+        webElementAction.clickByLocator(salutationSelector);
     }
 
     /**
@@ -167,21 +166,21 @@ public class IndividualFormPage extends BasePage {
      * Clicks on the IndividualAgeSelector.
      */
     public void clickOnIndividualAgeSelector() {
-        webElementAction.clickOnElement(individualAgeSelector);
+        webElementAction.clickByLocator(individualAgeSelector);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void clickOnAge13Option() {
-        webElementAction.clickOnElement(age13Option);
+        webElementAction.clickByLocator(age13Option);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void clickOnAge16Option() {
-        webElementAction.clickOnElement(age16Option);
+        webElementAction.clickByLocator(age16Option);
     }
 
     /**
@@ -190,7 +189,7 @@ public class IndividualFormPage extends BasePage {
      * @return IndividualRecordPage
      */
     public IndividualRecordPage clickOnsave() {
-        webElementAction.clickOnElement(saveButton);
+        webElementAction.clickByLocator(saveButton);
         return new IndividualRecordPage();
     }
 
@@ -200,7 +199,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedSuccessMessage() {
-        return webElementAction.getText(createdSuccessMessage);
+        return webElementAction.getTextOfByFieldByLocator(createdSuccessMessage);
     }
 
     /**
@@ -218,7 +217,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedIndividualNameInHeader() {
-        return webElementAction.getText(createdIndividualLabel);
+        return webElementAction.getTextOfByFieldByLocator(createdIndividualLabel);
     }
 
     /**
@@ -230,10 +229,42 @@ public class IndividualFormPage extends BasePage {
      */
     public IndividualFormPage createIndividual(final Set<String> fields, final IndividualEntity entity) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("name", () -> setFirstnameTextbox(entity.getFirstname()));
-
+        strategyMap.put("salutation", () -> clickOnSalutationOption(entity.getSalutation()));
+        strategyMap.put("lastname", () -> setLastnameTextbox(entity.getLastname()));
+        strategyMap.put("firstname", () -> setFirstnameTextbox(entity.getFirstname()));
+        strategyMap.put("birthdate", () -> setBirthdateDateField(entity.getBirthdate()));
+        strategyMap.put("dontProcess", () -> clickOnDontProcessCheckbox());
+        strategyMap.put("dontMarket", () -> clickOnDontMarketCheckbox());
+        strategyMap.put("exportIndividualsData", () -> clickOnExportIndividualDataCheckbox());
+        strategyMap.put("okToStorePiiDataElsewhere", () -> clickOnIndividualAgeSelector());
+        strategyMap.put("blockGeolocationTracking", () -> clickOnBlockGeolocationCheckbox());
+        strategyMap.put("dontProfile", () -> clickOnDontProfileCheckbox());
+        strategyMap.put("dontTrack", () -> clickOnDontTrackCheckbox());
+        strategyMap.put("forgetThisIndividual", () -> clickOnForgetThisIndividualCheckbox());
+        strategyMap.put("individualsAge", () -> clickOnIndividualAgeOption(entity.getIndividualsAge()));
         fields.forEach(field -> strategyMap.get(field).run());
+        clickOnsave();
         return this;
+    }
+
+    /**
+     * Clicks and selects an Individual age option.
+     *
+     * @param age represents the age
+     */
+    private void clickOnIndividualAgeOption(String age) {
+        clickOnIndividualAgeSelector();
+        webElementAction.clickOnElement(ageGeneralSelector, age);
+    }
+
+    /**
+     * Clicks on a salutation option.
+     *
+     * @param salutation represents a salutation abbreviation.
+     */
+    private void clickOnSalutationOption(String salutation) {
+        clickOnSalutationDropDownMenu();
+        webElementAction.clickOnElement(generalSalutationOptionSelector, salutation);
     }
 
     /**

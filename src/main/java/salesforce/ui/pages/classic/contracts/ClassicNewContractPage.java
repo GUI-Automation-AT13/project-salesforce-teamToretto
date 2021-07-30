@@ -1,59 +1,48 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.classic.contracts;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
 /**
  * Page object model for the salesforce classic new contract page.
  */
 public class ClassicNewContractPage extends BasePage {
-    @FindBy(css = "#ctrc7")
-    private WebElement accountName;
-    @FindBy(css = "#ctrc16")
-    private WebElement customerSignedBy;
-    @FindBy(css = "#CustomerSignedTitle")
-    private WebElement customerSignedTittle;
-    @FindBy(css = "#ctrc6")
-    private WebElement customerSignedDate;
-    @FindBy(css = "#ctrc17")
-    private WebElement priceBook;
-    @FindBy(css = "#ctrc5")
-    private WebElement contractStartDate;
-    @FindBy(css = "#ctrc40")
-    private WebElement contractTermMonths;
-    @FindBy(css = "#ctrc13")
-    private WebElement ownerExpirationNotice;
-    @FindBy(css = "#CompanySignedDate")
-    private WebElement companySignedDate;
-    @FindBy(css = "#ctrc25street")
-    private WebElement billingStreet;
-    @FindBy(css = "#ctrc25city")
-    private WebElement billingCity;
-    @FindBy(css = "#ctrc25state")
-    private WebElement billingState;
-    @FindBy(css = "#ctrc25zip")
-    private WebElement billingPostalCode;
-    @FindBy(css = "#ctrc25country")
-    private WebElement billingCountry;
-    @FindBy(css = "#SpecialTerms")
-    private WebElement specialTerms;
-    @FindBy(css = "#Description")
-    private WebElement description;
-    @FindBy(css = "td[id='bottomButtonRow'] input[title='Save']")
-    private WebElement save;
-    @FindBy(css = "td[id='bottomButtonRow'] input[title='Save & New']")
-    private WebElement saveAndNew;
-    @FindBy(css = "td[id='bottomButtonRow'] input[title='Cancel']")
-    private WebElement cancel;
+
+    private By accountName = By.cssSelector("#ctrc7");
+    private By customerSignedBy = By.cssSelector("#ctrc16");
+    private By customerSignedTittle = By.cssSelector("#CustomerSignedTitle");
+    private By customerSignedDate = By.cssSelector("#ctrc6");
+    private By priceBook = By.cssSelector("#ctrc17");
+    private By contractStartDate = By.cssSelector("#ctrc5");
+    private By contractTermMonths = By.cssSelector("#ctrc40");
+    private By ownerExpirationNotice = By.cssSelector("#ctrc13");
+    private By companySignedDate = By.cssSelector("#CompanySignedDate");
+    private By billingStreet = By.cssSelector("#ctrc25street");
+    private By billingCity = By.cssSelector("#ctrc25city");
+    private By billingState = By.cssSelector("#ctrc25state");
+    private By billingPostalCode = By.cssSelector("#ctrc25zip");
+    private By billingCountry = By.cssSelector("#ctrc25country");
+    private By specialTerms = By.cssSelector("#SpecialTerms");
+    private By description = By.cssSelector("#Description");
+    private By save = By.cssSelector("td[id='bottomButtonRow'] input[title='Save']");
+    private By saveAndNew = By.cssSelector("td[id='bottomButtonRow'] input[title='Save & New']");
+    private By cancel = By.cssSelector("td[id='bottomButtonRow'] input[title='Cancel']");
+    private String ownerExpirationNoticeSelector = "//option[. = '%s Days']";
 
     /**
      * Waits for the page to be loaded.
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(accountName);
+        webElementAction.waitForVisibilityOfLocator(accountName);
     }
 
     /**
@@ -62,7 +51,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newAccountName represents an account name
      */
     public void setAccountName(final String newAccountName) {
-        this.accountName.sendKeys(newAccountName);
+        webElementAction.setInputField(this.accountName, newAccountName);
     }
 
     /**
@@ -71,7 +60,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newCustomerSignedBy to be typed.
      */
     public void setCustomerSignedBy(final String newCustomerSignedBy) {
-        this.customerSignedBy.sendKeys(newCustomerSignedBy);
+        webElementAction.setInputField(this.customerSignedBy, newCustomerSignedBy);
     }
 
     /**
@@ -80,7 +69,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newCustomerSignedTittle to be typed.
      */
     public void setCustomerSignedTittle(final String newCustomerSignedTittle) {
-        this.customerSignedTittle.sendKeys(newCustomerSignedTittle);
+        webElementAction.setInputField(this.customerSignedTittle, newCustomerSignedTittle);
     }
 
     /**
@@ -89,7 +78,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newCustomerSignedDate to be typed.
      */
     public void setCustomerSignedDate(final String newCustomerSignedDate) {
-        this.customerSignedDate.sendKeys(newCustomerSignedDate);
+        webElementAction.setInputField(this.customerSignedDate, newCustomerSignedDate);
     }
 
     /**
@@ -98,9 +87,9 @@ public class ClassicNewContractPage extends BasePage {
      * @param newPriceBook to be typed.
      */
     public void setPriceBook(final String newPriceBook) {
-        if (newPriceBook == "Standandar") {
-            this.priceBook.click();
-            priceBook.findElement(By.xpath("//option[. = 'Standard']")).click();
+        if (newPriceBook == "Standard") {
+            webElementAction.clickByLocator(priceBook);
+            webElementAction.clickByLocator(By.xpath("//option[. = 'Standard']"));
         }
     }
 
@@ -110,7 +99,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newContractStartDate to be typed.
      */
     public void setContractStartDate(final String newContractStartDate) {
-        this.contractStartDate.sendKeys(newContractStartDate);
+        webElementAction.setInputField(this.contractStartDate, newContractStartDate);
     }
 
     /**
@@ -119,7 +108,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newContractTermMonths to be typed.
      */
     public void setContractTermMonths(final String newContractTermMonths) {
-        this.contractTermMonths.sendKeys(newContractTermMonths);
+        webElementAction.setInputField(this.contractTermMonths, newContractTermMonths);
     }
 
     /**
@@ -128,29 +117,9 @@ public class ClassicNewContractPage extends BasePage {
      * @param newOwnerExpirationNotice to be typed.
      */
     public void setOwnerExpirationNotice(final String newOwnerExpirationNotice) {
-        this.ownerExpirationNotice.click();
-        switch (newOwnerExpirationNotice) {
-            case "15 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '15 Days']")).click();
-                break;
-            case "30 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '30 Days']")).click();
-                break;
-            case "45 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '45 Days']")).click();
-                break;
-            case "60 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '60 Days']")).click();
-                break;
-            case "90 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '90 Days']")).click();
-                break;
-            case "120 Days":
-                ownerExpirationNotice.findElement(By.xpath("//option[. = '120 Days']")).click();
-                break;
-            default:
-                break;
-        }
+        webElementAction.getElement(this.ownerExpirationNotice);
+        webElementAction.clickOnElement(ownerExpirationNoticeSelector, newOwnerExpirationNotice);
+
     }
 
     /**
@@ -159,7 +128,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newCompanySignedDate to be typed.
      */
     public void setCompanySignedDate(final String newCompanySignedDate) {
-        this.companySignedDate.sendKeys(newCompanySignedDate);
+        webElementAction.setInputField(this.companySignedDate, newCompanySignedDate);
     }
 
     /**
@@ -168,7 +137,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newBillingStreet to be typed.
      */
     public void setBillingStreet(final String newBillingStreet) {
-        this.billingStreet.sendKeys(newBillingStreet);
+        webElementAction.setInputField(this.billingStreet, newBillingStreet);
     }
 
     /**
@@ -177,7 +146,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newBillingCity to be typed.
      */
     public void setBillingCity(final String newBillingCity) {
-        this.billingCity.sendKeys(newBillingCity);
+        webElementAction.setInputField(this.billingCity, newBillingCity);
     }
 
     /**
@@ -186,7 +155,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newBillingState to be typed.
      */
     public void setBillingState(final String newBillingState) {
-        this.billingState.sendKeys(newBillingState);
+        webElementAction.setInputField(this.billingState, newBillingState);
     }
 
     /**
@@ -195,7 +164,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newBillingPostalCode to be typed.
      */
     public void setBillingPostalCode(final String newBillingPostalCode) {
-        this.billingPostalCode.sendKeys(newBillingPostalCode);
+        webElementAction.setInputField(this.billingPostalCode, newBillingPostalCode);
     }
 
     /**
@@ -204,7 +173,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newBillingCountry to be typed.
      */
     public void setBillingCountry(final String newBillingCountry) {
-        this.billingCountry.sendKeys(newBillingCountry);
+        webElementAction.setInputField(this.billingCountry, newBillingCountry);
     }
 
     /**
@@ -213,7 +182,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newSpecialTerms to be typed.
      */
     public void setSpecialTerms(final String newSpecialTerms) {
-        this.specialTerms.sendKeys(newSpecialTerms);
+        webElementAction.setInputField(this.specialTerms, newSpecialTerms);
     }
 
     /**
@@ -222,7 +191,7 @@ public class ClassicNewContractPage extends BasePage {
      * @param newDescription to be typed.
      */
     public void setDescription(final String newDescription) {
-        this.description.sendKeys(newDescription);
+        webElementAction.setInputField(this.description, newDescription);
     }
 
     /**
@@ -231,7 +200,7 @@ public class ClassicNewContractPage extends BasePage {
      * @return a CreatedContractPage.
      */
     public ClassicCreatedContractPage clickSave() {
-        this.save.click();
+        webElementAction.clickByLocator(save);
         return new ClassicCreatedContractPage();
     }
 
@@ -241,7 +210,7 @@ public class ClassicNewContractPage extends BasePage {
      * @return a NewContractPage.
      */
     public ClassicNewContractPage clickSaveAndNew() {
-        this.saveAndNew.click();
+        webElementAction.clickByLocator(saveAndNew);
         return new ClassicNewContractPage();
     }
 
@@ -251,7 +220,7 @@ public class ClassicNewContractPage extends BasePage {
      * @return a ContractsPage.
      */
     public ClassicContractsPage clickCancel() {
-        this.cancel.click();
+        webElementAction.clickByLocator(cancel);
         return new ClassicContractsPage();
     }
 

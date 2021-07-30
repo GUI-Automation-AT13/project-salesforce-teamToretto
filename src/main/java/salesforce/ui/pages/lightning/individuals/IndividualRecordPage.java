@@ -42,8 +42,8 @@ public class IndividualRecordPage extends BasePage {
      * @return a HomePage instance.
      */
     public IndividualListPage deleteCreatedIndividual() {
-        webElementAction.clickOnElement(deleteHeaderButton);
-        webElementAction.clickOnElement(confirmDeleteIndividualButton);
+        webElementAction.clickByLocator(deleteHeaderButton);
+        webElementAction.clickByLocator(confirmDeleteIndividualButton);
         return new IndividualListPage();
     }
 
@@ -53,7 +53,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        return webElementAction.getText(deletedSuccessMessage);
+        return webElementAction.getTextOfByFieldByLocator(deletedSuccessMessage);
     }
 
     /**
@@ -62,28 +62,28 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getNameHeaderText() {
-        return webElementAction.getText(nameHeaderLabel);
+        return webElementAction.getTextOfByFieldByLocator(nameHeaderLabel);
     }
 
     /**
      * Clicks on the Edit button in the header.
      */
     public void clickEditHeaderButton() {
-        webElementAction.clickOnElement(editHeaderButton);
+        webElementAction.clickByLocator(editHeaderButton);
     }
 
     /**
      * Clicks on the Delete button in the header.
      */
     public void clickDeleteHeaderButton() {
-        webElementAction.clickOnElement(deleteHeaderButton);
+        webElementAction.clickByLocator(deleteHeaderButton);
     }
 
     /**
      * Clicks on the Clone button in the header.
      */
     public void clickCloneHeaderButton() {
-        webElementAction.clickOnElement(cloneHeaderButton);
+        webElementAction.clickByLocator(cloneHeaderButton);
     }
 
     /**
@@ -125,7 +125,7 @@ public class IndividualRecordPage extends BasePage {
      * Clicks on the Details tab.
      */
     public void clickonDetailsTab() {
-        webElementAction.clickOnElement(detailsTabButton);
+        webElementAction.clickByLocator(detailsTabButton);
     }
 
     /**
@@ -134,7 +134,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getNameDetail() {
-        return webElementAction.getText(labelNameDetail);
+        return webElementAction.getTextOfByFieldByLocator(labelNameDetail);
     }
 
     /**
@@ -143,7 +143,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getBrithdateDetail() {
-        return webElementAction.getText(labelBirthdateDetail);
+        return webElementAction.getTextOfByFieldByLocator(labelBirthdateDetail);
     }
 
     /**
@@ -224,7 +224,7 @@ public class IndividualRecordPage extends BasePage {
      * @return String
      */
     public String getIndividualAgeDetail() {
-        return webElementAction.getText(labelIndividualsAgeDetail);
+        return webElementAction.getTextOfByFieldByLocator(labelIndividualsAgeDetail);
     }
 
     /**

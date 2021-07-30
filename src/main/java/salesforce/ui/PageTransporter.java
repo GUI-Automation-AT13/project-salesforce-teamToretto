@@ -11,7 +11,10 @@ package salesforce.ui;
 import core.selenium.WebDriverManager;
 import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
+import salesforce.ui.pages.lightning.LoginPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
+import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
+import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
 /**
@@ -20,6 +23,11 @@ import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
+
+    public LoginPage navigateToLoginPage() {
+        goToUrl(baseUrl);
+        return new LoginPage();
+    }
 
     /**
      * Goes directly to a page by an url.
@@ -48,6 +56,26 @@ public class PageTransporter {
     public ContractsPage navigateToContractsPageLightning() {
         goToUrl(baseUrl.concat("lightning/o/Contract/list?filterName=Recent"));
         return new ContractsPage();
+    }
+
+    /**
+     * Navigates to the individual form page.
+     *
+     * @return IndividualFormPage
+     */
+    public IndividualFormPage navigateToIndividualFormPage() {
+        goToUrl(baseUrl.concat("lightning/o/Individual/new?count=1"));
+        return new IndividualFormPage();
+    }
+
+    /**
+     * Navigates to the individual list page.
+     *
+     * @return IndividualListPage
+     */
+    public IndividualListPage navigateToIndividualListPage() {
+        goToUrl(baseUrl.concat("lightning/o/Individual/list?filterName=Recent"));
+        return new IndividualListPage();
     }
 
     /**

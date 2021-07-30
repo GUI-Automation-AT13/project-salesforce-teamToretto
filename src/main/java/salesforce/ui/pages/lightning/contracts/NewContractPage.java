@@ -1,10 +1,17 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.contracts;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utlis.strategy.IFeatureNew;
 
@@ -12,52 +19,29 @@ import salesforce.utlis.strategy.IFeatureNew;
  * Page Object Model for the salesforce new contract page.
  */
 public class NewContractPage extends BasePage implements IFeatureNew {
-    @FindBy(css = "input[placeholder='Search Accounts...']")
-    private WebElement accountName;
-    @FindBy(xpath = "//mark[normalize-space()='TestAccount']")
-    private WebElement accountSelector;
-    @FindBy(css = "input[placeholder='Search Contacts...']")
-    private WebElement customerSignedBy;
-    @FindBy(xpath = "//div[@title='TestContact']")
-    private WebElement contactSelector;
-    @FindBy(xpath = "(//div/input[@class = ' input'])[2]")
-    private WebElement customerSignedTittle;
-    @FindBy(xpath = "(//div/input[@class = ' input'])[3]")
-    private WebElement customerSignedDate;
-    @FindBy(css = "input[placeholder='Search Price Books...']")
-    private WebElement priceBook;
-    @FindBy(xpath = "//mark[normalize-space()='Standard']")
-    private WebElement priceBookSelector;
-    @FindBy(xpath = "(//div/input[@class =' input'])[1]")
-    private WebElement contractStartDate;
-    @FindBy(css = ".input.uiInputSmartNumber")
-    private WebElement contractTermMonths;
-    @FindBy(css = ".select[aria-required='false']")
-    private WebElement ownerExpirationNotice;
-    @FindBy(linkText = "15 Days")
+    private By accountName = By.cssSelector("input[placeholder='Search Accounts...']");
+    private By accountSelector = By.xpath("//mark[normalize-space()='TestAccount']");
+    private By customerSignedBy = By.cssSelector("input[placeholder='Search Contacts...']");
+    private By contactSelector = By.xpath("//div[@title='TestContact']");
+    private By customerSignedTittle = By.xpath("(//div/input[@class = ' input'])[2]");
+    private By customerSignedDate = By.xpath("(//div/input[@class = ' input'])[3]");
+    private By priceBook = By.cssSelector("input[placeholder='Search Price Books...']");
+    private By priceBookSelector = By.xpath("//mark[normalize-space()='Standard']");
+    private By contractStartDate = By.xpath("(//div/input[@class =' input'])[1]");
+    private By contractTermMonths = By.cssSelector(".input.uiInputSmartNumber");
+    private By ownerExpirationNotice = By.cssSelector(".select[aria-required='false']");
     private static HashMap<String, String> ownerExpirationNoticeSelector = new HashMap<>();
-    @FindBy(xpath = "(//div/input[@class = ' input'])[4]")
-    private WebElement companySignedDate;
-    @FindBy(css = "textarea[placeholder='Billing Street']")
-    private WebElement billingStreet;
-    @FindBy(css = "input[placeholder='Billing City']")
-    private WebElement billingCity;
-    @FindBy(css = "input[placeholder='Billing State/Province']")
-    private WebElement billingState;
-    @FindBy(css = "input[placeholder='Billing Zip/Postal Code']")
-    private WebElement billingPostalCode;
-    @FindBy(css = "input[placeholder='Billing Country']")
-    private WebElement billingCountry;
-    @FindBy(xpath = "(//textarea[@class=\" textarea\" ])[1]")
-    private WebElement specialTerms;
-    @FindBy(xpath = "(//textarea[@class=\" textarea\" ])[last()]")
-    private WebElement description;
-    @FindBy(css = "button[title='Save']")
-    private WebElement save;
-    @FindBy(css = "button[title='Save & New']")
-    private WebElement saveAndNew;
-    @FindBy(css = "button[title='Cancel']")
-    private WebElement cancel;
+    private By companySignedDate = By.xpath("(//div/input[@class = ' input'])[4]");
+    private By billingStreet = By.cssSelector("textarea[placeholder='Billing Street']");
+    private By billingCity = By.cssSelector("input[placeholder='Billing City']");
+    private By billingState = By.cssSelector("input[placeholder='Billing State/Province']");
+    private By billingPostalCode = By.cssSelector("input[placeholder='Billing Zip/Postal Code']");
+    private By billingCountry = By.cssSelector("input[placeholder='Billing Country']");
+    private By specialTerms = By.xpath("(//textarea[@class=\" textarea\" ])[1]");
+    private By description = By.xpath("(//textarea[@class=\" textarea\" ])[last()]");
+    private By save = By.cssSelector("button[title='Save']");
+    private By saveAndNew = By.cssSelector("button[title='Save & New']");
+    private By cancel = By.cssSelector("button[title='Cancel']");
 
     static {
         ownerExpirationNoticeSelector.put("15 Days", "15 Days");
@@ -73,7 +57,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(save);
+        webElementAction.waitForVisibilityOfLocator(save);
     }
 
     /**
@@ -89,7 +73,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * Selects the account name on a contract.
      */
     public void clickAccountSelector() {
-        webElementAction.clickField(this.accountSelector);
+        webElementAction.clickByLocator(this.accountSelector);
     }
 
     /**
@@ -105,7 +89,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * Selects the contact name on a contract.
      */
     public void clickContactSelector() {
-        webElementAction.clickField(this.contactSelector);
+        webElementAction.clickByLocator(this.contactSelector);
     }
 
     /**
@@ -139,7 +123,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * Sets the priceBook element.
      */
     public void selectPriceBook() {
-        webElementAction.clickField(this.priceBookSelector);
+        webElementAction.clickByLocator(this.priceBookSelector);
     }
 
     /**
@@ -164,7 +148,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * Sets the ownerExpirationNotice element.
      */
     public void clickOwnerExpirationNotice() {
-        webElementAction.clickField(this.ownerExpirationNotice);
+        webElementAction.clickByLocator(this.ownerExpirationNotice);
     }
 
     /**
@@ -253,8 +237,8 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      *
      * @return a CreatedContractPage.
      */
-    public CreatedContractPage clickSaveButton() {
-        this.save.click();
+    public CreatedContractPage clickSave() {
+        webElementAction.clickByLocator(save);
         return new CreatedContractPage();
     }
 
@@ -264,7 +248,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * @return a NewContractPage.
      */
     public NewContractPage clickSaveAndNew() {
-        this.saveAndNew.click();
+        webElementAction.clickByLocator(saveAndNew);
         return new NewContractPage();
     }
 
@@ -274,7 +258,7 @@ public class NewContractPage extends BasePage implements IFeatureNew {
      * @return a ContractsPage.
      */
     public ContractsPage clickCancel() {
-        this.cancel.click();
+        webElementAction.clickByLocator(cancel);
         return new ContractsPage();
     }
 
