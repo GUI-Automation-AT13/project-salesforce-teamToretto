@@ -147,7 +147,7 @@ public class WebElementAction {
      * @param locator type WebElement object.
      */
     public void waitForVisibilityOfLocator(final By locator) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOf(getElement(locator)));
     }
 
     /**

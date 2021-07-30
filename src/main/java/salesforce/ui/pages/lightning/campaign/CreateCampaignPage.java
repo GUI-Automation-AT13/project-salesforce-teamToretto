@@ -12,7 +12,6 @@ import java.util.HashMap;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
-
 /**
  * This class is for create a new Campaign element.
  */

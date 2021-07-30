@@ -71,7 +71,7 @@ public class IndividualListPage extends BasePage {
      * @return boolean
      */
     public boolean isThereRecordWithName(final String name) {
-        return webElementAction.getElement(By.cssSelector("[title=\"" + name + "\"]")).equals(name);
+        return webElementAction.getElement(By.cssSelector("[title=\"" + name + "\"]")).getText().equals(name);
     }
 
     /**
