@@ -46,7 +46,7 @@ public class LoginPage extends BasePage {
      * @return HomePage
      */
     public HomePage login() {
-        webElementAction.clickOnElement(loginButton);
+        webElementAction.clickByLocator(loginButton);
         return new HomePage();
     }
 

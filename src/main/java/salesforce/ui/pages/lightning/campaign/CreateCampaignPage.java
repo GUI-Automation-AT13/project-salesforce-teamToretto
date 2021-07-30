@@ -10,8 +10,6 @@ package salesforce.ui.pages.lightning.campaign;
 
 import java.util.HashMap;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
 /**
