@@ -1,8 +1,6 @@
 package salesforce.ui.pages.classic.contracts;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.classic.ClassicHomePageObjects;
 

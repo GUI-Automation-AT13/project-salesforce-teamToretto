@@ -27,6 +27,7 @@ public class ClassicNewContractPage extends BasePage {
     private By save = By.cssSelector("td[id='bottomButtonRow'] input[title='Save']");
     private By saveAndNew = By.cssSelector("td[id='bottomButtonRow'] input[title='Save & New']");
     private By cancel = By.cssSelector("td[id='bottomButtonRow'] input[title='Cancel']");
+    private String ownerExpirationNoticeSelector = "//option[. = '%s Days']";
 
     /**
      * Waits for the page to be loaded.
@@ -109,28 +110,8 @@ public class ClassicNewContractPage extends BasePage {
      */
     public void setOwnerExpirationNotice(final String newOwnerExpirationNotice) {
         webElementAction.getElement(this.ownerExpirationNotice);
-        switch (newOwnerExpirationNotice) {
-            case "15 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '15 Days']"));
-                break;
-            case "30 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '30 Days']"));
-                break;
-            case "45 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '45 Days']"));
-                break;
-            case "60 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '60 Days']"));
-                break;
-            case "90 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '90 Days']"));
-                break;
-            case "120 Days":
-                webElementAction.clickByLocator(By.xpath("//option[. = '120 Days']"));
-                break;
-            default:
-                break;
-        }
+        webElementAction.clickOnElement(ownerExpirationNoticeSelector, newOwnerExpirationNotice);
+
     }
 
     /**

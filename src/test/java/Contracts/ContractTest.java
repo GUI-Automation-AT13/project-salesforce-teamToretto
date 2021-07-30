@@ -69,6 +69,7 @@ public class ContractTest extends ContractBaseTest {
                 "Description");
         softAssert.assertAll();
     }
+
     @Test(groups = {"CreateContractWithMinimumValues"})
     public void createAContractWitMinimumValues(){
         LoginPage loginPage = new LoginPage();

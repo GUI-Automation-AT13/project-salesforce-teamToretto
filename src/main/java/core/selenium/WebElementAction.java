@@ -10,44 +10,39 @@ package core.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * This class the common web element actions.
  */
 public class WebElementAction {
 
+    protected WebDriver driver = WebDriverManager.getInstance().getWebDriver();
+    protected WebDriverWait wait = WebDriverManager.getInstance().getWait();
     /**
      * Waits until a text box is visible and writes a text.
      *
      * @param webElement the web element to be waited.
      */
+
     public void waitForVisible(final WebElement webElement) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
     /**
      * Sends keys to the given WebElement.
      *
      * @param selector represents a selector
-     * @param input    is the data to introduce
+     * @param input is the data to introduce
      */
     public void setInputField(final By selector, final String input) {
-        WebDriverManager.getInstance().getWebDriver().findElement(selector).clear();
-        WebDriverManager.getInstance().getWebDriver().findElement(selector).sendKeys(input);
-    }
-
-    /**
-     * Clicks a webElement.
-     *
-     * @param webElement is what we want to click.
-     */
-    public void clickField(final WebElement webElement) {
-        waitForVisible(webElement);
-        webElement.click();
+        driver.findElement(selector).clear();
+        driver.findElement(selector).sendKeys(input);
     }
 
     /**
@@ -56,16 +51,15 @@ public class WebElementAction {
      * @param locator is what we want to click.
      */
     public void clickFieldByLocator(final String locator) {
-        WebDriverManager.getInstance().getWait()
-                .until(ExpectedConditions.elementToBeClickable(By.linkText(locator)));
-        WebDriverManager.getInstance().getWebDriver().findElement(By.linkText(locator)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText(locator)));
+        driver.findElement(By.linkText(locator)).click();
     }
 
     /**
      * Scrolls to the end of the page.
      */
     public void dropDownTillTheEnd() {
-        JavascriptExecutor jse = (JavascriptExecutor) WebDriverManager.getInstance().getWebDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,250)");
     }
 
@@ -75,19 +69,18 @@ public class WebElementAction {
      * @param field web element to get text.
      * @return web element's text
      */
-
     public String getTextOfElementByField(final String field) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).getText();
+        return driver.findElement(By.xpath(field)).getText();
     }
 
     /**
      * Clicks on the given WebElement.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      */
     public void clickOnElement(final String parametrizedSelector, final String value) {
-        WebDriverManager.getInstance().getWebDriver().findElement(withParameter(parametrizedSelector, value)).click();
+        driver.findElement(withParameter(parametrizedSelector, value)).click();
     }
 
     /**
@@ -95,7 +88,7 @@ public class WebElementAction {
      * Distinguishes xpath from css and accepts both.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      * @return By
      */
     private static By withParameter(final String parametrizedSelector, final String value) {
@@ -113,19 +106,18 @@ public class WebElementAction {
      * @return boolean
      */
     public boolean isDisplayed(final By locator) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(locator).isDisplayed();
+        return driver.findElement(locator).isDisplayed();
     }
 
     /**
      * Checks if the element is selected given a parametrized Selector.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      * @return boolean
      */
     public boolean isSelected(final String parametrizedSelector, final String value) {
-        return WebDriverManager.getInstance().getWebDriver()
-                .findElement(withParameter(parametrizedSelector, value)).isSelected();
+        return driver.findElement(withParameter(parametrizedSelector, value)).isSelected();
     }
 
     /**
@@ -135,7 +127,7 @@ public class WebElementAction {
      * @return WebElement
      */
     public WebElement getElement(final By locator) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(locator);
+        return driver.findElement(locator);
     }
 
     /**
@@ -144,11 +136,10 @@ public class WebElementAction {
      * @param webElement type WebElement object.
      */
     public void selectByAction(final WebElement webElement) {
-        Actions builder = new Actions(WebDriverManager.getInstance().getWebDriver());
+        Actions builder = new Actions(driver);
         Action action = builder.click(webElement).build();
         action.perform();
     }
-    //---------------------Methods for By locator--------------------
 
     /**
      * Selects a webElement isn't able to click.
@@ -156,8 +147,7 @@ public class WebElementAction {
      * @param locator type WebElement object.
      */
     public void waitForVisibilityOfLocator(final By locator) {
-        WebDriverManager.getInstance()
-                .getWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     /**
@@ -167,8 +157,7 @@ public class WebElementAction {
      */
     public void clickByLocator(final By locator) {
         waitForVisibilityOfLocator(locator);
-        WebDriverManager.getInstance()
-                .getWebDriver().findElement(locator).click();
+        driver.findElement(locator).click();
     }
 
     /**
@@ -179,6 +168,6 @@ public class WebElementAction {
      */
     public String getTextOfByFieldByLocator(final By locator) {
         waitForVisibilityOfLocator(locator);
-        return WebDriverManager.getInstance().getWebDriver().findElement(locator).getText();
+        return driver.findElement(locator).getText();
     }
 }

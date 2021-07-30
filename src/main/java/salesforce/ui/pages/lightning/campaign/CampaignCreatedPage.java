@@ -9,9 +9,6 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -28,8 +25,6 @@ public class CampaignCreatedPage extends BasePage {
     private By detailsTab = By.xpath("//a[@data-tab-name='detailTab']");
     private By campaignNameCreated = By
             .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
-
-    @FindBy(xpath = "//span[text()='Created By']/../../div/span/span")
     private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
 
     public MenuPage clickCreatedCampaignOptionBtn() {

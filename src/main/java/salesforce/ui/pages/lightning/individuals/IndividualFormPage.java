@@ -22,20 +22,16 @@ import salesforce.ui.pages.BasePage;
 public class IndividualFormPage extends BasePage {
 
     private By salutationSelector = By.cssSelector(".salutation a");
-
     private final String generalSalutationOptionSelector = "[title=\"%s\"]";
     private final String generalCheckboxSelector = "//div[label[contains(.,\"%s\")]]/input";
-
     private By firstnameTextbox = By.cssSelector(".firstName");
     private By lastnameTextbox = By.cssSelector(".lastName");
     private By birthdateDateField = By.cssSelector("input[class=' input']");
-
     private By individualAgeSelector = By.xpath("//div[span[span[contains(text(),'Age')]]]/div//a");
     private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
     private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
     private By saveButton = By.cssSelector("button[title=\"Save\"]");
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
-
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 
     /**

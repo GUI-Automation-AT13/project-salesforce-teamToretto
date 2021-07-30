@@ -9,8 +9,6 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -18,7 +16,6 @@ import salesforce.ui.pages.BasePage;
  */
 public class CampaignPage extends BasePage {
 
-    @FindBy(css = ".forceActionLink > div")
     private By createCampaignBtn = By.cssSelector(".forceActionLink > div");
 
     @Override
