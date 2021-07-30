@@ -1,5 +1,6 @@
 package salesforce.ui.pages.lightning.worktype;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
@@ -8,22 +9,17 @@ import salesforce.ui.pages.BasePage;
  * This class has webElement for work type created.
  */
 public class CreatedWorkTypePage extends BasePage {
-    @FindBy(xpath = "//*[@class='uiOutputText']")
-    protected WebElement nameWorkTypeTxt;
 
-    @FindBy(xpath = "//*[@class='uiOutputTextArea']")
-    protected WebElement descriptionTxt;
-
-    @FindBy(xpath = "//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
-            + "forceOutputModStampWithPreview']")
-    protected WebElement dateCreateByTxt;
-
-    @FindBy(xpath = "//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']")
-    protected WebElement nameCreatorTxt;
+    protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
+    protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
+    protected By dateCreateByTxt = By
+            .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
+            + "forceOutputModStampWithPreview']");
+    protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(nameWorkTypeTxt);
+        webElementAction.waitForVisibilityOfLocator(nameWorkTypeTxt);
     }
 
     /**
@@ -32,7 +28,7 @@ public class CreatedWorkTypePage extends BasePage {
      * @return name of worktype.
      */
     public String getNameOfWorkType() {
-        return nameWorkTypeTxt.getText();
+        return webElementAction.getTextOfByFieldByLocator(nameWorkTypeTxt);
     }
 
     /**
@@ -41,7 +37,7 @@ public class CreatedWorkTypePage extends BasePage {
      * @return description of worktype.
      */
     public String getDescription() {
-        return descriptionTxt.getText();
+        return webElementAction.getTextOfByFieldByLocator(descriptionTxt);
     }
 
     /**
@@ -62,7 +58,7 @@ public class CreatedWorkTypePage extends BasePage {
      * @return a String to date
      */
     public String getCreatedByTxt() {
-        return webElementAction.getTextOfElement(dateCreateByTxt);
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     /**
@@ -71,6 +67,6 @@ public class CreatedWorkTypePage extends BasePage {
      * @return a String to date
      */
     public String getNameCreatorTxt() {
-        return webElementAction.getTextOfElement(nameCreatorTxt);
+        return webElementAction.getTextOfByFieldByLocator(nameCreatorTxt);
     }
 }

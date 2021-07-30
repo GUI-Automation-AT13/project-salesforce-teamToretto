@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,33 +19,27 @@ import salesforce.ui.pages.BasePage;
  */
 public class CampaignCreatedPage extends BasePage {
 
-    @FindBy(css = ".slds-theme--success")
-    private WebElement alertSuccess;
+    private By alertSuccess = By.cssSelector(".slds-theme--success");
+    private By createdCampaignTitle = By
+            .cssSelector("[class='slds-media__body'] span[class='custom-truncate uiOutputText']");
+    private By createdCampaignOptionBtn = By
+            .xpath("//ul[contains(@class,\'branding-actions\')]/li/div//a[@role=\'button\']");
 
-    @FindBy(css = "[class='slds-media__body'] span[class='custom-truncate uiOutputText']")
-    private WebElement createdCampaingTitle;
-
-    @FindBy(xpath = "//ul[contains(@class,\'branding-actions\')]/li/div//a[@role=\'button\']")
-    private WebElement createdCampaignOptionBtn;
-
-    @FindBy(xpath = "//a[@data-tab-name='detailTab']")
-    private WebElement detailsTab;
-
-    @FindBy(xpath = "//div/div/span[text()=\"Campaign Name\"]/../..//span/span")
-    private WebElement campaignNameCreated;
+    private By detailsTab = By.xpath("//a[@data-tab-name='detailTab']");
+    private By campaignNameCreated = By
+            .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
 
     @FindBy(xpath = "//span[text()='Created By']/../../div/span/span")
-    private WebElement createBy;
+    private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
 
     public MenuPage clickCreatedCampaignOptionBtn() {
-        createdCampaignOptionBtn.click();
+        webElementAction.clickByLocator(createdCampaignOptionBtn);
         return new MenuPage();
     }
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(alertSuccess);
-        webElementAction.waitForVisible(createdCampaingTitle);
+        webElementAction.waitForVisibilityOfLocator(alertSuccess);
     }
 
     /**
@@ -53,7 +48,7 @@ public class CampaignCreatedPage extends BasePage {
      * @return text of element title.
      */
     public String getCreatedCampaignTitleText() {
-        return createdCampaingTitle.getText();
+        return webElementAction.getTextOfByFieldByLocator(createdCampaignTitle);
     }
 
     /**
@@ -62,14 +57,14 @@ public class CampaignCreatedPage extends BasePage {
      * @return the text value.
      */
     public String getTextAlertSuccess() {
-        return alertSuccess.getText();
+        return webElementAction.getTextOfByFieldByLocator(alertSuccess);
     }
 
     /**
      * Clicks details menu tabs.
      */
     public void clickDetailTab() {
-        webElementAction.clickField(detailsTab);
+        webElementAction.clickByLocator(detailsTab);
     }
 
     /**
@@ -78,7 +73,7 @@ public class CampaignCreatedPage extends BasePage {
      * @return text of element campaign created.
      */
     public String getCampaignNameCreatedText() {
-        return campaignNameCreated.getText();
+        return webElementAction.getTextOfByFieldByLocator(campaignNameCreated);
     }
 
     /**
@@ -87,13 +82,13 @@ public class CampaignCreatedPage extends BasePage {
      * @return text of elements created by.
      */
     public String getCreatedByText() {
-        return createBy.getText();
+        return webElementAction.getTextOfByFieldByLocator(createBy);
     }
 
     /**
      * Waits elements of details part.
      */
     public void waitElementCampaignNameCreated() {
-        wait.until(ExpectedConditions.visibilityOf(campaignNameCreated));
+        webElementAction.waitForVisibilityOfLocator(campaignNameCreated);
     }
 }

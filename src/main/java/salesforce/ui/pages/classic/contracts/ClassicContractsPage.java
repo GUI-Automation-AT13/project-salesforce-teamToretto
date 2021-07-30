@@ -1,10 +1,6 @@
 package salesforce.ui.pages.classic.contracts;
 
-import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -12,26 +8,23 @@ import salesforce.ui.pages.BasePage;
  */
 public class ClassicContractsPage extends BasePage {
 
-    @FindBy(css = "input[title='New']")
-    private WebElement newContractButton;
-
-    @FindBy(id = "tryLexDialogX")
-    private WebElement popup;
+    private By newContractButton = By.cssSelector("input[title='New']");
+    private By popup = By.id("tryLexDialogX");
 
     /**
      * Waits for the page to be loaded.
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(newContractButton);
+        webElementAction.waitForVisibilityOfLocator(newContractButton);
     }
 
     /**
      * Closes a popup.
      */
     public void clickPopUp() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(By.id("tryLexDialogX")));
-        popup.click();
+        webElementAction.waitForVisibilityOfLocator(popup);
+        webElementAction.clickByLocator(popup);
     }
 
     /**
@@ -40,7 +33,7 @@ public class ClassicContractsPage extends BasePage {
      * @return a new NewContractPage
      */
     public ClassicNewContractPage clickNew() {
-        newContractButton.click();
+        webElementAction.clickByLocator(newContractButton);
         return new ClassicNewContractPage();
     }
 

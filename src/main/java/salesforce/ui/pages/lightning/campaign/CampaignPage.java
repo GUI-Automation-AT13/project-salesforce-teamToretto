@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
@@ -18,11 +19,11 @@ import salesforce.ui.pages.BasePage;
 public class CampaignPage extends BasePage {
 
     @FindBy(css = ".forceActionLink > div")
-    private WebElement createCampaignBtn;
+    private By createCampaignBtn = By.cssSelector(".forceActionLink > div");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(createCampaignBtn);
+        webElementAction.waitForVisibilityOfLocator(createCampaignBtn);
     }
 
     /**
@@ -31,7 +32,7 @@ public class CampaignPage extends BasePage {
      * @return a object CreateCampaignPage.
      */
     public CreateCampaignPage clickCreateCampaignBtn() {
-        createCampaignBtn.click();
+        webElementAction.clickByLocator(createCampaignBtn);
         return new CreateCampaignPage();
     }
 }

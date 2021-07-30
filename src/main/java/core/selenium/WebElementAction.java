@@ -30,22 +30,10 @@ public class WebElementAction {
     }
 
     /**
-     * Sets a webElement with a value.
-     *
-     * @param webElement that will be set.
-     * @param typeText   value that will set.
-     */
-    public void setInputField(final WebElement webElement, final String typeText) {
-        waitForVisible(webElement);
-        webElement.clear();
-        webElement.sendKeys(typeText);
-    }
-
-    /**
      * Sends keys to the given WebElement.
      *
      * @param selector represents a selector
-     * @param input is the data to introduce
+     * @param input    is the data to introduce
      */
     public void setInputField(final By selector, final String input) {
         WebDriverManager.getInstance().getWebDriver().findElement(selector).clear();
@@ -84,64 +72,19 @@ public class WebElementAction {
     /**
      * Gets the text of a web element.
      *
-     * @param webElement web element to get text.
-     * @return web element's text
-     */
-    public String getTextOfElement(final WebElement webElement) {
-        waitForVisible(webElement);
-        return webElement.getText();
-    }
-
-    /**
-     * Gets the text of a web element.
-     *
      * @param field web element to get text.
      * @return web element's text
      */
+
     public String getTextOfElementByField(final String field) {
         return WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).getText();
-    }
-
-    /**
-     * Returns the text from a Web Element.
-     *
-     * @param selector represents a selector
-     * @return String represents the text from the web element
-     */
-    public String getText(final By selector) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(WebDriverManager
-                .getInstance().getWebDriver().findElement(selector)));
-        return WebDriverManager.getInstance().getWebDriver().findElement(selector).getText();
-    }
-
-    /**
-     * Returns the text from a Web Element given a parametrized By selector and its value.
-     *
-     * @param parametrizedSelector represents a selector
-     * @param value represents the custom value for the parametrized selector
-     * @return String
-     */
-    public String getText(final String parametrizedSelector, final String value) {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(WebDriverManager
-                .getInstance().getWebDriver().findElement(withParameter(parametrizedSelector, value))));
-        return WebDriverManager.getInstance().getWebDriver()
-                .findElement(withParameter(parametrizedSelector, value)).getText();
-    }
-
-    /**
-     * Clicks on the given WebElement.
-     *
-     * @param selector represents a selector
-     */
-    public void clickOnElement(final By selector) {
-        WebDriverManager.getInstance().getWebDriver().findElement(selector).click();
     }
 
     /**
      * Clicks on the given WebElement.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      */
     public void clickOnElement(final String parametrizedSelector, final String value) {
         WebDriverManager.getInstance().getWebDriver().findElement(withParameter(parametrizedSelector, value)).click();
@@ -152,7 +95,7 @@ public class WebElementAction {
      * Distinguishes xpath from css and accepts both.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      * @return By
      */
     private static By withParameter(final String parametrizedSelector, final String value) {
@@ -166,28 +109,18 @@ public class WebElementAction {
     /**
      * Checks if the element is displayed.
      *
-     * @param selector represents a selector
+     * @param locator represents a selector
      * @return boolean
      */
-    public boolean isDisplayed(final By selector) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(selector).isDisplayed();
-    }
-
-    /**
-     * Checks if the element is selected.
-     *
-     * @param selector represents a selector
-     * @return boolean
-     */
-    public boolean isSelected(final By selector) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(selector).isSelected();
+    public boolean isDisplayed(final By locator) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(locator).isDisplayed();
     }
 
     /**
      * Checks if the element is selected given a parametrized Selector.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      * @return boolean
      */
     public boolean isSelected(final String parametrizedSelector, final String value) {
@@ -198,11 +131,11 @@ public class WebElementAction {
     /**
      * Returns a Web Element out of a By selector.
      *
-     * @param selector represents a selector
+     * @param locator represents a selector
      * @return WebElement
      */
-    public WebElement getElement(final By selector) {
-        return WebDriverManager.getInstance().getWebDriver().findElement(selector);
+    public WebElement getElement(final By locator) {
+        return WebDriverManager.getInstance().getWebDriver().findElement(locator);
     }
 
     /**
@@ -214,5 +147,38 @@ public class WebElementAction {
         Actions builder = new Actions(WebDriverManager.getInstance().getWebDriver());
         Action action = builder.click(webElement).build();
         action.perform();
+    }
+    //---------------------Methods for By locator--------------------
+
+    /**
+     * Selects a webElement isn't able to click.
+     *
+     * @param locator type WebElement object.
+     */
+    public void waitForVisibilityOfLocator(final By locator) {
+        WebDriverManager.getInstance()
+                .getWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    /**
+     * Selects a webElement isn't able to click.
+     *
+     * @param locator type WebElement object.
+     */
+    public void clickByLocator(final By locator) {
+        waitForVisibilityOfLocator(locator);
+        WebDriverManager.getInstance()
+                .getWebDriver().findElement(locator).click();
+    }
+
+    /**
+     * Gets the text of a web element.
+     *
+     * @param locator web element to get text.
+     * @return web element's text
+     */
+    public String getTextOfByFieldByLocator(final By locator) {
+        waitForVisibilityOfLocator(locator);
+        return WebDriverManager.getInstance().getWebDriver().findElement(locator).getText();
     }
 }

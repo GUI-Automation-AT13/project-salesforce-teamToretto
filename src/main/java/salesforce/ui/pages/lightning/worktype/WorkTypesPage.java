@@ -1,5 +1,6 @@
 package salesforce.ui.pages.lightning.worktype;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
@@ -8,12 +9,11 @@ import salesforce.ui.pages.BasePage;
  * This class has webElement for work types page.
  */
 public class WorkTypesPage extends BasePage {
-    @FindBy(xpath = "//a[@class='forceActionLink'][@role='button']")
-    protected WebElement newBtn;
+    protected By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(newBtn);
+        webElementAction.waitForVisibilityOfLocator(newBtn);
     }
 
     /**
@@ -22,7 +22,7 @@ public class WorkTypesPage extends BasePage {
      * @return workTypeForm initialize.
      */
     public NewWorkTypePage clickNewButton() {
-        webElementAction.clickField(newBtn);
+        webElementAction.clickByLocator(newBtn);
         return new NewWorkTypePage();
     }
 }

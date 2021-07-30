@@ -42,7 +42,7 @@ public class IndividualFormPage extends BasePage {
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
-        webElementAction.clickOnElement(salutationSelector);
+        webElementAction.clickByLocator(salutationSelector);
     }
 
     /**
@@ -167,21 +167,21 @@ public class IndividualFormPage extends BasePage {
      * Clicks on the IndividualAgeSelector.
      */
     public void clickOnIndividualAgeSelector() {
-        webElementAction.clickOnElement(individualAgeSelector);
+        webElementAction.clickByLocator(individualAgeSelector);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void clickOnAge13Option() {
-        webElementAction.clickOnElement(age13Option);
+        webElementAction.clickByLocator(age13Option);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void clickOnAge16Option() {
-        webElementAction.clickOnElement(age16Option);
+        webElementAction.clickByLocator(age16Option);
     }
 
     /**
@@ -190,7 +190,7 @@ public class IndividualFormPage extends BasePage {
      * @return IndividualRecordPage
      */
     public IndividualRecordPage clickOnsave() {
-        webElementAction.clickOnElement(saveButton);
+        webElementAction.clickByLocator(saveButton);
         return new IndividualRecordPage();
     }
 
@@ -200,7 +200,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedSuccessMessage() {
-        return webElementAction.getText(createdSuccessMessage);
+        return webElementAction.getTextOfByFieldByLocator(createdSuccessMessage);
     }
 
     /**
@@ -218,7 +218,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedIndividualNameInHeader() {
-        return webElementAction.getText(createdIndividualLabel);
+        return webElementAction.getTextOfByFieldByLocator(createdIndividualLabel);
     }
 
     /**

@@ -20,7 +20,6 @@ public abstract class BasePage {
     public BasePage() {
         webElementAction = new WebElementAction();
         PageFactory.initElements(WebDriverManager.getInstance().getWebDriver(), this);
-        waitForPageLoaded();
     }
 
     /**

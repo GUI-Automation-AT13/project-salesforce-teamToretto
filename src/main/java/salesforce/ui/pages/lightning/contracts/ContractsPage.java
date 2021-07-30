@@ -1,24 +1,21 @@
 package salesforce.ui.pages.lightning.contracts;
 
-import core.selenium.WebDriverManager;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
 /**
  * Page Object Model for the salesforce contracts page.
  */
 public class ContractsPage extends BasePage {
-    @FindBy(css = "a[title='New']")
-    private WebElement newContractButton;
+
+    private By newContractButton = By.cssSelector("a[title='New']");
 
     /**
      * Waits for the page to be loaded.
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(newContractButton));
+        webElementAction.waitForVisibilityOfLocator(newContractButton);
     }
 
     /**
@@ -27,7 +24,7 @@ public class ContractsPage extends BasePage {
      * @return a ProductPage instance
      */
     public NewContractPage clickNewContractButton() {
-        webElementAction.clickField(newContractButton);
+        webElementAction.clickByLocator(newContractButton);
         return new NewContractPage();
     }
 }

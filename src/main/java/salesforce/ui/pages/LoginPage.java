@@ -1,9 +1,6 @@
 package salesforce.ui.pages;
 
-import core.selenium.WebDriverManager;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.classic.ClassicHomePage;
 import salesforce.ui.pages.lightning.HomePage;
 
@@ -12,21 +9,18 @@ import salesforce.ui.pages.lightning.HomePage;
  */
 public class LoginPage extends BasePage {
 
-    @FindBy(id = "username")
-    private WebElement userNameTxtBox;
+    private final By userNameTxtBox = By.id("username");
 
-    @FindBy(id = "password")
-    private WebElement passwordTxtBox;
+    private final By passwordTxtBox = By.id("password");
 
-    @FindBy(id = "Login")
-    private WebElement loginBtn;
+    private final By loginBtn = By.id("Login");
 
     /**
      * Waits for the page to be loaded.
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(loginBtn));
+        webElementAction.waitForVisibilityOfLocator(loginBtn);
     }
 
     /**
@@ -36,7 +30,7 @@ public class LoginPage extends BasePage {
      * @return the user name instance.
      */
     private LoginPage setUserName(final String userName) {
-        userNameTxtBox.sendKeys(userName);
+        webElementAction.setInputField(userNameTxtBox, userName);
         return this;
     }
 
@@ -47,7 +41,7 @@ public class LoginPage extends BasePage {
      * @return the user password instance.
      */
     private LoginPage setPassword(final String password) {
-        passwordTxtBox.sendKeys(password);
+        webElementAction.setInputField(passwordTxtBox, password);
         return this;
     }
 
@@ -55,7 +49,7 @@ public class LoginPage extends BasePage {
      * Clicks the login button.
      */
     private void clickLoginBtn() {
-        loginBtn.click();
+        webElementAction.clickByLocator(loginBtn);
     }
 
     /**
