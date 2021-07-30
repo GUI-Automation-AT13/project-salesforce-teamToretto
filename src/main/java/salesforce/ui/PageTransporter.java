@@ -12,6 +12,7 @@ import core.selenium.WebDriverManager;
 import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
+import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
 /**
  * Navigates to a page's url.
@@ -47,5 +48,23 @@ public class PageTransporter {
     public ContractsPage navigateToContractsPageLightning() {
         goToUrl(baseUrl.concat("lightning/o/Contract/list?filterName=Recent"));
         return new ContractsPage();
+    }
+
+    /**
+     * Navigates to WorkType page on lightning version.
+     *
+     * @return Contracts' instance.
+     */
+    public WorkTypesPage navigateToWorkTypePageLightning() {
+        goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
+        return new WorkTypesPage();
+    }
+
+    /**
+     * Navigates to WorkType page on lightning version.
+     *
+     */
+    public void navigateToWorkTypePageLightningDirect() {
+        goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
     }
 }

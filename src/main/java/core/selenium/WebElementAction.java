@@ -215,4 +215,15 @@ public class WebElementAction {
         Action action = builder.click(webElement).build();
         action.perform();
     }
+
+
+    /**
+     * Gets the text of a web element.
+     *
+     * @param field web element to get text.
+     * @return web element's text
+     */
+    public void clickByXpath(final String field) {
+        WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).click();
+    }
 }

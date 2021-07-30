@@ -5,11 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
+import salesforce.utlis.strategy.IFeatureNew;
+import salesforce.utlis.supplier.VoidSupplier;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class has webElement for work type page form.
  */
-public class NewWorkTypePage extends BasePage {
+public class NewWorkTypePage extends BasePage implements IFeatureNew {
 
     @FindBy(css = ".select[aria-required='true']")
     protected WebElement estimatedDurationComboBox;
@@ -27,7 +33,7 @@ public class NewWorkTypePage extends BasePage {
     /**
      * Sets on text of all field of workType.
      *
-     * @param fieldName name of textBox
+     * @param fieldName  name of textBox
      * @param fieldValue is value to set on textBox
      */
     public void setInputField(final String fieldName, final String fieldValue) {
@@ -39,6 +45,7 @@ public class NewWorkTypePage extends BasePage {
             webElementAction.setInputField(WebDriverManager.getInstance().getWebDriver()
                     .findElement(By.xpath(xpath)), fieldValue);
         }
+        webElementAction.clickByXpath("//div[@class='actionsContainer']");
     }
 
     /**
@@ -56,7 +63,7 @@ public class NewWorkTypePage extends BasePage {
      * Sets value and select in comboBox.
      *
      * @param nameComboBox is name of comboBox
-     * @param selectValue is a value in comboBox
+     * @param selectValue  is a value in comboBox
      */
     public void setComboBoxField(final String nameComboBox, final String selectValue) {
         countComboBox++;
@@ -64,7 +71,9 @@ public class NewWorkTypePage extends BasePage {
         webElementAction.selectByAction(WebDriverManager.getInstance().getWebDriver()
                 .findElement(By.xpath(xpathComboBox)));
         String xpathValue = String.format("(//a[normalize-space()='%s'])[%d]", selectValue, countComboBox);
-        webElementAction.getTextOfElementByField(xpathValue);
+        webElementAction.clickField(WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(xpathValue)));
+        webElementAction.clickField(WebDriverManager.getInstance().getWebDriver()
+                .findElement(By.xpath("//div[@class='actionsContainer']")));
     }
 
     /**
@@ -75,5 +84,42 @@ public class NewWorkTypePage extends BasePage {
     public CreatedWorkTypePage clickSaveButton() {
         webElementAction.clickField(saveBtn);
         return new CreatedWorkTypePage();
+    }
+
+    @Override
+    public void fillUpField(final Map<String, String> table) {
+        HashMap<String, VoidSupplier> actionsWorkTypeMap = mapActionsWorkType(table);
+        table.keySet().forEach(key -> actionsWorkTypeMap.get(key).run());
+    }
+
+    /**
+     * Saves actions in New work type page in map
+     *
+     * @param workTypeMap is map
+     * @return a map with action of fields
+     */
+    private HashMap<String, VoidSupplier> mapActionsWorkType(final Map<String, String> workTypeMap) {
+        HashMap<String, VoidSupplier> mapActions = new HashMap<>();
+        mapActions.put("Work Type Name", () -> setInputField("Work Type Name",workTypeMap.get("Work Type Name")));
+        mapActions.put("Description", () -> setInputField("Description",workTypeMap.get("Description")));
+        mapActions.put("Estimated Duration", () -> setInputField("Estimated Duration",
+                workTypeMap.get("Estimated Duration")));
+        mapActions.put("Duration Type",  () -> setEstimatedDurationComboBox(workTypeMap.get("Duration Type")));
+        mapActions.put("Block Time Before Appointment", () -> setInputField("Block Time Before Appointment",
+                workTypeMap.get("Block Time Before Appointment")));
+        mapActions.put("Block Time Before Unit", () -> setComboBoxField("Block Time Before Unit",
+                workTypeMap.get("Block Time Before Unit")));
+        mapActions.put("Block Time After Appointment", () -> setInputField("Block Time After Appointment",
+                workTypeMap.get("Block Time After Appointment")));
+        mapActions.put("Block Time After Unit", () -> setComboBoxField("Block Time After Unit",
+                workTypeMap.get("Block Time After Unit")));
+        mapActions.put("Timeframe Start", () -> setInputField("Timeframe Start",
+                workTypeMap.get("Timeframe Start")));
+        mapActions.put("Time Frame Start Unit", () -> setComboBoxField("Time Frame Start Unit",
+                workTypeMap.get("Description")));
+        mapActions.put("Timeframe End", () -> setInputField("Timeframe End",workTypeMap.get("Timeframe End")));
+        mapActions.put("Time Frame End Unit", () -> setComboBoxField("Time Frame End Unit",
+                workTypeMap.get("Time Frame End Unit")));
+        return mapActions;
     }
 }

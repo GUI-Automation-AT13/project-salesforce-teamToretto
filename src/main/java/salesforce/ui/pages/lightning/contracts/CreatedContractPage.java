@@ -1,14 +1,18 @@
 package salesforce.ui.pages.lightning.contracts;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
+import salesforce.utlis.strategy.ICreatedFeature;
 
 /**
  * Page Object Model for the salesforce created contract page.
  */
-public class CreatedContractPage extends BasePage {
+public class CreatedContractPage extends BasePage implements ICreatedFeature {
 
     @FindBy(xpath = "(//span[text()='Details'])[last()]")
     private WebElement details;
@@ -106,5 +110,10 @@ public class CreatedContractPage extends BasePage {
     @Override
     protected void waitForPageLoaded() {
         webElementAction.waitForVisible(accountNameTitle);
+    }
+
+    @Override
+    public List<String> getValueField(Map<String, String> table) {
+        return null;
     }
 }

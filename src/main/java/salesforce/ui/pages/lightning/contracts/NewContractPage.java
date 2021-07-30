@@ -1,14 +1,17 @@
 package salesforce.ui.pages.lightning.contracts;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
+import salesforce.utlis.strategy.IFeatureNew;
 
 /**
  * Page Object Model for the salesforce new contract page.
  */
-public class NewContractPage extends BasePage {
+public class NewContractPage extends BasePage implements IFeatureNew {
     @FindBy(css = "input[placeholder='Search Accounts...']")
     private WebElement accountName;
     @FindBy(xpath = "//mark[normalize-space()='TestAccount']")
@@ -250,7 +253,7 @@ public class NewContractPage extends BasePage {
      *
      * @return a CreatedContractPage.
      */
-    public CreatedContractPage clickSave() {
+    public CreatedContractPage clickSaveButton() {
         this.save.click();
         return new CreatedContractPage();
     }
@@ -273,5 +276,10 @@ public class NewContractPage extends BasePage {
     public ContractsPage clickCancel() {
         this.cancel.click();
         return new ContractsPage();
+    }
+
+    @Override
+    public void fillUpField(Map<String, String> table) {
+
     }
 }
