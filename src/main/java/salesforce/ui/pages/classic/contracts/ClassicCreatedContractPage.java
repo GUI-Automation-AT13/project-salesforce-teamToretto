@@ -1,7 +1,14 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.classic.contracts;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.classic.ClassicHomePageObjects;
 
@@ -10,18 +17,15 @@ import salesforce.ui.pages.classic.ClassicHomePageObjects;
  */
 public class ClassicCreatedContractPage extends BasePage {
 
-    @FindBy(css = "div[id*=\"ctrc7_ileinner\"]")
-    private WebElement accountName;
-
-    @FindBy(css = ".allTabsArrow")
-    private WebElement addObjects;
+    private By accountName = By.cssSelector("div[id*=\"ctrc7_ileinner\"]");
+    private By addObjects = By.cssSelector(".allTabsArrow");
 
     /**
      * Waits for the page to be loaded.
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(addObjects);
+        webElementAction.waitForVisibilityOfLocator(addObjects);
     }
 
     /**
@@ -30,7 +34,7 @@ public class ClassicCreatedContractPage extends BasePage {
      * @return a HomePageObjects.
      */
     public ClassicHomePageObjects clickAddObjects() {
-        webElementAction.clickField(addObjects);
+        webElementAction.clickByLocator(addObjects);
         return new ClassicHomePageObjects();
     }
 
@@ -40,6 +44,6 @@ public class ClassicCreatedContractPage extends BasePage {
      * @return the text set on the account name assigned to a contract.
      */
     public String getAccountName() {
-        return webElementAction.getTextOfElement(accountName);
+        return webElementAction.getTextOfByFieldByLocator(accountName);
     }
 }

@@ -30,20 +30,18 @@ public class IndividualFormPage extends BasePage {
     private By firstnameTextbox = By.cssSelector(".firstName");
     private By lastnameTextbox = By.cssSelector(".lastName");
     private By birthdateDateField = By.cssSelector("input[class=' input']");
-
     private By individualAgeSelector = By.xpath("//div[span[span[contains(text(),'Age')]]]/div//a");
     private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
     private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
     private By saveButton = By.cssSelector("button[title=\"Save\"]");
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
-
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 
     /**
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
-        webElementAction.clickOnElement(salutationSelector);
+        webElementAction.clickByLocator(salutationSelector);
     }
 
     /**
@@ -168,21 +166,21 @@ public class IndividualFormPage extends BasePage {
      * Clicks on the IndividualAgeSelector.
      */
     public void clickOnIndividualAgeSelector() {
-        webElementAction.clickOnElement(individualAgeSelector);
+        webElementAction.clickByLocator(individualAgeSelector);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void clickOnAge13Option() {
-        webElementAction.clickOnElement(age13Option);
+        webElementAction.clickByLocator(age13Option);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void clickOnAge16Option() {
-        webElementAction.clickOnElement(age16Option);
+        webElementAction.clickByLocator(age16Option);
     }
 
     /**
@@ -191,7 +189,7 @@ public class IndividualFormPage extends BasePage {
      * @return IndividualRecordPage
      */
     public IndividualRecordPage clickOnsave() {
-        webElementAction.clickOnElement(saveButton);
+        webElementAction.clickByLocator(saveButton);
         return new IndividualRecordPage();
     }
 
@@ -201,7 +199,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedSuccessMessage() {
-        return webElementAction.getText(createdSuccessMessage);
+        return webElementAction.getTextOfByFieldByLocator(createdSuccessMessage);
     }
 
     /**
@@ -219,7 +217,7 @@ public class IndividualFormPage extends BasePage {
      * @return String
      */
     public String getCreatedIndividualNameInHeader() {
-        return webElementAction.getText(createdIndividualLabel);
+        return webElementAction.getTextOfByFieldByLocator(createdIndividualLabel);
     }
 
     /**

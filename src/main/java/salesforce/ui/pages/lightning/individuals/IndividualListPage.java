@@ -41,7 +41,7 @@ public class IndividualListPage extends BasePage {
      * Deletes the last created or modified record.
      */
     public void deleteLastModifiedRecord() {
-        webElementAction.clickOnElement(firstRowDropDownMenu);
+        webElementAction.clickByLocator(firstRowDropDownMenu);
         dropDownMenu = webElementAction.getElement(firstRowDropDownMenuUpdated);
         clickOnArecordDropDownMenuDelete();
     }
@@ -52,7 +52,7 @@ public class IndividualListPage extends BasePage {
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        return webElementAction.getText(deletedSuccessMessage);
+        return webElementAction.getTextOfByFieldByLocator(deletedSuccessMessage);
     }
 
     /**
@@ -61,7 +61,7 @@ public class IndividualListPage extends BasePage {
      * @param name represents a record name
      */
     public void clickOnRecordByName(final String name) {
-        webElementAction.clickOnElement(By.cssSelector("[title=\"" + name + "\"]"));
+        webElementAction.clickByLocator(By.cssSelector("[title=\"" + name + "\"]"));
     }
 
     /**
@@ -80,9 +80,9 @@ public class IndividualListPage extends BasePage {
      * @param name represent a record name
      */
     public void clickOnArecordDropDownMenuOption(final String name) {
-        webElementAction.clickOnElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
+        webElementAction.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
                 + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\""));
-        webElementAction.clickOnElement(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
+        webElementAction.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
                 + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
     }
 
@@ -90,7 +90,7 @@ public class IndividualListPage extends BasePage {
      * Click on a record Drop down menu Edit.
      */
     public void clickOnArecordDropDownMenuEdit() {
-        webElementAction.clickOnElement(By.cssSelector("div[aria-labelledby=\""
+        webElementAction.clickByLocator(By.cssSelector("div[aria-labelledby=\""
                 + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]"));
     }
 
@@ -98,9 +98,9 @@ public class IndividualListPage extends BasePage {
      * Click on a record Drop down menu Delete.
      */
     public void clickOnArecordDropDownMenuDelete() {
-        webElementAction.clickOnElement(By.cssSelector("div[aria-labelledby="
+        webElementAction.clickByLocator(By.cssSelector("div[aria-labelledby="
                 + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]"));
-        webElementAction.clickOnElement(deleteButtonDropDownMenu);
+        webElementAction.clickByLocator(deleteButtonDropDownMenu);
     }
 
     /**

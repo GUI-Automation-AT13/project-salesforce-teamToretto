@@ -1,19 +1,25 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.worktype;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
 /**
  * This class has webElement for work types page.
  */
 public class WorkTypesPage extends BasePage {
-    @FindBy(xpath = "//a[@class='forceActionLink'][@role='button']")
-    protected WebElement newBtn;
+    protected By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(newBtn);
+        webElementAction.waitForVisibilityOfLocator(newBtn);
     }
 
     /**
@@ -22,7 +28,7 @@ public class WorkTypesPage extends BasePage {
      * @return workTypeForm initialize.
      */
     public NewWorkTypePage clickNewButton() {
-        webElementAction.clickField(newBtn);
+        webElementAction.clickByLocator(newBtn);
         return new NewWorkTypePage();
     }
 }
