@@ -8,8 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -17,11 +16,10 @@ import salesforce.ui.pages.BasePage;
  */
 public class MenuPage extends BasePage {
 
-    @FindBy(xpath = "//div[@role=\'menu\']//a[./div[@title=\'Delete\']]")
-    private WebElement deleteBtn;
+    private By deleteBtn = By.xpath("//div[@role=\'menu\']//a[./div[@title=\'Delete\']]");
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(deleteBtn);
+        webElementAction.waitForVisibilityOfLocator(deleteBtn);
     }
 }

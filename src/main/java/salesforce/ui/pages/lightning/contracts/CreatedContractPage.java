@@ -1,8 +1,15 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.contracts;
 
 import java.util.HashMap;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -10,44 +17,14 @@ import salesforce.ui.pages.BasePage;
  */
 public class CreatedContractPage extends BasePage {
 
-    @FindBy(xpath = "(//span[text()='Details'])[last()]")
-    private WebElement details;
-    @FindBy(xpath = "(//ul//li//div//span[@title=\"Account Name\"] /following-sibling::div)[last()]")
-    private WebElement accountNameTitle;
-    @FindBy(xpath = "(//ul//li//div//span[@title=\"Contract Start Date\"] /following-sibling::div)[last()]")
-    private WebElement contractStartDateTitle;
-    @FindBy(xpath = "(//ul//li//div//span[@title=\"Contract End Date\"] /following-sibling::div)[last()]")
-    private WebElement contractEndDateTitle;
-    @FindBy(xpath = "//div[./div[./span[text()='Contract Owner']]]//a")
-    private WebElement contractOwner;
-    @FindBy(xpath = "//div[./div[./span[text()='Status']]]//span//span")
-    private WebElement status;
-    @FindBy(xpath = "(//div[./div[./span[text()='Contract Start Date']]]//span//span)[last()]")
-    private WebElement contractStartDate;
-    @FindBy(xpath = "//div[./div[./span[text()='Account Name']]]//a")
-    private WebElement accountName;
-    @FindBy(xpath = "//div[./div[./span[text()='Contract End Date']]]//span//span")
-    private WebElement contractEndDate;
-    @FindBy(xpath = "//div[./div[./span[text()='Customer Signed By']]]//a")
-    private WebElement customerSignedBy;
-    @FindBy(xpath = "//div[./div[./span[text()='Contract Term (months)']]]//span//span")
-    private WebElement contractTerm;
-    @FindBy(xpath = "//div[./div[./span[text()='Customer Signed Title']]]//span//span")
-    private WebElement customerSignedTitle;
-    @FindBy(xpath = "//div[./div[./span[text()='Owner Expiration Notice']]]//span//span")
-    private WebElement ownerExpirationNotice;
-    @FindBy(xpath = "//div[./div[./span[text()='Customer Signed Date']]]//span//span")
-    private WebElement customerSignedDate;
-    @FindBy(xpath = "//div[./div[./span[text()='Company Signed By']]]//button/preceding-sibling::span")
-    private WebElement companySignedBy;
-    @FindBy(xpath = "//div[./div[./span[text()='Price Book']]]//a")
-    private WebElement priceBook;
-    @FindBy(xpath = "//div[./div[./span[text()='Company Signed Date']]]//button/preceding-sibling::span")
-    private WebElement companySignedDate;
-    @FindBy(xpath = "//div[./div[./span[text()='Special Terms']]]//span//span")
-    private WebElement specialTerms;
-    @FindBy(xpath = "//div[./div[./span[text()='Description']]]//span//span")
-    private WebElement description;
+    private By details = By.xpath("(//span[text()='Details'])[last()]");
+    private By accountNameTitle = By
+            .xpath("(//ul//li//div//span[@title=\"Account Name\"] /following-sibling::div)[last()]");
+    private By contractStartDateTitle = By
+            .xpath("(//ul//li//div//span[@title=\"Contract Start Date\"] /following-sibling::div)[last()]");
+    private By contractEndDateTitle = By
+            .xpath("(//ul//li//div//span[@title=\"Contract End Date\"] /following-sibling::div)[last()]");
+    private By contractStartDate = By.xpath("(//div[./div[./span[text()='Contract Start Date']]]//span//span)[last()]");
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
 
@@ -74,7 +51,7 @@ public class CreatedContractPage extends BasePage {
      * @return the text set on the account name assigned to a contract.
      */
     public CreatedContractPage clickDetails() {
-        webElementAction.clickField(details);
+        webElementAction.clickByLocator(details);
         webElementAction.dropDownTillTheEnd();
         return this;
     }
@@ -85,10 +62,11 @@ public class CreatedContractPage extends BasePage {
      * @param field represents the text to be introduced
      * @return the text set on the field requested contract
      */
-    public String getTextByField(final String field) {
+    public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
-        return webElementAction.getTextOfElementByField(xpath);
+        By xpathLocator = By.xpath(xpath);
+        return webElementAction.getTextOfByFieldByLocator(xpathLocator);
     }
 
     /**
@@ -97,7 +75,7 @@ public class CreatedContractPage extends BasePage {
      * @return the text set on the field requested contract.
      */
     public String contractStartDateText() {
-        return webElementAction.getTextOfElement(contractStartDate);
+        return webElementAction.getTextOfByFieldByLocator(contractStartDate);
     }
 
     /**
@@ -105,6 +83,6 @@ public class CreatedContractPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(accountNameTitle);
+        webElementAction.waitForVisibilityOfLocator(accountNameTitle);
     }
 }

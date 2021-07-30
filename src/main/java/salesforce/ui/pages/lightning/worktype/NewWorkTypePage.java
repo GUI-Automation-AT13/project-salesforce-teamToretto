@@ -1,9 +1,15 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages.lightning.worktype;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -11,17 +17,14 @@ import salesforce.ui.pages.BasePage;
  */
 public class NewWorkTypePage extends BasePage {
 
-    @FindBy(css = ".select[aria-required='true']")
-    protected WebElement estimatedDurationComboBox;
-
-    @FindBy(xpath = "//button[@data-aura-class='uiButton forceActionButton'][3]")
-    protected WebElement saveBtn;
+    protected By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
+    protected By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
     private String xpathComboBox;
     private static int countComboBox = 0;
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(estimatedDurationComboBox);
+        webElementAction.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
 
     /**
@@ -32,12 +35,10 @@ public class NewWorkTypePage extends BasePage {
      */
     public void setInputField(final String fieldName, final String fieldValue) {
         if ("Description".equals(fieldName)) {
-            webElementAction.setInputField(WebDriverManager.getInstance().getWebDriver()
-                    .findElement(By.cssSelector(".textarea")), fieldValue);
+            webElementAction.setInputField((By.cssSelector(".textarea")), fieldValue);
         } else {
             String xpath = String.format("//*[contains(text(),'%s')]/../..//*[@type='text']", fieldName);
-            webElementAction.setInputField(WebDriverManager.getInstance().getWebDriver()
-                    .findElement(By.xpath(xpath)), fieldValue);
+            webElementAction.setInputField(By.xpath(xpath), fieldValue);
         }
     }
 
@@ -47,7 +48,7 @@ public class NewWorkTypePage extends BasePage {
      * @param selectValue is value in comboBox
      */
     public void setEstimatedDurationComboBox(final String selectValue) {
-        webElementAction.selectByAction(estimatedDurationComboBox);
+        //webElementAction.selectByAction(estimatedDurationComboBox);
         String xpathValue = String.format("//a[normalize-space()='%s']", selectValue);
         webElementAction.getTextOfElementByField(xpathValue);
     }
@@ -73,7 +74,7 @@ public class NewWorkTypePage extends BasePage {
      * @return WorkTypeInfo which is to pass other page.
      */
     public CreatedWorkTypePage clickSaveButton() {
-        webElementAction.clickField(saveBtn);
+        webElementAction.clickByLocator(saveBtn);
         return new CreatedWorkTypePage();
     }
 }
