@@ -39,7 +39,8 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     }
 
     @Override
-    public FeatureNew clickNewButton() {
-        return null;
+    public NewContractPage clickNewButton() {
+        webElementAction.clickByLocator(newContractButton);
+        return new NewContractPage();
     }
 }
