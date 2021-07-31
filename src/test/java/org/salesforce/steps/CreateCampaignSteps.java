@@ -27,14 +27,9 @@ public class CreateCampaignSteps {
     public void iLoginToSalesforceSiteAsAnDeveloperUser() {
     }
 
-//    @And("I navigate to Campaign page")
-//    public void iNavigateToPage() {
-//        campaignPage = pageTransporter.navigateToCampaignPage();
-//    }
-
     @And("I navigate to {string} page")
     public void iNavigateToPage(String arg0) {
-        campaignPage = pageTransporter.navigateTofeaturePage(arg0);
+        pageTransporter.navigateToFeaturePage(arg0);
     }
 
     @When("I create a dateof Campaign with fields")

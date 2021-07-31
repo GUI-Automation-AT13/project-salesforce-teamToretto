@@ -103,7 +103,7 @@ public class PageTransporter {
         }
         return null;
     }
-    
+
     /**
      * Navigates to WorkType page on lightning version.
      *
@@ -120,5 +120,13 @@ public class PageTransporter {
      */
     public void navigateToWorkTypePageLightningDirect() {
         goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
+    }
+
+    /**
+     * Navigates to feature page on lightning version.
+     *
+     */
+    public void navigateToFeaturePage(String featureName) {
+        goToUrl(pageUrl.getFeaturePage(featureName));
     }
 }
