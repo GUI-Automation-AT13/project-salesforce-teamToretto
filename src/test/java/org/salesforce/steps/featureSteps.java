@@ -36,9 +36,9 @@ public class featureSteps {
                 EnvConfig.getInstance().getPassword());
     }
 
-    @When("I navigate to {string} page in mode {string}")
-    public void iNavigateToPageInMode(String arg0, String arg1) {
-        pageTransporter.navigateToWorkTypePageLightningDirect();
+    @When("I navigate to the {string} page")
+    public void iNavigateToThePage(String featureName) {
+        pageTransporter.navigateToFeaturePage(featureName);
     }
 
     @When("^I create a new (.*) with (?:.*)$")

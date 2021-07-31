@@ -100,4 +100,11 @@ public class CreateCampaignPage extends BasePage {
         webElementAction.clickByLocator(saveButton);
         return new CampaignCreatedPage();
     }
+
+    /**
+     * Clicks active check element.
+     */
+    public void clickActive() {
+        webElementAction.clickByLocator(activeCheck);
+    }
 }
