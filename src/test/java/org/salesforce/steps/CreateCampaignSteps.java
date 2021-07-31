@@ -37,9 +37,8 @@ public class CreateCampaignSteps {
         campaignPage = pageTransporter.navigateTofeaturePage(arg0);
     }
 
-    @When("I create a new Campaign with fields")
-    public void iCreateANewCampaignWithFields() {
-        CreateCampaignPage createCampaignPage = campaignPage.clickCreateCampaignBtn();
+    @When("I create a dateof Campaign with fields")
+    public void iCreateADateofCampaignWithFields() {CreateCampaignPage createCampaignPage = campaignPage.clickCreateCampaignBtn();
         createCampaignPage.setInputField("campaign name", campaignName);
         createCampaignPage.clickActive();
         campaignCreatedPage = createCampaignPage.clickSaveBtn();

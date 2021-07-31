@@ -6,12 +6,11 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.utils.strategy;
+package salesforce.utils.supplier;
 
-import java.util.Map;
-
-public interface IFeatureNew {
-    void fillUpField(Map<String, String> table);
-
-    ICreatedFeature clickSaveButton();
+/**
+ * StringSupplier VoidSupplier.
+ */
+public interface VoidSupplier {
+    void run();
 }

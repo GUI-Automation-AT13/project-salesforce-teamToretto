@@ -9,13 +9,16 @@
 package salesforce.ui.pages.lightning.contracts;
 
 import java.util.HashMap;
+import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureNew;
 
 /**
  * Page Object Model for the salesforce new contract page.
  */
-public class NewContractPage extends BasePage {
+public class NewContractPage extends BasePage implements FeatureNew {
     private By accountName = By.cssSelector("input[placeholder='Search Accounts...']");
     private By accountSelector = By.xpath("//mark[normalize-space()='TestAccount']");
     private By customerSignedBy = By.cssSelector("input[placeholder='Search Contacts...']");
@@ -257,5 +260,15 @@ public class NewContractPage extends BasePage {
     public ContractsPage clickCancel() {
         webElementAction.clickByLocator(cancel);
         return new ContractsPage();
+    }
+
+    @Override
+    public void fillUpField(Map<String, String> table) {
+
+    }
+
+    @Override
+    public CreatedFeature clickSaveButton() {
+        return null;
     }
 }

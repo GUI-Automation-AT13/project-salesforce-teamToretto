@@ -11,6 +11,6 @@ package salesforce.utils.strategy;
 import java.util.List;
 import java.util.Map;
 
-public interface ICreatedFeature {
+public interface CreatedFeature {
     List<String> getValueField(Map<String, String> table);
 }

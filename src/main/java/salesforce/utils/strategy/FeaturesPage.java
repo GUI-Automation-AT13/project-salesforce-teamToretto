@@ -8,6 +8,6 @@
 
 package salesforce.utils.strategy;
 
-public interface IFeaturesPage {
-    IFeatureNew clickNewButton();
+public interface FeaturesPage {
+    FeatureNew clickNewButton();
 }
