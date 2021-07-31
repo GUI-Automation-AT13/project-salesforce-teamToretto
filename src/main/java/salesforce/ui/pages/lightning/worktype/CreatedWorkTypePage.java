@@ -104,7 +104,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
         mapValues.put("Estimated Duration", () -> getTxtField("Estimated Duration"));
         mapValues.put("Block Time Before Appointment", () -> getTxtField("Block Time Before Appointment"));
         mapValues.put("Block Time After Appointment", () -> getTxtField("Block Time After Appointment"));
-        mapValues.put("Timeframe Start", () -> getTxtField("Estimated Duration"));
+        mapValues.put("Timeframe Start", () -> getTxtField("Timeframe Start"));
         mapValues.put("Timeframe End", () -> getTxtField("Timeframe End"));
         return mapValues;
     }
