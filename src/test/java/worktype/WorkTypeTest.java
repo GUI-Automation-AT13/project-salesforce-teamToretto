@@ -28,13 +28,13 @@ public class WorkTypeTest extends BaseTests {
         workTypesPage = pageTransporter.navigateToWorkTypePageLightning();
         newWorkTypePage = workTypesPage.clickNewButton();
         newWorkTypePage.setInputField("Work Type Name", "Work Type created");
-        newWorkTypePage.setInputField("Description", "Descriptions-test-22");
+        newWorkTypePage.setDescription("Descriptions-test-22");
         newWorkTypePage.setInputField("Estimated Duration", "68");
-        newWorkTypePage.setEstimatedDurationComboBox("Minutes");
+        newWorkTypePage.setDurationTypeComboBox("Minutes");
         newWorkTypePage.setInputField("Block Time Before Appointment", "52");
         newWorkTypePage.setComboBoxField("Block Time Before Unit", "Hour(s)");
         newWorkTypePage.setInputField("Block Time After Appointment", "5");
-        newWorkTypePage.setComboBoxField("Block Time After Unit", "Hour(s)");
+        newWorkTypePage.setComboBoxField("Block Time After Unit", "Minute(s)");
         newWorkTypePage.setInputField("Timeframe Start", "4");
         newWorkTypePage.setComboBoxField("Time Frame Start Unit", "Day(s)");
         newWorkTypePage.setInputField("Timeframe End", "5");
@@ -42,7 +42,7 @@ public class WorkTypeTest extends BaseTests {
         createdWorkTypePage = newWorkTypePage.clickSaveButton();
         assertEquals(createdWorkTypePage.getNameOfWorkType(), "Work Type created");
         assertEquals(createdWorkTypePage.getDescription(), "Descriptions-test-22");
-        assertEquals(createdWorkTypePage.getTxtField("Estimated Duration"), "68,00");
+        assertEquals(createdWorkTypePage.getTxtField("Estimated Duration"), "68.00");
         assertEquals(createdWorkTypePage.getTxtField("Block Time Before Appointment"), "52");
         assertEquals(createdWorkTypePage.getTxtField("Block Time After Appointment"), "5");
         assertEquals(createdWorkTypePage.getTxtField("Timeframe Start"), "4");

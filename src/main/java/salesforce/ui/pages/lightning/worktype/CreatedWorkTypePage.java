@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
@@ -26,8 +27,9 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
     protected By dateCreateByTxt = By
             .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
-            + "forceOutputModStampWithPreview']");
+                    + "forceOutputModStampWithPreview']");
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
+    protected String xPathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
 
     @Override
     protected void waitForPageLoaded() {
@@ -60,8 +62,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
      * @return value of nameTxtBox
      */
     public String getTxtField(final String nameTxtBox) {
-        String xpath = String.format("//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']", nameTxtBox);
-        return webElementAction.getTextOfElementByField(xpath);
+        return webElementAction.getTextOfElementByField(String.format(xPathFieldTxt, nameTxtBox));
     }
 
     /**

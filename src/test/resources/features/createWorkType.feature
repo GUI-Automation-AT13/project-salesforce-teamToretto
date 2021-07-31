@@ -15,7 +15,7 @@ Feature: Create workType
     When I navigate to "work Type" page in mode "Lightning"
     When I create a new workType with all fields
       | Work Type Name                | workType            |
-      | Estimated Duration            | 25                  |
+      | Estimated Duration            | 25.00               |
       | Description                   | WorkTypeDescription |
       | Block Time Before Appointment | 3                   |
       | Block Time After Appointment  | 15                  |

@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -133,11 +134,11 @@ public class WebElementAction {
     /**
      * Selects a webElement isn't able to click.
      *
-     * @param webElement type WebElement object.
+     * @param by type WebElement object.
      */
-    public void selectByAction(final WebElement webElement) {
+    public void selectByAction(final By by) {
         Actions builder = new Actions(driver);
-        Action action = builder.click(webElement).build();
+        Action action = builder.click(driver.findElement(by)).build();
         action.perform();
     }
 
