@@ -10,8 +10,8 @@ package salesforce.ui.pages.lightning.worktype;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.ICreatedFeature;
-import salesforce.utlis.supplier.StringSupplier;
+import salesforce.utils.strategy.ICreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

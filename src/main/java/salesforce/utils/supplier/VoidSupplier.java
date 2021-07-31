@@ -6,8 +6,8 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.utlis.supplier;
+package salesforce.utils.supplier;
 
-public interface StringSupplier {
-    String getAsString();
+public interface VoidSupplier {
+    void run();
 }

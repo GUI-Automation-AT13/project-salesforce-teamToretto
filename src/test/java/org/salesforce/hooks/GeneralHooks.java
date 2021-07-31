@@ -7,13 +7,12 @@ import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 
-public class generalHooks {
+public class GeneralHooks {
     public PageTransporter pageTransporter = new PageTransporter();
     public SoftAssert softAssert = new SoftAssert();
 
     @Before(value = "@CreateWorkType")
     public void setup() {
-        System.out.println("8787878787878787878");
         WebDriverManager.getInstance();
         WebDriverManager.getInstance().getWebDriver().get(EnvConfig.getInstance().getLoginUrl());
         WebDriverManager.getInstance().getWebDriver().manage().window().maximize();

@@ -179,6 +179,6 @@ public class WebElementAction {
      * @return web element's text
      */
     public void clickByXpath(final String field) {
-        WebDriverManager.getInstance().getWebDriver().findElement(By.xpath(field)).click();
+        driver.findElement(By.xpath(field)).click();
     }
 }

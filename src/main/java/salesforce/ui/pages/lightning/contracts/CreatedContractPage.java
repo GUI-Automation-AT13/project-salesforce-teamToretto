@@ -11,10 +11,9 @@ package salesforce.ui.pages.lightning.contracts;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.ICreatedFeature;
+import salesforce.utils.strategy.ICreatedFeature;
 
 /**
  * Page Object Model for the salesforce created contract page.

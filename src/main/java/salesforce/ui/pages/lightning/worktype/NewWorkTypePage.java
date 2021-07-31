@@ -11,10 +11,9 @@ package salesforce.ui.pages.lightning.worktype;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.IFeatureNew;
-import salesforce.utlis.supplier.VoidSupplier;
+import salesforce.utils.strategy.IFeatureNew;
+import salesforce.utils.supplier.VoidSupplier;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

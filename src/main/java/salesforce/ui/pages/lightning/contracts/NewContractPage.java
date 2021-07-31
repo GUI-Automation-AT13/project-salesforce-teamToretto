@@ -13,8 +13,8 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.ICreatedFeature;
-import salesforce.utlis.strategy.IFeatureNew;
+import salesforce.utils.strategy.ICreatedFeature;
+import salesforce.utils.strategy.IFeatureNew;
 
 /**
  * Page Object Model for the salesforce new contract page.

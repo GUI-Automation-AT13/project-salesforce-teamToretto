@@ -6,8 +6,8 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.utlis.supplier;
+package salesforce.utils.strategy;
 
-public interface VoidSupplier {
-    void run();
+public interface IFeaturesPage {
+    IFeatureNew clickNewButton();
 }

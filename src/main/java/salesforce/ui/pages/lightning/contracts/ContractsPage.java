@@ -10,8 +10,8 @@ package salesforce.ui.pages.lightning.contracts;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.IFeatureNew;
-import salesforce.utlis.strategy.IFeaturesPage;
+import salesforce.utils.strategy.IFeatureNew;
+import salesforce.utils.strategy.IFeaturesPage;
 
 /**
  * Page Object Model for the salesforce contracts page.

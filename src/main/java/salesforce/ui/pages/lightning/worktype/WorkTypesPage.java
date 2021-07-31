@@ -10,7 +10,7 @@ package salesforce.ui.pages.lightning.worktype;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utlis.strategy.IFeaturesPage;
+import salesforce.utils.strategy.IFeaturesPage;
 
 /**
  * This class has webElement for work types page.

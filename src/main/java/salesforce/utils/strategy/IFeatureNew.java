@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.utlis.strategy;
+package salesforce.utils.strategy;
 
 import java.util.Map;
 

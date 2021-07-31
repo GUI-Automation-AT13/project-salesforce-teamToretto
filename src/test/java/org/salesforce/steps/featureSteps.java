@@ -9,11 +9,10 @@ import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.LoginPage;
 import salesforce.ui.pages.lightning.HomePage;
-import salesforce.utlis.strategy.ICreatedFeature;
-import salesforce.utlis.strategy.IFeatureNew;
-import salesforce.utlis.strategy.IFeaturesPage;
-import salesforce.utlis.strategy.MapPages;
-
+import salesforce.utils.strategy.ICreatedFeature;
+import salesforce.utils.strategy.IFeatureNew;
+import salesforce.utils.strategy.IFeaturesPage;
+import salesforce.utils.strategy.MapPages;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -6,8 +6,11 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.utlis.strategy;
+package salesforce.utils.strategy;
 
-public interface IFeaturesPage {
-    IFeatureNew clickNewButton();
+import java.util.List;
+import java.util.Map;
+
+public interface ICreatedFeature {
+    List<String> getValueField(Map<String, String> table);
 }
