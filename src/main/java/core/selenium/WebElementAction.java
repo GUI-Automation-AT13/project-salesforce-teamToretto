@@ -176,7 +176,6 @@ public class WebElementAction {
      * Gets the text of a web element.
      *
      * @param field web element to get text.
-     * @return web element's text
      */
     public void clickByXpath(final String field) {
         driver.findElement(By.xpath(field)).click();

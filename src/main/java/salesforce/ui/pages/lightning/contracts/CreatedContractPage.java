@@ -13,12 +13,12 @@ import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.ICreatedFeature;
+import salesforce.utils.strategy.CreatedFeature;
 
 /**
  * Page Object Model for the salesforce created contract page.
  */
-public class CreatedContractPage extends BasePage implements ICreatedFeature {
+public class CreatedContractPage extends BasePage implements CreatedFeature {
 
     private By details = By.xpath("(//span[text()='Details'])[last()]");
     private By accountNameTitle = By

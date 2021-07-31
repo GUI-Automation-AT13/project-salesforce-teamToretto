@@ -9,18 +9,17 @@
 package salesforce.ui.pages.lightning.worktype;
 
 import core.selenium.WebDriverManager;
-import org.openqa.selenium.By;
-import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.IFeatureNew;
-import salesforce.utils.supplier.VoidSupplier;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.openqa.selenium.By;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * This class has webElement for work type page form.
  */
-public class NewWorkTypePage extends BasePage implements IFeatureNew {
+public class NewWorkTypePage extends BasePage implements FeatureNew {
 
     protected By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
     protected By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
@@ -92,18 +91,18 @@ public class NewWorkTypePage extends BasePage implements IFeatureNew {
     }
 
     /**
-     * Saves actions in New work type page in map
+     * Saves actions in New work type page in map.
      *
      * @param workTypeMap is map
      * @return a map with action of fields
      */
     private HashMap<String, VoidSupplier> mapActionsWorkType(final Map<String, String> workTypeMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
-        mapActions.put("Work Type Name", () -> setInputField("Work Type Name",workTypeMap.get("Work Type Name")));
-        mapActions.put("Description", () -> setInputField("Description",workTypeMap.get("Description")));
+        mapActions.put("Work Type Name", () -> setInputField("Work Type Name", workTypeMap.get("Work Type Name")));
+        mapActions.put("Description", () -> setInputField("Description", workTypeMap.get("Description")));
         mapActions.put("Estimated Duration", () -> setInputField("Estimated Duration",
                 workTypeMap.get("Estimated Duration")));
-        mapActions.put("Duration Type",  () -> setEstimatedDurationComboBox(workTypeMap.get("Duration Type")));
+        mapActions.put("Duration Type", () -> setEstimatedDurationComboBox(workTypeMap.get("Duration Type")));
         mapActions.put("Block Time Before Appointment", () -> setInputField("Block Time Before Appointment",
                 workTypeMap.get("Block Time Before Appointment")));
         mapActions.put("Block Time Before Unit", () -> setComboBoxField("Block Time Before Unit",
@@ -116,7 +115,7 @@ public class NewWorkTypePage extends BasePage implements IFeatureNew {
                 workTypeMap.get("Timeframe Start")));
         mapActions.put("Time Frame Start Unit", () -> setComboBoxField("Time Frame Start Unit",
                 workTypeMap.get("Description")));
-        mapActions.put("Timeframe End", () -> setInputField("Timeframe End",workTypeMap.get("Timeframe End")));
+        mapActions.put("Timeframe End", () -> setInputField("Timeframe End", workTypeMap.get("Timeframe End")));
         mapActions.put("Time Frame End Unit", () -> setComboBoxField("Time Frame End Unit",
                 workTypeMap.get("Time Frame End Unit")));
         return mapActions;

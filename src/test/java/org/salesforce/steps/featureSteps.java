@@ -9,9 +9,9 @@ import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.LoginPage;
 import salesforce.ui.pages.lightning.HomePage;
-import salesforce.utils.strategy.ICreatedFeature;
-import salesforce.utils.strategy.IFeatureNew;
-import salesforce.utils.strategy.IFeaturesPage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeaturesPage;
 import salesforce.utils.strategy.MapPages;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ public class featureSteps {
     public PageTransporter pageTransporter = new PageTransporter();
     private HomePage homePage;
     private MapPages mapPages = new MapPages();
-    private IFeaturesPage featurePage;
-    private IFeatureNew featureNew;
-    private ICreatedFeature createdFeature;
+    private FeaturesPage featurePage;
+    private FeatureNew featureNew;
+    private CreatedFeature createdFeature;
     private Map<String, String> tableFeature;
 
     @Given("I login to Salesforce site as an admin user")

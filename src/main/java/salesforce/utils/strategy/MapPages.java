@@ -12,6 +12,9 @@ import org.openqa.selenium.InvalidArgumentException;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
+/**
+ * Create new instances object.
+ */
 public class MapPages {
 
     /**
@@ -20,7 +23,7 @@ public class MapPages {
      * @param featureName name of feature
      * @return object feature page
      */
-    public IFeaturesPage featuresPage(final String featureName) {
+    public FeaturesPage featuresPage(final String featureName) {
         switch (featureName) {
             case "workType":
                 return new WorkTypesPage();

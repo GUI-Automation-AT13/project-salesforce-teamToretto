@@ -10,13 +10,13 @@ package salesforce.ui.pages.lightning.contracts;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.IFeatureNew;
-import salesforce.utils.strategy.IFeaturesPage;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * Page Object Model for the salesforce contracts page.
  */
-public class ContractsPage extends BasePage implements IFeaturesPage {
+public class ContractsPage extends BasePage implements FeaturesPage {
 
     private By newContractButton = By.cssSelector("a[title='New']");
 
@@ -39,7 +39,7 @@ public class ContractsPage extends BasePage implements IFeaturesPage {
     }
 
     @Override
-    public IFeatureNew clickNewButton() {
+    public FeatureNew clickNewButton() {
         return null;
     }
 }

@@ -8,19 +8,19 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
-import org.openqa.selenium.By;
-import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.ICreatedFeature;
-import salesforce.utils.supplier.StringSupplier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openqa.selenium.By;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
 
 /**
  * This class has webElement for work type created.
  */
-public class CreatedWorkTypePage extends BasePage implements ICreatedFeature {
+public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
 
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");

@@ -8,6 +8,13 @@
 
 package salesforce.utils.strategy;
 
-public interface IFeaturesPage {
-    IFeatureNew clickNewButton();
+import java.util.Map;
+
+/**
+ * Implements in feature new.
+ */
+public interface FeatureNew {
+    void fillUpField(Map<String, String> table);
+
+    CreatedFeature clickSaveButton();
 }
