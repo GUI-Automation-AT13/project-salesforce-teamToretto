@@ -12,9 +12,11 @@ import core.selenium.WebDriverManager;
 import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.LoginPage;
+import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.utils.PageUrl;
 
 /**
  * Navigates to a page's url.
@@ -22,6 +24,7 @@ import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
+    private PageUrl pageUrl;
 
     public LoginPage navigateToLoginPage() {
         goToUrl(baseUrl);
@@ -75,5 +78,28 @@ public class PageTransporter {
     public IndividualListPage navigateToIndividualListPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/list?filterName=Recent"));
         return new IndividualListPage();
+    }
+
+    /**
+     * Navigates to the Legal entities page.
+     *
+     * @return a CampaignPage.
+     */
+    public CampaignPage navigateToCampaignPage() {
+        goToUrl(baseUrl.concat("lightning/o/Campaign/list?filterName=Recent"));
+        return new CampaignPage();
+    }
+
+    /**
+     * Navigates to the Legal entities page.
+     *
+     * @return a CampaignPage.
+     */
+    public CampaignPage navigateTofeaturePage(String nameFeature) {
+        goToUrl(pageUrl.getFeaturePage(nameFeature));
+        if (nameFeature.equals("Campaign")) {
+            return new CampaignPage();
+        }
+        return null;
     }
 }
