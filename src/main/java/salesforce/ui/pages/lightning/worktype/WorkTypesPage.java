@@ -10,11 +10,12 @@ package salesforce.ui.pages.lightning.worktype;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * This class has webElement for work types page.
  */
-public class WorkTypesPage extends BasePage {
+public class WorkTypesPage extends BasePage implements FeaturesPage {
     protected By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
     @Override

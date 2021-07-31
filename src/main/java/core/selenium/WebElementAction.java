@@ -170,4 +170,14 @@ public class WebElementAction {
         waitForVisibilityOfLocator(locator);
         return driver.findElement(locator).getText();
     }
+
+
+    /**
+     * Gets the text of a web element.
+     *
+     * @param field web element to get text.
+     */
+    public void clickByXpath(final String field) {
+        driver.findElement(By.xpath(field)).click();
+    }
 }

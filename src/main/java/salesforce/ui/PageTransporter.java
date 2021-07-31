@@ -15,6 +15,7 @@ import salesforce.ui.pages.lightning.LoginPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
 /**
  * Navigates to a page's url.
@@ -75,5 +76,23 @@ public class PageTransporter {
     public IndividualListPage navigateToIndividualListPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/list?filterName=Recent"));
         return new IndividualListPage();
+    }
+
+    /**
+     * Navigates to WorkType page on lightning version.
+     *
+     * @return Contracts' instance.
+     */
+    public WorkTypesPage navigateToWorkTypePageLightning() {
+        goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
+        return new WorkTypesPage();
+    }
+
+    /**
+     * Navigates to WorkType page on lightning version.
+     *
+     */
+    public void navigateToWorkTypePageLightningDirect() {
+        goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
     }
 }

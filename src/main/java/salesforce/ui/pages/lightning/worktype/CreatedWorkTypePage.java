@@ -8,13 +8,19 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
 
 /**
  * This class has webElement for work type created.
  */
-public class CreatedWorkTypePage extends BasePage {
+public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
 
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
@@ -74,5 +80,31 @@ public class CreatedWorkTypePage extends BasePage {
      */
     public String getNameCreatorTxt() {
         return webElementAction.getTextOfByFieldByLocator(nameCreatorTxt);
+    }
+
+
+    @Override
+    public List<String> getValueField(final Map<String, String> table) {
+        List<String> result = new ArrayList<>();
+        HashMap<String, StringSupplier> actionsWorkTypeMap = getTxtFields();
+        table.keySet().forEach(key -> result.add(actionsWorkTypeMap.get(key).getAsString()));
+        return result;
+    }
+
+    /**
+     * Gets text fields of workType.
+     *
+     * @return a map with methods of CreatedWorkType
+     */
+    private HashMap<String, StringSupplier> getTxtFields() {
+        HashMap<String, StringSupplier> mapValues = new HashMap<>();
+        mapValues.put("Work Type Name", this::getNameOfWorkType);
+        mapValues.put("Description", this::getDescription);
+        mapValues.put("Estimated Duration", () -> getTxtField("Estimated Duration"));
+        mapValues.put("Block Time Before Appointment", () -> getTxtField("Block Time Before Appointment"));
+        mapValues.put("Block Time After Appointment", () -> getTxtField("Block Time After Appointment"));
+        mapValues.put("Timeframe Start", () -> getTxtField("Estimated Duration"));
+        mapValues.put("Timeframe End", () -> getTxtField("Timeframe End"));
+        return mapValues;
     }
 }
