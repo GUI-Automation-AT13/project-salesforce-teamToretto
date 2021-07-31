@@ -10,6 +10,9 @@ package salesforce.utils.strategy;
 
 import java.util.Map;
 
+/**
+ * Implements in feature new.
+ */
 public interface FeatureNew {
     void fillUpField(Map<String, String> table);
 

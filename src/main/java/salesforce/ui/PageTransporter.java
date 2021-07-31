@@ -16,8 +16,8 @@ import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
-import salesforce.utils.PageUrl;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
+import salesforce.utils.PageUrl;
 
 /**
  * Navigates to a page's url.
@@ -116,7 +116,6 @@ public class PageTransporter {
 
     /**
      * Navigates to WorkType page on lightning version.
-     *
      */
     public void navigateToWorkTypePageLightningDirect() {
         goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
@@ -124,7 +123,6 @@ public class PageTransporter {
 
     /**
      * Navigates to feature page on lightning version.
-     *
      */
     public void navigateToFeaturePage(String featureName) {
         goToUrl(pageUrl.getFeaturePage(featureName));
