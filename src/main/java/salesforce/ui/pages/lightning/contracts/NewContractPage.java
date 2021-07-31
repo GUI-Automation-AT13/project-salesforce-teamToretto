@@ -12,8 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.ui.pages.lightning.worktype.CreatedWorkTypePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * Page Object Model for the salesforce new contract page.
@@ -67,6 +69,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setAccountName(final String newAccountName) {
         webElementAction.setInputField(this.accountName, newAccountName);
+        clickAccountSelector();
     }
 
     /**
@@ -83,6 +86,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setCustomerSignedBy(final String newCustomerSignedBy) {
         webElementAction.setInputField(this.customerSignedBy, newCustomerSignedBy);
+        clickContactSelector();
     }
 
     /**
@@ -117,6 +121,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setPriceBook(final String newPriceBook) {
         webElementAction.setInputField(this.priceBook, newPriceBook);
+        selectPriceBook();
     }
 
     /**
@@ -157,6 +162,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param value for the xpath
      */
     public void selectOwnerExpirationNotice(final String value) {
+        clickOwnerExpirationNotice();
         webElementAction.clickFieldByLocator(ownerExpirationNoticeSelector.get(value));
     }
 
@@ -264,11 +270,44 @@ public class NewContractPage extends BasePage implements FeatureNew {
 
     @Override
     public void fillUpField(Map<String, String> table) {
+        HashMap<String, VoidSupplier> actionsContractMap = mapActionsContract(table);
+        table.keySet().forEach(key -> actionsContractMap.get(key).run());
+    }
 
+    /**
+     * Saves actions in New work type page in map.
+     *
+     * @param contractMap is map
+     * @return a map with action of fields
+     */
+    private HashMap<String, VoidSupplier> mapActionsContract(final Map<String, String> contractMap) {
+        HashMap<String, VoidSupplier> mapActions = new HashMap<>();
+        mapActions.put("Account Name", () -> setAccountName(contractMap.get("Account Name")));
+        mapActions.put("Contract Term (months)", () -> setContractTermMonths(contractMap
+                .get("Contract Term (months)")));
+        mapActions.put("Contract Start Date", () -> setContractStartDate(contractMap.get("Contract Start Date")));
+        mapActions.put("Customer Signed By", () -> setCustomerSignedBy(contractMap.get("Customer Signed By")));
+        mapActions.put("Customer Signed Title", () -> setCustomerSignedTittle(contractMap
+                .get("Customer Signed Title")));
+        mapActions.put("Customer Signed Date", () -> setCustomerSignedDate(contractMap
+                .get("Customer Signed Date")));
+        mapActions.put("Price Book", () -> setPriceBook(contractMap.get("Price Book")));
+        mapActions.put("Owner Expiration Notice", () -> selectOwnerExpirationNotice(contractMap
+                .get("Owner Expiration Notice")));
+        mapActions.put("Company Signed Date", () -> setCompanySignedDate(contractMap.get("Company Signed Date")));
+        mapActions.put("Billing Street", () -> setBillingStreet(contractMap.get("Billing Street")));
+        mapActions.put("Billing City", () -> setBillingCity(contractMap.get("Billing City")));
+        mapActions.put("Billing state", () -> setBillingState(contractMap.get("Billing state")));
+        mapActions.put("Billing postal code", () -> setBillingPostalCode(contractMap.get("Billing postal code")));
+        mapActions.put("Billing country", () -> setBillingCountry(contractMap.get("Billing country")));
+        mapActions.put("Special Terms", () -> setSpecialTerms(contractMap.get("Special Terms")));
+        mapActions.put("Description", () -> setDescription(contractMap.get("Description")));
+        return mapActions;
     }
 
     @Override
     public CreatedFeature clickSaveButton() {
-        return null;
+        webElementAction.clickByLocator(save);
+        return new CreatedContractPage();
     }
 }

@@ -13,7 +13,6 @@ public class GeneralHooks {
 
     @Before(value = "@CreateWorkType")
     public void setup() {
-        WebDriverManager.getInstance();
         WebDriverManager.getInstance().getWebDriver().get(EnvConfig.getInstance().getLoginUrl());
         WebDriverManager.getInstance().getWebDriver().manage().window().maximize();
     }
