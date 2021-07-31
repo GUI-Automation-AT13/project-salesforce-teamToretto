@@ -37,8 +37,8 @@ public class featureSteps {
     }
 
     @When("I navigate to the {string} page")
-    public void iNavigateToThePage(String arg0) {
-        pageTransporter.navigateToFeaturePage(arg0);
+    public void iNavigateToThePage(String featureName) {
+        pageTransporter.navigateToFeaturePage(featureName);
     }
 
     @When("^I create a new (.*) with (?:.*)$")

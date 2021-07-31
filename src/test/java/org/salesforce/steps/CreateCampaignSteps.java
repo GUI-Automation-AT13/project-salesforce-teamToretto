@@ -23,11 +23,7 @@ public class CreateCampaignSteps {
         this.pageTransporter = pageTransporter;
     }
 
-    @Given("I login to salesforce site as an developer user")
-    public void iLoginToSalesforceSiteAsAnDeveloperUser() {
-    }
-
-    @And("I navigate to {string} page")
+    @Given("I navigate to {string} page")
     public void iNavigateToPage(String arg0) {
         pageTransporter.navigateToFeaturePage(arg0);
     }
@@ -46,21 +42,13 @@ public class CreateCampaignSteps {
         Assert.assertEquals(campaignCreatedPage.getTextAlertSuccess(), "success\nCampaign " + "\"" + campaignName + "\"" + " was created.\nClose", "Campaign was not created");
     }
 
-    @And("All header fields match")
+    @Then("All header fields match")
     public void allHeaderFieldsMatch() {
         Assert.assertEquals(campaignCreatedPage.getCreatedCampaignTitleText(), campaignName, "Campaign was not created");
     }
 
-    @And("All detail fields match")
+    @Then("All detail fields match")
     public void allDetailFieldsMatch() {
         Assert.assertEquals(campaignCreatedPage.getCampaignNameCreatedText(), campaignName, "Campaign was not created");
-    }
-
-    @And("The title matches")
-    public void theTitleMatches() {
-    }
-
-    @And("The created date matches")
-    public void theCreatedDateMatches() {
     }
 }
