@@ -10,13 +10,16 @@ package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.ui.pages.lightning.contracts.NewContractPage;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * This class is of Campaign Page.
  */
-public class CampaignPage extends BasePage {
+public class CampaignPage extends BasePage implements FeaturesPage {
 
-    private By createCampaignBtn = By.cssSelector(".forceActionLink > div");
+    protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
     @Override
     protected void waitForPageLoaded() {
@@ -29,6 +32,12 @@ public class CampaignPage extends BasePage {
      * @return a object CreateCampaignPage.
      */
     public CreateCampaignPage clickCreateCampaignBtn() {
+        webElementAction.clickByLocator(createCampaignBtn);
+        return new CreateCampaignPage();
+    }
+
+    @Override
+    public CreateCampaignPage clickNewButton() {
         webElementAction.clickByLocator(createCampaignBtn);
         return new CreateCampaignPage();
     }
