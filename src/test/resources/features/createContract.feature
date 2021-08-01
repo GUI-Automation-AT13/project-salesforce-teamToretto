@@ -2,8 +2,7 @@ Feature: Create Contract
 
   @CreateWorkType
   Scenario: create a contract with only required fields
-    Given I login to Salesforce site as an admin user
-    When I navigate to the "Contract" page
+    Given I navigate to the "Contract" page
     When I create a new contract with required fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -12,8 +11,7 @@ Feature: Create Contract
 
   @CreateWorkType
   Scenario: create a contract with all required fields
-    Given I login to Salesforce site as an admin user
-    When I navigate to the "Contract" page
+    Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
       | Contract Term (months)  | 2                   |

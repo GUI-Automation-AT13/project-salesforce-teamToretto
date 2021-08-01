@@ -24,13 +24,14 @@ import java.util.Map;
 public class CreateIndividualSteps {
 
     private PageTransporter pageTransporter;
+    private SoftAssert softAssert;
     private IndividualFormPage individualFormPage;
     private IndividualEntity individualEntity;
 
-    public CreateIndividualSteps(PageTransporter pageTransporter) {
+    public CreateIndividualSteps(final PageTransporter pageTransporter, final SoftAssert softAssert) {
         this.pageTransporter = pageTransporter;
+        this.softAssert = softAssert;
     }
-
     @Given("^I go to the new Individual formular$")
     public void iGoToTheNewIndividualFormular() {
         System.out.println("==================GO TO NEW INDIVIDUAL PAGE====================");
