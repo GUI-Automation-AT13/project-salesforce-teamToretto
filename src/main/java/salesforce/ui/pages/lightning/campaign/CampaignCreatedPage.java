@@ -8,15 +8,14 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
-import org.openqa.selenium.By;
-import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
-import salesforce.utils.supplier.StringSupplier;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openqa.selenium.By;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
 
 /**
  * This class for elements of Campaign page created.
@@ -57,8 +56,6 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
     public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
-        System.out.println("/////////////////////////////////////////////////////");
-        System.out.println(xpath);
         By xpathLocator = By.xpath(xpath);
         return webElementAction.getTextOfByFieldByLocator(xpathLocator);
     }
@@ -140,7 +137,6 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
         webElementAction.clickByLocator(detailsTab);
         webElementAction.dropDownTillTheEnd();
         HashMap<String, StringSupplier> mapValues = new HashMap<>();
-//        mapValues.put("Campaign Name", () -> getCampaignNameCreatedText());
         mapValues.put("Campaign Name", () -> getTextByFieldName("Campaign Name"));
         mapValues.put("Start Date", () -> getTextByFieldName("Start Date"));
         mapValues.put("End Date", () -> getTextByFieldName("End Date"));

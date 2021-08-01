@@ -10,11 +10,8 @@ package salesforce.ui.pages.lightning.campaign;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.ui.pages.lightning.contracts.CreatedContractPage;
-import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
 
@@ -135,14 +132,30 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      */
     private HashMap<String, VoidSupplier> mapActionsContract(final Map<String, String> campaignMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
-        mapActions.put("Campaign Name", () -> setInputField("Campaign Name", campaignMap.get("Campaign Name")));
-        mapActions.put("Start Date", () -> setInputField("Start Date", campaignMap.get("Start Date")));
-        mapActions.put("End Date", () -> setInputField("End Date", campaignMap.get("End Date")));
-        mapActions.put("Expected Revenue in Campaign", () -> setInputField("Expected Revenue in Campaign", campaignMap.get("Expected Revenue in Campaign")));
-        mapActions.put("Budgeted Cost in Campaign", () -> setInputField("Budgeted Cost in Campaign", campaignMap.get("Budgeted Cost in Campaign")));
-        mapActions.put("Actual Cost in Campaign", () -> setInputField("Actual Cost in Campaign", campaignMap.get("Actual Cost in Campaign")));
-        mapActions.put("Num Sent in Campaign", () -> setInputField("Num Sent in Campaign", campaignMap.get("Num Sent in Campaign")));
-        mapActions.put("Description", () -> setInputField("Description", campaignMap.get("Description")));
+        mapActions.put("Campaign Name", () -> setInputField(
+                "Campaign Name",
+                campaignMap.get("Campaign Name")));
+        mapActions.put("Start Date", () -> setInputField(
+                "Start Date",
+                campaignMap.get("Start Date")));
+        mapActions.put("End Date", () -> setInputField(
+                "End Date",
+                campaignMap.get("End Date")));
+        mapActions.put("Expected Revenue in Campaign", () -> setInputField(
+                "Expected Revenue in Campaign",
+                campaignMap.get("Expected Revenue in Campaign")));
+        mapActions.put("Budgeted Cost in Campaign", () -> setInputField(
+                "Budgeted Cost in Campaign",
+                campaignMap.get("Budgeted Cost in Campaign")));
+        mapActions.put("Actual Cost in Campaign", () -> setInputField(
+                "Actual Cost in Campaign",
+                campaignMap.get("Actual Cost in Campaign")));
+        mapActions.put("Num Sent in Campaign", () -> setInputField(
+                "Num Sent in Campaign",
+                campaignMap.get("Num Sent in Campaign")));
+        mapActions.put("Description", () -> setInputField(
+                "Description",
+                campaignMap.get("Description")));
         return mapActions;
     }
 }
