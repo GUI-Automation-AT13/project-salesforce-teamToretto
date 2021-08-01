@@ -53,7 +53,7 @@ public class IndividualScenarioHooks {
         Assert.assertTrue(actual.contains(expected));
     }
 
-    @After
+    @After(order = 100)
     public void tearDown() {
         WebDriverManager.getInstance().quitWebDriver();
     }
