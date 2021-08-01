@@ -9,13 +9,19 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.ui.pages.lightning.contracts.CreatedContractPage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * This class is for create a new Campaign element.
  */
-public class CreateCampaignPage extends BasePage {
+public class CreateCampaignPage extends BasePage implements FeatureNew {
 
     private By campaignNameTextBox = By.xpath("//label/span[text()=\"Campaign Name\"]/../..//input");
     private By activeCheck = By.xpath("//label/span[text()=\"Active\"]/../..//input");
@@ -43,13 +49,14 @@ public class CreateCampaignPage extends BasePage {
     private static final HashMap<String, String> inputFieldNames = new HashMap<>();
 
     static {
-        inputFieldNames.put("campaign name", "Campaign Name");
-        inputFieldNames.put("start date", "Start Date");
-        inputFieldNames.put("end date", "End Date");
-        inputFieldNames.put("expected revenue in campaign", "Expected Revenue in Campaign");
-        inputFieldNames.put("budgeted cost in campaign", "Budgeted Cost in Campaign");
-        inputFieldNames.put("actual cost in campaign", "Actual Cost in Campaign");
-        inputFieldNames.put("num sent in campaign", "Num Sent in Campaign");
+        inputFieldNames.put("Campaign Name", "Campaign Name");
+        inputFieldNames.put("Start Date", "Start Date");
+        inputFieldNames.put("End Date", "End Date");
+        inputFieldNames.put("Expected Revenue in Campaign", "Expected Revenue in Campaign");
+        inputFieldNames.put("Budgeted Cost in Campaign", "Budgeted Cost in Campaign");
+        inputFieldNames.put("Actual Cost in Campaign", "Actual Cost in Campaign");
+        inputFieldNames.put("Num Sent in Campaign", "Num Sent in Campaign");
+        inputFieldNames.put("Description", "Description");
     }
 
     @Override
@@ -106,5 +113,36 @@ public class CreateCampaignPage extends BasePage {
      */
     public void clickActive() {
         webElementAction.clickByLocator(activeCheck);
+    }
+
+    @Override
+    public void fillUpField(Map<String, String> table) {
+        HashMap<String, VoidSupplier> actionsContractMap = mapActionsContract(table);
+        table.keySet().forEach(key -> actionsContractMap.get(key).run());
+    }
+
+    @Override
+    public CampaignCreatedPage clickSaveButton() {
+        webElementAction.clickByLocator(saveButton);
+        return new CampaignCreatedPage();
+    }
+
+    /**
+     * Saves actions in New work type page in map.
+     *
+     * @param campaignMap is map
+     * @return a map with action of fields
+     */
+    private HashMap<String, VoidSupplier> mapActionsContract(final Map<String, String> campaignMap) {
+        HashMap<String, VoidSupplier> mapActions = new HashMap<>();
+        mapActions.put("Campaign Name", () -> setInputField("Campaign Name", campaignMap.get("Campaign Name")));
+        mapActions.put("Start Date", () -> setInputField("Start Date", campaignMap.get("Start Date")));
+        mapActions.put("End Date", () -> setInputField("End Date", campaignMap.get("End Date")));
+        mapActions.put("Expected Revenue in Campaign", () -> setInputField("Expected Revenue in Campaign", campaignMap.get("Expected Revenue in Campaign")));
+        mapActions.put("Budgeted Cost in Campaign", () -> setInputField("Budgeted Cost in Campaign", campaignMap.get("Budgeted Cost in Campaign")));
+        mapActions.put("Actual Cost in Campaign", () -> setInputField("Actual Cost in Campaign", campaignMap.get("Actual Cost in Campaign")));
+        mapActions.put("Num Sent in Campaign", () -> setInputField("Num Sent in Campaign", campaignMap.get("Num Sent in Campaign")));
+        mapActions.put("Description", () -> setInputField("Description", campaignMap.get("Description")));
+        return mapActions;
     }
 }

@@ -1,8 +1,9 @@
-Feature: Create an Campaign
+Feature: Create Campaign
 
-  Scenario: Create a Campaign with required fields
-    Given I navigate to "Campaign" page
-    When I create a dateof Campaign with fields
-    Then A successful message of creating is display
-    And All header fields match
-    And All detail fields match
+  @CreateWorkType
+  Scenario: create a campaign with only required fields
+    Given I login to Salesforce site as an admin user
+    When I navigate to the "Campaign" page
+    When I create a new campaign with required fields
+      | Campaign Name           | New Campaign |
+    Then I verify Campaign created with requirement fields

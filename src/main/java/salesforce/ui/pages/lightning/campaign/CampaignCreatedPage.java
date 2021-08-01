@@ -10,11 +10,18 @@ package salesforce.ui.pages.lightning.campaign;
 
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class for elements of Campaign page created.
  */
-public class CampaignCreatedPage extends BasePage {
+public class CampaignCreatedPage extends BasePage implements CreatedFeature {
 
     private By alertSuccess = By.cssSelector(".slds-theme--success");
     private By createdCampaignTitle = By
@@ -26,6 +33,35 @@ public class CampaignCreatedPage extends BasePage {
     private By campaignNameCreated = By
             .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
     private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
+
+    private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
+    private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
+
+    static {
+        XPATH_COMPLEMENTS.put("Campaign Name", "//span//span");
+        XPATH_COMPLEMENTS.put("Start Date", "//span//span");
+        XPATH_COMPLEMENTS.put("End Date", "//span//span");
+        XPATH_COMPLEMENTS.put("Expected Revenue in Campaign", "//span//span");
+        XPATH_COMPLEMENTS.put("Budgeted Cost in Campaign", "//span//span");
+        XPATH_COMPLEMENTS.put("Actual Cost in Campaign", "//span//span");
+        XPATH_COMPLEMENTS.put("Num Sent in Campaign", "//span//span");
+        XPATH_COMPLEMENTS.put("Description", "//span//span");
+    }
+
+    /**
+     * Gets the text inside the element.
+     *
+     * @param field represents the text to be introduced
+     * @return the text set on the field requested contract
+     */
+    public String getTextByFieldName(final String field) {
+        String xpathComplement = XPATH_COMPLEMENTS.get(field);
+        String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
+        System.out.println("/////////////////////////////////////////////////////");
+        System.out.println(xpath);
+        By xpathLocator = By.xpath(xpath);
+        return webElementAction.getTextOfByFieldByLocator(xpathLocator);
+    }
 
     public MenuPage clickCreatedCampaignOptionBtn() {
         webElementAction.clickByLocator(createdCampaignOptionBtn);
@@ -85,5 +121,34 @@ public class CampaignCreatedPage extends BasePage {
      */
     public void waitElementCampaignNameCreated() {
         webElementAction.waitForVisibilityOfLocator(campaignNameCreated);
+    }
+
+    @Override
+    public List<String> getValueField(Map<String, String> table) {
+        List<String> result = new ArrayList<>();
+        HashMap<String, StringSupplier> actionsCampaignMap = getTxtFields();
+        table.keySet().forEach(key -> result.add(actionsCampaignMap.get(key).getAsString()));
+        return result;
+    }
+
+    /**
+     * Gets text fields of workType.
+     *
+     * @return a map with methods of CreatedWorkType
+     */
+    private HashMap<String, StringSupplier> getTxtFields() {
+        webElementAction.clickByLocator(detailsTab);
+        webElementAction.dropDownTillTheEnd();
+        HashMap<String, StringSupplier> mapValues = new HashMap<>();
+//        mapValues.put("Campaign Name", () -> getCampaignNameCreatedText());
+        mapValues.put("Campaign Name", () -> getTextByFieldName("Campaign Name"));
+        mapValues.put("Start Date", () -> getTextByFieldName("Start Date"));
+        mapValues.put("End Date", () -> getTextByFieldName("End Date"));
+        mapValues.put("Expected Revenue in Campaign", () -> getTextByFieldName("Expected Revenue in Campaign"));
+        mapValues.put("Budgeted Cost in Campaign", () -> getTextByFieldName("Budgeted Cost in Campaign"));
+        mapValues.put("Actual Cost in Campaign", () -> getTextByFieldName("Actual Cost in Campaign"));
+        mapValues.put("Num Sent in Campaign", () -> getTextByFieldName("Num Sent in Campaign"));
+        mapValues.put("Description", () -> getTextByFieldName("Description"));
+        return mapValues;
     }
 }
