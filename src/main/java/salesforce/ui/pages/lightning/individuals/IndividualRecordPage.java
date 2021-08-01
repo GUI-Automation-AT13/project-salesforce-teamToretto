@@ -9,16 +9,19 @@
 package salesforce.ui.pages.lightning.individuals;
 
 import core.selenium.WebDriverManager;
+import java.util.List;
+import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
 
 /**
  * Page Object Model for the salesforce individual record page.
  */
-public class IndividualRecordPage extends BasePage {
+public class IndividualRecordPage extends BasePage implements CreatedFeature {
 
-    private By nameHeaderLabel = By.cssSelector("h1 .uiOutputText");
+    private By nameHeaderLabel = By.cssSelector("h1 div .uiOutputText");
     private By editHeaderButton = By.cssSelector("div[title=\"Edit\"]");
     private By deleteHeaderButton = By.cssSelector("div[title=\"Delete\"]");
     private By cloneHeaderButton = By.cssSelector("div[title=\"Clone\"]");
@@ -261,5 +264,10 @@ public class IndividualRecordPage extends BasePage {
     @Override
     protected void waitForPageLoaded() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(nameHeaderLabel));
+    }
+
+    @Override
+    public List<String> getValueField(Map<String, String> table) {
+        return null;
     }
 }

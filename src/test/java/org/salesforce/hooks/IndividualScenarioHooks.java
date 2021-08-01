@@ -6,12 +6,13 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package hooks;
+package org.salesforce.hooks;
 
 import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.HomePage;
@@ -22,26 +23,11 @@ import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 public class IndividualScenarioHooks {
 
     private PageTransporter pageTransporter;
-    private LoginPage loginPage;
-    private IndividualFormPage individualFormPage;
+    private SoftAssert softAssert;
 
-    public IndividualScenarioHooks(PageTransporter pageTransporter) {
+    public IndividualScenarioHooks(final PageTransporter pageTransporter, final SoftAssert softAssert) {
         this.pageTransporter = pageTransporter;
-    }
-
-    @Before(order  = 1)
-    public void setUp() {
-        login();
-    }
-
-    public void login() {
-        LoginPage loginpage = pageTransporter.navigateToLoginPage();
-        String username = EnvConfig.getInstance().getUser();
-        String password = EnvConfig.getInstance().getPassword();
-        loginpage.setUsernameTextbox(username);
-        loginpage.setPasswordTextbox(password);
-        HomePage homePage = loginpage.login();
-        Assert.assertTrue(homePage.labelObjectManageriIsVisible());
+        this.softAssert = softAssert;
     }
 
     @After(value = "@CreateIndividual")
@@ -51,10 +37,5 @@ public class IndividualScenarioHooks {
         String actual = individualListPage.getDeletedSuccessMessage();
         String expected = "was deleted.";
         Assert.assertTrue(actual.contains(expected));
-    }
-
-    @After
-    public void tearDown() {
-        WebDriverManager.getInstance().quitWebDriver();
     }
 }

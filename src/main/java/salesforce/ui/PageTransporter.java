@@ -25,6 +25,7 @@ import salesforce.utils.PageUrl;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
+    private String featureUrl = "lightning/o/%s/list?filterName=Recent";
     private PageUrl pageUrl;
 
     public LoginPage navigateToLoginPage() {
@@ -125,6 +126,6 @@ public class PageTransporter {
      * Navigates to feature page on lightning version.
      */
     public void navigateToFeaturePage(String featureName) {
-        goToUrl(pageUrl.getFeaturePage(featureName));
+        goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
     }
 }

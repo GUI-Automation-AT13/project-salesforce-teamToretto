@@ -10,16 +10,20 @@ package salesforce.ui.pages.lightning.individuals;
 
 import core.selenium.WebDriverManager;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.entities.IndividualEntity;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * Page Object Model for the salesforce individual form page.
  */
-public class IndividualFormPage extends BasePage {
+public class IndividualFormPage extends BasePage implements FeatureNew {
 
 
     private final String generalSalutationOptionSelector = "[title=\"%s\"]";
@@ -268,10 +272,46 @@ public class IndividualFormPage extends BasePage {
     }
 
     /**
+     * Saves actions in New work type page in map.
+     *
+     * @param workTypeMap is map
+     * @return a map with action of fields
+     */
+    private HashMap<String, VoidSupplier> mapActionsWorkType(final Map<String, String> workTypeMap) {
+        HashMap<String, VoidSupplier> mapActions = new HashMap<>();
+        mapActions.put("salutation", () -> clickOnSalutationOption(workTypeMap.get("salutation")));
+        mapActions.put("lastname", () -> setLastnameTextbox(workTypeMap.get("lastname")));
+        mapActions.put("firstname", () -> setFirstnameTextbox(workTypeMap.get("firstname")));
+        mapActions.put("birthdate", () -> setBirthdateDateField(workTypeMap.get("birthdate")));
+        mapActions.put("dontProcess", () -> clickOnDontProcessCheckbox());
+        mapActions.put("dontMarket", () -> clickOnDontMarketCheckbox());
+        mapActions.put("exportIndividualsData", () -> clickOnExportIndividualDataCheckbox());
+        mapActions.put("okToStorePiiDataElsewhere", () -> clickOnIndividualAgeSelector());
+        mapActions.put("blockGeolocationTracking", () -> clickOnBlockGeolocationCheckbox());
+        mapActions.put("dontProfile", () -> clickOnDontProfileCheckbox());
+        mapActions.put("dontTrack", () -> clickOnDontTrackCheckbox());
+        mapActions.put("forgetThisIndividual", () -> clickOnForgetThisIndividualCheckbox());
+        mapActions.put("individualsAge", () -> clickOnIndividualAgeOption(workTypeMap.get("individualsAge")));
+        return mapActions;
+    }
+
+    /**
      * Method to wait for a page to load.
      */
     @Override
     protected void waitForPageLoaded() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
+    }
+
+    @Override
+    public void fillUpField(Map<String, String> table) {
+        HashMap<String, VoidSupplier> actionsWorkTypeMap = mapActionsWorkType(table);
+        table.keySet().forEach(key -> actionsWorkTypeMap.get(key).run());
+    }
+
+    @Override
+    public CreatedFeature clickSaveButton() {
+        webElementAction.clickByLocator(saveButton);
+        return new IndividualRecordPage();
     }
 }
