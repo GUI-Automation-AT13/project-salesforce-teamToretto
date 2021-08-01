@@ -9,6 +9,7 @@
 package salesforce.utils.strategy;
 
 import org.openqa.selenium.InvalidArgumentException;
+import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
@@ -33,6 +34,8 @@ public class MapPages {
                 return new ContractsPage();
             case "individual":
                 return new IndividualListPage();
+            case "campaign":
+                return new CampaignPage();
             default:
                 throw new InvalidArgumentException("Invalid feature");
         }
