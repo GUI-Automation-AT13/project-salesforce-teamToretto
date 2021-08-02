@@ -9,8 +9,10 @@
 package salesforce.ui.pages.lightning.individuals;
 
 import core.selenium.WebDriverManager;
+
 import java.util.List;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;

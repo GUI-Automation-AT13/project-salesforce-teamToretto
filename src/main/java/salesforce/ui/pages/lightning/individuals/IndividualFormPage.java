@@ -9,9 +9,11 @@
 package salesforce.ui.pages.lightning.individuals;
 
 import core.selenium.WebDriverManager;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.entities.IndividualEntity;
@@ -40,7 +42,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
             translate("Age")));
     private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
     private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
-    private By saveButton = By.cssSelector(String.format("button[title='%s']",translate("Save")));
+    private By saveButton = By.cssSelector(String.format("button[title='%s']", translate("Save")));
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 

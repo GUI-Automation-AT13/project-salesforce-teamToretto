@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.worktype;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
@@ -35,7 +36,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     protected void waitForPageLoaded() {
         webElementAction.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
-    
+
     /**
      * Sets on text of descriptions field of workType.
      *
