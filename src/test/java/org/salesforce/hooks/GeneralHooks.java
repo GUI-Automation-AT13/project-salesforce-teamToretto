@@ -30,8 +30,8 @@ public class GeneralHooks {
 
     public void login() {
         LoginPage loginpage = pageTransporter.navigateToLoginPage();
-        String username = EnvConfig.getInstance().getUser();
-        String password = EnvConfig.getInstance().getPassword();
+        String username = EnvConfig.getInstance().getAdminUser().getUsername();
+        String password = EnvConfig.getInstance().getAdminUser().getPassword();
         loginpage.setUsernameTextbox(username);
         loginpage.setPasswordTextbox(password);
         HomePage homePage = loginpage.login();
