@@ -23,11 +23,11 @@ import salesforce.utils.supplier.VoidSupplier;
  */
 public class NewWorkTypePage extends BasePage implements FeatureNew {
 
-    protected By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
-    protected By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
-    protected By descriptionTxtBox = By.cssSelector(".textarea");
-    protected String selectFieldTxtBox = "//*[contains(text(),'%s')]/../..//*[@type='text']";
-    protected String valueEstimatedDurationComboBox = "//a[normalize-space()='%s']";
+    private By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
+    private By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
+    private By descriptionTxtBox = By.cssSelector(".textarea");
+    private String selectFieldTxtBox = "//*[contains(text(),'%s')]/../..//*[@type='text']";
+    private String valueEstimatedDurationComboBox = "//a[normalize-space()='%s']";
     private String xpathComboBoxSomeFields = "//*[contains(text(),'%s')]/../..//a[@class='select']";
     private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id][%d]//*[contains(text(),'%s')]";
     private int countComboBox = 0;
