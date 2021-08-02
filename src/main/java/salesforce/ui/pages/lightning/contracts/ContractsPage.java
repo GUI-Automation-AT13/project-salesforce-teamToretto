@@ -18,7 +18,7 @@ import salesforce.utils.strategy.FeaturesPage;
  */
 public class ContractsPage extends BasePage implements FeaturesPage {
 
-    private By newContractButton = By.cssSelector("a[title='New']");
+    private By newContractButton = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
     /**
      * Waits for the page to be loaded.

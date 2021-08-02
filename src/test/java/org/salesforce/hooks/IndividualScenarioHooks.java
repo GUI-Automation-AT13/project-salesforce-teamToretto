@@ -34,8 +34,5 @@ public class IndividualScenarioHooks {
     public void setLast() {
         IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
         individualListPage.deleteLastModifiedRecord();
-        String actual = individualListPage.getDeletedSuccessMessage();
-        String expected = "was deleted.";
-        Assert.assertTrue(actual.contains(expected));
     }
 }

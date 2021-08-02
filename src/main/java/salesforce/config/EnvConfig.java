@@ -27,6 +27,16 @@ public final class EnvConfig {
     private AdminUser adminUser;
     private StandarUser standarUser;
     private static EnvConfig envConfig;
+    private String language;
+
+    /**
+     * Returns the language.
+     *
+     * @return the language.
+     */
+    public String getLanguage() {
+        return language;
+    }
 
     /**
      * Returns the loginUrl.
@@ -83,6 +93,7 @@ public final class EnvConfig {
         Properties properties = PropertiesReader.getProperties("config.properties");
         loginUrl = properties.getProperty("loginURL");
         baseUrl = properties.getProperty("baseURL");
+        language = properties.getProperty("language");
         adminUser = new AdminUser();
         standarUser = new StandarUser();
     }

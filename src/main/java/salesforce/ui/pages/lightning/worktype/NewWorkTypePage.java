@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -33,7 +35,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     protected void waitForPageLoaded() {
         webElementAction.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
-    
+
     /**
      * Sets on text of descriptions field of workType.
      *
@@ -103,25 +105,28 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      */
     private HashMap<String, VoidSupplier> mapActionsWorkType(final Map<String, String> workTypeMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
-        mapActions.put("Work Type Name", () -> setInputField("Work Type Name", workTypeMap.get("Work Type Name")));
+        mapActions.put("Work Type Name", () -> setInputField(translate("Work Type Name"),
+                workTypeMap.get("Work Type Name")));
         mapActions.put("Description", () -> setDescription(workTypeMap.get("Description")));
-        mapActions.put("Estimated Duration", () -> setInputField("Estimated Duration",
+        mapActions.put("Estimated Duration", () -> setInputField(translate("Estimated Duration"),
                 workTypeMap.get("Estimated Duration")));
         mapActions.put("Duration Type", () -> setDurationTypeComboBox(workTypeMap.get("Duration Type")));
-        mapActions.put("Block Time Before Appointment", () -> setInputField("Block Time Before Appointment",
+        mapActions.put("Block Time Before Appointment",
+                () -> setInputField(translate("Block Time Before Appointment"),
                 workTypeMap.get("Block Time Before Appointment")));
-        mapActions.put("Block Time Before Unit", () -> setComboBoxField("Block Time Before Unit",
+        mapActions.put("Block Time Before Unit", () -> setComboBoxField(translate("Block Time Before Unit"),
                 workTypeMap.get("Block Time Before Unit")));
-        mapActions.put("Block Time After Appointment", () -> setInputField("Block Time After Appointment",
+        mapActions.put("Block Time After Appointment", () -> setInputField(translate("Block Time After Appointment"),
                 workTypeMap.get("Block Time After Appointment")));
-        mapActions.put("Block Time After Unit", () -> setComboBoxField("Block Time After Unit",
+        mapActions.put("Block Time After Unit", () -> setComboBoxField(translate("Block Time After Unit"),
                 workTypeMap.get("Block Time After Unit")));
-        mapActions.put("Timeframe Start", () -> setInputField("Timeframe Start",
+        mapActions.put("Timeframe Start", () -> setInputField(translate("Timeframe Start"),
                 workTypeMap.get("Timeframe Start")));
-        mapActions.put("Time Frame Start Unit", () -> setComboBoxField("Time Frame Start Unit",
+        mapActions.put("Time Frame Start Unit", () -> setComboBoxField(translate("Time Frame Start Unit"),
                 workTypeMap.get("Time Frame Start Unit")));
-        mapActions.put("Timeframe End", () -> setInputField("Timeframe End", workTypeMap.get("Timeframe End")));
-        mapActions.put("Time Frame End Unit", () -> setComboBoxField("Time Frame End Unit",
+        mapActions.put("Timeframe End", () -> setInputField(translate("Timeframe End"),
+                workTypeMap.get("Timeframe End")));
+        mapActions.put("Time Frame End Unit", () -> setComboBoxField(translate("Time Frame End Unit"),
                 workTypeMap.get("Time Frame End Unit")));
         return mapActions;
     }

@@ -1,5 +1,6 @@
 package org.salesforce.steps;
 
+import io.cucumber.java.bs.I;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.HomePage;
+import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
@@ -20,7 +22,7 @@ public class featureSteps {
     private Logger log = Logger.getLogger(getClass());
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
-    private HomePage homePage;
+    private Internalization internalization;
     private MapPages mapPages = new MapPages();
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
@@ -36,6 +38,7 @@ public class featureSteps {
     @Given("I navigate to the {string} page")
     public void iNavigateToThePage(String featureName) {
         log.info("Navigate pages");
+        internalization = new Internalization(featureName);
         pageTransporter.navigateToFeaturePage(featureName);
     }
 
