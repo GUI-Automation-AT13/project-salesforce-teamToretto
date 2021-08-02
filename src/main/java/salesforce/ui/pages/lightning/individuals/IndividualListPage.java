@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.individuals;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,7 +18,6 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
-import static salesforce.utils.Internalization.translate;
 
 /**
  * Page Object Model for the salesforce individual list page.

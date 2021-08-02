@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.individuals;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 
 import java.util.HashMap;
@@ -21,8 +23,6 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * Page Object Model for the salesforce individual form page.

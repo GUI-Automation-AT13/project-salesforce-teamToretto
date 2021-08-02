@@ -1,14 +1,18 @@
 package core.utils;
 
+/**
+ * Removes all white space in string.
+ *
+ */
 public class Converter {
 
     /**
-     * Removes all white space in string
+     * Removes all white space in string.
      *
-     * @param words to removes white space
-     * @return a new string without space
+     * @param words to removes white space.
+     * @return a new string without space.
      */
     public static String removeWhiteSpace(final String words) {
-        return words.replaceAll("\\s+","");
+        return words.replaceAll("\\s+", "");
     }
 }

@@ -8,11 +8,12 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.ui.pages.lightning.worktype.CreatedWorkTypePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
@@ -21,37 +22,37 @@ import salesforce.utils.supplier.VoidSupplier;
  * Page Object Model for the salesforce new contract page.
  */
 public class NewContractPage extends BasePage implements FeatureNew {
-    private By accountName = By.cssSelector("input[placeholder='Search Accounts...']");
+    private By accountName = By.cssSelector("input[placeholder='" + translate("SearchAccounts") + "']");
     private By accountSelector = By.xpath("//mark[normalize-space()='TestAccount']");
-    private By customerSignedBy = By.cssSelector("input[placeholder='Search Contacts...']");
+    private By customerSignedBy = By.cssSelector("input[placeholder='" + translate("SearchContacts") + "']");
     private By contactSelector = By.xpath("//div[@title='TestContact']");
     private By customerSignedTittle = By.xpath("(//div/input[@class = ' input'])[2]");
     private By customerSignedDate = By.xpath("(//div/input[@class = ' input'])[3]");
-    private By priceBook = By.cssSelector("input[placeholder='Search Price Books...']");
+    private By priceBook = By.cssSelector("input[placeholder='" + translate("SearchPriceBooks") + "']");
     private By priceBookSelector = By.xpath("//mark[normalize-space()='Standard']");
     private By contractStartDate = By.xpath("(//div/input[@class =' input'])[1]");
     private By contractTermMonths = By.cssSelector(".input.uiInputSmartNumber");
     private By ownerExpirationNotice = By.cssSelector(".select[aria-required='false']");
     private static HashMap<String, String> ownerExpirationNoticeSelector = new HashMap<>();
     private By companySignedDate = By.xpath("(//div/input[@class = ' input'])[4]");
-    private By billingStreet = By.cssSelector("textarea[placeholder='Billing Street']");
-    private By billingCity = By.cssSelector("input[placeholder='Billing City']");
-    private By billingState = By.cssSelector("input[placeholder='Billing State/Province']");
-    private By billingPostalCode = By.cssSelector("input[placeholder='Billing Zip/Postal Code']");
-    private By billingCountry = By.cssSelector("input[placeholder='Billing Country']");
+    private By billingStreet = By.cssSelector("textarea[placeholder='" + translate("BillingStreet") + "']");
+    private By billingCity = By.cssSelector("input[placeholder='" + translate("BillingCity") + "']");
+    private By billingState = By.cssSelector("input[placeholder='" + translate("BillingStateProvince") + "']");
+    private By billingPostalCode = By.cssSelector("input[placeholder='" + translate("BillingZipPostalCode") + "']");
+    private By billingCountry = By.cssSelector("input[placeholder='" + translate("BillingCountry") + "']");
     private By specialTerms = By.xpath("(//textarea[@class=\" textarea\" ])[1]");
     private By description = By.xpath("(//textarea[@class=\" textarea\" ])[last()]");
-    private By save = By.cssSelector("button[title='Save']");
-    private By saveAndNew = By.cssSelector("button[title='Save & New']");
-    private By cancel = By.cssSelector("button[title='Cancel']");
+    private By save = By.cssSelector("button[title='" + translate("Save") + "']");
+    private By saveAndNew = By.cssSelector("button[title='" + translate("SaveAndNew") + "']");
+    private By cancel = By.cssSelector("button[title='" + translate("Cancel") + "']");
 
     static {
-        ownerExpirationNoticeSelector.put("15 Days", "15 Days");
-        ownerExpirationNoticeSelector.put("30 Days", "30 Days");
-        ownerExpirationNoticeSelector.put("45 Days", "45 Days");
-        ownerExpirationNoticeSelector.put("60 Days", "60 Days");
-        ownerExpirationNoticeSelector.put("90 Days", "90 Days");
-        ownerExpirationNoticeSelector.put("120 Days", "120 Days");
+        ownerExpirationNoticeSelector.put("15 Days", "15 " + translate("Days"));
+        ownerExpirationNoticeSelector.put("30 Days", "30 " + translate("Days"));
+        ownerExpirationNoticeSelector.put("45 Days", "45 " + translate("Days"));
+        ownerExpirationNoticeSelector.put("60 Days", "60 " + translate("Days"));
+        ownerExpirationNoticeSelector.put("90 Days", "90 " + translate("Days"));
+        ownerExpirationNoticeSelector.put("120 Days", "120 " + translate("Days"));
     }
 
     /**
