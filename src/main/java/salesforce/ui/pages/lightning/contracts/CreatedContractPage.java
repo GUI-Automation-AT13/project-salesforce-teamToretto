@@ -8,12 +8,14 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.supplier.StringSupplier;
 
 /**
  * Page Object Model for the salesforce created contract page.
@@ -77,7 +79,7 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      *
      * @return the text set on the field requested contract.
      */
-    public String contractStartDateText() {
+    public String getContractStartDateText() {
         return webElementAction.getTextOfByFieldByLocator(contractStartDate);
     }
 
@@ -91,6 +93,32 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
 
     @Override
     public List<String> getValueField(Map<String, String> table) {
-        return null;
+        List<String> result = new ArrayList<>();
+        HashMap<String, StringSupplier> actionsCreatedMap = getTxtFields();
+        table.keySet().forEach(key -> result.add(actionsCreatedMap.get(key).getAsString()));
+        return result;
+    }
+
+    /**
+     * Gets text fields of workType.
+     *
+     * @return a map with methods of CreatedWorkType
+     */
+    private HashMap<String, StringSupplier> getTxtFields() {
+        webElementAction.clickByLocator(details);
+        webElementAction.dropDownTillTheEnd();
+        HashMap<String, StringSupplier> mapValues = new HashMap<>();
+        mapValues.put("Account Name", () -> getTextByFieldName("Account Name"));
+        mapValues.put("Contract Term (months)", () -> getTextByFieldName("Contract Term (months)"));
+        mapValues.put("Contract Start Date", this::getContractStartDateText);
+        mapValues.put("Customer Signed By", () -> getTextByFieldName("Customer Signed By"));
+        mapValues.put("Customer Signed Title", () -> getTextByFieldName("Customer Signed Title"));
+        mapValues.put("Customer Signed Date", () -> getTextByFieldName("Customer Signed Date"));
+        mapValues.put("Price Book", () -> getTextByFieldName("Price Book"));
+        mapValues.put("Owner Expiration Notice", () -> getTextByFieldName("Owner Expiration Notice"));
+        mapValues.put("Company Signed Date", () -> getTextByFieldName("Company Signed Date"));
+        mapValues.put("Special Terms", () -> getTextByFieldName("Special Terms"));
+        mapValues.put("Description", () -> getTextByFieldName("Description"));
+        return mapValues;
     }
 }

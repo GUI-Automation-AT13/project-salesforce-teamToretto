@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.LoginPage;
@@ -18,7 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 public class featureSteps {
-    public PageTransporter pageTransporter = new PageTransporter();
+
+    private PageTransporter pageTransporter;
+    private SoftAssert softAssert;
     private HomePage homePage;
     private MapPages mapPages = new MapPages();
     private FeaturesPage featurePage;
@@ -26,23 +29,27 @@ public class featureSteps {
     private CreatedFeature createdFeature;
     private Map<String, String> tableFeature;
 
-    @Given("I login to Salesforce site as an admin user")
-    public void iLoginToSalesforceSiteAsAnAdminUser() {
-        WebDriverManager.getInstance();
-        WebDriverManager.getInstance().getWebDriver().get(EnvConfig.getInstance().getLoginUrl());
-        WebDriverManager.getInstance().getWebDriver().manage().window().maximize();
-        LoginPage loginPage = new LoginPage();
-        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+    public featureSteps(final PageTransporter pageTransporter, final SoftAssert softAssert) {
+        this.pageTransporter = pageTransporter;
+        this.softAssert = softAssert;
     }
 
-    @When("I navigate to {string} page in mode {string}")
-    public void iNavigateToPageInMode(String arg0, String arg1) {
-        pageTransporter.navigateToWorkTypePageLightningDirect();
+    @When("I navigate to the {string} page")
+    public void iNavigateToThePage(String featureName) {
+        pageTransporter.navigateToFeaturePage(featureName);
     }
 
     @When("^I create a new (.*) with (?:.*)$")
     public void iCreateANewWorkTypeOnlyWithRequiredFields(String nameFeature, final Map<String, String> table) {
+        tableFeature = table;
+        featurePage = mapPages.featuresPage(nameFeature);
+        featureNew = featurePage.clickNewButton();
+        featureNew.fillUpField(table);
+        createdFeature=featureNew.clickSaveButton();
+    }
+
+    @When("^I create a new (.*) object with the following field values$")
+    public void iCreateAnewObjectWithTheFollowingFieldValues(String nameFeature, final Map<String, String> table) {
         tableFeature = table;
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();

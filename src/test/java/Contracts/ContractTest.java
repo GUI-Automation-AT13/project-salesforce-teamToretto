@@ -49,7 +49,7 @@ public class ContractTest extends ContractBaseTest {
                 "TestAccount");
         softAssert.assertEquals(createdContractPage.getTextByFieldName("Contract Term (months)"),
                 "2");
-        softAssert.assertEquals(createdContractPage.contractStartDateText(),
+        softAssert.assertEquals(createdContractPage.getContractStartDateText(),
                 "7/15/2021");
         softAssert.assertEquals(createdContractPage.getTextByFieldName("Customer Signed By"),
                 "TestContact");
@@ -87,7 +87,7 @@ public class ContractTest extends ContractBaseTest {
                 "TestAccount");
         softAssert.assertEquals(createdContractPage.getTextByFieldName("Contract Term (months)"),
                 "2");
-        softAssert.assertEquals(createdContractPage.contractStartDateText(),
+        softAssert.assertEquals(createdContractPage.getContractStartDateText(),
                 "7/15/2021");
         softAssert.assertAll();
     }

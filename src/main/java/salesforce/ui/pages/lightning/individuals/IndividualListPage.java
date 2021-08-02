@@ -13,11 +13,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * Page Object Model for the salesforce individual list page.
  */
-public class IndividualListPage extends BasePage {
+public class IndividualListPage extends BasePage implements FeaturesPage {
 
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
@@ -27,6 +29,7 @@ public class IndividualListPage extends BasePage {
             + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]");
     private WebElement dropDownMenu;
     private By deleteButtonDropDownMenu = By.xpath("//span[contains(text(),\"Delete\")]");
+    private By newButton = By.xpath("//div[@title=\"New\"]");
 
     /**
      * Checks if the view list span is visible.
@@ -109,5 +112,16 @@ public class IndividualListPage extends BasePage {
     @Override
     protected void waitForPageLoaded() {
         WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(recentlyViewedSpan));
+    }
+
+    /**
+     * Changes the page to create individual.
+     *
+     * @return individual initialize.
+     */
+    @Override
+    public FeatureNew clickNewButton() {
+        webElementAction.clickByLocator(newButton);
+        return new IndividualFormPage();
     }
 }

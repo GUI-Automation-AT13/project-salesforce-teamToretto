@@ -9,7 +9,7 @@
 package salesforce.utils.strategy;
 
 /**
- * Implements in feature pages.
+ * Implements in feature page.
  */
 public interface FeaturesPage {
     FeatureNew clickNewButton();

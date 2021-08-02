@@ -78,6 +78,8 @@ public class WebDriverManager {
      */
     private void initialize() {
         this.webDriver = DriverFactory.getDriver(webDriverConfig.getBrowser());
+        this.webDriver.manage().window().maximize();
+        this.webDriver.manage().deleteAllCookies();
         this.webDriver.manage().timeouts()
                 .implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);
         wait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(),

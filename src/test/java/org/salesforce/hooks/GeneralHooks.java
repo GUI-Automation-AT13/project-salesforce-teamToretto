@@ -3,22 +3,39 @@ package org.salesforce.hooks;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
+import salesforce.ui.pages.lightning.HomePage;
+import salesforce.ui.pages.lightning.LoginPage;
 
 public class GeneralHooks {
-    public PageTransporter pageTransporter = new PageTransporter();
-    public SoftAssert softAssert = new SoftAssert();
+    public PageTransporter pageTransporter;
+    public SoftAssert softAssert;
 
-    @Before(value = "@CreateWorkType")
-    public void setup() {
-        WebDriverManager.getInstance();
-        WebDriverManager.getInstance().getWebDriver().get(EnvConfig.getInstance().getLoginUrl());
-        WebDriverManager.getInstance().getWebDriver().manage().window().maximize();
+    public GeneralHooks(final PageTransporter pageTransporter, final SoftAssert softAssert) {
+        this.pageTransporter = pageTransporter;
+        this.softAssert = softAssert;
     }
-    @After(value = "@CreateWorkType")
-    public void tearDown(){
-        WebDriverManager.getInstance().getWebDriver().quit();
+
+    @Before(order  = 1)
+    public void setUp() {
+        login();
+    }
+
+    public void login() {
+        LoginPage loginpage = pageTransporter.navigateToLoginPage();
+        String username = EnvConfig.getInstance().getUser();
+        String password = EnvConfig.getInstance().getPassword();
+        loginpage.setUsernameTextbox(username);
+        loginpage.setPasswordTextbox(password);
+        HomePage homePage = loginpage.login();
+        Assert.assertTrue(homePage.labelObjectManageriIsVisible());
+    }
+
+    @After(order = 100)
+    public void tearDown() {
+        WebDriverManager.getInstance().quitWebDriver();
     }
 }

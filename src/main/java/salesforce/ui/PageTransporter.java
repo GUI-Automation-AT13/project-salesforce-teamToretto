@@ -12,10 +12,12 @@ import core.selenium.WebDriverManager;
 import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.LoginPage;
+import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
+import salesforce.utils.PageUrl;
 
 /**
  * Navigates to a page's url.
@@ -23,6 +25,8 @@ import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
+    private String featureUrl = "lightning/o/%s/list?filterName=Recent";
+    private PageUrl pageUrl;
 
     public LoginPage navigateToLoginPage() {
         goToUrl(baseUrl);
@@ -79,6 +83,29 @@ public class PageTransporter {
     }
 
     /**
+     * Navigates to the Legal entities page.
+     *
+     * @return a CampaignPage.
+     */
+    public CampaignPage navigateToCampaignPage() {
+        goToUrl(baseUrl.concat("lightning/o/Campaign/list?filterName=Recent"));
+        return new CampaignPage();
+    }
+
+    /**
+     * Navigates to the Legal entities page.
+     *
+     * @return a CampaignPage.
+     */
+    public CampaignPage navigateTofeaturePage(String nameFeature) {
+        goToUrl(pageUrl.getFeaturePage(nameFeature));
+        if (nameFeature.equals("Campaign")) {
+            return new CampaignPage();
+        }
+        return null;
+    }
+
+    /**
      * Navigates to WorkType page on lightning version.
      *
      * @return Contracts' instance.
@@ -90,9 +117,15 @@ public class PageTransporter {
 
     /**
      * Navigates to WorkType page on lightning version.
-     *
      */
     public void navigateToWorkTypePageLightningDirect() {
         goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
+    }
+
+    /**
+     * Navigates to feature page on lightning version.
+     */
+    public void navigateToFeaturePage(String featureName) {
+        goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
     }
 }
