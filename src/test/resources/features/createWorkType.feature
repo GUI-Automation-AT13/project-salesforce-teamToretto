@@ -5,7 +5,7 @@ Feature: Create workType
     Given I navigate to the "WorkType" page
     When I create a new workType with required fields
       | Work Type Name     | workType |
-      | Estimated Duration | 2        |
+      | Estimated Duration | 2.00        |
     Then I verify WorkType created with requirement fields
 
   @CreateWorkType

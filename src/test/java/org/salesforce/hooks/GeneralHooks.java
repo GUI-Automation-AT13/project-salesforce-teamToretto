@@ -3,6 +3,7 @@ package org.salesforce.hooks;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
@@ -11,16 +12,19 @@ import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
 
 public class GeneralHooks {
+    private Logger log = Logger.getLogger(getClass());
     public PageTransporter pageTransporter;
     public SoftAssert softAssert;
 
     public GeneralHooks(final PageTransporter pageTransporter, final SoftAssert softAssert) {
+        log.info("GeneralHooks constructor");
         this.pageTransporter = pageTransporter;
         this.softAssert = softAssert;
     }
 
-    @Before(order  = 1)
+    @Before(value = "@CreateWorkType or @CreateCampaign or @CreateContract", order  = 1)
     public void setUp() {
+        log.info("Set up Methods");
         login();
     }
 
@@ -31,11 +35,11 @@ public class GeneralHooks {
         loginpage.setUsernameTextbox(username);
         loginpage.setPasswordTextbox(password);
         HomePage homePage = loginpage.login();
-        Assert.assertTrue(homePage.labelObjectManageriIsVisible());
     }
 
-    @After(order = 100)
+    @After(value = "@CreateWorkType or @CreateCampaign or @CreateContract", order = 100)
     public void tearDown() {
+        log.info("Close Driver");
         WebDriverManager.getInstance().quitWebDriver();
     }
 }
