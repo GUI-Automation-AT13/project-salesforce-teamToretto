@@ -134,11 +134,11 @@ public class WebElementAction {
     /**
      * Selects a webElement isn't able to click.
      *
-     * @param by type WebElement object.
+     * @param locator type WebElement object.
      */
-    public void selectByAction(final By by) {
+    public void selectByAction(final By locator) {
         Actions builder = new Actions(driver);
-        Action action = builder.click(driver.findElement(by)).build();
+        Action action = builder.click(driver.findElement(locator)).build();
         action.perform();
     }
 

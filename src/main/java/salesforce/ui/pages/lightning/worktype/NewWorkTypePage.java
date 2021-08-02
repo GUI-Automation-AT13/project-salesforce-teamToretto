@@ -33,8 +33,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     protected void waitForPageLoaded() {
         webElementAction.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
-
-
+    
     /**
      * Sets on text of descriptions field of workType.
      *
@@ -58,7 +57,6 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
 
     /**
      * Sets value and select estimated duration comboBox.
-     *
      *
      * @param selectValue is value in comboBox
      */
