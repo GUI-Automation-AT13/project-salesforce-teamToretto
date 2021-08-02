@@ -16,6 +16,8 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * Page Object Model for the salesforce individual list page.
  */
@@ -23,13 +25,14 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
 
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
-    private By firstRowDropDownMenu = By.xpath("//tbody/tr[1]//span/span[contains"
-            + "(.,\"Show Actions\")]/preceding-sibling::span");
-    private By firstRowDropDownMenuUpdated = By.xpath("//tbody/tr[1]//a[@title="
-            + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]");
+    private By firstRowDropDownMenu = By.xpath(String.format("//tbody/tr[1]//span/span[contains"
+            + "(.,'%s')]/preceding-sibling::span",translate("Show Actions")));
+    private By firstRowDropDownMenuUpdated = By.xpath(String.format("//tbody/tr[1]//a[@title="
+            + "'%s']/ancestor::div[@id and @data-interactive-uid]",translate("Show 2 more actions")));
     private WebElement dropDownMenu;
-    private By deleteButtonDropDownMenu = By.xpath("//span[contains(text(),\"Delete\")]");
-    private By newButton = By.xpath("//div[@title=\"New\"]");
+    private By deleteButtonDropDownMenu = By.xpath(String.format("//span[contains(text(),'%s')]",
+            translate("Delete")));
+    private By newButton = By.xpath(String.format("//div[@title='%s']",translate("New")));
 
     /**
      * Checks if the view list span is visible.
@@ -101,8 +104,8 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * Click on a record Drop down menu Delete.
      */
     public void clickOnArecordDropDownMenuDelete() {
-        webElementAction.clickByLocator(By.cssSelector("div[aria-labelledby="
-                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title=\"Delete\"]"));
+        webElementAction.clickByLocator(By.cssSelector(String.format("div[aria-labelledby="
+                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title='%s']",translate("Delete"))));
         webElementAction.clickByLocator(deleteButtonDropDownMenu);
     }
 
