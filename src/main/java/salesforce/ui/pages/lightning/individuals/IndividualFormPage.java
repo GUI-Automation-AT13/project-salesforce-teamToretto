@@ -20,6 +20,8 @@ import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * Page Object Model for the salesforce individual form page.
  */
@@ -34,10 +36,11 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     private By firstnameTextbox = By.cssSelector(".firstName");
     private By lastnameTextbox = By.cssSelector(".lastName");
     private By birthdateDateField = By.cssSelector("input[class=' input']");
-    private By individualAgeSelector = By.xpath("//div[span[span[contains(text(),'Age')]]]/div//a");
+    private By individualAgeSelector = By.xpath(String.format("//div[span[span[contains(text(),'%s')]]]/div//a",
+            translate("Age")));
     private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
     private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
-    private By saveButton = By.cssSelector("button[title=\"Save\"]");
+    private By saveButton = By.cssSelector(String.format("button[title='%s']",translate("Save")));
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 
@@ -114,56 +117,56 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * Clicks on the Don't Process checkbox.
      */
     public void clickOnDontProcessCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Don't Process");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Process"));
     }
 
     /**
      * Clicks on the Don't Market checkbox.
      */
     public void clickOnDontMarketCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Don't Market");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Market"));
     }
 
     /**
      * Clicks on the Export Individual's Data checkbox.
      */
     public void clickOnExportIndividualDataCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Export Individual's Data");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Export Individual's Data"));
     }
 
     /**
      * Clicks on the OK to Store PII Data checkbox.
      */
     public void clickOnOkToStorePiiDataCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "OK to Store PII Data");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("OK to Store PII Data"));
     }
 
     /**
      * Clicks on the Block Geolocation checkbox.
      */
     public void clickOnBlockGeolocationCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Block Geolocation");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Block Geolocation Tracking"));
     }
 
     /**
      * Clicks on the Don't Profile checkbox.
      */
     public void clickOnDontProfileCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Don't Profile");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Profile"));
     }
 
     /**
      * Clicks on the Don't Track Checkbox.
      */
     public void clickOnDontTrackCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Don't Track");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Track"));
     }
 
     /**
      * Clicks on the Forget This Individual checkbox.
      */
     public void clickOnForgetThisIndividualCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, "Forget this Individual");
+        webElementAction.clickOnElement(generalCheckboxSelector, translate("Forget this Individual"));
     }
 
     /**
