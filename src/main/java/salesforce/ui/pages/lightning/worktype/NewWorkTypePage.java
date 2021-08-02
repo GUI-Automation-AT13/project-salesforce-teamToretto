@@ -8,14 +8,14 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * This class has webElement for work type page form.
@@ -105,12 +105,14 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      */
     private HashMap<String, VoidSupplier> mapActionsWorkType(final Map<String, String> workTypeMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
-        mapActions.put("Work Type Name", () -> setInputField(translate("Work Type Name"), workTypeMap.get("Work Type Name")));
+        mapActions.put("Work Type Name", () -> setInputField(translate("Work Type Name"),
+                workTypeMap.get("Work Type Name")));
         mapActions.put("Description", () -> setDescription(workTypeMap.get("Description")));
         mapActions.put("Estimated Duration", () -> setInputField(translate("Estimated Duration"),
                 workTypeMap.get("Estimated Duration")));
         mapActions.put("Duration Type", () -> setDurationTypeComboBox(workTypeMap.get("Duration Type")));
-        mapActions.put("Block Time Before Appointment", () -> setInputField(translate("Block Time Before Appointment"),
+        mapActions.put("Block Time Before Appointment",
+                () -> setInputField(translate("Block Time Before Appointment"),
                 workTypeMap.get("Block Time Before Appointment")));
         mapActions.put("Block Time Before Unit", () -> setComboBoxField(translate("Block Time Before Unit"),
                 workTypeMap.get("Block Time Before Unit")));
@@ -122,7 +124,8 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
                 workTypeMap.get("Timeframe Start")));
         mapActions.put("Time Frame Start Unit", () -> setComboBoxField(translate("Time Frame Start Unit"),
                 workTypeMap.get("Time Frame Start Unit")));
-        mapActions.put("Timeframe End", () -> setInputField(translate("Timeframe End"), workTypeMap.get("Timeframe End")));
+        mapActions.put("Timeframe End", () -> setInputField(translate("Timeframe End"),
+                workTypeMap.get("Timeframe End")));
         mapActions.put("Time Frame End Unit", () -> setComboBoxField(translate("Time Frame End Unit"),
                 workTypeMap.get("Time Frame End Unit")));
         return mapActions;

@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +19,7 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.supplier.StringSupplier;
 
-import static salesforce.utils.Internalization.translate;
+
 
 /**
  * This class has webElement for work type created.
