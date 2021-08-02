@@ -1,6 +1,6 @@
 Feature: Create Contract
 
-  @CreateWorkType
+  @CreateContract
   Scenario: create a contract with only required fields
     Given I navigate to the "Contract" page
     When I create a new contract with required fields
@@ -9,7 +9,7 @@ Feature: Create Contract
       | Contract Start Date    | 7/15/2021   |
     Then I verify Contract created with requirement fields
 
-  @CreateWorkType
+  @CreateContract
   Scenario: create a contract with all required fields
     Given I navigate to the "Contract" page
     When I create a new contract with all fields

@@ -26,8 +26,9 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
     protected By dateCreateByTxt = By
             .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
-            + "forceOutputModStampWithPreview']");
+                    + "forceOutputModStampWithPreview']");
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
+    protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
 
     @Override
     protected void waitForPageLoaded() {
@@ -60,8 +61,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
      * @return value of nameTxtBox
      */
     public String getTxtField(final String nameTxtBox) {
-        String xpath = String.format("//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']", nameTxtBox);
-        return webElementAction.getTextOfElementByField(xpath);
+        return webElementAction.getTextOfElementByField(String.format(pathFieldTxt, nameTxtBox));
     }
 
     /**
@@ -103,7 +103,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
         mapValues.put("Estimated Duration", () -> getTxtField("Estimated Duration"));
         mapValues.put("Block Time Before Appointment", () -> getTxtField("Block Time Before Appointment"));
         mapValues.put("Block Time After Appointment", () -> getTxtField("Block Time After Appointment"));
-        mapValues.put("Timeframe Start", () -> getTxtField("Estimated Duration"));
+        mapValues.put("Timeframe Start", () -> getTxtField("Timeframe Start"));
         mapValues.put("Timeframe End", () -> getTxtField("Timeframe End"));
         return mapValues;
     }
