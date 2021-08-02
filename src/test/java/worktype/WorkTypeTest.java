@@ -23,8 +23,9 @@ public class WorkTypeTest extends BaseTests {
     @Test
     public void createWorkTypeLightningSalesforce() {
         LoginPage loginPage = new LoginPage();
-        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+        homePage = loginPage.loginSuccessful(EnvConfig.getInstance()
+                .getAdminUser().getUsername(),
+                EnvConfig.getInstance().getAdminUser().getPassword());
         workTypesPage = pageTransporter.navigateToWorkTypePageLightning();
         newWorkTypePage = workTypesPage.clickNewButton();
         newWorkTypePage.setInputField("Work Type Name", "Work Type created");

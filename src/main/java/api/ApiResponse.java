@@ -8,6 +8,7 @@
 
 package api;
 
+import io.cucumber.messages.internal.com.google.gson.JsonObject;
 import io.restassured.response.Response;
 import java.util.List;
 

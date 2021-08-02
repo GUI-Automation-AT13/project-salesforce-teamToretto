@@ -18,8 +18,8 @@ public class ContractTest extends ContractBaseTest {
     @Test(groups = {"CreateContractWithFullValues"})
     public void createAContractWitFullValues(){
         LoginPage loginPage = new LoginPage();
-        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getAdminUser().getUsername(),
+                EnvConfig.getInstance().getAdminUser().getPassword());
         contractsPage = pageTransporter.navigateToContractsPageLightning();
         newContractPage = contractsPage.clickNewContractButton();
         newContractPage.setAccountName("TestAccount");
@@ -73,8 +73,8 @@ public class ContractTest extends ContractBaseTest {
     @Test(groups = {"CreateContractWithMinimumValues"})
     public void createAContractWitMinimumValues(){
         LoginPage loginPage = new LoginPage();
-        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+        homePage = loginPage.loginSuccessful(EnvConfig.getInstance().getAdminUser().getUsername(),
+                EnvConfig.getInstance().getAdminUser().getPassword());
         contractsPage = pageTransporter.navigateToContractsPageLightning();
         newContractPage = contractsPage.clickNewContractButton();
         newContractPage.setAccountName("TestAccount");
