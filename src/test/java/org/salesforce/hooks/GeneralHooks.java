@@ -22,7 +22,7 @@ public class GeneralHooks {
         this.softAssert = softAssert;
     }
 
-    @Before(value = "@CreateWorkType or @CreateCampaign or @CreateContract", order  = 1)
+    @Before(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order  = 1)
     public void setUp() {
         log.info("Set up Methods");
         login();
@@ -37,7 +37,7 @@ public class GeneralHooks {
         HomePage homePage = loginpage.login();
     }
 
-    @After(value = "@CreateWorkType or @CreateCampaign or @CreateContract", order = 100)
+    @After(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order = 100)
     public void tearDown() {
         log.info("Close Driver");
         WebDriverManager.getInstance().quitWebDriver();

@@ -17,6 +17,8 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.supplier.StringSupplier;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * This class has webElement for work type created.
  */
@@ -100,11 +102,11 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
         HashMap<String, StringSupplier> mapValues = new HashMap<>();
         mapValues.put("Work Type Name", this::getNameOfWorkType);
         mapValues.put("Description", this::getDescription);
-        mapValues.put("Estimated Duration", () -> getTxtField("Estimated Duration"));
-        mapValues.put("Block Time Before Appointment", () -> getTxtField("Block Time Before Appointment"));
-        mapValues.put("Block Time After Appointment", () -> getTxtField("Block Time After Appointment"));
-        mapValues.put("Timeframe Start", () -> getTxtField("Timeframe Start"));
-        mapValues.put("Timeframe End", () -> getTxtField("Timeframe End"));
+        mapValues.put("Estimated Duration", () -> getTxtField(translate("Estimated Duration")));
+        mapValues.put("Block Time Before Appointment", () -> getTxtField(translate("Block Time Before Appointment")));
+        mapValues.put("Block Time After Appointment", () -> getTxtField(translate("Block Time After Appointment")));
+        mapValues.put("Timeframe Start", () -> getTxtField(translate("Timeframe Start")));
+        mapValues.put("Timeframe End", () -> getTxtField(translate("Timeframe End")));
         return mapValues;
     }
 }
