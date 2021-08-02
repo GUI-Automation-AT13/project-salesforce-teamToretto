@@ -26,3 +26,10 @@ hs_err_pid*
 .gradle/*
 build/
 .idea/
+
+config.properties
+
+.classpath
+.project
+.settings/
+bin/
