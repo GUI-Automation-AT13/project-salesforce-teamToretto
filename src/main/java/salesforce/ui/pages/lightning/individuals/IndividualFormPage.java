@@ -11,11 +11,9 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.entities.IndividualEntity;

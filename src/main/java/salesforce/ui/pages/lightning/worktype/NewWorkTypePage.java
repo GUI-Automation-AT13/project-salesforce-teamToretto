@@ -12,7 +12,6 @@ import static salesforce.utils.Internalization.translate;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
