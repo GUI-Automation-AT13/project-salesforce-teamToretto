@@ -86,4 +86,10 @@ public class CreateIndividualSteps {
         IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
         Assert.assertTrue(individualListPage.isThereRecordWithName(firstname.concat(" ").concat(lastname)));
     }
+
+    @Then("^The Individual Records Page should contain a record with (.*) and (.*)$")
+    public void theIndividualRecordsPageShouldContainArecordWith(final String firstname, final String lastname) {
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualListPage.isThereRecordWithName(firstname.concat(" ").concat(lastname)));
+    }
 }

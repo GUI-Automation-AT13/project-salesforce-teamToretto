@@ -21,8 +21,8 @@ public class ClassicContractsTest extends BaseTests {
     public void createContractWithRequiredValuesTest()  {
         LoginPage loginPage = new LoginPage();
         String accountName = "TestAccount";
-        classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+        classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getAdminUser().getUsername(),
+                EnvConfig.getInstance().getAdminUser().getPassword());
         classicContractsPage = pageTransporter.navigateToContractsPage();
         classicContractsPage.clickPopUp();
         classicNewContractPage = classicContractsPage.clickNew();
@@ -36,8 +36,8 @@ public class ClassicContractsTest extends BaseTests {
     public void createContractWithAllValuesTest()  {
         LoginPage loginPage = new LoginPage();
         String accountName = "TestAccount";
-        classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getUser(),
-                EnvConfig.getInstance().getPassword());
+        classicHomePage = loginPage.loginClassicSuccessful(EnvConfig.getInstance().getAdminUser().getUsername(),
+                EnvConfig.getInstance().getAdminUser().getPassword());
         classicContractsPage = pageTransporter.navigateToContractsPage();
         classicContractsPage.clickPopUp();
         classicNewContractPage = classicContractsPage.clickNew();
