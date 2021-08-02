@@ -1,12 +1,12 @@
 package unittests;
 
-import core.date.DateManager;
+import java.util.Calendar;
+import java.util.Date;
 import org.openqa.selenium.InvalidArgumentException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.util.Calendar;
-import java.util.Date;
+import utils.date.DateManager;
 
 public class DateManagerTest {
 

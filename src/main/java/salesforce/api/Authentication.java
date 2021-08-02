@@ -6,13 +6,13 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api.salesforce;
+package salesforce.api;
 
 import static io.restassured.RestAssured.given;
 
-import api.salesforce.entities.Token;
 import core.utils.PropertiesReader;
 import java.util.Properties;
+import salesforce.api.entities.Token;
 
 /**
  * This class builds a token.

@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api.salesforce.entities;
+package salesforce.api.entities;
 
 import java.util.List;
 

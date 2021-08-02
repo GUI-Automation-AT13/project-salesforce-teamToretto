@@ -4,7 +4,6 @@ import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
@@ -12,6 +11,7 @@ import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
 
 public class GeneralHooks {
+
     private Logger log = Logger.getLogger(getClass());
     public PageTransporter pageTransporter;
     public SoftAssert softAssert;

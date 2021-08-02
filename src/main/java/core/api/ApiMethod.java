@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api;
+package core.api;
 
 /**
  * This enum defines possible SalesForce Methods.

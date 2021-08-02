@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api.salesforce;
+package salesforce.api;
 
 /**
  * This enum defines possible SalesForce Endpoints.
