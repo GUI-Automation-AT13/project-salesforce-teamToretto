@@ -7,7 +7,7 @@
  */
 
 
-package core.drivermanager;
+package core.selenium.drivermanager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

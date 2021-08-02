@@ -1,6 +1,8 @@
 package org.salesforce.steps;
 
-import io.cucumber.java.bs.I;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,15 +10,11 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
-import salesforce.ui.pages.lightning.HomePage;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 import salesforce.utils.strategy.MapPages;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class featureSteps {
     private Logger log = Logger.getLogger(getClass());

@@ -9,6 +9,7 @@
 package org.salesforce.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,8 +20,6 @@ import salesforce.ui.entities.IndividualEntity;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
-import java.util.Map;
-
 public class CreateIndividualSteps {
 
     private PageTransporter pageTransporter;

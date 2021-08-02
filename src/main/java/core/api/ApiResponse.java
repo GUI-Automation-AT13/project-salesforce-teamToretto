@@ -6,9 +6,8 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api;
+package core.api;
 
-import io.cucumber.messages.internal.com.google.gson.JsonObject;
 import io.restassured.response.Response;
 import java.util.List;
 

@@ -6,15 +6,15 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package api;
+package core.api;
 
-import api.salesforce.ApiEndPoints;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import salesforce.api.ApiEndPoints;
 
 /**
  * This class builds an api request.
