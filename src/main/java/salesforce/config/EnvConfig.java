@@ -93,14 +93,9 @@ public final class EnvConfig {
         Properties properties = PropertiesReader.getProperties("config.properties");
         loginUrl = properties.getProperty("loginURL");
         baseUrl = properties.getProperty("baseURL");
-<<<<<<< HEAD
-        user = properties.getProperty("user");
-        password = properties.getProperty("password");
         language = properties.getProperty("language");
-=======
         adminUser = new AdminUser();
         standarUser = new StandarUser();
->>>>>>> develop
     }
 
 }
