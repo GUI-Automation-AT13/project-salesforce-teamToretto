@@ -1,10 +1,14 @@
 package salesforce.utils;
 
-import salesforce.config.EnvConfig;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import static core.utils.Converter.removeWhiteSpace;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+import salesforce.config.EnvConfig;
+
+/**
+ * Class to read internationalization file.
+ */
 public class Internalization {
     private static final String FILE_PATH = "internationalization/i18N%s";
     private static ResourceBundle resourceBundle;

@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,14 +24,18 @@ import salesforce.utils.supplier.StringSupplier;
  */
 public class CreatedContractPage extends BasePage implements CreatedFeature {
 
-    private By details = By.xpath("(//span[text()='Details'])[last()]");
+    private By details = By.xpath("(//span[text()='"
+            + translate("Details") + "'])[last()]");
     private By accountNameTitle = By
-            .xpath("(//ul//li//div//span[@title=\"Account Name\"] /following-sibling::div)[last()]");
+            .xpath("(//ul//li//div//span[@title=\""
+                    + translate("Account Name") + "\"] /following-sibling::div)[last()]");
     private By contractStartDateTitle = By
-            .xpath("(//ul//li//div//span[@title=\"Contract Start Date\"] /following-sibling::div)[last()]");
+            .xpath("(//ul//li//div//span[@title=\""
+                    + translate("Contract Start Date") + "\"] /following-sibling::div)[last()]");
     private By contractEndDateTitle = By
             .xpath("(//ul//li//div//span[@title=\"Contract End Date\"] /following-sibling::div)[last()]");
-    private By contractStartDate = By.xpath("(//div[./div[./span[text()='Contract Start Date']]]//span//span)[last()]");
+    private By contractStartDate = By.xpath("(//div[./div[./span[text()='"
+            + translate("Contract Start Date") + "']]]//span//span)[last()]");
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
 
@@ -69,7 +75,7 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      */
     public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
-        String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
+        String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
         return webElementAction.getTextOfByFieldByLocator(xpathLocator);
     }
