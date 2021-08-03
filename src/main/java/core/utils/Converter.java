@@ -10,7 +10,6 @@ package core.utils;
 
 /**
  * Removes all white space in string.
- *
  */
 public class Converter {
 
@@ -21,6 +20,9 @@ public class Converter {
      * @return a new string without space.
      */
     public static String removeWhiteSpace(final String words) {
+        if (null == words) {
+            return "";
+        }
         return words.replaceAll("\\s+", "");
     }
 }

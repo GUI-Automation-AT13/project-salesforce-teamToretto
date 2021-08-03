@@ -30,10 +30,8 @@ public class PropertiesReader {
         try {
             InputStream inputStream = new FileInputStream(path);
             properties.load(inputStream);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found", e);
         } catch (IOException e) {
-            throw new RuntimeException("Unable to read the properties file", e);
+            throw new RuntimeException("File not found or Unable to read the properties file", e);
         }
         return properties;
     }
