@@ -82,5 +82,4 @@ public class DateManager {
                 throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
         }
     }
-
 }
