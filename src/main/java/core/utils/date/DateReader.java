@@ -53,7 +53,6 @@ public class DateReader {
             return timeUnit;
         }
         throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
-
     }
 
     /**
