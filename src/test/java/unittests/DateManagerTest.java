@@ -6,7 +6,7 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import utils.date.DateManager;
+import core.utils.date.DateManager;
 
 public class DateManagerTest {
 
