@@ -3,6 +3,8 @@ package org.salesforce.steps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,6 +17,8 @@ import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 import salesforce.utils.strategy.MapPages;
+
+import static core.utils.date.DateManager.generateDateActual;
 
 public class featureSteps {
     private Logger log = Logger.getLogger(getClass());
@@ -55,5 +59,10 @@ public class featureSteps {
         log.info("Asserts fields of feature");
        List<String> valuesField = createdFeature.getValueField(tableFeature);
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
+    }
+
+    @And("I verify date create")
+    public void iVerifyDateCreate() {
+        Assert.assertEquals(createdFeature.getDateCreatedByTxt(),generateDateActual("M/d/yyyy, h:mm a"));
     }
 }

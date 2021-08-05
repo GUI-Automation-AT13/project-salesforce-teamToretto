@@ -6,6 +6,7 @@ Feature: Create Campaign
     When I create a new campaign with required fields
       | Campaign Name           | New Campaign |
     Then I verify Campaign created with requirement fields
+    And I verify date create
 
 
   @CreateCampaign
@@ -20,3 +21,4 @@ Feature: Create Campaign
       | Actual Cost in Campaign       | 100                   |
       | Num Sent in Campaign          | 100                   |
     Then I verify Campaign created with all fields
+    And I verify date create

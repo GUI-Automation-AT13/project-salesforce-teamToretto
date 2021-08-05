@@ -8,6 +8,7 @@ Feature: Create Contract
       | Contract Term (months) | 2           |
       | Contract Start Date    | 7/15/2021   |
     Then I verify Contract created with requirement fields
+    And I verify date create
 
   @CreateContract
   Scenario: create a contract with all required fields
@@ -25,3 +26,4 @@ Feature: Create Contract
       | Special Terms           | Special Terms       |
       | Description             | Description         |
     Then I verify Contract created with all fields
+    And I verify date create

@@ -128,6 +128,14 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
         return result;
     }
 
+    @Override
+    public String getDateCreatedByTxt() {
+        By dateCreateByTxt = By
+                .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime "
+                        + "forceOutputModStampWithPreview']");
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
+
     /**
      * Gets text fields of workType.
      *

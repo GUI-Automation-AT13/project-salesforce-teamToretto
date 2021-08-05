@@ -29,7 +29,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
     protected By dateCreateByTxt = By
-            .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
+            .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime "
                     + "forceOutputModStampWithPreview']");
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
@@ -73,7 +73,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
      *
      * @return a String to date
      */
-    public String getCreatedByTxt() {
+    public String getDateCreatedByTxt() {
         return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 

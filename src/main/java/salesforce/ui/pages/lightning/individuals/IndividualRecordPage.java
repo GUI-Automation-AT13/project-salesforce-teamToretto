@@ -270,4 +270,12 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     public List<String> getValueField(Map<String, String> table) {
         return null;
     }
+
+    @Override
+    public String getDateCreatedByTxt() {
+        By dateCreateByTxt = By
+                .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
+                        + "forceOutputModStampWithPreview']");
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
 }

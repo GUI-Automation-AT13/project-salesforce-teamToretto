@@ -82,4 +82,16 @@ public class DateManager {
                 throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
         }
     }
+
+    /**
+     * Generates actual date.
+     *
+     * @param dataFormat is format of data
+     * @return a string with actual date
+     */
+    public static String generateDateActual(final String dataFormat) {
+        java.text.DateFormat dateFormat = new SimpleDateFormat(dataFormat);
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 }

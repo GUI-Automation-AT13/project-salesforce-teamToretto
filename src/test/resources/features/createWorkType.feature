@@ -7,6 +7,7 @@ Feature: Create workType
       | Work Type Name     | workType |
       | Estimated Duration | 2.00        |
     Then I verify WorkType created with requirement fields
+    And I verify date create
 
   @CreateWorkType
   Scenario: create an workType
@@ -20,3 +21,4 @@ Feature: Create workType
       | Timeframe Start               | 4                   |
       | Timeframe End                 | 4                   |
     Then I verify WorkType created with all fields
+    And I verify date create
