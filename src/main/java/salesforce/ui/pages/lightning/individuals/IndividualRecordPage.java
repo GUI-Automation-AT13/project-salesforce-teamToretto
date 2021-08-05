@@ -16,6 +16,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * Page Object Model for the salesforce individual record page.
  */
@@ -38,7 +40,8 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
             + "/../..//span[contains(@class,\"test-id__field-value\")]");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
     private By detailsTabButton = By.xpath("//span[contains(.,\"Details\")]");
-
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
+            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     /**
      * Deletes the created individual.
      *
@@ -259,6 +262,16 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     }
 
     /**
+     * Gets a date when Individual is created.
+     *
+     * @return a String to date.
+     */
+    @Override
+    public String getCreateDayTxt() {
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
+
+    /**
      * Waits for the nameHeader element to load.
      */
     @Override
@@ -269,13 +282,5 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     @Override
     public List<String> getValueField(Map<String, String> table) {
         return null;
-    }
-
-    @Override
-    public String getDateCreatedByTxt() {
-        By dateCreateByTxt = By
-                .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime"
-                        + "forceOutputModStampWithPreview']");
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 }

@@ -63,6 +63,6 @@ public class featureSteps {
 
     @And("I verify date create")
     public void iVerifyDateCreate() {
-        Assert.assertEquals(createdFeature.getDateCreatedByTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+        Assert.assertEquals(createdFeature.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
     }
 }

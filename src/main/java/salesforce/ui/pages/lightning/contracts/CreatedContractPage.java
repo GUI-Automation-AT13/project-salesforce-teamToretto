@@ -38,6 +38,8 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
             + translate("Contract Start Date") + "']]]//span//span)[last()]");
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
+            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {
         XPATH_COMPLEMENTS.put("Contract Owner", "//a");
@@ -90,6 +92,16 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
     }
 
     /**
+     * Gets a date when contract is created.
+     *
+     * @return a String to date.
+     */
+    @Override
+    public String getCreateDayTxt() {
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
+
+    /**
      * Waits for the page to be loaded.
      */
     @Override
@@ -103,14 +115,6 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
         HashMap<String, StringSupplier> actionsCreatedMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCreatedMap.get(key).getAsString()));
         return result;
-    }
-
-    @Override
-    public String getDateCreatedByTxt() {
-        By dateCreateByTxt = By
-                .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime "
-                        + "forceOutputModStampWithPreview']");
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     /**

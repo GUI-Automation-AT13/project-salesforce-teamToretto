@@ -17,5 +17,5 @@ import java.util.Map;
 public interface CreatedFeature {
     List<String> getValueField(Map<String, String> table);
 
-    String getDateCreatedByTxt();
+    String getCreateDayTxt();
 }

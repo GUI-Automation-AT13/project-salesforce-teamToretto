@@ -17,6 +17,8 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.supplier.StringSupplier;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * This class for elements of Campaign page created.
  */
@@ -27,12 +29,12 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
             .cssSelector("[class='slds-media__body'] span[class='custom-truncate uiOutputText']");
     private By createdCampaignOptionBtn = By
             .xpath("//ul[contains(@class,\'branding-actions\')]/li/div//a[@role=\'button\']");
-
     private By detailsTab = By.xpath("//a[@data-tab-name='detailTab']");
     private By campaignNameCreated = By
             .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
     private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
-
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
+            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
 
@@ -120,20 +122,22 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
         webElementAction.waitForVisibilityOfLocator(campaignNameCreated);
     }
 
+    /**
+     * Gets a date when workType is created.
+     *
+     * @return a String to date
+     */
+    @Override
+    public String getCreateDayTxt() {
+        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
+
     @Override
     public List<String> getValueField(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsCampaignMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCampaignMap.get(key).getAsString()));
         return result;
-    }
-
-    @Override
-    public String getDateCreatedByTxt() {
-        By dateCreateByTxt = By
-                .xpath("//*[contains(text(),'Created By')]/../..//*[@class='uiOutputDateTime "
-                        + "forceOutputModStampWithPreview']");
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     /**
