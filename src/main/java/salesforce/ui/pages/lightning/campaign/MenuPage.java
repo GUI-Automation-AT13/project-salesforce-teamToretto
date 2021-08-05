@@ -22,7 +22,7 @@ public class MenuPage extends BasePage {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public MenuPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

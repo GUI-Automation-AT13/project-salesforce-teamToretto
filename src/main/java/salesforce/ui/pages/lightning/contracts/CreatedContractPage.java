@@ -60,7 +60,7 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public CreatedContractPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

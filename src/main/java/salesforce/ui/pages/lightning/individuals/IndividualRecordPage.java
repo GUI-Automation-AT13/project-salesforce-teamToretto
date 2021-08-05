@@ -42,7 +42,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public IndividualRecordPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

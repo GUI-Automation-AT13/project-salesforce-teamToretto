@@ -24,7 +24,7 @@ public class ClassicHomePage extends BasePage {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public ClassicHomePage(WebDriverManager webDriverManager) {
         super(webDriverManager);

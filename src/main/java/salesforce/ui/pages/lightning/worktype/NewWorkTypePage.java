@@ -36,7 +36,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public NewWorkTypePage(WebDriverManager webDriverManager) {
         super(webDriverManager);

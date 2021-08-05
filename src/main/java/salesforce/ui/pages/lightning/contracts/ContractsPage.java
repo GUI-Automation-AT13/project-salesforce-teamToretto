@@ -23,7 +23,7 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public ContractsPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

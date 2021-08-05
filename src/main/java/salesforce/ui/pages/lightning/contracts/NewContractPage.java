@@ -59,7 +59,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public NewContractPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

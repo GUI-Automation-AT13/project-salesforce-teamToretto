@@ -9,12 +9,11 @@
 package org.salesforce.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Map;
-
 import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import java.util.Map;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
@@ -22,6 +21,7 @@ import salesforce.ui.entities.IndividualEntity;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
+
 public class CreateIndividualSteps {
 
     private WebDriverManager webDriverManager;

@@ -38,7 +38,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public IndividualListPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

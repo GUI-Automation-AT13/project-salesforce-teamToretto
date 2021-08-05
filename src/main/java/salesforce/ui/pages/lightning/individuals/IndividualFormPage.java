@@ -47,7 +47,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public IndividualFormPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

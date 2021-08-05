@@ -38,7 +38,7 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public CreatedWorkTypePage(WebDriverManager webDriverManager) {
         super(webDriverManager);

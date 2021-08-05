@@ -22,7 +22,7 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public WorkTypesPage(WebDriverManager webDriverManager) {
         super(webDriverManager);

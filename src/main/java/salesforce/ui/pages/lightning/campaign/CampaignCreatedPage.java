@@ -51,7 +51,7 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
     /**
      * Initializes web element actions.
      *
-     * @param webDriverManager .
+     * @param webDriverManager to be managed for the webElementActions
      */
     public CampaignCreatedPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
