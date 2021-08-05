@@ -10,6 +10,8 @@ package org.salesforce.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+
+import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,14 +24,16 @@ import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
 public class CreateIndividualSteps {
 
+    private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
     private IndividualFormPage individualFormPage;
     private IndividualEntity individualEntity;
 
-    public CreateIndividualSteps(final PageTransporter pageTransporter, final SoftAssert softAssert) {
-        this.pageTransporter = pageTransporter;
-        this.softAssert = softAssert;
+    public CreateIndividualSteps(final WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+        this.pageTransporter = new PageTransporter(webDriverManager);
+        this.softAssert = new SoftAssert();
     }
     @Given("^I go to the new Individual formular$")
     public void iGoToTheNewIndividualFormular() {
@@ -66,7 +70,7 @@ public class CreateIndividualSteps {
 
     @Then("^The name displayed should contain (.*) (.*) and (.*)$")
     public void theNameDisplayedShouldContain(final String salutation, final String firstname, final String lastname) {
-        IndividualRecordPage individualRecordPage = new IndividualRecordPage();
+        IndividualRecordPage individualRecordPage = new IndividualRecordPage(webDriverManager);
         String headerNameText = individualRecordPage.getNameHeaderText();
         String fullnameWithSalutation = String.format("%s %s %s", salutation, firstname, lastname);
         Assert.assertEquals(headerNameText, fullnameWithSalutation);
@@ -74,7 +78,7 @@ public class CreateIndividualSteps {
 
     @Then("^The created individual details should match the given values$")
     public void theCreatedIndividualDetailsShouldMatchTheGivenValues() {
-        IndividualRecordPage individualRecordPage = new IndividualRecordPage();
+        IndividualRecordPage individualRecordPage = new IndividualRecordPage(webDriverManager);
         individualRecordPage.clickonDetailsTab();
         String nameDetail = individualRecordPage.getNameDetail();
         Assert.assertEquals(nameDetail, individualEntity.getFullnameWithSalutation());

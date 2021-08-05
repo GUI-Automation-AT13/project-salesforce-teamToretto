@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.classic.contracts;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
@@ -36,6 +37,15 @@ public class ClassicNewContractPage extends BasePage {
     private By saveAndNew = By.cssSelector("td[id='bottomButtonRow'] input[title='Save & New']");
     private By cancel = By.cssSelector("td[id='bottomButtonRow'] input[title='Cancel']");
     private String ownerExpirationNoticeSelector = "//option[. = '%s Days']";
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public ClassicNewContractPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -201,7 +211,7 @@ public class ClassicNewContractPage extends BasePage {
      */
     public ClassicCreatedContractPage clickSave() {
         webElementAction.clickByLocator(save);
-        return new ClassicCreatedContractPage();
+        return new ClassicCreatedContractPage(webDriverManager);
     }
 
     /**
@@ -211,7 +221,7 @@ public class ClassicNewContractPage extends BasePage {
      */
     public ClassicNewContractPage clickSaveAndNew() {
         webElementAction.clickByLocator(saveAndNew);
-        return new ClassicNewContractPage();
+        return new ClassicNewContractPage(webDriverManager);
     }
 
     /**
@@ -221,7 +231,7 @@ public class ClassicNewContractPage extends BasePage {
      */
     public ClassicContractsPage clickCancel() {
         webElementAction.clickByLocator(cancel);
-        return new ClassicContractsPage();
+        return new ClassicContractsPage(webDriverManager);
     }
 
 }

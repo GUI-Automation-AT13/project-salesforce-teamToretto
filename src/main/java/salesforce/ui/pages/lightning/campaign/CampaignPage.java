@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.lightning.contracts.NewContractPage;
@@ -21,6 +22,15 @@ public class CampaignPage extends BasePage implements FeaturesPage {
 
     protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
 
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public CampaignPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
     @Override
     protected void waitForPageLoaded() {
         webElementAction.waitForVisibilityOfLocator(createCampaignBtn);
@@ -33,12 +43,12 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      */
     public CreateCampaignPage clickCreateCampaignBtn() {
         webElementAction.clickByLocator(createCampaignBtn);
-        return new CreateCampaignPage();
+        return new CreateCampaignPage(webDriverManager);
     }
 
     @Override
     public CreateCampaignPage clickNewButton() {
         webElementAction.clickByLocator(createCampaignBtn);
-        return new CreateCampaignPage();
+        return new CreateCampaignPage(webDriverManager);
     }
 }

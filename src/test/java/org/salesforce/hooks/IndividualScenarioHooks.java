@@ -8,6 +8,7 @@
 
 package org.salesforce.hooks;
 
+import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
@@ -15,12 +16,13 @@ import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 
 public class IndividualScenarioHooks {
 
+    private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
 
-    public IndividualScenarioHooks(final PageTransporter pageTransporter, final SoftAssert softAssert) {
-        this.pageTransporter = pageTransporter;
-        this.softAssert = softAssert;
+    public IndividualScenarioHooks(final WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+        this.pageTransporter = new PageTransporter(this.webDriverManager);
     }
 
     @After(value = "@CreateIndividual")

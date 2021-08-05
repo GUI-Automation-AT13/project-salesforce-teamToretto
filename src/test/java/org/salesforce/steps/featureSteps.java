@@ -3,6 +3,8 @@ package org.salesforce.steps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,19 +20,22 @@ import salesforce.utils.strategy.MapPages;
 
 public class featureSteps {
     private Logger log = Logger.getLogger(getClass());
+    private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
     private Internalization internalization;
-    private MapPages mapPages = new MapPages();
+    private MapPages mapPages;
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
     private CreatedFeature createdFeature;
     private Map<String, String> tableFeature;
 
-    public featureSteps(final PageTransporter pageTransporter, final SoftAssert softAssert) {
+    public featureSteps(final WebDriverManager webDriverManager) {
         log.info("GeneralHooks featureSteps");
-        this.pageTransporter = pageTransporter;
-        this.softAssert = softAssert;
+        this.webDriverManager = webDriverManager;
+        this.pageTransporter = new PageTransporter(this.webDriverManager);
+        this.mapPages = new MapPages(this.webDriverManager);
+        this.softAssert = new SoftAssert();
     }
 
     @Given("I navigate to the {string} page")

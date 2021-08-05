@@ -27,10 +27,15 @@ public class PageTransporter {
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
     private String featureUrl = "lightning/o/%s/list?filterName=Recent";
     private PageUrl pageUrl;
+    private WebDriverManager webDriverManager;
+
+    public PageTransporter(WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+    }
 
     public LoginPage navigateToLoginPage() {
         goToUrl(baseUrl);
-        return new LoginPage();
+        return new LoginPage(webDriverManager);
     }
 
     /**
@@ -39,7 +44,7 @@ public class PageTransporter {
      * @param url to go.
      */
     public void goToUrl(final String url) {
-        WebDriverManager.getInstance().getWebDriver().navigate().to(url);
+        webDriverManager.getWebDriver().navigate().to(url);
     }
 
     /**
@@ -49,7 +54,7 @@ public class PageTransporter {
      */
     public ClassicContractsPage navigateToContractsPage() {
         goToUrl(baseUrl.concat("800/o"));
-        return new ClassicContractsPage();
+        return new ClassicContractsPage(webDriverManager);
     }
 
     /**
@@ -59,7 +64,7 @@ public class PageTransporter {
      */
     public ContractsPage navigateToContractsPageLightning() {
         goToUrl(baseUrl.concat("lightning/o/Contract/list?filterName=Recent"));
-        return new ContractsPage();
+        return new ContractsPage(webDriverManager);
     }
 
     /**
@@ -69,7 +74,7 @@ public class PageTransporter {
      */
     public IndividualFormPage navigateToIndividualFormPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/new?count=1"));
-        return new IndividualFormPage();
+        return new IndividualFormPage(webDriverManager);
     }
 
     /**
@@ -79,7 +84,7 @@ public class PageTransporter {
      */
     public IndividualListPage navigateToIndividualListPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/list?filterName=Recent"));
-        return new IndividualListPage();
+        return new IndividualListPage(webDriverManager);
     }
 
     /**
@@ -89,7 +94,7 @@ public class PageTransporter {
      */
     public CampaignPage navigateToCampaignPage() {
         goToUrl(baseUrl.concat("lightning/o/Campaign/list?filterName=Recent"));
-        return new CampaignPage();
+        return new CampaignPage(webDriverManager);
     }
 
     /**
@@ -100,7 +105,7 @@ public class PageTransporter {
     public CampaignPage navigateTofeaturePage(String nameFeature) {
         goToUrl(pageUrl.getFeaturePage(nameFeature));
         if (nameFeature.equals("Campaign")) {
-            return new CampaignPage();
+            return new CampaignPage(webDriverManager);
         }
         return null;
     }
@@ -112,7 +117,7 @@ public class PageTransporter {
      */
     public WorkTypesPage navigateToWorkTypePageLightning() {
         goToUrl(baseUrl.concat("lightning/o/WorkType/list?filterName=00B5e00000CELgSEAX"));
-        return new WorkTypesPage();
+        return new WorkTypesPage(webDriverManager);
     }
 
     /**

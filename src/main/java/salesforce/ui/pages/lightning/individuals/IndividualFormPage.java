@@ -45,6 +45,15 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
 
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public IndividualFormPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
@@ -197,7 +206,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      */
     public IndividualRecordPage clickOnsave() {
         webElementAction.clickByLocator(saveButton);
-        return new IndividualRecordPage();
+        return new IndividualRecordPage(webDriverManager);
     }
 
     /**
@@ -303,7 +312,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(saveButton));
+        webElementAction.waitForVisibilityOfLocator(saveButton);
     }
 
     @Override
@@ -315,6 +324,6 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     @Override
     public CreatedFeature clickSaveButton() {
         webElementAction.clickByLocator(saveButton);
-        return new IndividualRecordPage();
+        return new IndividualRecordPage(webDriverManager);
     }
 }

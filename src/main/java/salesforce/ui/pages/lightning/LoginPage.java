@@ -23,6 +23,15 @@ public class LoginPage extends BasePage {
     private By loginButton = By.id("Login");
 
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public LoginPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Sets the given username to the username textbox.
      *
      * @param username represents the username value to be put on the username text box
@@ -47,7 +56,7 @@ public class LoginPage extends BasePage {
      */
     public HomePage login() {
         webElementAction.clickByLocator(loginButton);
-        return new HomePage();
+        return new HomePage(webDriverManager);
     }
 
     /**
@@ -55,6 +64,6 @@ public class LoginPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(loginButton));
+        webElementAction.waitForVisibilityOfLocator(loginButton);
     }
 }

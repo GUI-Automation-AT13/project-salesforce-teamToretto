@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import core.selenium.WebDriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -56,6 +57,15 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
         inputFieldNames.put("Description", "Description");
     }
 
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public CreateCampaignPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
     @Override
     protected void waitForPageLoaded() {
         webElementAction.waitForVisibilityOfLocator(saveButton);
@@ -102,7 +112,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      */
     public CampaignCreatedPage clickSaveBtn() {
         webElementAction.clickByLocator(saveButton);
-        return new CampaignCreatedPage();
+        return new CampaignCreatedPage(webDriverManager);
     }
 
     /**
@@ -121,7 +131,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     @Override
     public CampaignCreatedPage clickSaveButton() {
         webElementAction.clickByLocator(saveButton);
-        return new CampaignCreatedPage();
+        return new CampaignCreatedPage(webDriverManager);
     }
 
     /**

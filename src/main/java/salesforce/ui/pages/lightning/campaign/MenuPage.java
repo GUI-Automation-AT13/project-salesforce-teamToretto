@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
@@ -17,6 +18,15 @@ import salesforce.ui.pages.BasePage;
 public class MenuPage extends BasePage {
 
     private By deleteBtn = By.xpath("//div[@role=\'menu\']//a[./div[@title=\'Delete\']]");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public MenuPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     @Override
     protected void waitForPageLoaded() {

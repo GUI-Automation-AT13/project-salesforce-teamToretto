@@ -40,6 +40,15 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     private By detailsTabButton = By.xpath("//span[contains(.,\"Details\")]");
 
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public IndividualRecordPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Deletes the created individual.
      *
      * @return a HomePage instance.
@@ -47,7 +56,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     public IndividualListPage deleteCreatedIndividual() {
         webElementAction.clickByLocator(deleteHeaderButton);
         webElementAction.clickByLocator(confirmDeleteIndividualButton);
-        return new IndividualListPage();
+        return new IndividualListPage(webDriverManager);
     }
 
     /**
@@ -263,7 +272,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(nameHeaderLabel));
+        webElementAction.waitForVisibilityOfLocator(nameHeaderLabel);
     }
 
     @Override
