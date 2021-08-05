@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
@@ -29,8 +28,8 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
 
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
-            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+            + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
 

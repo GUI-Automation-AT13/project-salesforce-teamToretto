@@ -39,8 +39,8 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
             + translate("Contract Start Date") + "']]]//span//span)[last()]");
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
-            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+            + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {
         XPATH_COMPLEMENTS.put("Contract Owner", "//a");

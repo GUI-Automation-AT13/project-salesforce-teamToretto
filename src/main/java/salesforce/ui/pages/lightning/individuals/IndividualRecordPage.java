@@ -8,15 +8,14 @@
 
 package salesforce.ui.pages.lightning.individuals;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * Page Object Model for the salesforce individual record page.
@@ -40,8 +39,9 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
             + "/../..//span[contains(@class,\"test-id__field-value\")]");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
     private By detailsTabButton = By.xpath("//span[contains(.,\"Details\")]");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
-            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+            + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+
     /**
      * Initializes web element actions.
      *

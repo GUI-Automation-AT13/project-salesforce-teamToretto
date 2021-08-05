@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +19,6 @@ import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.supplier.StringSupplier;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * This class for elements of Campaign page created.
@@ -34,8 +34,8 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
     private By campaignNameCreated = By
             .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
     private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
-            "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+            + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
 
