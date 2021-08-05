@@ -8,6 +8,7 @@
 
 package core.utils.date;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -90,7 +91,7 @@ public class DateManager {
      * @return a string with actual date
      */
     public static String generateDateActual(final String dataFormat) {
-        java.text.DateFormat dateFormat = new SimpleDateFormat(dataFormat);
+        DateFormat dateFormat = new SimpleDateFormat(dataFormat);
         Date date = new Date();
         return dateFormat.format(date);
     }
