@@ -57,6 +57,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
         createAccount();
         createContact();
     }
+
     @AfterTest
     public void afterExecution() {
         deleteAccount();
@@ -87,14 +88,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
         Assert.assertEquals(apiResponse.getStatusCode(), HttpStatus.SC_NO_CONTENT);
         apiResponse.getResponse().then().log().body();
     }
-//    @BeforeTest
-//    public void beforeExecution() {
-//        LOGGER.info("----------- Before Execution -----------");
-//    }
-//    @AfterTest
-//    public void afterExecution() {
-//        LOGGER.info("----------- After Execution -----------");
-//    }
+
     public void createAccount() throws JsonProcessingException {
         account = new Account();
         account.setName("TestAccount");
