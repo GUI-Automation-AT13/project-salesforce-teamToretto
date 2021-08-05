@@ -64,7 +64,7 @@ public class featureSteps {
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 
-    @And("I verify date create")
+    @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
         Assert.assertEquals(createdFeature.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
     }
