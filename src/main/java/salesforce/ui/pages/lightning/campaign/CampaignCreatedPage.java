@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +51,15 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
     }
 
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public CampaignCreatedPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Gets the text inside the element.
      *
      * @param field represents the text to be introduced
@@ -64,7 +74,7 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
 
     public MenuPage clickCreatedCampaignOptionBtn() {
         webElementAction.clickByLocator(createdCampaignOptionBtn);
-        return new MenuPage();
+        return new MenuPage(webDriverManager);
     }
 
     @Override

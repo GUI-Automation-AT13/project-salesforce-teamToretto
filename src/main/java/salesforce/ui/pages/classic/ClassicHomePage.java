@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.classic;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import salesforce.ui.pages.BasePage;
@@ -19,6 +20,15 @@ public class ClassicHomePage extends BasePage {
 
     @FindBy(css = ".allTabsArrow")
     private WebElement addObject;
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public ClassicHomePage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -35,6 +45,6 @@ public class ClassicHomePage extends BasePage {
      */
     public ClassicHomePageObjects clickAddObject() {
         addObject.click();
-        return new ClassicHomePageObjects();
+        return new ClassicHomePageObjects(webDriverManager);
     }
 }

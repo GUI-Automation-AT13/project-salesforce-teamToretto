@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.classic.contracts;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.classic.ClassicHomePageObjects;
@@ -19,6 +20,15 @@ public class ClassicCreatedContractPage extends BasePage {
 
     private By accountName = By.cssSelector("div[id*=\"ctrc7_ileinner\"]");
     private By addObjects = By.cssSelector(".allTabsArrow");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public ClassicCreatedContractPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -35,7 +45,7 @@ public class ClassicCreatedContractPage extends BasePage {
      */
     public ClassicHomePageObjects clickAddObjects() {
         webElementAction.clickByLocator(addObjects);
-        return new ClassicHomePageObjects();
+        return new ClassicHomePageObjects(webDriverManager);
     }
 
     /**

@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.contracts;
 
 import static salesforce.utils.Internalization.translate;
 
+import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +57,15 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
         XPATH_COMPLEMENTS.put("Company Signed Date", "//button/preceding-sibling::span");
         XPATH_COMPLEMENTS.put("Special Terms", "//span//span");
         XPATH_COMPLEMENTS.put("Description", "//span//span");
+    }
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public CreatedContractPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
     }
 
     /**

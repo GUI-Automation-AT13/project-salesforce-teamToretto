@@ -36,6 +36,15 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     private By newButton = By.xpath(String.format("//div[@title='%s']", translate("New")));
 
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public IndividualListPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Checks if the view list span is visible.
      *
      * @return boolean
@@ -115,7 +124,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(recentlyViewedSpan));
+        webElementAction.waitForVisibilityOfLocator(recentlyViewedSpan);
     }
 
     /**
@@ -126,6 +135,6 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     @Override
     public FeatureNew clickNewButton() {
         webElementAction.clickByLocator(newButton);
-        return new IndividualFormPage();
+        return new IndividualFormPage(webDriverManager);
     }
 }

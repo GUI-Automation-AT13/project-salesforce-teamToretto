@@ -8,9 +8,9 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
 /**
@@ -19,6 +19,15 @@ import salesforce.utils.strategy.FeaturesPage;
 public class ContractsPage extends BasePage implements FeaturesPage {
 
     private By newContractButton = By.xpath("//a[@class='forceActionLink'][@role='button']");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public ContractsPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -35,12 +44,12 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      */
     public NewContractPage clickNewContractButton() {
         webElementAction.clickByLocator(newContractButton);
-        return new NewContractPage();
+        return new NewContractPage(webDriverManager);
     }
 
     @Override
     public NewContractPage clickNewButton() {
         webElementAction.clickByLocator(newContractButton);
-        return new NewContractPage();
+        return new NewContractPage(webDriverManager);
     }
 }

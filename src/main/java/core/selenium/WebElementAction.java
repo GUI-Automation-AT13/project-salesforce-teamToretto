@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -23,8 +22,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class WebElementAction {
 
-    protected WebDriver driver = WebDriverManager.getInstance().getWebDriver();
-    protected WebDriverWait wait = WebDriverManager.getInstance().getWait();
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected WebDriverManager webDriverManager;
+
+    /**
+     * Selects initializes a wev element action.
+     *
+     * @param webDriverManager type WebElement object.
+     */
+    public WebElementAction(WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+        this.driver = this.webDriverManager.getWebDriver();
+        this.wait = this.webDriverManager.getWait();
+    }
+
     /**
      * Waits until a text box is visible and writes a text.
      *

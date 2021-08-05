@@ -10,23 +10,22 @@ package salesforce.ui.pages;
 
 import core.selenium.WebDriverManager;
 import core.selenium.WebElementAction;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Load home page.
  */
 public abstract class BasePage {
     public WebElementAction webElementAction;
-    public WebDriverWait wait;
-    public WebDriver driver;
+    public WebDriverManager webDriverManager;
 
     /**
-     * Initializes the elements and wait for page to be loaded.
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
      */
-    public BasePage() {
-        webElementAction = new WebElementAction();
+    public BasePage(WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+        webElementAction = new WebElementAction(this.webDriverManager);
     }
 
     /**

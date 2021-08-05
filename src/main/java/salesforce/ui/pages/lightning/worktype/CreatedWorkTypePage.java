@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.worktype;
 
 import static salesforce.utils.Internalization.translate;
 
+import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,15 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
             "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public CreatedWorkTypePage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     @Override
     protected void waitForPageLoaded() {

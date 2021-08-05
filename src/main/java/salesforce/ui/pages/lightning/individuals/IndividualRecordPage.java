@@ -43,6 +43,15 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.." +
             "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public IndividualRecordPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
+
+    /**
      * Deletes the created individual.
      *
      * @return a HomePage instance.
@@ -50,7 +59,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     public IndividualListPage deleteCreatedIndividual() {
         webElementAction.clickByLocator(deleteHeaderButton);
         webElementAction.clickByLocator(confirmDeleteIndividualButton);
-        return new IndividualListPage();
+        return new IndividualListPage(webDriverManager);
     }
 
     /**
@@ -276,7 +285,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      */
     @Override
     protected void waitForPageLoaded() {
-        WebDriverManager.getInstance().getWait().until(ExpectedConditions.presenceOfElementLocated(nameHeaderLabel));
+        webElementAction.waitForVisibilityOfLocator(nameHeaderLabel);
     }
 
     @Override
