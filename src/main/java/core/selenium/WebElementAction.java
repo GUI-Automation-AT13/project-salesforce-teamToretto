@@ -8,8 +8,10 @@
 
 package core.selenium;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -51,7 +53,7 @@ public class WebElementAction {
      * Sends keys to the given WebElement.
      *
      * @param selector represents a selector
-     * @param input is the data to introduce
+     * @param input    is the data to introduce
      */
     public void setInputField(final By selector, final String input) {
         driver.findElement(selector).clear();
@@ -90,7 +92,7 @@ public class WebElementAction {
      * Clicks on the given WebElement.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      */
     public void clickOnElement(final String parametrizedSelector, final String value) {
         driver.findElement(withParameter(parametrizedSelector, value)).click();
@@ -101,7 +103,7 @@ public class WebElementAction {
      * Distinguishes xpath from css and accepts both.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      * @return By
      */
     private static By withParameter(final String parametrizedSelector, final String value) {
@@ -109,6 +111,20 @@ public class WebElementAction {
             return By.xpath(String.format(parametrizedSelector, value));
         } else {
             return By.cssSelector(String.format(parametrizedSelector, value));
+        }
+    }
+
+    /**
+     * Returns a By selector given a String.
+     *
+     * @param locator represents a locator
+     * @return By
+     */
+    private By getByLocatorFromString(final String locator) {
+        if (locator.startsWith("//")) {
+            return By.xpath(locator);
+        } else {
+            return By.cssSelector(locator);
         }
     }
 
@@ -126,7 +142,7 @@ public class WebElementAction {
      * Checks if the element is selected given a parametrized Selector.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value represents the custom value for the parametrized selector
+     * @param value                represents the custom value for the parametrized selector
      * @return boolean
      */
     public boolean isSelected(final String parametrizedSelector, final String value) {
@@ -141,6 +157,16 @@ public class WebElementAction {
      */
     public WebElement getElement(final By locator) {
         return driver.findElement(locator);
+    }
+
+    /**
+     * Returns a Web Element out of a String selector.
+     *
+     * @param locator represents a selector
+     * @return WebElement
+     */
+    public WebElement getElement(final String locator) {
+        return driver.findElement(getByLocatorFromString(locator));
     }
 
     /**
@@ -184,7 +210,6 @@ public class WebElementAction {
         return driver.findElement(locator).getText();
     }
 
-
     /**
      * Gets the text of a web element.
      *
@@ -192,5 +217,35 @@ public class WebElementAction {
      */
     public void clickByXpath(final String field) {
         driver.findElement(By.xpath(field)).click();
+    }
+
+    /**
+     * Gets the text of a web element.
+     *
+     * @param locator web element to get text
+     * @param key     represents the key to press
+     */
+    public void pressKey(final By locator, Keys key) {
+        driver.findElement(locator).sendKeys(key);
+    }
+
+    /**
+     * Returns a list of elements found from the given locator.
+     *
+     * @param locator represents the locator
+     * @return a List of web elements
+     */
+    public List<WebElement> getElements(final By locator) {
+        return driver.findElements(locator);
+    }
+
+    /**
+     * Returns a list of elements found from the given locator.
+     *
+     * @param locator represents the locator
+     * @return a List of web elements
+     */
+    public List<WebElement> getElements(final String locator) {
+        return driver.findElements(getByLocatorFromString(locator));
     }
 }

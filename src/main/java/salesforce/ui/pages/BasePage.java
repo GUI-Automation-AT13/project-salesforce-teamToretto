@@ -15,6 +15,7 @@ import core.selenium.WebElementAction;
  * Load home page.
  */
 public abstract class BasePage {
+
     public WebElementAction webElementAction;
     public WebDriverManager webDriverManager;
 
@@ -32,6 +33,4 @@ public abstract class BasePage {
      * Waits for the page to be loaded.
      */
     protected abstract void waitForPageLoaded();
-
-
 }
