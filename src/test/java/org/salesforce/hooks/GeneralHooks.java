@@ -4,7 +4,6 @@ import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
-import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.HomePage;
@@ -13,13 +12,13 @@ import salesforce.ui.pages.lightning.LoginPage;
 public class GeneralHooks {
 
     private Logger log = Logger.getLogger(getClass());
-    public PageTransporter pageTransporter;
-    public SoftAssert softAssert;
+    private PageTransporter pageTransporter;
+    private WebDriverManager webDriverManager;
 
-    public GeneralHooks(final PageTransporter pageTransporter, final SoftAssert softAssert) {
+    public GeneralHooks(final WebDriverManager webDriverManager) {
         log.info("GeneralHooks constructor");
-        this.pageTransporter = pageTransporter;
-        this.softAssert = softAssert;
+        this.webDriverManager = webDriverManager;
+        this.pageTransporter = new PageTransporter(this.webDriverManager);
     }
 
     @Before(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order  = 1)
@@ -40,6 +39,6 @@ public class GeneralHooks {
     @After(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order = 100)
     public void tearDown() {
         log.info("Close Driver");
-        WebDriverManager.getInstance().quitWebDriver();
+        webDriverManager.quitWebDriver();
     }
 }

@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.contracts;
 
 import static salesforce.utils.Internalization.translate;
 
+import core.selenium.WebDriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -53,6 +54,15 @@ public class NewContractPage extends BasePage implements FeatureNew {
         ownerExpirationNoticeSelector.put("60 Days", "60 " + translate("Days"));
         ownerExpirationNoticeSelector.put("90 Days", "90 " + translate("Days"));
         ownerExpirationNoticeSelector.put("120 Days", "120 " + translate("Days"));
+    }
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public NewContractPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
     }
 
     /**
@@ -246,7 +256,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public CreatedContractPage clickSave() {
         webElementAction.clickByLocator(save);
-        return new CreatedContractPage();
+        return new CreatedContractPage(webDriverManager);
     }
 
     /**
@@ -256,7 +266,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public NewContractPage clickSaveAndNew() {
         webElementAction.clickByLocator(saveAndNew);
-        return new NewContractPage();
+        return new NewContractPage(webDriverManager);
     }
 
     /**
@@ -266,7 +276,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public ContractsPage clickCancel() {
         webElementAction.clickByLocator(cancel);
-        return new ContractsPage();
+        return new ContractsPage(webDriverManager);
     }
 
     @Override
@@ -309,6 +319,6 @@ public class NewContractPage extends BasePage implements FeatureNew {
     @Override
     public CreatedFeature clickSaveButton() {
         webElementAction.clickByLocator(save);
-        return new CreatedContractPage();
+        return new CreatedContractPage(webDriverManager);
     }
 }

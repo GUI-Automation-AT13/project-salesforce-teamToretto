@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.classic.contracts;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
@@ -18,6 +19,15 @@ public class ClassicContractsPage extends BasePage {
 
     private By newContractButton = By.cssSelector("input[title='New']");
     private By popup = By.id("tryLexDialogX");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager .
+     */
+    public ClassicContractsPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -42,7 +52,7 @@ public class ClassicContractsPage extends BasePage {
      */
     public ClassicNewContractPage clickNew() {
         webElementAction.clickByLocator(newContractButton);
-        return new ClassicNewContractPage();
+        return new ClassicNewContractPage(webDriverManager);
     }
 
 }

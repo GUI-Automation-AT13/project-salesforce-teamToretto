@@ -10,12 +10,14 @@ package salesforce.ui.pages.lightning.worktype;
 
 import static salesforce.utils.Internalization.translate;
 
+import core.selenium.WebDriverManager;
 import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
+
 
 /**
  * This class has webElement for work type page form.
@@ -30,6 +32,15 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     private String xpathComboBoxSomeFields = "//*[contains(text(),'%s')]/../..//a[@class='select']";
     private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id][%d]//*[contains(text(),'%s')]";
     private int countComboBox = 0;
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public NewWorkTypePage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     @Override
     protected void waitForPageLoaded() {
@@ -88,7 +99,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      */
     public CreatedWorkTypePage clickSaveButton() {
         webElementAction.clickByLocator(saveBtn);
-        return new CreatedWorkTypePage();
+        return new CreatedWorkTypePage(webDriverManager);
     }
 
     @Override

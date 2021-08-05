@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
@@ -17,6 +18,15 @@ import salesforce.utils.strategy.FeaturesPage;
  */
 public class WorkTypesPage extends BasePage implements FeaturesPage {
     protected By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public WorkTypesPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     @Override
     protected void waitForPageLoaded() {
@@ -30,6 +40,6 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
      */
     public NewWorkTypePage clickNewButton() {
         webElementAction.clickByLocator(newBtn);
-        return new NewWorkTypePage();
+        return new NewWorkTypePage(webDriverManager);
     }
 }

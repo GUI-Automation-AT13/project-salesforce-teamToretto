@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.classic.ClassicHomePage;
 import salesforce.ui.pages.lightning.HomePage;
@@ -22,6 +23,15 @@ public class LoginPage extends BasePage {
     private final By passwordTxtBox = By.id("password");
 
     private final By loginBtn = By.id("Login");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public LoginPage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Waits for the page to be loaded.
@@ -71,7 +81,7 @@ public class LoginPage extends BasePage {
         setUserName(userName);
         setPassword(password);
         clickLoginBtn();
-        return new ClassicHomePage();
+        return new ClassicHomePage(webDriverManager);
     }
 
     /**
@@ -85,6 +95,6 @@ public class LoginPage extends BasePage {
         setUserName(userName);
         setPassword(password);
         clickLoginBtn();
-        return new HomePage();
+        return new HomePage(webDriverManager);
     }
 }

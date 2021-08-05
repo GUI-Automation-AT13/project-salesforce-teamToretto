@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages.lightning;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
@@ -18,6 +19,15 @@ public class HomePage extends BasePage {
 
     public static final String URL = "/lightning/page/home";
     private By labelObjectManager = By.cssSelector(".hasActions .title");
+
+    /**
+     * Initializes web element actions.
+     *
+     * @param webDriverManager to be managed for the webElementActions
+     */
+    public HomePage(WebDriverManager webDriverManager) {
+        super(webDriverManager);
+    }
 
     /**
      * Checks if the ObjectManager label is visible.

@@ -8,10 +8,10 @@
 
 package salesforce.utils.strategy;
 
+import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
 import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
-import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
@@ -19,6 +19,11 @@ import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
  * Create new instances object.
  */
 public class MapPages {
+    private WebDriverManager webDriverManager;
+
+    public MapPages(WebDriverManager webDriverManager) {
+        this.webDriverManager = webDriverManager;
+    }
 
     /**
      * Creates a object to features page.
@@ -29,13 +34,13 @@ public class MapPages {
     public FeaturesPage featuresPage(final String featureName) {
         switch (featureName) {
             case "workType":
-                return new WorkTypesPage();
+                return new WorkTypesPage(webDriverManager);
             case "contract":
-                return new ContractsPage();
+                return new ContractsPage(webDriverManager);
             case "individual":
-                return new IndividualListPage();
+                return new IndividualListPage(webDriverManager);
             case "campaign":
-                return new CampaignPage();
+                return new CampaignPage(webDriverManager);
             default:
                 throw new InvalidArgumentException("Invalid feature");
         }
