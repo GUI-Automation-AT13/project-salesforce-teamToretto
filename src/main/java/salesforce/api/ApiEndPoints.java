@@ -16,7 +16,9 @@ public enum ApiEndPoints {
     CONTACT("/sobjects/Contact"),
     CONTACT_ID("/sobjects/Contact/{CONTACT_ID}"),
     ACCOUNT("/sobjects/Account"),
-    ACCOUNT_ID("/sobjects/Account/{ACCOUNT_ID}");
+    ACCOUNT_ID("/sobjects/Account/{ACCOUNT_ID}"),
+    PRICEBOOK("/sobjects/Pricebook2"),
+    PRICEBOOK_ID("/sobjects/Pricebook2/{ACCOUNT_ID}");
 
     private String endpoint;
 
