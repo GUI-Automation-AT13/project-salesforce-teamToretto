@@ -11,8 +11,11 @@ package salesforce.api.entities;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * This class defines a Price Book.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PriceBook{
+public class PriceBook {
     @JsonProperty("Id")
     public String id;
     @JsonProperty("IsDeleted")
