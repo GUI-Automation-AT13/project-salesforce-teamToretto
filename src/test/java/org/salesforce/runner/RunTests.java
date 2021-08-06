@@ -20,9 +20,7 @@ import salesforce.api.entities.Account;
 import salesforce.api.entities.Contact;
 import salesforce.api.entities.PriceBook;
 import salesforce.api.entities.Response;
-
 import static salesforce.api.Authentication.token;
-
 import java.util.Properties;
 
 @CucumberOptions(
@@ -57,7 +55,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
                         + properties.getProperty("VERSION"));
     }
 
-    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact"})
+    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact", "deletePriceBook"})
     public void afterExecution() {
         apiRequest = new ApiRequest();
     }
@@ -81,6 +79,18 @@ public class RunTests extends AbstractTestNGCucumberTests {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("CONTACT_ID", contact.getId());
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact"})
+    public void deletePriceBook() {
+        LOGGER.info("----------- Delete a Contact feature -----------");
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.DELETE)
+                .endpoint(ApiEndPoints.PRICEBOOK_ID)
+                .addPathParam("PRICEBOOK_ID", priceBook.getId());
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
