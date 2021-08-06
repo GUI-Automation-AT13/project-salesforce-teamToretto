@@ -71,6 +71,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
     }
+    
     @AfterTest(dependsOnMethods = "deleteAccount")
     public void deleteContact() {
         LOGGER.info("----------- Delete a Contact feature -----------");
