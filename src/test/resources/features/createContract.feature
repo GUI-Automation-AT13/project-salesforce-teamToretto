@@ -170,4 +170,3 @@ Feature: Create Contract
       | Price Book              | Standard            |
       | Owner Expiration Notice | 30 Days             |
     Then I verify Contract created with all fields
-    
