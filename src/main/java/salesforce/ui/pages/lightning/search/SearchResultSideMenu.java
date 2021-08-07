@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.search;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
 /**

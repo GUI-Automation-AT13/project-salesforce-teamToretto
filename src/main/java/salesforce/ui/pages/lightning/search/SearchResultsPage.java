@@ -13,6 +13,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.lightning.Header;
 import salesforce.ui.pages.tables.TableGroup;
@@ -27,6 +28,7 @@ public class SearchResultsPage extends BasePage {
     private List<WebElement> table;
     private TableGroup tableGroup;
     private int tableCount;
+    private By tablesLocator = By.cssSelector("div.resultsWrapper table");
     private By searchBox = By.cssSelector("input[title]");
     private By allTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem");
     private By visibleTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem:not(.slds-hide)");
@@ -40,7 +42,6 @@ public class SearchResultsPage extends BasePage {
         super(webDriverManager);
         header = new Header(webDriverManager);
         searchResultSideMenu = new SearchResultSideMenu(webDriverManager);
-        tableGroup = new TableGroup(webDriverManager);
     }
 
     private void getTableCount() {
@@ -50,7 +51,7 @@ public class SearchResultsPage extends BasePage {
     /**
      * Initializes the tables.
      */
-    public void loadTables() {
+    private void loadTables() {
         tableGroup.loadTables();
     }
 
@@ -62,10 +63,13 @@ public class SearchResultsPage extends BasePage {
     public void search(final String textToSearch) {
         webElementAction.setInputField(searchBox, textToSearch);
         webElementAction.pressKey(searchBox, Keys.ENTER);
+        tableGroup = new TableGroup(webDriverManager);
+        System.out.println("Prior to load tables in search");
+        tableGroup.loadTables();
     }
 
     @Override
     protected void waitForPageLoaded() {
-
+        webDriverManager.getWait().until(ExpectedConditions.presenceOfElementLocated(tablesLocator));
     }
 }

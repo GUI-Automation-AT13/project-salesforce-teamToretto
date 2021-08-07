@@ -36,10 +36,9 @@ public class SearchBarSteps {
 
     @Given("I get table fields")
     public void iGetTableFields() {
-        log.info("Navigate pages");
+        log.info("Get Table Fields");
         SearchResultsPage searchResultsPage = pageTransporter.navigateToSearchResultPage();
         searchResultsPage.search("sa");
-        searchResultsPage.loadTables();
 
     }
 }

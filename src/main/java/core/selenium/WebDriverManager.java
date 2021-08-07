@@ -72,4 +72,22 @@ public class WebDriverManager {
         wait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(),
                 webDriverConfig.getWaitSleepTime());
     }
+
+    /**
+     * Sets the web driver waits to the minimum to handle datatable elements.
+     */
+    public void setTableWaitMode() {
+        this.webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        wait = new WebDriverWait(webDriver, 0, 0);
+    }
+
+    /**
+     * Sets the web driver waits to the property values.
+     */
+    public void setDefaultWaitMode() {
+        this.webDriver.manage().timeouts()
+                .implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);
+        wait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(),
+                webDriverConfig.getWaitSleepTime());
+    }
 }

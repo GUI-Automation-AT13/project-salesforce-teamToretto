@@ -11,6 +11,9 @@ package salesforce.ui.pages.tables;
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.log4testng.Logger;
 import salesforce.ui.pages.BasePage;
 
@@ -20,6 +23,10 @@ import salesforce.ui.pages.BasePage;
 public class TableGroup extends BasePage {
 
     private Logger logger = Logger.getLogger(getClass());
+    private By tablesLocator = By.cssSelector("div.resultsWrapper table");
+    private static final By assistiveText = By.cssSelector("h1.slds-assistive-text");
+    private static final By getAllValidTableContainersSelector = By
+            .cssSelector("div.resultsWrapper div.resultsItem:not(.slds-hide)");
     private static final String getAllTableContainersSelector = "div.resultsWrapper div.resultsItem";
     private static final String getValidTableContainerSelector = "div.resultsWrapper "
             + "div.resultsItem:nth-child(%d):not(.slds-hide)";
@@ -33,6 +40,7 @@ public class TableGroup extends BasePage {
      */
     public TableGroup(final WebDriverManager webDriverManager) {
         super(webDriverManager);
+        waitForPageLoaded();
         this.tables = new ArrayList<>();
     }
 
@@ -40,13 +48,17 @@ public class TableGroup extends BasePage {
      * Loads the table list.
      */
     public void loadTables() {
+        waitForPageLoaded();
         int totalTables = getTablesWithHidenOnes();
         for (int i = 1; i <= totalTables; i++) {
-            if (validElement(i)) {
+            webDriverManager.setTableWaitMode();
+            boolean validElement = validElement(i);
+            webDriverManager.setDefaultWaitMode();
+            if (validElement) {
                 String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
                 String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
                         .concat(titleNameLocator)).getText();
-                System.out.println(featureName);
+                logger.info("TABLE TITLE: " + featureName);
                 tables.add(new Table(webDriverManager, baseLocator, featureName));
             }
         }
@@ -63,13 +75,15 @@ public class TableGroup extends BasePage {
 
     private boolean validElement(final int i) {
         try {
-            if (webElementAction.getElement(String.format(getValidTableContainerSelector, i)) != null) {
+            WebElement webElement = webElementAction.getElement(String.format(getValidTableContainerSelector, i));
+            if (webElement != null) {
                 return true;
+            } else {
+                return false;
             }
         } catch (Exception e) {
-            logger.error("Element not found: " + e);
+            return false;
         }
-        return false;
     }
 
     /**
@@ -84,6 +98,7 @@ public class TableGroup extends BasePage {
 
     @Override
     protected void waitForPageLoaded() {
-
+        webDriverManager.getWait().until(ExpectedConditions
+                .presenceOfAllElementsLocatedBy(getAllValidTableContainersSelector));
     }
 }

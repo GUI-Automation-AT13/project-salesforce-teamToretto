@@ -98,7 +98,9 @@ public class Table extends BasePage {
      */
     public Map<String, String> getRecordFromId(final int row) {
         for (int column = 1; column <= columnTitlesIndex.size(); column++) {
+            webDriverManager.setTableWaitMode();
             String fieldValue = getFieldValue(String.format(columnSelector, row, column));
+            webDriverManager.setDefaultWaitMode();
             System.out.println(fieldValue);
             if (fieldValue != null) {
                 record.put(columnTitles.get(column), fieldValue);
