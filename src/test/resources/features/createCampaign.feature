@@ -1,7 +1,7 @@
 Feature: Create Campaign
 
   @CreateCampaign
-  Scenario: create a campaign with only required fields
+  Scenario: Create a campaign with only required fields
     Given I navigate to the "Campaign" page
     When I create a new campaign with required fields
       | Campaign Name           | New Campaign |
@@ -10,7 +10,7 @@ Feature: Create Campaign
 
 
   @CreateCampaign
-  Scenario: create a campaign with all required fields
+  Scenario: Create a campaign with all required fields
     Given I navigate to the "Campaign" page
     When I create a new campaign with all fields
       | Campaign Name                 | New Campaign          |

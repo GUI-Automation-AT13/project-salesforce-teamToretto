@@ -11,7 +11,7 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with all required fields
+  Scenario: Create a contract with all required fields
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -29,7 +29,7 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Test Account as pre-postcondition
+  Scenario: Create a contract with Test Account as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -40,19 +40,7 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name and Customer as pre-postcondition
-    Given I navigate to the "Contract" page
-    When I create a new contract with all fields
-      | Account Name            | TestAccount         |
-      | Contract Term (months)  | 2                   |
-      | Contract Start Date     | 8/15/2021           |
-      | Customer Signed By      | TestContact         |
-      | Customer Signed Title   | tittle              |
-    Then I verify Contract created with all fields
-      And I verify that the date matches the creation date
-
-  @CreateContract
-  Scenario: create a contract with Account Name and Customer as pre-postcondition
+  Scenario: Create a contract with Account Name and Customer as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -60,12 +48,11 @@ Feature: Create Contract
       | Contract Start Date     | 8/15/2021           |
       | Customer Signed By      | TestContact         |
       | Customer Signed Title   | tittle              |
-      | Customer Signed Date    | 7/15/2021           |
     Then I verify Contract created with all fields
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name, Customer and price book as pre-postcondition
+  Scenario: Create a contract with Account Name and Customer as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -74,13 +61,11 @@ Feature: Create Contract
       | Customer Signed By      | TestContact         |
       | Customer Signed Title   | tittle              |
       | Customer Signed Date    | 7/15/2021           |
-      | Price Book              | Standard            |
-      | Owner Expiration Notice | 30 Days             |
     Then I verify Contract created with all fields
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name, Customer and price book as pre-postcondition
+  Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -91,12 +76,11 @@ Feature: Create Contract
       | Customer Signed Date    | 7/15/2021           |
       | Price Book              | Standard            |
       | Owner Expiration Notice | 30 Days             |
-      | Company Signed Date     | 7/19/2021           |
     Then I verify Contract created with all fields
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name, Customer and price book as pre-postcondition
+  Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -108,12 +92,11 @@ Feature: Create Contract
       | Price Book              | Standard            |
       | Owner Expiration Notice | 30 Days             |
       | Company Signed Date     | 7/19/2021           |
-      | Special Terms           | Special Terms       |
     Then I verify Contract created with all fields
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name, Customer and price book as pre-postcondition
+  Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -126,17 +109,18 @@ Feature: Create Contract
       | Owner Expiration Notice | 30 Days             |
       | Company Signed Date     | 7/19/2021           |
       | Special Terms           | Special Terms       |
-      | Description             | Description         |
     Then I verify Contract created with all fields
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name and price book as pre-postcondition
+  Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
       | Contract Term (months)  | 2                   |
       | Contract Start Date     | 8/15/2021           |
+      | Customer Signed By      | TestContact         |
+      | Customer Signed Title   | tittle              |
       | Customer Signed Date    | 7/15/2021           |
       | Price Book              | Standard            |
       | Owner Expiration Notice | 30 Days             |
@@ -147,7 +131,23 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name and price book as pre-postcondition
+  Scenario: Create a contract with Account Name and price book as pre-postcondition
+    Given I navigate to the "Contract" page
+    When I create a new contract with all fields
+      | Account Name            | TestAccount         |
+      | Contract Term (months)  | 2                   |
+      | Contract Start Date     | 8/15/2021           |
+      | Customer Signed Date    | 7/15/2021           |
+      | Price Book              | Standard            |
+      | Owner Expiration Notice | 30 Days             |
+      | Company Signed Date     | 7/19/2021           |
+      | Special Terms           | Special Terms       |
+      | Description             | Description         |
+    Then I verify Contract created with all fields
+      And I verify that the date matches the creation date
+
+  @CreateContract
+  Scenario: Create a contract with Account Name and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -160,7 +160,7 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name and price book as pre-postcondition
+  Scenario: Create a contract with Account Name and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
@@ -172,7 +172,7 @@ Feature: Create Contract
       And I verify that the date matches the creation date
 
   @CreateContract
-  Scenario: create a contract with Account Name and price book as pre-postcondition
+  Scenario: Create a contract with Account Name and price book as pre-postcondition
     Given I navigate to the "Contract" page
     When I create a new contract with all fields
       | Account Name            | TestAccount         |
