@@ -6,7 +6,7 @@ Feature: Create workType
     When I create a new workType with required fields
       | Work Type Name     | workType |
       | Estimated Duration | 2.00        |
-    Then I verify WorkType created with the given requirement fields
+    Then I verify that the created WorkType contains the correct information
       And I verify that the date matches the creation date
 
   @CreateWorkType
@@ -20,5 +20,5 @@ Feature: Create workType
       | Block Time After Appointment  | 15                  |
       | Timeframe Start               | 4                   |
       | Timeframe End                 | 4                   |
-    Then I verify WorkType created with all fields
+    Then I verify that the created WorkType contains the correct information
       And I verify that the date matches the creation date
