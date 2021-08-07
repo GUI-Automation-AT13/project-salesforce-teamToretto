@@ -18,7 +18,10 @@ public enum ApiEndPoints {
     ACCOUNT("/sobjects/Account"),
     ACCOUNT_ID("/sobjects/Account/{ACCOUNT_ID}"),
     PRICEBOOK("/sobjects/Pricebook2"),
-    PRICEBOOK_ID("/sobjects/Pricebook2/{PRICEBOOK_ID}");
+    PRICEBOOK_ID("/sobjects/Pricebook2/{PRICEBOOK_ID}"),
+    CAMPAIGN("/sobjects/Campaign"),
+    CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
+    FEATURE_ID("/sobjects/Campaign/{CAMPAIGN_ID}");
 
     private String endpoint;
 
