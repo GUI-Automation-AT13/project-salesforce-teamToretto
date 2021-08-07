@@ -20,10 +20,10 @@ import salesforce.ui.pages.BasePage;
 public class TableGroup extends BasePage {
 
     private Logger logger = Logger.getLogger(getClass());
-    private String getAllTableContainersSelector = "div.resultsWrapper div.resultsItem";
-    private String getValidTableContainerSelector = "div.resultsWrapper div.resultsItem:nth-child(%d):not(.slds-hide)";
-    private String titleNameLocator = " h2 a";
-    private String tableLocator = " table";
+    private static final String getAllTableContainersSelector = "div.resultsWrapper div.resultsItem";
+    private static final String getValidTableContainerSelector = "div.resultsWrapper "
+            + "div.resultsItem:nth-child(%d):not(.slds-hide)";
+    private static final String titleNameLocator = " h2 a";
     private List<Table> tables;
 
     /**
@@ -34,7 +34,6 @@ public class TableGroup extends BasePage {
     public TableGroup(final WebDriverManager webDriverManager) {
         super(webDriverManager);
         this.tables = new ArrayList<>();
-        loadTables();
     }
 
     /**
@@ -45,10 +44,17 @@ public class TableGroup extends BasePage {
         for (int i = 0; i < totalTables; i++) {
             if (validElement(i)) {
                 String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
-                tables.add(new Table(webDriverManager, baseLocator, titleNameLocator));
+                String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
+                        .concat(titleNameLocator)).getText();
+                tables.add(new Table(webDriverManager, baseLocator, featureName));
             }
         }
     }
+
+    /**
+     * Returns all records from all tables.
+     */
+    public void getTableRecords() {}
 
     private int getTablesWithHidenOnes() {
         return webElementAction.getElements(getAllTableContainersSelector).size();

@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.lightning.Header;
+import salesforce.ui.pages.tables.TableGroup;
 
 /**
  * POM for the Salesforce search result page.
@@ -23,10 +24,10 @@ public class SearchResultsPage extends BasePage {
     private Header header;
     private SearchResultSideMenu searchResultSideMenu;
     private List<WebElement> table;
+    private TableGroup tableGroup;
     private int tableCount;
     private By allTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem");
     private By visibleTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem:not(.slds-hide)");
-
 
     /**
      * SearchResultsPage constructor.
@@ -37,12 +38,20 @@ public class SearchResultsPage extends BasePage {
         super(webDriverManager);
         header = new Header(webDriverManager);
         searchResultSideMenu = new SearchResultSideMenu(webDriverManager);
+        tableGroup = new TableGroup(webDriverManager);
     }
 
     public void getTableCount() {
         tableCount = webElementAction.getElements(allTablesSelector).size();
     }
 
+    public void getTableRecords() {
+        tableGroup.loadTables();
+    }
+
+    public void search() {
+
+    }
     @Override
     protected void waitForPageLoaded() {
 
