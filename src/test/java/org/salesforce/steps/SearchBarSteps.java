@@ -38,8 +38,8 @@ public class SearchBarSteps {
     public void iGetTableFields() {
         log.info("Navigate pages");
         SearchResultsPage searchResultsPage = pageTransporter.navigateToSearchResultPage();
-
-        searchResultsPage.getTableRecords();
+        searchResultsPage.search("sa");
+        searchResultsPage.loadTables();
 
     }
 }

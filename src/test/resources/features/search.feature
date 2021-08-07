@@ -10,3 +10,7 @@ Feature: Search bar
     Examples:
       | search |
       | Mr.    |
+
+  @SearchBar @RegressionTest
+  Scenario: Search input returns objects
+    Given I get table fields

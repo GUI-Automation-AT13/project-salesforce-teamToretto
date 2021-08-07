@@ -41,11 +41,12 @@ public class TableGroup extends BasePage {
      */
     public void loadTables() {
         int totalTables = getTablesWithHidenOnes();
-        for (int i = 0; i < totalTables; i++) {
+        for (int i = 1; i <= totalTables; i++) {
             if (validElement(i)) {
                 String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
                 String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
                         .concat(titleNameLocator)).getText();
+                System.out.println(featureName);
                 tables.add(new Table(webDriverManager, baseLocator, featureName));
             }
         }
