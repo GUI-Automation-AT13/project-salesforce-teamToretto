@@ -8,6 +8,7 @@
 
 package core.utils.date;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -81,5 +82,17 @@ public class DateManager {
             default:
                 throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
         }
+    }
+
+    /**
+     * Generates actual date.
+     *
+     * @param dataFormat is format of data
+     * @return a string with actual date
+     */
+    public static String generateDateActual(final String dataFormat) {
+        DateFormat dateFormat = new SimpleDateFormat(dataFormat);
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

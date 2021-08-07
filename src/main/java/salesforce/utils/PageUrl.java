@@ -24,7 +24,6 @@ public class PageUrl {
      * @return a complete url of feature.
      */
     public static String getFeaturePage(String feature) {
-        String url = baseUrl.concat("lightning/o/" + feature + "/list?filterName=Recent");
-        return url;
+        return baseUrl.concat("lightning/o/" + feature + "/list?filterName=Recent");
     }
 }

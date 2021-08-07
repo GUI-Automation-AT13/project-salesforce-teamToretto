@@ -34,3 +34,4 @@ users/
 .project
 .settings/
 bin/
+target/
