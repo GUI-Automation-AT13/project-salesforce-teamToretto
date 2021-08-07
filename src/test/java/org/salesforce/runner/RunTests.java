@@ -18,10 +18,9 @@ import salesforce.api.ApiEndPoints;
 import salesforce.api.Authentication;
 import salesforce.api.entities.Account;
 import salesforce.api.entities.Contact;
+import salesforce.api.entities.PriceBook;
 import salesforce.api.entities.Response;
-
 import static salesforce.api.Authentication.token;
-
 import java.util.Properties;
 
 @CucumberOptions(
@@ -36,6 +35,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
     public ApiResponse apiResponse;
     public Account account;
     public Contact contact;
+    public PriceBook priceBook;
 
     @Override
     @DataProvider(parallel = false)
@@ -55,7 +55,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
                         + properties.getProperty("VERSION"));
     }
 
-    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact"})
+    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact", "deletePriceBook"})
     public void afterExecution() {
         apiRequest = new ApiRequest();
     }
@@ -79,6 +79,18 @@ public class RunTests extends AbstractTestNGCucumberTests {
         apiRequest.method(ApiMethod.DELETE)
                 .endpoint(ApiEndPoints.CONTACT_ID)
                 .addPathParam("CONTACT_ID", contact.getId());
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+    }
+
+    @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact"})
+    public void deletePriceBook() {
+        LOGGER.info("----------- Delete a Contact feature -----------");
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.DELETE)
+                .endpoint(ApiEndPoints.PRICEBOOK_ID)
+                .addPathParam("PRICEBOOK_ID", priceBook.getId());
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
@@ -111,5 +123,19 @@ public class RunTests extends AbstractTestNGCucumberTests {
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
         contact.setId(apiResponse.getBody(Response.class).getId());
+    }
+
+    @BeforeTest(dependsOnMethods = "loginAndSetup")
+    public void createPriceBook() throws JsonProcessingException {
+        LOGGER.info("----------- Create a Price Book feature -----------");
+        priceBook = new PriceBook();
+        priceBook.setName("Standard");
+        apiRequest.method(ApiMethod.POST)
+                .endpoint(ApiEndPoints.PRICEBOOK)
+                .body(new ObjectMapper().writeValueAsString(priceBook));
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        apiResponse.getResponse().then().log().body();
+        priceBook.setId(apiResponse.getBody(Response.class).getId());
     }
 }
