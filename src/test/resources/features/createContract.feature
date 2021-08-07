@@ -7,7 +7,8 @@ Feature: Create Contract
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
       | Contract Start Date    | 7/15/2021   |
-    Then I verify Contract created with requirement fields
+    Then I verify Contract created with the given requirement fields
+      And I verify that the date matches the creation date
 
   @CreateContract
   Scenario: create a contract with all required fields
@@ -25,7 +26,6 @@ Feature: Create Contract
       | Special Terms           | Special Terms       |
       | Description             | Description         |
     Then I verify Contract created with all fields
-
 
   @CreateContract
   Scenario: create a contract with Test Account as pre-postcondition
@@ -170,3 +170,4 @@ Feature: Create Contract
       | Price Book              | Standard            |
       | Owner Expiration Notice | 30 Days             |
     Then I verify Contract created with all fields
+      And I verify that the date matches the creation date
