@@ -13,6 +13,9 @@ import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Page Object Model for the salesforce contracts page.
  */
@@ -51,5 +54,10 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     public NewContractPage clickNewButton() {
         webElementAction.clickByLocator(newContractButton);
         return new NewContractPage(webDriverManager);
+    }
+
+    @Override
+    public List<String> getValueTables(Map<String, String> table) {
+        return null;
     }
 }

@@ -5,13 +5,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
+import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
@@ -50,22 +53,31 @@ public class featureSteps {
     @When("^I create a new (.*) with (?:.*)$")
     public void iCreateANewWorkTypeOnlyWithRequiredFields(String nameFeature, final Map<String, String> table) {
         log.info("Create page");
-        tableFeature = table;
+        tableFeature = GeneratorUniqueString.nameUnique(table);
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
-        featureNew.fillUpField(table);
-        createdFeature=featureNew.clickSaveButton();
+        featureNew.fillUpField(tableFeature);
+        createdFeature = featureNew.clickSaveButton();
     }
 
     @Then("^I verify (?:.*) created with (?:.*)$")
     public void iVerifyWorkTypeCreatedWithRequirementFields() {
         log.info("Asserts fields of feature");
-       List<String> valuesField = createdFeature.getValueField(tableFeature);
+        List<String> valuesField = createdFeature.getValueField(tableFeature);
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
-        Assert.assertEquals(createdFeature.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+        Assert.assertEquals(createdFeature.getCreateDayTxt(), generateDateActual("M/d/yyyy, h:mm a"));
+    }
+
+    @Then("^I verify (.*) created in table$")
+    public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
+        pageTransporter.navigateToFeaturePage(nameFeature);
+        List<String> valuesField = featurePage.getValueTables(tableFeature);
+        System.out.println(valuesField);
+        System.out.println( new ArrayList<String>(tableFeature.values()));
+        Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 }

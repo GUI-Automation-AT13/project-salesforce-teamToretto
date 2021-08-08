@@ -15,6 +15,9 @@ import salesforce.ui.pages.lightning.contracts.NewContractPage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * This class is of Campaign Page.
  */
@@ -50,5 +53,10 @@ public class CampaignPage extends BasePage implements FeaturesPage {
     public CreateCampaignPage clickNewButton() {
         webElementAction.clickByLocator(createCampaignBtn);
         return new CreateCampaignPage(webDriverManager);
+    }
+
+    @Override
+    public List<String> getValueTables(Map<String, String> table) {
+        return null;
     }
 }

@@ -18,6 +18,9 @@ import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * Page Object Model for the salesforce individual list page.
@@ -136,5 +139,10 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     public FeatureNew clickNewButton() {
         webElementAction.clickByLocator(newButton);
         return new IndividualFormPage(webDriverManager);
+    }
+
+    @Override
+    public List<String> getValueTables(Map<String, String> table) {
+        return null;
     }
 }

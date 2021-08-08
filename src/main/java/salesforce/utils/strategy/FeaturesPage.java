@@ -8,9 +8,13 @@
 
 package salesforce.utils.strategy;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Implements in feature page.
  */
 public interface FeaturesPage {
     FeatureNew clickNewButton();
+    List<String> getValueTables(Map<String, String> table);
 }
