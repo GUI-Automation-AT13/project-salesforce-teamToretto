@@ -12,10 +12,11 @@ import core.selenium.WebDriverManager;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.lightning.Header;
+import salesforce.ui.pages.tables.Record;
+import salesforce.ui.pages.tables.Table;
 import salesforce.ui.pages.tables.TableGroup;
 
 /**
@@ -25,7 +26,6 @@ public class SearchResultsPage extends BasePage {
 
     private Header header;
     private SearchResultSideMenu searchResultSideMenu;
-    private List<WebElement> table;
     private TableGroup tableGroup;
     private int tableCount;
     private By tablesLocator = By.cssSelector("div.resultsWrapper table");
@@ -49,13 +49,6 @@ public class SearchResultsPage extends BasePage {
     }
 
     /**
-     * Initializes the tables.
-     */
-    private void loadTables() {
-        tableGroup.loadTables();
-    }
-
-    /**
      * Sends the word text to search and press the Enter key.
      *
      * @param textToSearch represents the text to search for
@@ -64,8 +57,31 @@ public class SearchResultsPage extends BasePage {
         webElementAction.setInputField(searchBox, textToSearch);
         webElementAction.pressKey(searchBox, Keys.ENTER);
         tableGroup = new TableGroup(webDriverManager);
-        System.out.println("Prior to load tables in search");
-        tableGroup.loadTables();
+    }
+
+    /**
+     * Sets the text in the search box.
+     *
+     * @param textToSearch is the text to search for
+     */
+    public void setTextToSearch(final String textToSearch) {
+        webElementAction.setInputField(searchBox, textToSearch);
+    }
+
+    /**
+     * Sends the Enter key to the search.
+     */
+    public void pressEnter() {
+        webElementAction.pressKey(searchBox, Keys.ENTER);
+        tableGroup = new TableGroup(webDriverManager);
+    }
+
+    public List<Record> getRecords() {
+        return tableGroup.getEachTableRecords();
+    }
+
+    public List<Table> getTables() {
+        return tableGroup.getTables();
     }
 
     @Override

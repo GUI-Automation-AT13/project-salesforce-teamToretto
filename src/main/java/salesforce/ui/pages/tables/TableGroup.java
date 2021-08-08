@@ -24,8 +24,7 @@ public class TableGroup extends BasePage {
 
     private Logger logger = Logger.getLogger(getClass());
     private By tablesLocator = By.cssSelector("div.resultsWrapper table");
-    private static final By assistiveText = By.cssSelector("h1.slds-assistive-text");
-    private static final By getAllValidTableContainersSelector = By
+    private By getAllValidTableContainersSelector = By
             .cssSelector("div.resultsWrapper div.resultsItem:not(.slds-hide)");
     private static final String getAllTableContainersSelector = "div.resultsWrapper div.resultsItem";
     private static final String getValidTableContainerSelector = "div.resultsWrapper "
@@ -42,6 +41,7 @@ public class TableGroup extends BasePage {
         super(webDriverManager);
         waitForPageLoaded();
         this.tables = new ArrayList<>();
+        loadTables();
     }
 
     /**
@@ -49,17 +49,21 @@ public class TableGroup extends BasePage {
      */
     public void loadTables() {
         waitForPageLoaded();
-        int totalTables = getTablesWithHidenOnes();
-        for (int i = 1; i <= totalTables; i++) {
-            webDriverManager.setTableWaitMode();
-            boolean validElement = validElement(i);
-            webDriverManager.setDefaultWaitMode();
-            if (validElement) {
-                String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
-                String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
-                        .concat(titleNameLocator)).getText();
-                logger.info("TABLE TITLE: " + featureName);
-                tables.add(new Table(webDriverManager, baseLocator, featureName));
+        webDriverManager.setTableWaitMode();
+        boolean thereAreResults = thereAreResults();
+        webDriverManager.setDefaultWaitMode();
+        if (thereAreResults) {
+            int totalTables = getTablesWithHidenOnes();
+            for (int i = 1; i <= totalTables; i++) {
+                webDriverManager.setTableWaitMode();
+                boolean validElement = validElement(i);
+                webDriverManager.setDefaultWaitMode();
+                if (validElement) {
+                    String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
+                    String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
+                            .concat(titleNameLocator)).getText();
+                    tables.add(new Table(webDriverManager, baseLocator, featureName));
+                }
             }
         }
     }
@@ -67,7 +71,13 @@ public class TableGroup extends BasePage {
     /**
      * Returns all records from all tables.
      */
-    public void getTableRecords() {}
+    public List<Record> getEachTableRecords() {
+        List<Record> records = new ArrayList<>();
+        if (!tables.isEmpty()) {
+            tables.stream().forEach(table -> records.addAll(table.getRecords()));
+        }
+        return records;
+    }
 
     private int getTablesWithHidenOnes() {
         return webElementAction.getElements(getAllTableContainersSelector).size();
@@ -96,9 +106,49 @@ public class TableGroup extends BasePage {
         return tables.stream().filter(c -> name.equals(c.getName())).findFirst().get();
     }
 
+    /**
+     * Returns a list with all the values for the specified column in the tables.
+     *
+     * @param columnName represents a column from the tables
+     * @return a List
+     */
+    public List<String> getTableValuesByColumnName(final String columnName) {
+        List<String> columnValues = new ArrayList<>();
+        tables.stream().forEach(table -> columnValues.addAll(table.getColumnValuesByColumnName(columnName)));
+        return columnValues;
+    }
+
+    /**
+     * Checks if there are table results.
+     *
+     * @return a boolean
+     */
+    public boolean thereAreResults() {
+        try {
+            webElementAction.getElements(getAllValidTableContainersSelector);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Returns the tables.
+     *
+     * @return a List
+     */
+    public List<Table> getTables() {
+        return tables;
+    }
+
     @Override
     protected void waitForPageLoaded() {
-        webDriverManager.getWait().until(ExpectedConditions
-                .presenceOfAllElementsLocatedBy(getAllValidTableContainersSelector));
+        try {
+            webDriverManager.getWait().until(ExpectedConditions
+                    .presenceOfAllElementsLocatedBy(getAllValidTableContainersSelector));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

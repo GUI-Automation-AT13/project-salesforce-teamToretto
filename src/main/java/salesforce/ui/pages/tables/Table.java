@@ -23,6 +23,7 @@ public class Table extends BasePage {
 
     private String featureName;
     private String baseLocator;
+    private static final int nameColumnIndex = 2;
     private static final String columnTitleLocator = " thead th[aria-label]";
     private static final String columnNameAttributePartialSelector = "aria-label";
     private static final String titleAttribute = "title";
@@ -35,8 +36,8 @@ public class Table extends BasePage {
     private int recordNumber;
     private Map<String, Integer> columnTitlesIndex;
     private Map<Integer, String> columnTitles;
-    private Map<String, String> record;
-    private List<Map<String, String>> records = new ArrayList<>();
+    private Record record;
+    private List<Record> records;
 
     /**
      * BaseElement constructor requires a base CSS locator for the table element and the name of the table.
@@ -47,30 +48,39 @@ public class Table extends BasePage {
         super(webDriverManager);
         this.baseLocator = baseLocator;
         this.featureName = featureName;
+        columnTitlesIndex = new HashMap<String, Integer>();
+        columnTitles = new HashMap<Integer, String>();
+        records = new ArrayList<>();
         rowsSelector = baseLocator.concat(" tbody tr");
         rowSelector = baseLocator.concat(" tbody tr:nth-child(%d)");
         columnSelector = rowSelector.concat(">*:nth-child(%d)");
-        columnTitlesIndex = new HashMap<String, Integer>();
-        columnTitles = new HashMap<Integer, String>();
-        record = new HashMap<>();
+        refreshTable();
+    }
+
+    /**
+     * Loads column titles and records count.
+     */
+    public void refreshTable() {
         fillColumnTitles();
         getRecordsNumber();
-        getRecordFromGivenColumnValue("Name");
+        records = new ArrayList<>();
     }
 
     /**
      * Gets the titles from the table and maps them with their index for the XML document.
      */
-    public void fillColumnTitles() {
+    private void fillColumnTitles() {
         List<WebElement> titleElements = webElementAction.getElements(baseLocator.concat(columnTitleLocator));
         for (int i = 0; i < titleElements.size(); i++) {
-            System.out.println("title element : " + titleElements.get(i)
-                    .getAttribute(columnNameAttributePartialSelector));
             columnTitlesIndex.put(titleElements.get(i).getAttribute(columnNameAttributePartialSelector), i + 1);
             columnTitles.put(i + 1, titleElements.get(i).getAttribute(columnNameAttributePartialSelector));
         }
+        System.out.print("\n");
     }
 
+    /**
+     * Sets the number of record results.
+     */
     private void getRecordsNumber() {
         this.recordNumber = webElementAction.getElements(rowsSelector).size();
     }
@@ -78,16 +88,70 @@ public class Table extends BasePage {
     /**
      * Gets a record containing the given value.
      *
-     * @param columnValue represents the column value
-     * @return a Map
+     * @param fieldValue represents the column value
+     * @return a Record
      */
-    public Map<String, String> getRecordFromGivenColumnValue(final String columnValue) {
+    public Record getRecordByValueForColumn(final String fieldValue, final String columnName) {
+        return getRecordByValue(fieldValue, columnTitlesIndex.get(columnName));
+    }
+
+    /**
+     * Gets a record containing the given value.
+     *
+     * @return a Record
+     */
+    public Record getRecordByName(final String nameValue) {
+        return getRecordByValue(nameValue, nameColumnIndex);
+    }
+
+    /**
+     * Gets a record containing the given value.
+     *
+     * @return a Record
+     */
+    private Record getRecordByValue(final String fieldValue, final int columnIndex) {
         for (int row = 1; row <= recordNumber; row++) {
-            if (getFieldValue(String.format(columnSelector, row, columnTitlesIndex.get(columnValue))) != null) {
-                record = getRecordFromId(row);
+            String fieldValueFound = "";
+            if (getFieldValue(String.format(columnSelector, row, columnIndex)) != null) {
+                if (fieldValueFound.equals(fieldValue)) {
+                    return getRecordById(row);
+                }
             }
         }
-        return record;
+        return new Record();
+    }
+
+    /**
+     * Retrns a list with all records in the table.
+     *
+     * @return a List
+     */
+    public List<Record> getRecords() {
+        if (records.isEmpty()) {
+            for (int i = 1; i <= recordNumber; i++) {
+                records.add(getRecordById(i));
+            }
+        }
+        return records;
+    }
+
+    /**
+     * Gets the given column name values.
+     *
+     * @param columnName represents a column name
+     * @return a List
+     */
+    public List<String> getColumnValuesByColumnName(final String columnName) {
+        List<String> columnValues = new ArrayList<>();
+        for (int row = 1; row <= recordNumber; row++) {
+            webDriverManager.setTableWaitMode();
+            String fieldValue = getFieldValue(String.format(columnSelector, row, columnTitles.get(columnName)));
+            webDriverManager.setDefaultWaitMode();
+            if (fieldValue != null) {
+                columnValues.add(fieldValue);
+            }
+        }
+        return columnValues;
     }
 
     /**
@@ -96,53 +160,48 @@ public class Table extends BasePage {
      * @param row represents the row index
      * @return a Map
      */
-    public Map<String, String> getRecordFromId(final int row) {
+    private Record getRecordById(final int row) {
+        record = new Record();
         for (int column = 1; column <= columnTitlesIndex.size(); column++) {
             webDriverManager.setTableWaitMode();
             String fieldValue = getFieldValue(String.format(columnSelector, row, column));
             webDriverManager.setDefaultWaitMode();
-            System.out.println(fieldValue);
             if (fieldValue != null) {
-                record.put(columnTitles.get(column), fieldValue);
+                record.set(columnTitles.get(column), fieldValue);
             }
         }
+        System.out.print("\n");
         return record;
     }
 
+    /**
+     * Returns the text from an element if the element contains a text.
+     *
+     * @param locator represents the locator for the row and column
+     * @return a String representing the table field value
+     */
     private String getFieldValue(final String locator) {
-        String fieldValue = getFieldValueFromText(String.format(locator.concat(nameContainingElementAselector)));
+        String fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+                .concat(nameContainingElementAselector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = getFieldValueFromText(String.format(locator.concat(nameContainingElementSpanInSpanSelector)));
+        fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+                .concat(nameContainingElementSpanInSpanSelector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = getFieldValueFromText(String.format(locator.concat(nameContainingElementSpanSelector)));
+        fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+                .concat(nameContainingElementSpanSelector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = getFieldValueFromAttribute(locator.concat(nameContainingElementAselector));
+        fieldValue = webElementAction.getAttributeIfElementExists(locator
+                .concat(nameContainingElementAselector), titleAttribute);
         if (fieldValue != null) {
             return fieldValue;
         }
         return null;
-    }
-
-    private String getFieldValueFromText(final String locator) {
-        try {
-            return webElementAction.getElement(locator).getText();
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private String getFieldValueFromAttribute(final String locator) {
-        try {
-            return webElementAction.getElement(locator).getAttribute(titleAttribute);
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     /**
@@ -156,6 +215,5 @@ public class Table extends BasePage {
 
     @Override
     protected void waitForPageLoaded() {
-
     }
 }

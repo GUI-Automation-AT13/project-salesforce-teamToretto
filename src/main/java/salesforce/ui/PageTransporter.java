@@ -135,7 +135,7 @@ public class PageTransporter {
         goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
     }
 
-    public SearchResultsPage navigateToSearchResultPage() {
+    public SearchResultsPage getSearchResultPage() {
         return new SearchResultsPage(webDriverManager);
     }
 }

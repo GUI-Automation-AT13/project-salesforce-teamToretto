@@ -120,7 +120,7 @@ public class WebElementAction {
      * @param locator represents a locator
      * @return By
      */
-    private By getByLocatorFromString(final String locator) {
+    public By getByLocatorFromString(final String locator) {
         if (locator.startsWith("//")) {
             return By.xpath(locator);
         } else {
@@ -208,6 +208,34 @@ public class WebElementAction {
     public String getTextOfByFieldByLocator(final By locator) {
         waitForVisibilityOfLocator(locator);
         return driver.findElement(locator).getText();
+    }
+
+    /**
+     * Returns a text if the element from the locator contains a text, otherwise returns null.
+     *
+     * @param locator represents the locator with the row and column locators
+     * @return a String as the text retrieved from the web element.
+     */
+    public String getTextIfElementExists(final String locator) {
+        try {
+            return driver.findElement(getByLocatorFromString(locator)).getText();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the text for the passed attribute name in a web element.
+     *
+     * @param locator represents the locator to the web element
+     * @return a String
+     */
+    public String getAttributeIfElementExists(final String locator, final String attribute) {
+        try {
+            return getElement(locator).getAttribute(attribute);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

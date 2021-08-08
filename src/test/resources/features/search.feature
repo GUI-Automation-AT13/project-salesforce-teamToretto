@@ -1,16 +1,11 @@
 Feature: Search bar
 
   @SearchBar @RegressionTest
-  Scenario Outline: Search input returns objects and fields that matches the search
-    Given The search bar on the header is visible
-    When I enter a text to look for
-      | search | <search> |
-    And Click the Enter key
-    Then The matched records name should contain the text entered
+  Scenario Outline: Search input returns mathing record names
+    Given I enter the text <searchText> on the header's search box
+    When I press the Enter key
+    Then All the result record's names should contain the text <searchText>
     Examples:
-      | search |
-      | Mr.    |
-
-  @SearchBar @RegressionTest
-  Scenario: Search input returns objects
-    Given I get table fields
+      | searchText |
+      | me         |
+      | ind        |
