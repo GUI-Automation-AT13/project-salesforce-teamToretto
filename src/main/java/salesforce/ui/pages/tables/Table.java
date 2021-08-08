@@ -170,7 +170,6 @@ public class Table extends BasePage {
                 record.set(columnTitles.get(column), fieldValue);
             }
         }
-        System.out.print("\n");
         return record;
     }
 
