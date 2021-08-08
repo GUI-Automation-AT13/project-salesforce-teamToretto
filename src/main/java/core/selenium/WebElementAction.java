@@ -92,7 +92,7 @@ public class WebElementAction {
      * Clicks on the given WebElement.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      */
     public void clickOnElement(final String parametrizedSelector, final String value) {
         driver.findElement(withParameter(parametrizedSelector, value)).click();
@@ -103,7 +103,7 @@ public class WebElementAction {
      * Distinguishes xpath from css and accepts both.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      * @return By
      */
     private static By withParameter(final String parametrizedSelector, final String value) {
