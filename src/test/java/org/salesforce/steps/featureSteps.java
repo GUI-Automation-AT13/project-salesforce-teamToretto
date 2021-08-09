@@ -60,8 +60,8 @@ public class featureSteps {
         createdFeature = featureNew.clickSaveButton();
     }
 
-    @Then("^I verify (?:.*) created with (?:.*)$")
-    public void iVerifyWorkTypeCreatedWithRequirementFields() {
+    @Then("^I verify that the created (?:.*) contains the correct information")
+    public void iVerifyThatTheCreatedContractContainsTheCorrectInformation() {
         log.info("Asserts fields of feature");
         List<String> valuesField = createdFeature.getValueField(tableFeature);
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
