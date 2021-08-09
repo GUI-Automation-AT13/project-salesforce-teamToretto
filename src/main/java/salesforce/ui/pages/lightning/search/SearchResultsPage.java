@@ -76,12 +76,42 @@ public class SearchResultsPage extends BasePage {
         tableGroup = new TableGroup(webDriverManager);
     }
 
+    /**
+     * Returns all table records.
+     *
+     * @return a List of the recods
+     */
     public List<Record> getRecords() {
         return tableGroup.getEachTableRecords();
     }
 
+    /**
+     * Return all the tables.
+     *
+     * @return a List of the tables
+     */
     public List<Table> getTables() {
         return tableGroup.getTables();
+    }
+
+    /**
+     * Checks if all records contain the given text.
+     *
+     * @param text is the text that was searched
+     */
+    public boolean doAllRecordsContainTheText(final String text) {
+        List<Record> results = getRecords();
+        boolean recordsContainText = true;
+        if (!results.isEmpty()) {
+            for (Record record : results) {
+                if (!record.thereIsValueContainingText(text)) {
+                    recordsContainText = false;
+                }
+            }
+        } else {
+            recordsContainText = false;
+        }
+        return recordsContainText;
     }
 
     @Override

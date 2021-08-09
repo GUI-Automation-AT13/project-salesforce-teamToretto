@@ -12,6 +12,7 @@ import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.log4testng.Logger;
@@ -128,7 +129,6 @@ public class TableGroup extends BasePage {
             webElementAction.getElements(getAllValidTableContainersSelector);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -148,7 +148,7 @@ public class TableGroup extends BasePage {
             webDriverManager.getWait().until(ExpectedConditions
                     .presenceOfAllElementsLocatedBy(getAllValidTableContainersSelector));
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new InvalidArgumentException(String.format("No valid results were found"));
         }
     }
 }

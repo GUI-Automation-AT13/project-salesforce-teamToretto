@@ -142,7 +142,7 @@ public class WebElementAction {
      * Checks if the element is selected given a parametrized Selector.
      *
      * @param parametrizedSelector selector represents a parametrized selector
-     * @param value                represents the custom value for the parametrized selector
+     * @param value represents the custom value for the parametrized selector
      * @return boolean
      */
     public boolean isSelected(final String parametrizedSelector, final String value) {

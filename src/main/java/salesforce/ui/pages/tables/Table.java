@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import salesforce.ui.pages.BasePage;
 
@@ -111,14 +112,12 @@ public class Table extends BasePage {
      */
     private Record getRecordByValue(final String fieldValue, final int columnIndex) {
         for (int row = 1; row <= recordNumber; row++) {
-            String fieldValueFound = "";
-            if (getFieldValue(String.format(columnSelector, row, columnIndex)) != null) {
-                if (fieldValueFound.equals(fieldValue)) {
-                    return getRecordById(row);
-                }
+            String fieldValueFound = getFieldValue(String.format(columnSelector, row, columnIndex));
+            if (fieldValueFound != null && fieldValueFound.equals(fieldValue)) {
+                return getRecordById(row);
             }
         }
-        return new Record();
+        throw new NoSuchElementException(String.format("Element for value:s%s, not found", fieldValue));
     }
 
     /**

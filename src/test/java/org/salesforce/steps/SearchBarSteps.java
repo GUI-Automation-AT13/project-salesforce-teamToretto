@@ -9,11 +9,6 @@
 package org.salesforce.steps;
 
 import core.selenium.WebDriverManager;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,7 +17,6 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
-import salesforce.ui.pages.tables.Record;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.MapPages;
 
@@ -59,19 +53,7 @@ public class SearchBarSteps {
     @Then("^All the result record's names should contain the text (.*?)$")
     public void allTheResultRecordsNamesShouldContainTheText(final String text) {
         log.info("Then all the result record's names should contain the text: ".concat(text));
-        boolean recordsContainText = true;
-        List<Record> results = searchResultsPage.getRecords();
-        log.info("Total results = " + results.size());
-        if (!results.isEmpty()) {
-            for (Record record : results) {
-                log.info("Record Content".concat(Arrays.toString(record.getValues().toArray())));
-                if (!record.thereIsValueContainingText(text)) {
-                    recordsContainText = false;
-                }
-            }
-        } else {
-            recordsContainText = false;
-        }
+        boolean recordsContainText = searchResultsPage.doAllRecordsContainTheText(text);
         Assert.assertTrue(recordsContainText);
     }
 }
