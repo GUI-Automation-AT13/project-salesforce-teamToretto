@@ -13,6 +13,8 @@ import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +24,8 @@ import java.util.Map;
 public class ContractsPage extends BasePage implements FeaturesPage {
 
     private By newContractButton = By.xpath("//a[@class='forceActionLink'][@role='button']");
+    private String xpathTable = "(//span[@class='slds-grid slds-grid--align-spread'])[1]/../.." +
+            "//*[contains(.,'%s')][@role='gridcell']";
 
     /**
      * Initializes web element actions.
@@ -30,6 +34,18 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      */
     public ContractsPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
+    }
+
+
+    /**
+     * Gets value of cell in table according the name of column header (Account Name,  Contract Term (months),
+     * Contract Start Date, Status and Contract End Date)
+     *
+     * @param nameOfColumnHeader a name of column header on table
+     * @return a value of one element of table
+     */
+    public String getValueInTable(final String nameOfColumnHeader) {
+        return webElementAction.getTextOfElementByField(String.format(xpathTable, nameOfColumnHeader));
     }
 
     /**
@@ -58,6 +74,20 @@ public class ContractsPage extends BasePage implements FeaturesPage {
 
     @Override
     public List<String> getValueTables(Map<String, String> table) {
-        return null;
+        return getValues(new ArrayList<String>(table.keySet()));
+    }
+
+    /**
+     * Gets values of table according the work type name, this field is unique
+     * only select field of table
+     *
+     * @param valuesToGet is values to get
+     * @return a values of tables
+     */
+    public List<String> getValues(List<String> valuesToGet) {
+        Map<String, String> mapNew = new HashMap<>();
+        valuesToGet.stream()
+                .forEach(key -> mapNew.put(key, getValueInTable(key)));
+        return new ArrayList<String>(mapNew.values());
     }
 }

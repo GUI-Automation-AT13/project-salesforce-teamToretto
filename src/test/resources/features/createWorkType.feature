@@ -27,7 +27,7 @@ Feature: Create workType
   Scenario: create an workType
     Given I navigate to the "WorkType" page
     When I create a new workType with all fields
-      | Work Type Name     | workType            |
-      | Estimated Duration | 25.00               |
-      | Duration Type      | Hours               |
+      | Work Type Name     | workType |
+      | Estimated Duration | 25.00    |
+      | Duration Type      | Hours    |
     Then I verify WorkType created in table

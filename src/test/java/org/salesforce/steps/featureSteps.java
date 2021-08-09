@@ -53,7 +53,7 @@ public class featureSteps {
     @When("^I create a new (.*) with (?:.*)$")
     public void iCreateANewWorkTypeOnlyWithRequiredFields(String nameFeature, final Map<String, String> table) {
         log.info("Create page");
-        tableFeature = GeneratorUniqueString.nameUnique(table);
+        tableFeature = GeneratorUniqueString.nameUnique(table, nameFeature);
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
         featureNew.fillUpField(tableFeature);
@@ -76,8 +76,6 @@ public class featureSteps {
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
         pageTransporter.navigateToFeaturePage(nameFeature);
         List<String> valuesField = featurePage.getValueTables(tableFeature);
-        System.out.println(valuesField);
-        System.out.println( new ArrayList<String>(tableFeature.values()));
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 }
