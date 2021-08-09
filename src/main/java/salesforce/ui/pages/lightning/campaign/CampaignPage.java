@@ -15,6 +15,8 @@ import salesforce.ui.pages.lightning.contracts.NewContractPage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +26,8 @@ import java.util.Map;
 public class CampaignPage extends BasePage implements FeaturesPage {
 
     protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
+    protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
+    protected String fieldWithUniqueName = "Campaign Name";
 
     /**
      * Initializes web element actions.
@@ -32,6 +36,17 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      */
     public CampaignPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
+    }
+
+    /**
+     * Gets value of cell in table according the name of column header.
+     *
+     * @param fieldUniqueName is field in arrow with is unique
+     * @param nameOfColumnHeader a name of column header on table
+     * @return a value of one element of table
+     */
+    public String getValueInTable(final String fieldUniqueName, final String nameOfColumnHeader) {
+        return webElementAction.getTextOfElementByField(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
     @Override
@@ -57,6 +72,23 @@ public class CampaignPage extends BasePage implements FeaturesPage {
 
     @Override
     public List<String> getValueTables(Map<String, String> table) {
-        return null;
+        return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
+    }
+
+    /**
+     * Gets values of table according the campaign name, this field is unique
+     * only select field of table
+     *
+     * @param valuesToGet is values to get
+     * @param unitName    is value of work type name
+     * @return a values of tables
+     */
+    public List<String> getValues(List<String> valuesToGet, String unitName) {
+        Map<String, String> mapNew = new HashMap<>();
+        mapNew.put(fieldWithUniqueName, unitName);
+        valuesToGet.stream()
+                .filter(v -> !v.equals(fieldWithUniqueName))
+                .forEach(key -> mapNew.put(key, getValueInTable(unitName, key)));
+        return new ArrayList<String>(mapNew.values());
     }
 }

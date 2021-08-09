@@ -78,7 +78,7 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     }
 
     /**
-     * Gets values of table according the work type name, this field is unique
+     * Gets values of table according the first element on the table,
      * only select field of table
      *
      * @param valuesToGet is values to get
