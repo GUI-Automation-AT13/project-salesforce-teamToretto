@@ -7,11 +7,13 @@ import core.api.ApiMethod;
 import core.api.ApiRequest;
 import core.api.ApiResponse;
 import core.utils.PropertiesReader;
+import core.utils.ReportGenerator;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.apache.http.HttpHeaders;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterTest;
@@ -25,7 +27,7 @@ import static salesforce.api.Authentication.token;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/"},
+        features = {"src/test/resources/features"},
         plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
         glue = {"org.salesforce"}
 )
@@ -143,5 +145,9 @@ public class RunTests extends AbstractTestNGCucumberTests {
                 .body("{\"IsActive\": \"true\"}");
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
+    }
+    @AfterSuite
+    public void createReports(){
+        ReportGenerator.generateReport();
     }
 }
