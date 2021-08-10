@@ -48,6 +48,7 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
         By xpathLocator = By.xpath(xpath);
         return webElementAction.getTextOfByFieldByLocator(xpathLocator);
     }
+
     /**
      * Gets a date when workType is created.
      *
