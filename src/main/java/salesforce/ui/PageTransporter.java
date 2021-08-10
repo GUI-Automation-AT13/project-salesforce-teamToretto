@@ -133,4 +133,12 @@ public class PageTransporter {
     public void navigateToFeaturePage(String featureName) {
         goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
     }
+
+
+    /**
+     * Navigates to personal information page on lightning version.
+     */
+    public void navigatePersonalInformation() {
+        goToUrl(baseUrl.concat("lightning/settings/personal/PersonalInformation/home"));
+    }
 }

@@ -190,4 +190,4 @@ Feature: Create Contract
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
       | Contract Start Date    | 7/15/2021   |
-    Then I verify Contract created in table
+    Then I verify Contract created and matches with values of table

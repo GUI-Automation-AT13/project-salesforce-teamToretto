@@ -14,6 +14,7 @@ import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
@@ -143,6 +144,11 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
 
     @Override
     public List<String> getValueTables(Map<String, String> table) {
+        return null;
+    }
+
+    @Override
+    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
         return null;
     }
 }

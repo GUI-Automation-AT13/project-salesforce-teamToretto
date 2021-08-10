@@ -8,6 +8,8 @@
 
 package salesforce.utils.strategy;
 
+import salesforce.ui.entities.PersonalInformation;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +19,5 @@ import java.util.Map;
 public interface FeaturesPage {
     FeatureNew clickNewButton();
     List<String> getValueTables(Map<String, String> table);
+    List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation);
 }

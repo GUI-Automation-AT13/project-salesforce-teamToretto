@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.worktype;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
@@ -67,6 +68,11 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
     @Override
     public List<String> getValueTables(Map<String, String> table) {
         return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
+    }
+
+    @Override
+    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
+        return new ArrayList<String>(tableFeature.values());
     }
 
     /**

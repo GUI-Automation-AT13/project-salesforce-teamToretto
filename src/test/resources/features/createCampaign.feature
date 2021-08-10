@@ -30,4 +30,4 @@ Feature: Create Campaign
       | Campaign Name | New Campaign |
       | Start Date    | 8/15/2021    |
       | End Date      | 8/18/2021    |
-    Then I verify Campaign created in table
+    Then I verify Campaign created and matches with values of table

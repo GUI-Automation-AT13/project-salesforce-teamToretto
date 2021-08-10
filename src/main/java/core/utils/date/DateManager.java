@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import org.openqa.selenium.InvalidArgumentException;
 
 /**
@@ -94,5 +95,25 @@ public class DateManager {
         DateFormat dateFormat = new SimpleDateFormat(dataFormat);
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    /**
+     * Modifies date and add months.
+     *
+     * @param date      to change
+     * @param addMonths adds months
+     * @return a new date
+     * @throws ParseException format is wrong or date
+     */
+    public static String addMonthsDate(final String date, final int addMonths) {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+        try {
+            calendar.setTime(dateFormat.parse(date));
+        } catch (ParseException e) {
+            throw new InvalidArgumentException("Format is wrong or date incorrect");
+        }
+        calendar.add(Calendar.DAY_OF_MONTH, addMonths * 30 + 1);
+        return dateFormat.format(calendar.getTime());
     }
 }

@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.contracts;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static core.utils.date.DateManager.addMonthsDate;
 
 /**
  * Page Object Model for the salesforce contracts page.
@@ -77,6 +80,14 @@ public class ContractsPage extends BasePage implements FeaturesPage {
         return getValues(new ArrayList<String>(table.keySet()));
     }
 
+    @Override
+    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
+        tableFeature.put("Status", "Draft");
+        tableFeature.put("Contract End Date", addMonthsDate(tableFeature.get("Contract Start Date"),
+                Integer.parseInt(tableFeature.get("Contract Term (months)"))));
+        return new ArrayList<String>(tableFeature.values());
+    }
+
     /**
      * Gets values of table according the first element on the table,
      * only select field of table
@@ -88,6 +99,8 @@ public class ContractsPage extends BasePage implements FeaturesPage {
         Map<String, String> mapNew = new HashMap<>();
         valuesToGet.stream()
                 .forEach(key -> mapNew.put(key, getValueInTable(key)));
+        mapNew.put("Status", getValueInTable("Status"));
+        mapNew.put("Contract End Date", getValueInTable("Contract End Date"));
         return new ArrayList<String>(mapNew.values());
     }
 }

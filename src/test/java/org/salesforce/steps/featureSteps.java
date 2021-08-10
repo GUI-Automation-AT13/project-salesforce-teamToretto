@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
@@ -30,16 +31,18 @@ public class featureSteps {
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
     private Internalization internalization;
+    private PersonalInformation personalInformation;
     private MapPages mapPages;
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
     private CreatedFeature createdFeature;
     private Map<String, String> tableFeature;
 
-    public featureSteps(final WebDriverManager webDriverManager) {
+    public featureSteps(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
         log.info("GeneralHooks featureSteps");
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
+        this.personalInformation = personalInformation;
         this.mapPages = new MapPages(this.webDriverManager);
         this.softAssert = new SoftAssert();
     }
@@ -73,11 +76,11 @@ public class featureSteps {
         Assert.assertEquals(createdFeature.getCreateDayTxt(), generateDateActual("M/d/yyyy, h:mm a"));
     }
 
-    @Then("^I verify (.*) created in table$")
+    @Then("^I verify (.*) created and matches with values of table$")
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
         pageTransporter.navigateToFeaturePage(nameFeature);
-        List<String> valuesField = featurePage.getValueTables(tableFeature);
-        System.out.println(new ArrayList<String>(tableFeature.values()));
-        Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
+        List<String> actual = featurePage.getValueTables(tableFeature);
+        List<String> expected = featurePage.getExpected(tableFeature, personalInformation);
+        Assert.assertEquals(actual, expected);
     }
 }

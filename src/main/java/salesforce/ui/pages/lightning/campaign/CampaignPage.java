@@ -10,6 +10,7 @@ package salesforce.ui.pages.lightning.campaign;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.ui.pages.lightning.contracts.NewContractPage;
 import salesforce.utils.strategy.FeatureNew;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static core.utils.date.DateManager.addMonthsDate;
 
 /**
  * This class is of Campaign Page.
@@ -75,6 +78,12 @@ public class CampaignPage extends BasePage implements FeaturesPage {
         return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
     }
 
+    @Override
+    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
+        tableFeature.put("Responses in Campaign", "0");
+        return new ArrayList<String>(tableFeature.values());
+    }
+
     /**
      * Gets values of table according the campaign name, this field is unique
      * only select field of table
@@ -89,6 +98,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
         valuesToGet.stream()
                 .filter(v -> !v.equals(fieldWithUniqueName))
                 .forEach(key -> mapNew.put(key, getValueInTable(unitName, key)));
+        mapNew.put("Responses in Campaign", getValueInTable(unitName, "Responses in Campaign"));
         return new ArrayList<String>(mapNew.values());
     }
 }
