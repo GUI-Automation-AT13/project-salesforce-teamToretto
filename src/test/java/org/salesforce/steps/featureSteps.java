@@ -13,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
+import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
@@ -68,5 +70,18 @@ public class featureSteps {
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
         Assert.assertEquals(createdFeature.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+    }
+
+    @Then("The name displayed should contain {string}")
+    public void theNameDisplayedShouldContain(final String text) {
+        IndividualRecordPage individualRecordPage = new IndividualRecordPage(webDriverManager);
+        String headerNameText = individualRecordPage.getNameHeaderText();
+        Assert.assertEquals(headerNameText, text);
+    }
+
+    @Then("The feature list Page should contain a record with {string}")
+    public void theFeatureListPageShouldContainArecordWith(final String text) {
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualListPage.isThereRecordWithName(text));
     }
 }
