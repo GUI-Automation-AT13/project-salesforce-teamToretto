@@ -44,6 +44,7 @@ public class GeneralHooks {
     @After(order = 100)
     public void tearDown() {
         log.info("Close Driver");
+        
         webDriverManager.quitWebDriver();
     }
 }
