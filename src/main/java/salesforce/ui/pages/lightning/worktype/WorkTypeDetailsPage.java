@@ -22,7 +22,6 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
 
-
     /**
      * Initializes web element actions.
      *
@@ -31,7 +30,6 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
     public WorkTypeDetailsPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
-
 
     @Override
     public List<String> getValueField(final Map<String, String> table) {
@@ -105,5 +103,4 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
     public String getNameCreatorTxt() {
         return webElementAction.getTextOfByFieldByLocator(nameCreatorTxt);
     }
-
 }

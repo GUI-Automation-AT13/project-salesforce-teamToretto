@@ -30,6 +30,9 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
                     + translate("Contract Start Date") + "\"] /following-sibling::div)[last()]");
     private By contractEndDateTitle = By
             .xpath("(//ul//li//div//span[@title=\"Contract End Date\"] /following-sibling::div)[last()]");
+    private By statusTitle = By
+            .xpath("(//ul//li//div//span[@title=\""
+                    + translate("Status") + "\"] /following-sibling::div)[last()]");
 
     /**
      * Initializes web element actions.
@@ -38,6 +41,13 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      */
     public CreatedContractPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
+    }
+
+    /**
+     * Gets the text on the Status Tittle.
+     */
+    public String getStatusTxt() {
+        return webElementAction.getTextOfByFieldByLocator(statusTitle);
     }
 
     /**

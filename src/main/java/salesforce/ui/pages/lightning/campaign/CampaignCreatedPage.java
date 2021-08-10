@@ -105,5 +105,4 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
         webElementAction.dropDownTillTheEnd();
         return new CampaignDetails(webDriverManager);
     }
-
 }

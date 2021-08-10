@@ -54,7 +54,6 @@ public class featureSteps {
         featureNew.fillUpField(table);
         createdFeature=featureNew.clickSaveButton();
         featureDetails = createdFeature.clickDetails();
-
     }
 
     @Then("^I verify that the created (?:.*) contains the correct information")

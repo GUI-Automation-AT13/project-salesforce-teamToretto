@@ -24,7 +24,7 @@ import static salesforce.api.Authentication.token;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/createCampaign.feature"},
+        features = {"src/test/resources/features/createContract.feature"},
         plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
         glue = {"org.salesforce"}
 )

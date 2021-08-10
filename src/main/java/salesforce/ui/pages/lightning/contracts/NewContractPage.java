@@ -24,17 +24,18 @@ import salesforce.utils.supplier.VoidSupplier;
  */
 public class NewContractPage extends BasePage implements FeatureNew {
     private By accountName = By.cssSelector("input[placeholder='" + translate("SearchAccounts") + "']");
-    private By accountSelector = By.xpath("//mark[normalize-space()='TestAccount']");
+    private String accountSelector = "//mark[normalize-space()='%s']";
+    private By status = By.cssSelector(".select[aria-required='true']");
+    private String statusSelector = "//a[normalize-space()='%s']";
     private By customerSignedBy = By.cssSelector("input[placeholder='" + translate("SearchContacts") + "']");
-    private By contactSelector = By.xpath("//div[@title='TestContact']");
+    private String contactSelector = "//div[@title='%s']";
     private By customerSignedTittle = By.xpath("(//div/input[@class = ' input'])[2]");
     private By customerSignedDate = By.xpath("(//div/input[@class = ' input'])[3]");
     private By priceBook = By.cssSelector("input[placeholder='" + translate("SearchPriceBooks") + "']");
-    private By priceBookSelector = By.xpath("//mark[normalize-space()='Standard']");
+    private String priceBookSelector = "//mark[normalize-space()='%s']";
     private By contractStartDate = By.xpath("(//div/input[@class =' input'])[1]");
     private By contractTermMonths = By.cssSelector(".input.uiInputSmartNumber");
     private By ownerExpirationNotice = By.cssSelector(".select[aria-required='false']");
-    private static HashMap<String, String> ownerExpirationNoticeSelector = new HashMap<>();
     private By companySignedDate = By.xpath("(//div/input[@class = ' input'])[4]");
     private By billingStreet = By.cssSelector("textarea[placeholder='" + translate("BillingStreet") + "']");
     private By billingCity = By.cssSelector("input[placeholder='" + translate("BillingCity") + "']");
@@ -47,14 +48,6 @@ public class NewContractPage extends BasePage implements FeatureNew {
     private By saveAndNew = By.cssSelector("button[title='" + translate("SaveAndNew") + "']");
     private By cancel = By.cssSelector("button[title='" + translate("Cancel") + "']");
 
-    static {
-        ownerExpirationNoticeSelector.put("15 Days", "15 " + translate("Days"));
-        ownerExpirationNoticeSelector.put("30 Days", "30 " + translate("Days"));
-        ownerExpirationNoticeSelector.put("45 Days", "45 " + translate("Days"));
-        ownerExpirationNoticeSelector.put("60 Days", "60 " + translate("Days"));
-        ownerExpirationNoticeSelector.put("90 Days", "90 " + translate("Days"));
-        ownerExpirationNoticeSelector.put("120 Days", "120 " + translate("Days"));
-    }
 
     /**
      * Initializes web element actions.
@@ -80,14 +73,17 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setAccountName(final String newAccountName) {
         webElementAction.setInputField(this.accountName, newAccountName);
-        clickAccountSelector();
+        clickAccountSelector(newAccountName);
     }
 
     /**
      * Selects the account name on a contract.
+     *
+     * @param newAccountName to form the locator
      */
-    public void clickAccountSelector() {
-        webElementAction.clickByLocator(this.accountSelector);
+    public void clickAccountSelector(final String newAccountName) {
+        By account = By.xpath(String.format(accountSelector, newAccountName));
+        webElementAction.clickByLocator(account);
     }
 
     /**
@@ -97,14 +93,17 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setCustomerSignedBy(final String newCustomerSignedBy) {
         webElementAction.setInputField(this.customerSignedBy, newCustomerSignedBy);
-        clickContactSelector();
+        clickContactSelector(newCustomerSignedBy);
     }
 
     /**
      * Selects the contact name on a contract.
+     *
+     * @param newContactSelector to select customer
      */
-    public void clickContactSelector() {
-        webElementAction.clickByLocator(this.contactSelector);
+    public void clickContactSelector(final String newContactSelector) {
+        By contact = By.xpath(String.format(contactSelector, newContactSelector));
+        webElementAction.clickByLocator(contact);
     }
 
     /**
@@ -132,14 +131,17 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void setPriceBook(final String newPriceBook) {
         webElementAction.setInputField(this.priceBook, newPriceBook);
-        selectPriceBook();
+        selectPriceBook(newPriceBook);
     }
 
     /**
      * Sets the priceBook element.
+     *
+     * @param newPriceBook to create the locator
      */
-    public void selectPriceBook() {
-        webElementAction.clickByLocator(this.priceBookSelector);
+    public void selectPriceBook(final String newPriceBook) {
+        By priceBook = By.xpath(String.format(priceBookSelector, newPriceBook));
+        webElementAction.clickByLocator(priceBook);
     }
 
     /**
@@ -174,7 +176,26 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void selectOwnerExpirationNotice(final String value) {
         clickOwnerExpirationNotice();
-        webElementAction.clickFieldByLocator(ownerExpirationNoticeSelector.get(value));
+        webElementAction.clickFieldByLinkText(value + " " + translate("Days"));
+    }
+
+    /**
+     * Sets the ownerExpirationNotice element.
+     */
+    public void clickStatusBtn() {
+        webElementAction.clickByLocator(this.status);
+    }
+
+    /**
+     * Sets the ownerExpirationNotice element on the selector.
+     *
+     * @param value for the xpath
+     */
+    public void selectStatus(final String value) {
+        clickStatusBtn();
+        String locator = String.format(statusSelector, translate(value));
+        By statusSelector = By.xpath(locator);
+        webElementAction.clickByLocator(statusSelector);
     }
 
     /**
@@ -285,6 +306,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
         table.keySet().forEach(key -> actionsContractMap.get(key).run());
     }
 
+
     /**
      * Saves actions in New work type page in map.
      *
@@ -294,6 +316,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
     private HashMap<String, VoidSupplier> mapActionsContract(final Map<String, String> contractMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
         mapActions.put("Account Name", () -> setAccountName(contractMap.get("Account Name")));
+        mapActions.put("Status", () -> selectStatus(contractMap.get("Status")));
         mapActions.put("Contract Term (months)", () -> setContractTermMonths(contractMap
                 .get("Contract Term (months)")));
         mapActions.put("Contract Start Date", () -> setContractStartDate(contractMap.get("Contract Start Date")));

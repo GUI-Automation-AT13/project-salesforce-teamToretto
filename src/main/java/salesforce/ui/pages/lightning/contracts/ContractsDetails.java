@@ -19,7 +19,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
             + translate("Contract Start Date") + "']]]//span//span)[last()]");
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {
@@ -50,6 +50,19 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
         String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
         return webElementAction.getTextOfByFieldByLocator(xpathLocator);
+    }
+
+    /**
+     * Gets the text inside the element.
+     *
+     * @param field represents the text to be introduced
+     * @return the text set on the field requested contract
+     */
+    public String getOwnerExpNoticeTxt(final String field) {
+        String xpathComplement = XPATH_COMPLEMENTS.get(field);
+        String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
+        By xpathLocator = By.xpath(xpath);
+        return webElementAction.getTextOfByFieldByLocator(xpathLocator).replaceAll("[^0-9]", "");
     }
 
     /**
@@ -102,7 +115,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
         mapValues.put("Customer Signed Title", () -> getTextByFieldName("Customer Signed Title"));
         mapValues.put("Customer Signed Date", () -> getTextByFieldName("Customer Signed Date"));
         mapValues.put("Price Book", () -> getTextByFieldName("Price Book"));
-        mapValues.put("Owner Expiration Notice", () -> getTextByFieldName("Owner Expiration Notice"));
+        mapValues.put("Owner Expiration Notice", () -> getOwnerExpNoticeTxt("Owner Expiration Notice"));
         mapValues.put("Company Signed Date", () -> getTextByFieldName("Company Signed Date"));
         mapValues.put("Special Terms", () -> getTextByFieldName("Special Terms"));
         mapValues.put("Description", () -> getTextByFieldName("Description"));

@@ -11,8 +11,6 @@ package salesforce.ui.pages.lightning.campaign;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.ui.pages.lightning.contracts.NewContractPage;
-import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
 
 /**
