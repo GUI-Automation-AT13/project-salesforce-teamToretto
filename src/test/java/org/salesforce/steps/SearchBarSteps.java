@@ -12,7 +12,8 @@ import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
@@ -22,7 +23,7 @@ import salesforce.utils.strategy.MapPages;
 
 public class SearchBarSteps {
 
-    private Logger log = Logger.getLogger(getClass());
+    private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;

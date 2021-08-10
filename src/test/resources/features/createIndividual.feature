@@ -17,8 +17,8 @@ Feature: Create Individual
       | dontTrack                 | <dontTrack>                 |
       | forgetThisIndividual      | <forgetThisIndividual>      |
       | individualsAge            | <individualsAge>            |
-    Then The name displayed should contain <salutation> <firstname> and <lastname>
-    And The Individual Records Page should contain a record with <firstname> and <lastname>
+    Then The name displayed should contain "<salutation> <firstname> <lastname>"
+    And The feature list Page should contain a record with "<firstname> <lastname>"
     Examples:
      | salutation | lastname | firstname | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
      | Mr.        | Paul     | Jake      | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |
