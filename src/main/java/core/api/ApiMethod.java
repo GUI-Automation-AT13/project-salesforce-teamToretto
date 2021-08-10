@@ -14,6 +14,7 @@ package core.api;
 public enum ApiMethod {
     POST("POST"),
     DELETE("DELETE"),
+    GET("GET"),
     PATCH("PATCH");
 
     private String name;

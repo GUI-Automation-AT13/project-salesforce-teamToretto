@@ -1,6 +1,6 @@
 Feature: Create workType
 
-  @CreateWorkType
+  @CreateWorkType @DeleteWorkType
   Scenario: Create an workType with only required fields
     Given I navigate to the "WorkType" page
     When I create a new workType with required fields
@@ -9,7 +9,7 @@ Feature: Create workType
     Then I verify that the created WorkType contains the correct information
     And I verify that the date matches the creation date
 
-  @CreateWorkType
+  @CreateWorkType @DeleteWorkType
   Scenario: Create an workType
     Given I navigate to the "WorkType" page
     When I create a new workType with all fields

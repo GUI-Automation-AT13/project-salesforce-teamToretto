@@ -1,6 +1,6 @@
 Feature: Create Individual
 
-  @CreateIndividual @RegressionTest
+  @CreateIndividual @RegressionTest @DeleteIndividual
   Scenario Outline: Create an Individual with given parameters
     Given I navigate to the "Individual" page
     When I create a new individual with required fields
