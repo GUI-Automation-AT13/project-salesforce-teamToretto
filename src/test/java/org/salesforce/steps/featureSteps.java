@@ -62,7 +62,7 @@ public class featureSteps {
         tableFeature = GeneratorUniqueString.nameUnique(table, nameFeature);
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
-        featureNew.fillUpField(table);
+        featureNew.fillUpField(tableFeature);
         createdFeature=featureNew.clickSaveButton();
         featureDetails = createdFeature.clickDetails();
     }
