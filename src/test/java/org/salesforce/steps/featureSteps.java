@@ -16,10 +16,7 @@ import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
 import salesforce.utils.Internalization;
-import salesforce.utils.strategy.CreatedFeature;
-import salesforce.utils.strategy.FeatureNew;
-import salesforce.utils.strategy.FeaturesPage;
-import salesforce.utils.strategy.MapPages;
+import salesforce.utils.strategy.*;
 
 import static core.utils.date.DateManager.generateDateActual;
 
@@ -33,6 +30,7 @@ public class featureSteps {
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
     private CreatedFeature createdFeature;
+    private FeatureDetails featureDetails;
     private Map<String, String> tableFeature;
 
     public featureSteps(final WebDriverManager webDriverManager) {
@@ -58,18 +56,19 @@ public class featureSteps {
         featureNew = featurePage.clickNewButton();
         featureNew.fillUpField(table);
         createdFeature=featureNew.clickSaveButton();
+        featureDetails = createdFeature.clickDetails();
     }
 
     @Then("^I verify that the created (?:.*) contains the correct information")
     public void iVerifyThatTheCreatedContractContainsTheCorrectInformation() {
         log.info("Asserts fields of feature");
-        List<String> valuesField = createdFeature.getValueField(tableFeature);
+        List<String> valuesField = featureDetails.getValueField(tableFeature);
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
-        Assert.assertEquals(createdFeature.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+        Assert.assertEquals(featureDetails.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
     }
 
     @Then("The name displayed should contain {string}")
