@@ -8,8 +8,10 @@
 
 package core.selenium;
 
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -51,7 +53,7 @@ public class WebElementAction {
      * Sends keys to the given WebElement.
      *
      * @param selector represents a selector
-     * @param input is the data to introduce
+     * @param input    is the data to introduce
      */
     public void setInputField(final By selector, final String input) {
         driver.findElement(selector).clear();
@@ -63,7 +65,7 @@ public class WebElementAction {
      *
      * @param locator is what we want to click.
      */
-    public void clickFieldByLocator(final String locator) {
+    public void clickFieldByLinkText(final String locator) {
         wait.until(ExpectedConditions.elementToBeClickable(By.linkText(locator)));
         driver.findElement(By.linkText(locator)).click();
     }
@@ -113,6 +115,20 @@ public class WebElementAction {
     }
 
     /**
+     * Returns a By selector given a String.
+     *
+     * @param locator represents a locator
+     * @return By
+     */
+    public By getByLocatorFromString(final String locator) {
+        if (locator.startsWith("//")) {
+            return By.xpath(locator);
+        } else {
+            return By.cssSelector(locator);
+        }
+    }
+
+    /**
      * Checks if the element is displayed.
      *
      * @param locator represents a selector
@@ -141,6 +157,16 @@ public class WebElementAction {
      */
     public WebElement getElement(final By locator) {
         return driver.findElement(locator);
+    }
+
+    /**
+     * Returns a Web Element out of a String selector.
+     *
+     * @param locator represents a selector
+     * @return WebElement
+     */
+    public WebElement getElement(final String locator) {
+        return driver.findElement(getByLocatorFromString(locator));
     }
 
     /**
@@ -184,6 +210,33 @@ public class WebElementAction {
         return driver.findElement(locator).getText();
     }
 
+    /**
+     * Returns a text if the element from the locator contains a text, otherwise returns null.
+     *
+     * @param locator represents the locator with the row and column locators
+     * @return a String as the text retrieved from the web element.
+     */
+    public String getTextIfElementExists(final String locator) {
+        try {
+            return driver.findElement(getByLocatorFromString(locator)).getText();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the text for the passed attribute name in a web element.
+     *
+     * @param locator represents the locator to the web element
+     * @return a String
+     */
+    public String getAttributeIfElementExists(final String locator, final String attribute) {
+        try {
+            return getElement(locator).getAttribute(attribute);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * Gets the text of a web element.
@@ -192,5 +245,35 @@ public class WebElementAction {
      */
     public void clickByXpath(final String field) {
         driver.findElement(By.xpath(field)).click();
+    }
+
+    /**
+     * Gets the text of a web element.
+     *
+     * @param locator web element to get text
+     * @param key     represents the key to press
+     */
+    public void pressKey(final By locator, Keys key) {
+        driver.findElement(locator).sendKeys(key);
+    }
+
+    /**
+     * Returns a list of elements found from the given locator.
+     *
+     * @param locator represents the locator
+     * @return a List of web elements
+     */
+    public List<WebElement> getElements(final By locator) {
+        return driver.findElements(locator);
+    }
+
+    /**
+     * Returns a list of elements found from the given locator.
+     *
+     * @param locator represents the locator
+     * @return a List of web elements
+     */
+    public List<WebElement> getElements(final String locator) {
+        return driver.findElements(getByLocatorFromString(locator));
     }
 }

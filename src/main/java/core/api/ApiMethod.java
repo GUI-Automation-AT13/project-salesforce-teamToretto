@@ -13,7 +13,8 @@ package core.api;
  */
 public enum ApiMethod {
     POST("POST"),
-    DELETE("DELETE");
+    DELETE("DELETE"),
+    PATCH("PATCH");
 
     private String name;
 

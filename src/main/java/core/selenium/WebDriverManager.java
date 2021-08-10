@@ -67,9 +67,27 @@ public class WebDriverManager {
         this.webDriver = DriverFactory.getDriver(webDriverConfig.getBrowser());
         this.webDriver.manage().window().maximize();
         this.webDriver.manage().deleteAllCookies();
-        this.webDriver.manage().timeouts()
-                .implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);
-        wait = new WebDriverWait(webDriver, webDriverConfig.getExplicitWaitTime(),
+        setDriverWaits(webDriverConfig.getImplicitWaitTime(), webDriverConfig.getExplicitWaitTime(),
                 webDriverConfig.getWaitSleepTime());
+    }
+
+    /**
+     * Sets the web driver waits to the minimum to handle datatable elements.
+     */
+    public void setTableWaitMode() {
+        setDriverWaits(0, 0, 0);
+    }
+
+    /**
+     * Sets the web driver waits to the property values.
+     */
+    public void setDefaultWaitMode() {
+        setDriverWaits(webDriverConfig.getImplicitWaitTime(), webDriverConfig.getExplicitWaitTime(),
+                webDriverConfig.getWaitSleepTime());
+    }
+
+    private void setDriverWaits(final int implicitWaitTime, final int explicitWaitTime, final int sleepTime) {
+        this.webDriver.manage().timeouts().implicitlyWait(implicitWaitTime, TimeUnit.SECONDS);
+        wait = new WebDriverWait(webDriver, explicitWaitTime, sleepTime);
     }
 }

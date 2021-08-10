@@ -8,6 +8,8 @@
 
 package core.utils.date;
 
+import static salesforce.utils.Internalization.translate;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -93,7 +95,20 @@ public class DateManager {
     public static String generateDateActual(final String dataFormat) {
         DateFormat dateFormat = new SimpleDateFormat(dataFormat);
         Date date = new Date();
-        return dateFormat.format(date);
+        String dateType = dateFormat.format(date);
+        if (dateType.contains("p. m.")) {
+            dateType = dateType.replace("p. m.", translate("PM"));
+        }
+        if (dateType.contains("a. m.")) {
+            dateType = dateType.replace("a. m.", translate("AM"));
+        }
+        if (dateType.contains("PM")) {
+            dateType = dateType.replace("PM", translate("PM"));
+        }
+        if (dateType.contains("AM")) {
+            dateType = dateType.replace("AM", translate("AM"));
+        }
+        return dateType;
     }
 
     /**

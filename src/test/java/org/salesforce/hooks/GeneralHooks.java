@@ -25,7 +25,7 @@ public class GeneralHooks {
         this.personalInformation = personalInformation;
     }
 
-    @Before(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order  = 1)
+    @Before(order  = 1)
     public void setUp() {
         log.info("Set up Methods");
         login();
@@ -40,7 +40,7 @@ public class GeneralHooks {
         HomePage homePage = loginpage.login();
     }
 
-    @After(value = "@CreateWorkType or @CreateCampaign or @CreateContract or @CreateIndividual", order = 100)
+    @After(order = 100)
     public void tearDown() {
         log.info("Close Driver");
         webDriverManager.quitWebDriver();

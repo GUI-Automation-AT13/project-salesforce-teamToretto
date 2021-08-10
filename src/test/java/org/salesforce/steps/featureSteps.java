@@ -5,25 +5,23 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import salesforce.ui.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
+import salesforce.ui.PageTransporter;
 import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
+import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.strategy.MapPages;
 
 import static core.utils.date.DateManager.generateDateActual;
-import static salesforce.utils.Internalization.translate;
 
 public class featureSteps {
     private Logger log = Logger.getLogger(getClass());
@@ -36,6 +34,7 @@ public class featureSteps {
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
     private CreatedFeature createdFeature;
+    private FeatureDetails featureDetails;
     private Map<String, String> tableFeature;
 
     public featureSteps(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
@@ -60,20 +59,21 @@ public class featureSteps {
         tableFeature = GeneratorUniqueString.nameUnique(table, nameFeature);
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
-        featureNew.fillUpField(tableFeature);
-        createdFeature = featureNew.clickSaveButton();
+        featureNew.fillUpField(table);
+        createdFeature=featureNew.clickSaveButton();
+        featureDetails = createdFeature.clickDetails();
     }
 
     @Then("^I verify that the created (?:.*) contains the correct information")
     public void iVerifyThatTheCreatedContractContainsTheCorrectInformation() {
         log.info("Asserts fields of feature");
-        List<String> valuesField = createdFeature.getValueField(tableFeature);
+        List<String> valuesField = featureDetails.getValueField(tableFeature);
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
-        Assert.assertEquals(createdFeature.getCreateDayTxt(), generateDateActual("M/d/yyyy, h:mm a"));
+        Assert.assertEquals(featureDetails.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
     }
 
     @Then("^I verify (.*) created and matches with values of table$")

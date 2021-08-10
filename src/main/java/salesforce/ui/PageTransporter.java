@@ -16,6 +16,7 @@ import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.search.SearchResultsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 import salesforce.utils.PageUrl;
 
@@ -134,6 +135,9 @@ public class PageTransporter {
         goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
     }
 
+    public SearchResultsPage getSearchResultPage() {
+        return new SearchResultsPage(webDriverManager);
+    }
 
     /**
      * Navigates to personal information page on lightning version.
