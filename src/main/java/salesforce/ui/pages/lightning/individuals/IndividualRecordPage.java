@@ -16,6 +16,7 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureDetails;
 
 /**
  * Page Object Model for the salesforce individual record page.
@@ -271,16 +272,6 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     }
 
     /**
-     * Gets a date when Individual is created.
-     *
-     * @return a String to date.
-     */
-    @Override
-    public String getCreateDayTxt() {
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
-    }
-
-    /**
      * Waits for the nameHeader element to load.
      */
     @Override
@@ -289,7 +280,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
     }
 
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public FeatureDetails clickDetails() {
         return null;
     }
 }

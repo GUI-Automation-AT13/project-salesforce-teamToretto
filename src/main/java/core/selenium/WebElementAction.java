@@ -65,7 +65,7 @@ public class WebElementAction {
      *
      * @param locator is what we want to click.
      */
-    public void clickFieldByLocator(final String locator) {
+    public void clickFieldByLinkText(final String locator) {
         wait.until(ExpectedConditions.elementToBeClickable(By.linkText(locator)));
         driver.findElement(By.linkText(locator)).click();
     }
