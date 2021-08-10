@@ -45,7 +45,7 @@ public class Internalization {
     public static String translate(String word) {
         try {
             return resourceBundle.getString(removeWhiteSpace(word));
-        } catch (Exception e){
+        } catch (Exception e) {
             return word;
         }
     }

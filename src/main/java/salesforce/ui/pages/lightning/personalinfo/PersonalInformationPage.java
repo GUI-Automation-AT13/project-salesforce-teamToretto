@@ -4,6 +4,9 @@ import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 
+/**
+ * This class has webElement for personal information pages.
+ */
 public class PersonalInformationPage extends BasePage {
 
     private By aliasTxtBox = By.id("PersonalInformationSetup:editPage:pageBlock:alias");
@@ -20,10 +23,10 @@ public class PersonalInformationPage extends BasePage {
     /**
      * Gets text of alias.
      *
-     * @return a String with alias
+     * @return a String with alias.
      */
     public String getAliasTxt() {
-      return webElementAction.getTextOfByFieldByLocator(aliasTxtBox);
+        return webElementAction.getTextOfByFieldByLocator(aliasTxtBox);
     }
 
     @Override

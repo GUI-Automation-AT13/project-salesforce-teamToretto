@@ -1,8 +1,19 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package core.utils;
 
 import core.utils.date.DateManager;
 import java.util.UUID;
 
+/**
+ * This class generic a random string.
+ */
 public final class RandomCustom {
 
     private RandomCustom() {
@@ -33,7 +44,7 @@ public final class RandomCustom {
      * @return a String with random value
      */
     private static String generateFourRandom() {
-        String[] uniqueID = UUID.randomUUID().toString().split("-");
-        return uniqueID[2];
+        String[] uniqueId = UUID.randomUUID().toString().split("-");
+        return uniqueId[2];
     }
 }

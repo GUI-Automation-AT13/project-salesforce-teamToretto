@@ -9,19 +9,14 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import core.selenium.WebDriverManager;
-import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
-import salesforce.ui.pages.BasePage;
-import salesforce.ui.pages.lightning.contracts.NewContractPage;
-import salesforce.utils.strategy.FeatureNew;
-import salesforce.utils.strategy.FeaturesPage;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static core.utils.date.DateManager.addMonthsDate;
+import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * This class is of Campaign Page.
@@ -86,7 +81,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
 
     /**
      * Gets values of table according the campaign name, this field is unique
-     * only select field of table
+     * only select field of table.
      *
      * @param valuesToGet is values to get
      * @param unitName    is value of work type name

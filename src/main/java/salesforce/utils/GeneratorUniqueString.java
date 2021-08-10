@@ -1,12 +1,14 @@
 package salesforce.utils;
 
-import core.utils.RandomCustom;
+import static salesforce.utils.Internalization.translate;
 
+import core.utils.RandomCustom;
 import java.util.HashMap;
 import java.util.Map;
 
-import static salesforce.utils.Internalization.translate;
-
+/**
+ * Generates unique String.
+ */
 public final class GeneratorUniqueString {
 
     private GeneratorUniqueString() {

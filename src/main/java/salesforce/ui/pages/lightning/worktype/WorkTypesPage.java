@@ -8,18 +8,17 @@
 
 package salesforce.ui.pages.lightning.worktype;
 
-import core.selenium.WebDriverManager;
-import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
-import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeaturesPage;
+import static salesforce.utils.Internalization.translate;
 
+import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static salesforce.utils.Internalization.translate;
+import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * This class has webElement for work types page.
@@ -77,7 +76,7 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
 
     /**
      * Gets values of table according the work type name, this field is unique
-     * only select field of table
+     * only select field of table.
      *
      * @param valuesToGet is values to get
      * @param unitName    is value of work type name

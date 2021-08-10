@@ -8,18 +8,17 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
-import core.selenium.WebDriverManager;
-import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
-import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeaturesPage;
+import static core.utils.date.DateManager.addMonthsDate;
 
+import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static core.utils.date.DateManager.addMonthsDate;
+import org.openqa.selenium.By;
+import salesforce.ui.entities.PersonalInformation;
+import salesforce.ui.pages.BasePage;
+import salesforce.utils.strategy.FeaturesPage;
 
 /**
  * Page Object Model for the salesforce contracts page.
@@ -27,8 +26,8 @@ import static core.utils.date.DateManager.addMonthsDate;
 public class ContractsPage extends BasePage implements FeaturesPage {
 
     private By newContractButton = By.xpath("//a[@class='forceActionLink'][@role='button']");
-    private String xpathTable = "(//span[@class='slds-grid slds-grid--align-spread'])[1]/../.." +
-            "//*[contains(.,'%s')][@role='gridcell']";
+    private String xpathTable = "(//span[@class='slds-grid slds-grid--align-spread'])[1]/../.."
+            + "//*[contains(.,'%s')][@role='gridcell']";
 
     /**
      * Initializes web element actions.
@@ -39,10 +38,9 @@ public class ContractsPage extends BasePage implements FeaturesPage {
         super(webDriverManager);
     }
 
-
     /**
      * Gets value of cell in table according the name of column header (Account Name,  Contract Term (months),
-     * Contract Start Date, Status and Contract End Date)
+     * Contract Start Date, Status and Contract End Date).
      *
      * @param nameOfColumnHeader a name of column header on table
      * @return a value of one element of table
@@ -90,7 +88,7 @@ public class ContractsPage extends BasePage implements FeaturesPage {
 
     /**
      * Gets values of table according the first element on the table,
-     * only select field of table
+     * only select field of table.
      *
      * @param valuesToGet is values to get
      * @return a values of tables

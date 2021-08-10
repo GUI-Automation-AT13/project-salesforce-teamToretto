@@ -1,5 +1,8 @@
 package salesforce.ui.entities;
 
+/**
+ * Represents a personal information object in salesforce.
+ */
 public class PersonalInformation {
     private String zoneinfo;
     private boolean emailVerified;
