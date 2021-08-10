@@ -36,7 +36,7 @@ public class FeatureHooks {
     }
 
     @After(value = "@DeleteCampaign")
-    public void getIdFeatures() {
+    public void deleteCampaigns() {
         apiRequest = new ApiRequest();
         Properties properties = PropertiesReader.getProperties("config.properties");
         authentication.getAuth();
@@ -46,32 +46,89 @@ public class FeatureHooks {
                         + properties.getProperty("VERSION"));
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.GET)
-                .endpoint(ApiEndPoints.FEATURE_ID);
+                .endpoint(ApiEndPoints.LIST_CAMPAIGN_ID);
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
-        String s2 = apiResponse.getResponse().asString();
-        listOfIds(s2, "CAMPAIGN");
+        String resultAsSting = apiResponse.getResponse().asString();
+        listOfIds(resultAsSting, "CAMPAIGN_ID");
     }
 
-    public void listOfIds(String s2, String nameFeature) {
-        List<String> ids = extractIdsFromJson(s2);
+    @After(value = "@DeleteContract")
+    public void deleteContracts() {
+        apiRequest = new ApiRequest();
+        Properties properties = PropertiesReader.getProperties("config.properties");
+        authentication.getAuth();
+        apiRequest.addHeader("Content-Type", "application/json")
+                .addHeader(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
+                .setBaseUri(token.getInstanceUrl() + properties.getProperty("SERVICE")
+                        + properties.getProperty("VERSION"));
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.GET)
+                .endpoint(ApiEndPoints.LIST_CONTRACT_ID);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        String resultAsSting = apiResponse.getResponse().asString();
+        listOfIds(resultAsSting, "CONTRACT_ID");
+    }
+
+    @After(value = "@DeleteWorkType")
+    public void deleteWorkType() {
+        apiRequest = new ApiRequest();
+        Properties properties = PropertiesReader.getProperties("config.properties");
+        authentication.getAuth();
+        apiRequest.addHeader("Content-Type", "application/json")
+                .addHeader(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
+                .setBaseUri(token.getInstanceUrl() + properties.getProperty("SERVICE")
+                        + properties.getProperty("VERSION"));
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.GET)
+                .endpoint(ApiEndPoints.LIST_WORKTYPE_ID);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        String resultAsSting = apiResponse.getResponse().asString();
+        listOfIds(resultAsSting, "WORKTYPE_ID");
+    }
+
+    @After(value = "@DeleteIndividual")
+    public void deleteIndividual() {
+        apiRequest = new ApiRequest();
+        Properties properties = PropertiesReader.getProperties("config.properties");
+        authentication.getAuth();
+        apiRequest.addHeader("Content-Type", "application/json")
+                .addHeader(HttpHeaders.AUTHORIZATION, token.getTokenType() + " " + token.getAccessToken())
+                .setBaseUri(token.getInstanceUrl() + properties.getProperty("SERVICE")
+                        + properties.getProperty("VERSION"));
+        apiRequest.clearPathParam();
+        apiRequest.method(ApiMethod.GET)
+                .endpoint(ApiEndPoints.LIST_INDIVIDUAL_ID);
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
+        String resultAsSting = apiResponse.getResponse().asString();
+        listOfIds(resultAsSting, "INDIVIDUAL_ID");
+    }
+
+    public void listOfIds(String resultAsSting, String nameFeature) {
+        List<String> ids = extractIdsFromJson(resultAsSting);
+        System.out.println("/////////////////////////////////////");
+        System.out.println("/////////////////////////////////////");
+        System.out.println("/////////////////////////////////////");
+        System.out.println("/////////////////////////////////////");
+        System.out.println(ids.size());
         for ( String id : ids) {
+            System.out.println("**************************************");
+            System.out.println("**************************************");
+            System.out.println("**************************************");
             System.out.println(id);
-            deleteCampaign(id);
+            deleteListFeature(id, nameFeature);
         }
     }
 
-    public void deleteCampaign(String id) {
+    public void deleteListFeature(String id, String nameFeature) {
         SelectFeature selectFeature = new SelectFeature();
-        System.out.println("//////////////////////////////////////");
-        System.out.println("//////////////////////////////////////");
-        System.out.println("//////////////////////////////////////");
-        System.out.println("//////////////////////////////////////");
-        System.out.println(ApiEndPoints.CAMPAIGN_ID.getClass().toString());
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(selectFeature.selectNameFeature())
-                .addPathParam("CAMPAIGN_ID", id);
+                .endpoint(selectFeature.selectNameFeature(nameFeature))
+                .addPathParam(nameFeature, id);
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
     }

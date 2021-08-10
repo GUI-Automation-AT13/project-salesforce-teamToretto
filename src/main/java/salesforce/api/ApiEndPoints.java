@@ -21,7 +21,16 @@ public enum ApiEndPoints {
     PRICEBOOK_ID("/sobjects/Pricebook2/{PRICEBOOK_ID}"),
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
-    FEATURE_ID("/query/?q=SELECT id from Campaign");
+    CONTRACT("/sobjects/Contract"),
+    CONTRACT_ID("/sobjects/Contract/{CONTRACT_ID}"),
+    INDIVIDUAL("/sobjects/Individual"),
+    INDIVIDUAL_ID("/sobjects/Individual/{INDIVIDUAL_ID}"),
+    WORKTYPE("/sobjects/WorkType"),
+    WORKTYPE_ID("/sobjects/WorkType/{WORKTYPE_ID}"),
+    LIST_CAMPAIGN_ID("/query/?q=SELECT id from Campaign"),
+    LIST_CONTRACT_ID("/query/?q=SELECT id from Contract"),
+    LIST_INDIVIDUAL_ID("/query/?q=SELECT id from Individual"),
+    LIST_WORKTYPE_ID("/query/?q=SELECT id from WorkType");
 
     private String endpoint;
 
