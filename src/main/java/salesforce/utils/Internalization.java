@@ -43,6 +43,10 @@ public class Internalization {
      * @return a String according language.
      */
     public static String translate(String word) {
-        return resourceBundle.getString(removeWhiteSpace(word));
+        try {
+            return resourceBundle.getString(removeWhiteSpace(word));
+        } catch (Exception e){
+            return word;
+        }
     }
 }

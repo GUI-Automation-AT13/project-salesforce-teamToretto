@@ -5,6 +5,8 @@ import core.utils.RandomCustom;
 import java.util.HashMap;
 import java.util.Map;
 
+import static salesforce.utils.Internalization.translate;
+
 public final class GeneratorUniqueString {
 
     private GeneratorUniqueString() {
@@ -20,8 +22,9 @@ public final class GeneratorUniqueString {
         Map<String, String> mapNew = new HashMap<String, String>(mapAnalyzed);
         for (String value : mapNew.keySet()) {
             if (containsName(value, nameFeature)) {
-                mapNew.put(value, mapNew.get(value) + RandomCustom.random());
-                break;
+                mapNew.put(value, translate(mapNew.get(value)) + RandomCustom.random());
+            } else {
+                mapNew.put(value, translate(mapNew.get(value)));
             }
         }
         return mapNew;

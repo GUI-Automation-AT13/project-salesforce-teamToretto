@@ -12,12 +12,13 @@ import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
-import salesforce.utils.supplier.StringSupplier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static salesforce.utils.Internalization.translate;
 
 /**
  * This class has webElement for work types page.
@@ -81,7 +82,7 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
         mapNew.put(fieldWithUniqueName, unitName);
         valuesToGet.stream()
                 .filter(v -> !v.equals(fieldWithUniqueName))
-                .forEach(key -> mapNew.put(key, getValueInTable(unitName, key)));
+                .forEach(key -> mapNew.put(key, getValueInTable(unitName, translate(key))));
         return new ArrayList<String>(mapNew.values());
     }
 }

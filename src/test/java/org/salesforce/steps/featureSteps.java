@@ -22,6 +22,7 @@ import salesforce.utils.strategy.FeaturesPage;
 import salesforce.utils.strategy.MapPages;
 
 import static core.utils.date.DateManager.generateDateActual;
+import static salesforce.utils.Internalization.translate;
 
 public class featureSteps {
     private Logger log = Logger.getLogger(getClass());
@@ -76,6 +77,7 @@ public class featureSteps {
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
         pageTransporter.navigateToFeaturePage(nameFeature);
         List<String> valuesField = featurePage.getValueTables(tableFeature);
+        System.out.println(new ArrayList<String>(tableFeature.values()));
         Assert.assertEquals(valuesField, new ArrayList<String>(tableFeature.values()));
     }
 }

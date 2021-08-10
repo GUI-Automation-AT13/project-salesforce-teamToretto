@@ -121,7 +121,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
         mapActions.put("Description", () -> setDescription(workTypeMap.get("Description")));
         mapActions.put("Estimated Duration", () -> setInputField(translate("Estimated Duration"),
                 workTypeMap.get("Estimated Duration")));
-        mapActions.put("Duration Type", () -> setDurationTypeComboBox(workTypeMap.get("Duration Type")));
+        mapActions.put("Duration Type", () -> setDurationTypeComboBox(translate(workTypeMap.get("Duration Type"))));
         mapActions.put("Block Time Before Appointment",
                 () -> setInputField(translate("Block Time Before Appointment"),
                 workTypeMap.get("Block Time Before Appointment")));
