@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id "se.thinkcode.cucumber-runner" version "0.0.8"
 }
 
 group 'org.example'
@@ -24,7 +25,18 @@ dependencies {
     implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
     implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.4'
     implementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.10.4'
-    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+}
+
+cucumber {
+    glue = 'org.salesforce'
+    featurePath = 'src/test/resources/features'
+    main = 'cucumber.api.cli.Main'
+    plugin = ["html:target/site/cucumber-pretty.html",
+              "json:target/cucumber.json",
+              "rerun:target/failedrerun.txt"]
+    main = 'io.cucumber.core.cli.Main'
 }
 
 checkstyle {
@@ -47,5 +59,7 @@ check.dependsOn build
 
 test {
     useTestNG()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
 }
 
