@@ -10,7 +10,8 @@ import core.utils.PropertiesReader;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.apache.http.HttpHeaders;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.AfterTest;
@@ -25,11 +26,13 @@ import java.util.Properties;
 
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
+        plugin = {"html:target/site/cucumber-pretty.html",
+                "json:target/cucumber.json",
+                "rerun:target/failedrerun.txt"},
         glue = {"org.salesforce"}
 )
 public class RunTests extends AbstractTestNGCucumberTests {
-    public Logger LOGGER = Logger.getLogger(getClass());
+    public Logger LOGGER = LogManager.getLogger(getClass());
     public ApiRequest apiRequest;
     public Authentication authentication = new Authentication();
     public ApiResponse apiResponse;
