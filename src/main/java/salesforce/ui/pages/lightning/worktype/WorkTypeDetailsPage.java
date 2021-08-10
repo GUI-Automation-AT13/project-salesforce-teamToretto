@@ -17,10 +17,13 @@ import salesforce.utils.supplier.StringSupplier;
 public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureDetails {
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
+    protected By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')]"
+                    + "[@class='test-id__field-label']/../..//span[@class='uiOutputNumber']",
+            translate("Estimated Duration")));
 
     /**
      * Initializes web element actions.
@@ -58,7 +61,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
         HashMap<String, StringSupplier> mapValues = new HashMap<>();
         mapValues.put("Work Type Name", this::getNameOfWorkType);
         mapValues.put("Description", this::getDescription);
-        mapValues.put("Estimated Duration", () -> getTxtField(translate("Estimated Duration")));
+        mapValues.put("Estimated Duration", this::getEstimatedDuration);
         mapValues.put("Block Time Before Appointment", () -> getTxtField(translate("Block Time Before Appointment")));
         mapValues.put("Block Time After Appointment", () -> getTxtField(translate("Block Time After Appointment")));
         mapValues.put("Timeframe Start", () -> getTxtField(translate("Timeframe Start")));
@@ -73,6 +76,15 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      */
     public String getNameOfWorkType() {
         return webElementAction.getTextOfByFieldByLocator(nameWorkTypeTxt);
+    }
+
+    /**
+     * Gets the Estimated Duration of work type.
+     *
+     * @return description of estimated duration.
+     */
+    public String getEstimatedDuration() {
+        return webElementAction.getTextOfByFieldByLocator(estimatedDurationTxt);
     }
 
     /**
