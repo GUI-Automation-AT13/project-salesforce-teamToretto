@@ -3,7 +3,8 @@ package org.salesforce.hooks;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.HomePage;
@@ -11,7 +12,7 @@ import salesforce.ui.pages.lightning.LoginPage;
 
 public class GeneralHooks {
 
-    private Logger log = Logger.getLogger(getClass());
+    private Logger log = LogManager.getLogger(getClass());
     private PageTransporter pageTransporter;
     private WebDriverManager webDriverManager;
 

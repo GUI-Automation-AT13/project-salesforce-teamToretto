@@ -8,17 +8,20 @@ import io.cucumber.java.en.When;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
+import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.*;
 
 import static core.utils.date.DateManager.generateDateActual;
 
 public class featureSteps {
-    private Logger log = Logger.getLogger(getClass());
+    private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
@@ -66,5 +69,18 @@ public class featureSteps {
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
         Assert.assertEquals(featureDetails.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+    }
+
+    @Then("The name displayed should contain {string}")
+    public void theNameDisplayedShouldContain(final String text) {
+        IndividualRecordPage individualRecordPage = new IndividualRecordPage(webDriverManager);
+        String headerNameText = individualRecordPage.getNameHeaderText();
+        Assert.assertEquals(headerNameText, text);
+    }
+
+    @Then("The feature list Page should contain a record with {string}")
+    public void theFeatureListPageShouldContainArecordWith(final String text) {
+        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualListPage.isThereRecordWithName(text));
     }
 }
