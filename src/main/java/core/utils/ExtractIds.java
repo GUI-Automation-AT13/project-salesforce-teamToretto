@@ -19,8 +19,9 @@ public class ExtractIds {
     public static List<String> extractIdsFromJson(String json) {
         List<String> list = new ArrayList<String>();
         Matcher matcher = Pattern.compile("\"Id\":\"(.*?)\"").matcher(json);
-        while (matcher.find())
+        while (matcher.find()) {
             list.add(String.valueOf(matcher.group(1)));
+        }
         return list;
     }
 }
