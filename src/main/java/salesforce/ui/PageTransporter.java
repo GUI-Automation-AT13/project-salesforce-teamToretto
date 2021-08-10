@@ -138,4 +138,11 @@ public class PageTransporter {
     public SearchResultsPage getSearchResultPage() {
         return new SearchResultsPage(webDriverManager);
     }
+
+    /**
+     * Navigates to personal information page on lightning version.
+     */
+    public void navigatePersonalInformation() {
+        goToUrl(baseUrl.concat("lightning/settings/personal/PersonalInformation/home"));
+    }
 }

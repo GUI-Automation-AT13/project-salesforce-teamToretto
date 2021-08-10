@@ -182,3 +182,12 @@ Feature: Create Contract
       | Owner Expiration Notice | 30 Days             |
     Then I verify that the created Contract contains the correct information
       And I verify that the date matches the creation date
+
+  @CreateContract
+  Scenario: create a contract with only required fields
+    Given I navigate to the "Contract" page
+    When I create a new contract with required fields
+      | Account Name           | TestAccount |
+      | Contract Term (months) | 2           |
+      | Contract Start Date    | 7/15/2021   |
+    Then I verify Contract created and matches with values of table

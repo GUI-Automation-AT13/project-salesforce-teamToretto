@@ -12,11 +12,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
+import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
-import salesforce.utils.strategy.*;
+import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeaturesPage;
+import salesforce.utils.strategy.FeatureDetails;
+import salesforce.utils.strategy.MapPages;
 
 import static core.utils.date.DateManager.generateDateActual;
 
@@ -26,6 +32,7 @@ public class featureSteps {
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
     private Internalization internalization;
+    private PersonalInformation personalInformation;
     private MapPages mapPages;
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
@@ -33,10 +40,11 @@ public class featureSteps {
     private FeatureDetails featureDetails;
     private Map<String, String> tableFeature;
 
-    public featureSteps(final WebDriverManager webDriverManager) {
+    public featureSteps(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
         log.info("GeneralHooks featureSteps");
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
+        this.personalInformation = personalInformation;
         this.mapPages = new MapPages(this.webDriverManager);
         this.softAssert = new SoftAssert();
     }
@@ -51,7 +59,7 @@ public class featureSteps {
     @When("^I create a new (.*) with (?:.*)$")
     public void iCreateANewWorkTypeOnlyWithRequiredFields(String nameFeature, final Map<String, String> table) {
         log.info("Create page");
-        tableFeature = table;
+        tableFeature = GeneratorUniqueString.nameUnique(table, nameFeature);
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
         featureNew.fillUpField(table);
@@ -69,6 +77,14 @@ public class featureSteps {
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
         Assert.assertEquals(featureDetails.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+    }
+
+    @Then("^I verify (.*) created and matches with values of table$")
+    public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
+        pageTransporter.navigateToFeaturePage(nameFeature);
+        List<String> actual = featurePage.getValueTables(tableFeature);
+        List<String> expected = featurePage.getExpected(tableFeature, personalInformation);
+        Assert.assertEquals(actual, expected);
     }
 
     @Then("The name displayed should contain {string}")

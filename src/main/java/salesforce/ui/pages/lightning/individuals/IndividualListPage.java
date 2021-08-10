@@ -11,13 +11,14 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
+import java.util.List;
+import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.strategy.FeaturesPage;
-
 
 /**
  * Page Object Model for the salesforce individual list page.
@@ -136,5 +137,15 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     public FeatureNew clickNewButton() {
         webElementAction.clickByLocator(newButton);
         return new IndividualFormPage(webDriverManager);
+    }
+
+    @Override
+    public List<String> getValueTables(Map<String, String> table) {
+        return null;
+    }
+
+    @Override
+    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
+        return null;
     }
 }
