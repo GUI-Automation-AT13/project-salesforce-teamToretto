@@ -4,32 +4,25 @@ import core.api.ApiManager;
 import core.api.ApiMethod;
 import core.api.ApiRequest;
 import core.api.ApiResponse;
+import core.utils.ExtractIds;
 import core.utils.PropertiesReader;
 import core.utils.SelectFeature;
 import io.cucumber.java.After;
-import org.apache.log4j.Logger;
 import salesforce.api.ApiEndPoints;
 import salesforce.api.Authentication;
 import salesforce.api.entities.Response;
 import com.google.common.net.HttpHeaders;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static salesforce.api.Authentication.token;
 
 public class FeatureHooks {
-    private Logger LOGGER = Logger.getLogger(getClass());
     private ApiRequest apiRequest;
     private ApiResponse apiResponse;
     private Response response;
     public Authentication authentication = new Authentication();
 
     public FeatureHooks(ApiRequest apiRequest, ApiResponse apiResponse, Response response) {
-        LOGGER.info("------ Campaign hook constructor ------");
         this.apiRequest = apiRequest;
         this.apiResponse = apiResponse;
         this.response = response;
@@ -108,7 +101,7 @@ public class FeatureHooks {
     }
 
     public void listOfIds(String resultAsSting, String nameFeature) {
-        List<String> ids = extractIdsFromJson(resultAsSting);
+        List<String> ids = ExtractIds.extractIdsFromJson(resultAsSting);
         for ( String id : ids) {
             deleteListFeature(id, nameFeature);
         }
@@ -122,14 +115,6 @@ public class FeatureHooks {
                 .addPathParam(nameFeature, id);
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);
-    }
-
-    public static List<String> extractIdsFromJson(String json) {
-        List<String> list = new ArrayList<String>();
-        Matcher matcher = Pattern.compile("\"Id\":\"(.*?)\"").matcher(json);
-        while (matcher.find())
-            list.add(String.valueOf(matcher.group(1)));
-        return list;
     }
 }
 
