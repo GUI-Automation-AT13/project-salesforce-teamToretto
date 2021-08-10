@@ -3,12 +3,10 @@ package salesforce.ui.pages.lightning.worktype;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.supplier.StringSupplier;
@@ -23,8 +21,9 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
     protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
     protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
-    protected By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')][@class='test-id__field-label']"
-                    + "/../..//span[@class='uiOutputNumber']", translate("Estimated Duration")));
+    protected By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')]"
+                    + "[@class='test-id__field-label']/../..//span[@class='uiOutputNumber']",
+            translate("Estimated Duration")));
 
     /**
      * Initializes web element actions.
@@ -80,9 +79,9 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
     }
 
     /**
-     * Gets the description of work type.
+     * Gets the Estimated Duration of work type.
      *
-     * @return description of worktype.
+     * @return description of estimated duration.
      */
     public String getEstimatedDuration() {
         return webElementAction.getTextOfByFieldByLocator(estimatedDurationTxt);
