@@ -93,6 +93,13 @@ public class DateManager {
     public static String generateDateActual(final String dataFormat) {
         DateFormat dateFormat = new SimpleDateFormat(dataFormat);
         Date date = new Date();
-        return dateFormat.format(date);
+        String dateType = dateFormat.format(date);
+        if (dateType.contains("p. m.")) {
+            dateType = dateType.replace("p. m.", "PM");
+        }
+        if (dateType.contains("a. m.")) {
+            dateType = dateType.replace("a. m.", "AM");
+        }
+        return dateType;
     }
 }

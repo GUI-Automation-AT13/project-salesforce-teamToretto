@@ -24,7 +24,7 @@ import static salesforce.api.Authentication.token;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = {"src/test/resources/features"},
+        features = {"src/test/resources/features/createWorkType.feature"},
         plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
         glue = {"org.salesforce"}
 )
@@ -115,7 +115,6 @@ public class RunTests extends AbstractTestNGCucumberTests {
         LOGGER.info("----------- Create a Contact feature -----------");
         contact = new Contact();
         contact.setLastName("TestContact");
-        contact.setEmail("jala@mail.com");
         apiRequest.method(ApiMethod.POST)
                 .endpoint(ApiEndPoints.CONTACT)
                 .body(new ObjectMapper().writeValueAsString(contact));
@@ -137,5 +136,11 @@ public class RunTests extends AbstractTestNGCucumberTests {
         ApiManager.execute(apiRequest, apiResponse);
         apiResponse.getResponse().then().log().body();
         priceBook.setId(apiResponse.getBody(Response.class).getId());
+        apiRequest.method(ApiMethod.PATCH)
+                .endpoint(ApiEndPoints.PRICEBOOK_ID)
+                .addPathParam("PRICEBOOK_ID", priceBook.getId())
+                .body("{\"IsActive\": \"true\"}");
+        apiResponse = new ApiResponse();
+        ApiManager.execute(apiRequest, apiResponse);
     }
 }
