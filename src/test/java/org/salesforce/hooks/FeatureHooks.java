@@ -109,16 +109,7 @@ public class FeatureHooks {
 
     public void listOfIds(String resultAsSting, String nameFeature) {
         List<String> ids = extractIdsFromJson(resultAsSting);
-        System.out.println("/////////////////////////////////////");
-        System.out.println("/////////////////////////////////////");
-        System.out.println("/////////////////////////////////////");
-        System.out.println("/////////////////////////////////////");
-        System.out.println(ids.size());
         for ( String id : ids) {
-            System.out.println("**************************************");
-            System.out.println("**************************************");
-            System.out.println("**************************************");
-            System.out.println(id);
             deleteListFeature(id, nameFeature);
         }
     }
