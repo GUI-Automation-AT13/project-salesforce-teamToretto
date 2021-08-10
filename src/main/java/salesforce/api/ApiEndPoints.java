@@ -21,7 +21,7 @@ public enum ApiEndPoints {
     PRICEBOOK_ID("/sobjects/Pricebook2/{PRICEBOOK_ID}"),
     CAMPAIGN("/sobjects/Campaign"),
     CAMPAIGN_ID("/sobjects/Campaign/{CAMPAIGN_ID}"),
-    FEATURE_ID("/sobjects/Campaign/{CAMPAIGN_ID}");
+    FEATURE_ID("/query/?q=SELECT id from Campaign");
 
     private String endpoint;
 
@@ -36,5 +36,9 @@ public enum ApiEndPoints {
      */
     public String toEndpoint() {
         return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
     }
 }
