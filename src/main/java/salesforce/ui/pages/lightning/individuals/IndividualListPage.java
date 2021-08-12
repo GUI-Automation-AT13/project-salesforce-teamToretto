@@ -51,15 +51,15 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @return boolean
      */
     public boolean recentlyViewedSpanVisible() {
-        return webElementAction.isDisplayed(recentlyViewedSpan);
+        return webDriverActions.isDisplayed(recentlyViewedSpan);
     }
 
     /**
      * Deletes the last created or modified record.
      */
     public void deleteLastModifiedRecord() {
-        webElementAction.clickByLocator(firstRowDropDownMenu);
-        dropDownMenu = webElementAction.getElement(firstRowDropDownMenuUpdated);
+        webDriverActions.clickByLocator(firstRowDropDownMenu);
+        dropDownMenu = webDriverActions.getElement(firstRowDropDownMenuUpdated);
         clickOnArecordDropDownMenuDelete();
     }
 
@@ -69,7 +69,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        return webElementAction.getTextOfByFieldByLocator(deletedSuccessMessage);
+        return webDriverActions.getTextOfByFieldByLocator(deletedSuccessMessage);
     }
 
     /**
@@ -78,7 +78,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @param name represents a record name
      */
     public void clickOnRecordByName(final String name) {
-        webElementAction.clickByLocator(By.cssSelector("[title=\"" + name + "\"]"));
+        webDriverActions.clickByLocator(By.cssSelector("[title=\"" + name + "\"]"));
     }
 
     /**
@@ -88,7 +88,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @return boolean
      */
     public boolean isThereRecordWithName(final String name) {
-        return webElementAction.getElement(By.cssSelector("[title=\"" + name + "\"]")).getText().equals(name);
+        return webDriverActions.getElement(By.cssSelector("[title=\"" + name + "\"]")).getText().equals(name);
     }
 
     /**
@@ -97,9 +97,9 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @param name represent a record name
      */
     public void clickOnArecordDropDownMenuOption(final String name) {
-        webElementAction.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
+        webDriverActions.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
                 + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\""));
-        webElementAction.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
+        webDriverActions.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
                 + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
     }
 
@@ -107,7 +107,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * Click on a record Drop down menu Edit.
      */
     public void clickOnArecordDropDownMenuEdit() {
-        webElementAction.clickByLocator(By.cssSelector("div[aria-labelledby=\""
+        webDriverActions.clickByLocator(By.cssSelector("div[aria-labelledby=\""
                 + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]"));
     }
 
@@ -115,9 +115,9 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * Click on a record Drop down menu Delete.
      */
     public void clickOnArecordDropDownMenuDelete() {
-        webElementAction.clickByLocator(By.cssSelector(String.format("div[aria-labelledby="
+        webDriverActions.clickByLocator(By.cssSelector(String.format("div[aria-labelledby="
                 + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title='%s']", translate("Delete"))));
-        webElementAction.clickByLocator(deleteButtonDropDownMenu);
+        webDriverActions.clickByLocator(deleteButtonDropDownMenu);
     }
 
     /**
@@ -125,7 +125,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(recentlyViewedSpan);
+        webDriverActions.waitForVisibilityOfLocator(recentlyViewedSpan);
     }
 
     /**
@@ -135,7 +135,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      */
     @Override
     public FeatureNew clickNewButton() {
-        webElementAction.clickByLocator(newButton);
+        webDriverActions.clickByLocator(newButton);
         return new IndividualFormPage(webDriverManager);
     }
 

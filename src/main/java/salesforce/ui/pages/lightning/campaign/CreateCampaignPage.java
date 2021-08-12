@@ -68,7 +68,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(saveButton);
+        webDriverActions.waitForVisibilityOfLocator(saveButton);
     }
 
     /**
@@ -79,7 +79,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @return a this object.
      */
     public CreateCampaignPage setInputField(final String fieldName, final String value) {
-        webElementAction.setInputField(By.xpath(String.format(INPUT_XPATH, inputFieldNames.get(fieldName))), value);
+        webDriverActions.setInputField(By.xpath(String.format(INPUT_XPATH, inputFieldNames.get(fieldName))), value);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @return this class.
      */
     public CreateCampaignPage setExpectedResponse(final String expectedResponse) {
-        webElementAction.setInputField(expectedResponseTextBox, expectedResponse);
+        webDriverActions.setInputField(expectedResponseTextBox, expectedResponse);
         return this;
     }
 
@@ -101,7 +101,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @return this class.
      */
     public CreateCampaignPage setDescription(final String description) {
-        webElementAction.setInputField(descriptionTextArea, description);
+        webDriverActions.setInputField(descriptionTextArea, description);
         return this;
     }
 
@@ -111,7 +111,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @return Object of new CampaignCreatedPage.
      */
     public CampaignCreatedPage clickSaveBtn() {
-        webElementAction.clickByLocator(saveButton);
+        webDriverActions.clickByLocator(saveButton);
         return new CampaignCreatedPage(webDriverManager);
     }
 
@@ -119,7 +119,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * Clicks active check element.
      */
     public void clickActive() {
-        webElementAction.clickByLocator(activeCheck);
+        webDriverActions.clickByLocator(activeCheck);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
 
     @Override
     public CampaignCreatedPage clickSaveButton() {
-        webElementAction.clickByLocator(saveButton);
+        webDriverActions.clickByLocator(saveButton);
         return new CampaignCreatedPage(webDriverManager);
     }
 

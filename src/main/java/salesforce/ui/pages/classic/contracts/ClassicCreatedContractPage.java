@@ -35,7 +35,7 @@ public class ClassicCreatedContractPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(addObjects);
+        webDriverActions.waitForVisibilityOfLocator(addObjects);
     }
 
     /**
@@ -44,7 +44,7 @@ public class ClassicCreatedContractPage extends BasePage {
      * @return a HomePageObjects.
      */
     public ClassicHomePageObjects clickAddObjects() {
-        webElementAction.clickByLocator(addObjects);
+        webDriverActions.clickByLocator(addObjects);
         return new ClassicHomePageObjects(webDriverManager);
     }
 
@@ -54,6 +54,6 @@ public class ClassicCreatedContractPage extends BasePage {
      * @return the text set on the account name assigned to a contract.
      */
     public String getAccountName() {
-        return webElementAction.getTextOfByFieldByLocator(accountName);
+        return webDriverActions.getTextOfByFieldByLocator(accountName);
     }
 }

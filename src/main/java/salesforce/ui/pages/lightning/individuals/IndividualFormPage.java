@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.entities.IndividualEntity;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
@@ -57,42 +56,42 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * Clicks the saluatation selector.
      */
     public void clickOnSalutationDropDownMenu() {
-        webElementAction.clickByLocator(salutationSelector);
+        webDriverActions.clickByLocator(salutationSelector);
     }
 
     /**
      * Clicks the Mr. option
      */
     public void clickOnMrOption() {
-        webElementAction.clickOnElement(generalSalutationOptionSelector, "Mr.");
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, "Mr.");
     }
 
     /**
      * Clicks the Mrs. option
      */
     public void clickOnMrsOption() {
-        webElementAction.clickOnElement(generalSalutationOptionSelector, "Mrs.");
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, "Mrs.");
     }
 
     /**
      * Clicks the Ms. option
      */
     public void clickOnMsOption() {
-        webElementAction.clickOnElement(generalSalutationOptionSelector, "Ms.");
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, "Ms.");
     }
 
     /**
      * Clicks the Dr. option
      */
     public void clickOnDrOption() {
-        webElementAction.clickOnElement(generalSalutationOptionSelector, "Dr.");
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, "Dr.");
     }
 
     /**
      * Clicks the Prof. option
      */
     public void clickOnProfOption() {
-        webElementAction.clickOnElement(generalSalutationOptionSelector, "Prof.");
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, "Prof.");
     }
 
     /**
@@ -101,7 +100,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @param firstname represents a firstname
      */
     public void setFirstnameTextbox(final String firstname) {
-        webElementAction.setInputField(firstnameTextbox, firstname);
+        webDriverActions.setInputField(firstnameTextbox, firstname);
     }
 
     /**
@@ -110,7 +109,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @param lastname represents the lastname to be set
      */
     public void setLastnameTextbox(final String lastname) {
-        webElementAction.setInputField(lastnameTextbox, lastname);
+        webDriverActions.setInputField(lastnameTextbox, lastname);
     }
 
     /**
@@ -119,84 +118,84 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @param date represents the date to be set
      */
     public void setBirthdateDateField(final String date) {
-        webElementAction.setInputField(birthdateDateField, date);
+        webDriverActions.setInputField(birthdateDateField, date);
     }
 
     /**
      * Clicks on the Don't Process checkbox.
      */
     public void clickOnDontProcessCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Process"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Don't Process"));
     }
 
     /**
      * Clicks on the Don't Market checkbox.
      */
     public void clickOnDontMarketCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Market"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Don't Market"));
     }
 
     /**
      * Clicks on the Export Individual's Data checkbox.
      */
     public void clickOnExportIndividualDataCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Export Individual's Data"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Export Individual's Data"));
     }
 
     /**
      * Clicks on the OK to Store PII Data checkbox.
      */
     public void clickOnOkToStorePiiDataCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("OK to Store PII Data"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("OK to Store PII Data"));
     }
 
     /**
      * Clicks on the Block Geolocation checkbox.
      */
     public void clickOnBlockGeolocationCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Block Geolocation Tracking"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Block Geolocation Tracking"));
     }
 
     /**
      * Clicks on the Don't Profile checkbox.
      */
     public void clickOnDontProfileCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Profile"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Don't Profile"));
     }
 
     /**
      * Clicks on the Don't Track Checkbox.
      */
     public void clickOnDontTrackCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Don't Track"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Don't Track"));
     }
 
     /**
      * Clicks on the Forget This Individual checkbox.
      */
     public void clickOnForgetThisIndividualCheckbox() {
-        webElementAction.clickOnElement(generalCheckboxSelector, translate("Forget this Individual"));
+        webDriverActions.clickOnElement(generalCheckboxSelector, translate("Forget this Individual"));
     }
 
     /**
      * Clicks on the IndividualAgeSelector.
      */
     public void clickOnIndividualAgeSelector() {
-        webElementAction.clickByLocator(individualAgeSelector);
+        webDriverActions.clickByLocator(individualAgeSelector);
     }
 
     /**
      * Clicks on the Age13 option.
      */
     public void clickOnAge13Option() {
-        webElementAction.clickByLocator(age13Option);
+        webDriverActions.clickByLocator(age13Option);
     }
 
     /**
      * Clicks on the Age16 option.
      */
     public void clickOnAge16Option() {
-        webElementAction.clickByLocator(age16Option);
+        webDriverActions.clickByLocator(age16Option);
     }
 
     /**
@@ -205,7 +204,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @return IndividualRecordPage
      */
     public IndividualRecordPage clickOnsave() {
-        webElementAction.clickByLocator(saveButton);
+        webDriverActions.clickByLocator(saveButton);
         return new IndividualRecordPage(webDriverManager);
     }
 
@@ -215,7 +214,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @return String
      */
     public String getCreatedSuccessMessage() {
-        return webElementAction.getTextOfByFieldByLocator(createdSuccessMessage);
+        return webDriverActions.getTextOfByFieldByLocator(createdSuccessMessage);
     }
 
     /**
@@ -224,7 +223,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @return a boolean
      */
     public Boolean isVisibleIndividualNameInHeader() {
-        return webElementAction.isDisplayed(createdIndividualLabel);
+        return webDriverActions.isDisplayed(createdIndividualLabel);
     }
 
     /**
@@ -233,7 +232,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      * @return String
      */
     public String getCreatedIndividualNameInHeader() {
-        return webElementAction.getTextOfByFieldByLocator(createdIndividualLabel);
+        return webDriverActions.getTextOfByFieldByLocator(createdIndividualLabel);
     }
 
     /**
@@ -270,7 +269,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      */
     private void clickOnIndividualAgeOption(String age) {
         clickOnIndividualAgeSelector();
-        webElementAction.clickOnElement(ageGeneralSelector, age);
+        webDriverActions.clickOnElement(ageGeneralSelector, age);
     }
 
     /**
@@ -280,7 +279,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      */
     private void clickOnSalutationOption(String salutation) {
         clickOnSalutationDropDownMenu();
-        webElementAction.clickOnElement(generalSalutationOptionSelector, salutation);
+        webDriverActions.clickOnElement(generalSalutationOptionSelector, salutation);
     }
 
     /**
@@ -312,7 +311,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(saveButton);
+        webDriverActions.waitForVisibilityOfLocator(saveButton);
     }
 
     @Override
@@ -323,7 +322,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
 
     @Override
     public CreatedFeature clickSaveButton() {
-        webElementAction.clickByLocator(saveButton);
+        webDriverActions.clickByLocator(saveButton);
         return new IndividualRecordPage(webDriverManager);
     }
 }

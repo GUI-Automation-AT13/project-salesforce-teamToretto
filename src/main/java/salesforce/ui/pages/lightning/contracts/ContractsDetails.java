@@ -49,7 +49,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
-        return webElementAction.getTextOfByFieldByLocator(xpathLocator);
+        return webDriverActions.getTextOfByFieldByLocator(xpathLocator);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
-        return webElementAction.getTextOfByFieldByLocator(xpathLocator).replaceAll("[^0-9]", "");
+        return webDriverActions.getTextOfByFieldByLocator(xpathLocator).replaceAll("[^0-9]", "");
     }
 
     /**
@@ -80,7 +80,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
      * @return the text set on the field requested contract.
      */
     public String getContractStartDateText() {
-        return webElementAction.getTextOfByFieldByLocator(contractStartDate);
+        return webDriverActions.getTextOfByFieldByLocator(contractStartDate);
     }
 
     /**
@@ -90,7 +90,7 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
      */
     @Override
     public String getCreateDayTxt() {
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+        return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     @Override

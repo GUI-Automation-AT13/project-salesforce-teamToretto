@@ -34,15 +34,15 @@ public class ClassicContractsPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(newContractButton);
+        webDriverActions.waitForVisibilityOfLocator(newContractButton);
     }
 
     /**
      * Closes a popup.
      */
     public void clickPopUp() {
-        webElementAction.waitForVisibilityOfLocator(popup);
-        webElementAction.clickByLocator(popup);
+        webDriverActions.waitForVisibilityOfLocator(popup);
+        webDriverActions.clickByLocator(popup);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ClassicContractsPage extends BasePage {
      * @return a new NewContractPage
      */
     public ClassicNewContractPage clickNew() {
-        webElementAction.clickByLocator(newContractButton);
+        webDriverActions.clickByLocator(newContractButton);
         return new ClassicNewContractPage(webDriverManager);
     }
 

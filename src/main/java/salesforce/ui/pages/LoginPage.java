@@ -38,7 +38,7 @@ public class LoginPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(loginBtn);
+        webDriverActions.waitForVisibilityOfLocator(loginBtn);
     }
 
     /**
@@ -48,7 +48,7 @@ public class LoginPage extends BasePage {
      * @return the user name instance.
      */
     private LoginPage setUserName(final String userName) {
-        webElementAction.setInputField(userNameTxtBox, userName);
+        webDriverActions.setInputField(userNameTxtBox, userName);
         return this;
     }
 
@@ -59,7 +59,7 @@ public class LoginPage extends BasePage {
      * @return the user password instance.
      */
     private LoginPage setPassword(final String password) {
-        webElementAction.setInputField(passwordTxtBox, password);
+        webDriverActions.setInputField(passwordTxtBox, password);
         return this;
     }
 
@@ -67,7 +67,7 @@ public class LoginPage extends BasePage {
      * Clicks the login button.
      */
     private void clickLoginBtn() {
-        webElementAction.clickByLocator(loginBtn);
+        webDriverActions.clickByLocator(loginBtn);
     }
 
     /**
