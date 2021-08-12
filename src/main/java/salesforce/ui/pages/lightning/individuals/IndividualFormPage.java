@@ -322,7 +322,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     }
 
     @Override
-    public CreatedFeature clickSaveButton() {
+    public IndividualRecordPage clickSaveButton() {
         webElementAction.clickByLocator(saveButton);
         return new IndividualRecordPage(webDriverManager);
     }

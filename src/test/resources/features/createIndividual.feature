@@ -22,3 +22,14 @@ Feature: Create Individual
     Examples:
      | salutation | lastname | firstname | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
      | Mr.        | Paul     | Jake      | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |
+
+
+  @CreateIndividual @RegressionTest @DeleteIndividual
+  Scenario Outline: Create an Individual with given parameters
+    Given I navigate to the "Individual" page
+    When I create a new individual with required fields
+      | lastname                  | <lastname>                  |
+   Then I verify Individual created and matches with values of table
+    Examples:
+       | lastname |
+       | Cascada  |

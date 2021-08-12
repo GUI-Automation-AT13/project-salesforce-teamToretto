@@ -23,5 +23,6 @@ public class AdminUser extends User {
         Properties properties = PropertiesReader.getProperties("users/AdminUser.properties");
         setUsername(properties.getProperty("user"));
         setPassword(properties.getProperty("password"));
+        setAlias(properties.getProperty("alias"));
     }
 }

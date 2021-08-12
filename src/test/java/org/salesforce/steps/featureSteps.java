@@ -5,9 +5,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -16,6 +18,7 @@ import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
+import salesforce.ui.pages.tables.TablesValuesDefect;
 import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.CreatedFeature;
@@ -30,9 +33,9 @@ public class featureSteps {
     private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
+    private TablesValuesDefect tablesValuesDefect;
     private SoftAssert softAssert;
     private Internalization internalization;
-    private PersonalInformation personalInformation;
     private MapPages mapPages;
     private FeaturesPage featurePage;
     private FeatureNew featureNew;
@@ -40,13 +43,13 @@ public class featureSteps {
     private FeatureDetails featureDetails;
     private Map<String, String> tableFeature;
 
-    public featureSteps(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
+    public featureSteps(final WebDriverManager webDriverManager) {
         log.info("GeneralHooks featureSteps");
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
-        this.personalInformation = personalInformation;
         this.mapPages = new MapPages(this.webDriverManager);
         this.softAssert = new SoftAssert();
+        tablesValuesDefect = new TablesValuesDefect();
     }
 
     @Given("I navigate to the {string} page")
@@ -63,7 +66,7 @@ public class featureSteps {
         featurePage = mapPages.featuresPage(nameFeature);
         featureNew = featurePage.clickNewButton();
         featureNew.fillUpField(tableFeature);
-        createdFeature=featureNew.clickSaveButton();
+        createdFeature = featureNew.clickSaveButton();
         featureDetails = createdFeature.clickDetails();
     }
 
@@ -76,14 +79,14 @@ public class featureSteps {
 
     @And("I verify that the date matches the creation date")
     public void iVerifyDateCreate() {
-        Assert.assertEquals(featureDetails.getCreateDayTxt(),generateDateActual("M/d/yyyy, h:mm a"));
+        Assert.assertEquals(featureDetails.getCreateDayTxt(), generateDateActual("M/d/yyyy, h:mm a"));
     }
 
     @Then("^I verify (.*) created and matches with values of table$")
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
         pageTransporter.navigateToFeaturePage(nameFeature);
         List<String> actual = featurePage.getValueTables(tableFeature);
-        List<String> expected = featurePage.getExpected(tableFeature, personalInformation);
+        List<String> expected = tablesValuesDefect.getExpectedValues(nameFeature, tableFeature);
         Assert.assertEquals(actual, expected);
     }
 
