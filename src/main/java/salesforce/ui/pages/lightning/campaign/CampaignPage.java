@@ -27,7 +27,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
 
     protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
     protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
-    protected String fieldWithUniqueName = translate("Campaign Name");
+    protected String fieldWithUniqueName = "Campaign Name";
 
     /**
      * Initializes web element actions.
@@ -96,7 +96,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
                 .filter(v -> !v.equals(fieldWithUniqueName))
                 .forEach(key -> mapNew.put(key, getValueInTable(unitName, translate(key))));
         mapNew.put("Responses in Campaign", getValueInTable(unitName, translate("Responses in Campaign")));
-        mapNew.put("Owner Alias", getValueInTable(unitName, "Owner Alias"));
+        mapNew.put("Owner Alias", getValueInTable(unitName, translate("Owner Alias")));
         return new ArrayList<String>(mapNew.values());
     }
 }

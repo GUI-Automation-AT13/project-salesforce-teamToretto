@@ -161,9 +161,9 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
         mapActions.put("Description", () -> setInputField(translate("Description"),
                 campaignMap.get("Description")));
         mapActions.put("Status", () -> setStatus(
-                "Status", campaignMap.get("Status")));
+                translate("Status"), campaignMap.get("Status")));
         mapActions.put("Type", () -> setType(
-                "Type", campaignMap.get("Type")));
+                translate("Type"), campaignMap.get("Type")));
         return mapActions;
     }
 }

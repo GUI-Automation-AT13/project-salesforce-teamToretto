@@ -8,7 +8,6 @@ Feature: Create Campaign
     Then I verify that the created Campaign contains the correct information
     And I verify that the date matches the creation date
 
-
   @CreateCampaign @DeleteCampaign
   Scenario: Create a campaign with all required fields
     Given I navigate to the "Campaign" page
