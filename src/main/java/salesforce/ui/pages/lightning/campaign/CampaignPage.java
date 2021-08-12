@@ -96,6 +96,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
                 .filter(v -> !v.equals(fieldWithUniqueName))
                 .forEach(key -> mapNew.put(key, getValueInTable(unitName, translate(key))));
         mapNew.put("Responses in Campaign", getValueInTable(unitName, translate("Responses in Campaign")));
+        mapNew.put("Owner Alias", getValueInTable(unitName, "Owner Alias"));
         return new ArrayList<String>(mapNew.values());
     }
 }

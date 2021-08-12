@@ -9,10 +9,8 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import core.selenium.WebDriverManager;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
@@ -35,6 +33,9 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     private By saveAndNewButton = By.xpath(String.format("//button[@title='%s']", translate("Save & New")));
     private By cancelButton = By.xpath(String.format("//button[@title='%s']", translate("Cancel")));
     private String INPUT_XPATH = "//label/span[text()='%s']/../..//input";
+    private String statusComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[2]";
+    private String typeComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[1]";
+    private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id]//*[contains(text(),'%s')]/..";
 
     /**
      * Initializes web element actions.
@@ -95,6 +96,28 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     }
 
     /**
+     * Sets value and select type and Status.
+     *
+     * @param nameComboBox is name of comboBox
+     * @param selectValue  is a value in comboBox
+     */
+    public void setStatus(final String nameComboBox, final String selectValue) {
+        webDriverActions.selectByAction(By.xpath(String.format(statusComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+    }
+
+    /**
+     * Sets value and select type and Type.
+     *
+     * @param nameComboBox is name of comboBox
+     * @param selectValue  is a value in comboBox
+     */
+    public void setType(final String nameComboBox, final String selectValue) {
+        webDriverActions.selectByAction(By.xpath(String.format(typeComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+    }
+
+    /**
      * Clicks active check element.
      */
     public void clickActive() {
@@ -137,6 +160,10 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
                 campaignMap.get("Num Sent in Campaign")));
         mapActions.put("Description", () -> setInputField(translate("Description"),
                 campaignMap.get("Description")));
+        mapActions.put("Status", () -> setStatus(
+                "Status", campaignMap.get("Status")));
+        mapActions.put("Type", () -> setType(
+                "Type", campaignMap.get("Type")));
         return mapActions;
     }
 }

@@ -21,11 +21,10 @@ public class GeneralHooks {
     private WebDriverManager webDriverManager;
     private PersonalInformation personalInformation;
 
-    public GeneralHooks(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
+    public GeneralHooks(final WebDriverManager webDriverManager) {
         log.info("GeneralHooks constructor");
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
-        this.personalInformation = personalInformation;
     }
 
     @Before(order  = 1)

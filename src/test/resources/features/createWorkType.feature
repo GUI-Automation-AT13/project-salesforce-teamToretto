@@ -30,4 +30,5 @@ Feature: Create workType
       | Work Type Name     | workType |
       | Estimated Duration | 25.00    |
       | Duration Type      | Hours    |
+     And I navigate to the "WorkType" page
     Then I verify WorkType created and matches with values of table
