@@ -8,8 +8,8 @@
 
 package salesforce.ui.pages;
 
-import core.selenium.WebDriverManager;
 import core.selenium.WebDriverActions;
+import core.selenium.WebDriverManager;
 
 /**
  * Load home page.
