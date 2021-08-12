@@ -18,6 +18,8 @@ import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * This class is of Campaign Page.
  */
@@ -25,7 +27,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
 
     protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
     protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
-    protected String fieldWithUniqueName = "Campaign Name";
+    protected String fieldWithUniqueName = translate("Campaign Name");
 
     /**
      * Initializes web element actions.
@@ -92,8 +94,8 @@ public class CampaignPage extends BasePage implements FeaturesPage {
         mapNew.put(fieldWithUniqueName, unitName);
         valuesToGet.stream()
                 .filter(v -> !v.equals(fieldWithUniqueName))
-                .forEach(key -> mapNew.put(key, getValueInTable(unitName, key)));
-        mapNew.put("Responses in Campaign", getValueInTable(unitName, "Responses in Campaign"));
+                .forEach(key -> mapNew.put(key, getValueInTable(unitName, translate(key))));
+        mapNew.put("Responses in Campaign", getValueInTable(unitName, translate("Responses in Campaign")));
         return new ArrayList<String>(mapNew.values());
     }
 }

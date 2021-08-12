@@ -9,53 +9,32 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import core.selenium.WebDriverManager;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
+
+import static salesforce.utils.Internalization.translate;
 
 /**
  * This class is for create a new Campaign element.
  */
 public class CreateCampaignPage extends BasePage implements FeatureNew {
 
-    private By campaignNameTextBox = By.xpath("//label/span[text()=\"Campaign Name\"]/../..//input");
-    private By activeCheck = By.xpath("//label/span[text()=\"Active\"]/../..//input");
-    private By startDateTextBox = By.xpath("//label/span[text()=\"Start Date\"]/../..//input");
-    private By endDateTextBox = By.xpath("//label/span[text()=\"End Date\"]/../..//input");
-    private By expectedRevenueInCampaignTextBox = By
-            .xpath("//label/span[text()=\"Expected Revenue in Campaign\"]/../..//input");
-    private By budgetedCostInCampaignTextBox = By
-            .xpath("//label/span[text()=\"Budgeted Cost in Campaign\"]/../..//input");
-    private By actualCostInCampaignTextBox = By
-            .xpath("//label/span[text()=\"Actual Cost in Campaign\"]/../..//input");
+    private By activeCheck = By.xpath(String.format("//label/span[text()='%s']/../..//input",
+            translate("Active")));
     private By expectedResponseTextBox = By
-            .xpath("//label/span[text()=\"Expected Response (%)\"]/../..//input");
-    private By numSentInCampaignTextBox = By
-            .xpath("//label/span[text()=\"Num Sent in Campaign\"]/../..//input");
-    private By parentCampaignTextBox = By
-            .xpath("//label/span[text()=\"Parent Campaign\"]/../..//input");
-    private By descriptionTextArea = By.xpath("//label/span[text()=\"Description\"]/../..//textarea");
-    private By saveButton = By.xpath("//button[@title=\'Save\']");
-    private By saveAndNewButton = By.xpath("//button[@title='Save & New']");
-    private By cancelButton = By.xpath("//button[@title='Cancel']");
-
-    private static final String INPUT_XPATH = "//label/span[text()='%s']/../..//input";
-
-    private static final HashMap<String, String> inputFieldNames = new HashMap<>();
-
-    static {
-        inputFieldNames.put("Campaign Name", "Campaign Name");
-        inputFieldNames.put("Start Date", "Start Date");
-        inputFieldNames.put("End Date", "End Date");
-        inputFieldNames.put("Expected Revenue in Campaign", "Expected Revenue in Campaign");
-        inputFieldNames.put("Budgeted Cost in Campaign", "Budgeted Cost in Campaign");
-        inputFieldNames.put("Actual Cost in Campaign", "Actual Cost in Campaign");
-        inputFieldNames.put("Num Sent in Campaign", "Num Sent in Campaign");
-        inputFieldNames.put("Description", "Description");
-    }
+            .xpath(String.format("//label/span[text()='%s']/../..//input", translate("Expected Response (%)")));
+    private By descriptionTextArea = By.xpath(String.format("//label/span[text()='%s']/../..//textarea",
+            translate("Description")));
+    private By saveButton = By.xpath(String.format("//button[@title='%s']", translate("Save")));
+    private By saveAndNewButton = By.xpath(String.format("//button[@title='%s']", translate("Save & New")));
+    private By cancelButton = By.xpath(String.format("//button[@title='%s']", translate("Cancel")));
+    private String INPUT_XPATH = "//label/span[text()='%s']/../..//input";
 
     /**
      * Initializes web element actions.
@@ -79,7 +58,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @return a this object.
      */
     public CreateCampaignPage setInputField(final String fieldName, final String value) {
-        webDriverActions.setInputField(By.xpath(String.format(INPUT_XPATH, inputFieldNames.get(fieldName))), value);
+        webDriverActions.setInputField(By.xpath(String.format(INPUT_XPATH, fieldName)), value);
         return this;
     }
 
@@ -142,29 +121,21 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      */
     private HashMap<String, VoidSupplier> mapActionsContract(final Map<String, String> campaignMap) {
         HashMap<String, VoidSupplier> mapActions = new HashMap<>();
-        mapActions.put("Campaign Name", () -> setInputField(
-                "Campaign Name",
+        mapActions.put("Campaign Name", () -> setInputField(translate("Campaign Name"),
                 campaignMap.get("Campaign Name")));
-        mapActions.put("Start Date", () -> setInputField(
-                "Start Date",
+        mapActions.put("Start Date", () -> setInputField(translate("Start Date"),
                 campaignMap.get("Start Date")));
-        mapActions.put("End Date", () -> setInputField(
-                "End Date",
+        mapActions.put("End Date", () -> setInputField(translate("End Date"),
                 campaignMap.get("End Date")));
         mapActions.put("Expected Revenue in Campaign", () -> setInputField(
-                "Expected Revenue in Campaign",
-                campaignMap.get("Expected Revenue in Campaign")));
-        mapActions.put("Budgeted Cost in Campaign", () -> setInputField(
-                "Budgeted Cost in Campaign",
+                translate("Expected Revenue in Campaign"), campaignMap.get("Expected Revenue in Campaign")));
+        mapActions.put("Budgeted Cost in Campaign", () -> setInputField(translate("Budgeted Cost in Campaign"),
                 campaignMap.get("Budgeted Cost in Campaign")));
-        mapActions.put("Actual Cost in Campaign", () -> setInputField(
-                "Actual Cost in Campaign",
+        mapActions.put("Actual Cost in Campaign", () -> setInputField(translate("Actual Cost in Campaign"),
                 campaignMap.get("Actual Cost in Campaign")));
-        mapActions.put("Num Sent in Campaign", () -> setInputField(
-                "Num Sent in Campaign",
+        mapActions.put("Num Sent in Campaign", () -> setInputField(translate("Num Sent in Campaign"),
                 campaignMap.get("Num Sent in Campaign")));
-        mapActions.put("Description", () -> setInputField(
-                "Description",
+        mapActions.put("Description", () -> setInputField(translate("Description"),
                 campaignMap.get("Description")));
         return mapActions;
     }

@@ -25,12 +25,13 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
     private By createdCampaignTitle = By
             .cssSelector("[class='slds-media__body'] span[class='custom-truncate uiOutputText']");
     private By createdCampaignOptionBtn = By
-            .xpath("//ul[contains(@class,\'branding-actions\')]/li/div//a[@role=\'button\']");
+            .xpath("//ul[contains(@class,'branding-actions')]/li/div//a[@role='button']");
     private By detailsTab = By.xpath("//a[@data-tab-name='detailTab']");
     private By campaignNameCreated = By
-            .xpath("//div/div/span[text()=\"Campaign Name\"]/../..//span/span");
-    private By createBy = By.xpath("//span[text()='Created By']/../../div/span/span");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'Created By')]/../.."
+            .xpath(String.format("//div/div/span[text()='%s']/../..//span/span",translate("Campaign Name")));
+    private By createBy = By.xpath(String.format("//span[text()='%s']/../../div/span/span",
+            translate("Created By")));
+    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     /**

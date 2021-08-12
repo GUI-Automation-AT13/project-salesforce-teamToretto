@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.supplier.StringSupplier;
 
+import static salesforce.utils.Internalization.translate;
+
 /**
  * This class for elements of Campaign details page created.
  */
@@ -44,7 +46,7 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
      */
     public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
-        String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
+        String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
         return webDriverActions.getTextOfByFieldByLocator(xpathLocator);
     }
