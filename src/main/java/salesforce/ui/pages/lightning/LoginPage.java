@@ -10,7 +10,6 @@ package salesforce.ui.pages.lightning;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import salesforce.ui.pages.BasePage;
 
 /**
@@ -37,7 +36,7 @@ public class LoginPage extends BasePage {
      * @param username represents the username value to be put on the username text box
      */
     public void setUsernameTextbox(final String username) {
-        webElementAction.setInputField(usernameTextbox, username);
+        webDriverActions.setInputField(usernameTextbox, username);
     }
 
     /**
@@ -46,7 +45,7 @@ public class LoginPage extends BasePage {
      * @param password represents the password value to be put on the password text box
      */
     public void setPasswordTextbox(final String password) {
-        webElementAction.setInputField(passwordTextbox, password);
+        webDriverActions.setInputField(passwordTextbox, password);
     }
 
     /**
@@ -55,7 +54,7 @@ public class LoginPage extends BasePage {
      * @return HomePage
      */
     public HomePage login() {
-        webElementAction.clickByLocator(loginButton);
+        webDriverActions.clickByLocator(loginButton);
         return new HomePage(webDriverManager);
     }
 
@@ -64,6 +63,6 @@ public class LoginPage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(loginButton);
+        webDriverActions.waitForVisibilityOfLocator(loginButton);
     }
 }

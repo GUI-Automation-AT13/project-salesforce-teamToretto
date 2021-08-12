@@ -46,7 +46,7 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
         By xpathLocator = By.xpath(xpath);
-        return webElementAction.getTextOfByFieldByLocator(xpathLocator);
+        return webDriverActions.getTextOfByFieldByLocator(xpathLocator);
     }
 
     /**
@@ -56,7 +56,7 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
      */
     @Override
     public String getCreateDayTxt() {
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+        return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     @Override

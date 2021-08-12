@@ -35,7 +35,7 @@ public class ClassicHomePage extends BasePage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisible(addObject);
+        webDriverActions.waitForVisible(addObject);
     }
 
     /**

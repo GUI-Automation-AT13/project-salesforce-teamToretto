@@ -44,13 +44,13 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
 
 
     public MenuPage clickCreatedCampaignOptionBtn() {
-        webElementAction.clickByLocator(createdCampaignOptionBtn);
+        webDriverActions.clickByLocator(createdCampaignOptionBtn);
         return new MenuPage(webDriverManager);
     }
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(alertSuccess);
+        webDriverActions.waitForVisibilityOfLocator(alertSuccess);
     }
 
     /**
@@ -59,7 +59,7 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
      * @return text of element title.
      */
     public String getCreatedCampaignTitleText() {
-        return webElementAction.getTextOfByFieldByLocator(createdCampaignTitle);
+        return webDriverActions.getTextOfByFieldByLocator(createdCampaignTitle);
     }
 
     /**
@@ -68,7 +68,7 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
      * @return the text value.
      */
     public String getTextAlertSuccess() {
-        return webElementAction.getTextOfByFieldByLocator(alertSuccess);
+        return webDriverActions.getTextOfByFieldByLocator(alertSuccess);
     }
 
     /**
@@ -77,7 +77,7 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
      * @return text of element campaign created.
      */
     public String getCampaignNameCreatedText() {
-        return webElementAction.getTextOfByFieldByLocator(campaignNameCreated);
+        return webDriverActions.getTextOfByFieldByLocator(campaignNameCreated);
     }
 
     /**
@@ -86,14 +86,14 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
      * @return text of elements created by.
      */
     public String getCreatedByText() {
-        return webElementAction.getTextOfByFieldByLocator(createBy);
+        return webDriverActions.getTextOfByFieldByLocator(createBy);
     }
 
     /**
      * Waits elements of details part.
      */
     public void waitElementCampaignNameCreated() {
-        webElementAction.waitForVisibilityOfLocator(campaignNameCreated);
+        webDriverActions.waitForVisibilityOfLocator(campaignNameCreated);
     }
 
     /**
@@ -101,8 +101,8 @@ public class CampaignCreatedPage extends BasePage implements CreatedFeature {
      */
     @Override
     public FeatureDetails clickDetails() {
-        webElementAction.clickByLocator(detailsTab);
-        webElementAction.dropDownTillTheEnd();
+        webDriverActions.clickByLocator(detailsTab);
+        webDriverActions.scrollToBottom();
         return new CampaignDetails(webDriverManager);
     }
 }

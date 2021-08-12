@@ -47,7 +47,7 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      * Gets the text on the Status Tittle.
      */
     public String getStatusTxt() {
-        return webElementAction.getTextOfByFieldByLocator(statusTitle);
+        return webDriverActions.getTextOfByFieldByLocator(statusTitle);
     }
 
     /**
@@ -57,8 +57,8 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      */
     @Override
     public ContractsDetails clickDetails() {
-        webElementAction.clickByLocator(details);
-        webElementAction.dropDownTillTheEnd();
+        webDriverActions.clickByLocator(details);
+        webDriverActions.scrollToBottom();
         return new ContractsDetails(webDriverManager);
     }
 
@@ -67,7 +67,7 @@ public class CreatedContractPage extends BasePage implements CreatedFeature {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(accountNameTitle);
+        webDriverActions.waitForVisibilityOfLocator(accountNameTitle);
     }
 
 }

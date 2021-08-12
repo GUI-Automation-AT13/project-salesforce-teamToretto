@@ -49,7 +49,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      */
     @Override
     public String getCreateDayTxt() {
-        return webElementAction.getTextOfByFieldByLocator(dateCreateByTxt);
+        return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
     /**
@@ -75,7 +75,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      * @return name of worktype.
      */
     public String getNameOfWorkType() {
-        return webElementAction.getTextOfByFieldByLocator(nameWorkTypeTxt);
+        return webDriverActions.getTextOfByFieldByLocator(nameWorkTypeTxt);
     }
 
     /**
@@ -84,7 +84,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      * @return description of estimated duration.
      */
     public String getEstimatedDuration() {
-        return webElementAction.getTextOfByFieldByLocator(estimatedDurationTxt);
+        return webDriverActions.getTextOfByFieldByLocator(estimatedDurationTxt);
     }
 
     /**
@@ -93,7 +93,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      * @return description of worktype.
      */
     public String getDescription() {
-        return webElementAction.getTextOfByFieldByLocator(descriptionTxt);
+        return webDriverActions.getTextOfByFieldByLocator(descriptionTxt);
     }
 
     /**
@@ -104,7 +104,7 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      * @return value of nameTxtBox
      */
     public String getTxtField(final String nameTxtBox) {
-        return webElementAction.getTextOfElementByField(String.format(pathFieldTxt, nameTxtBox));
+        return webDriverActions.getTextByXpathLocator(String.format(pathFieldTxt, nameTxtBox));
     }
 
     /**
@@ -113,6 +113,6 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      * @return a String to date
      */
     public String getNameCreatorTxt() {
-        return webElementAction.getTextOfByFieldByLocator(nameCreatorTxt);
+        return webDriverActions.getTextOfByFieldByLocator(nameCreatorTxt);
     }
 }

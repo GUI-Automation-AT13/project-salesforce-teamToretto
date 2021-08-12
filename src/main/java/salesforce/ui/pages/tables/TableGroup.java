@@ -61,7 +61,7 @@ public class TableGroup extends BasePage {
                 webDriverManager.setDefaultWaitMode();
                 if (validElement) {
                     String baseLocator = getValidTableContainerSelector.replaceAll("%d", String.valueOf(i));
-                    String featureName = webElementAction.getElement(String.format(getValidTableContainerSelector, i)
+                    String featureName = webDriverActions.getElement(String.format(getValidTableContainerSelector, i)
                             .concat(titleNameLocator)).getText();
                     tables.add(new Table(webDriverManager, baseLocator, featureName));
                 }
@@ -81,12 +81,12 @@ public class TableGroup extends BasePage {
     }
 
     private int getTablesWithHidenOnes() {
-        return webElementAction.getElements(getAllTableContainersSelector).size();
+        return webDriverActions.getElements(getAllTableContainersSelector).size();
     }
 
     private boolean validElement(final int i) {
         try {
-            WebElement webElement = webElementAction.getElement(String.format(getValidTableContainerSelector, i));
+            WebElement webElement = webDriverActions.getElement(String.format(getValidTableContainerSelector, i));
             if (webElement != null) {
                 return true;
             } else {
@@ -126,7 +126,7 @@ public class TableGroup extends BasePage {
      */
     public boolean thereAreResults() {
         try {
-            webElementAction.getElements(getAllValidTableContainersSelector);
+            webDriverActions.getElements(getAllValidTableContainersSelector);
             return true;
         } catch (Exception e) {
             return false;

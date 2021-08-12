@@ -46,12 +46,12 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
      * @return a value of one element of table
      */
     public String getValueInTable(final String fieldUniqueName, final String nameOfColumnHeader) {
-        return webElementAction.getTextOfElementByField(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
+        return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(newBtn);
+        webDriverActions.waitForVisibilityOfLocator(newBtn);
     }
 
     /**
@@ -60,7 +60,7 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
      * @return workTypeForm initialize.
      */
     public NewWorkTypePage clickNewButton() {
-        webElementAction.clickByLocator(newBtn);
+        webDriverActions.clickByLocator(newBtn);
         return new NewWorkTypePage(webDriverManager);
     }
 

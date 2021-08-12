@@ -7,17 +7,16 @@
  */
 
 
-package core.selenium.drivermanager;
+package core.selenium.driverfactory;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * This class selects the type of driver.
  */
 public final class DriverFactory {
+
     private DriverFactory() {
     }
 
@@ -29,22 +28,16 @@ public final class DriverFactory {
      */
     public static WebDriver getDriver(final String type) {
 
-        WebDriver driver;
-
         switch (type) {
             case "CHROME":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
+                return new ChromeBrowser().getWebDriver();
+            case "EDGE":
+                return new EdgeBrowser().getWebDriver();
             case "FIREFOX":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
+                return new FirefoxBrowser().getWebDriver();
             default:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                throw new InvalidArgumentException("Unsupported WebDriver");
         }
-        return driver;
     }
 
 }
