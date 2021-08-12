@@ -20,16 +20,17 @@ Feature: Create Individual
     Then The name displayed should contain "<salutation> <firstname> <lastname>"
     And The feature list Page should contain a record with "<firstname> <lastname>"
     Examples:
-     | salutation | lastname | firstname | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
-     | Mr.        | Paul     | Jake      | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |
+      | salutation | lastname | firstname | birthdate  | dontProcess | dontMarket | exportIndividualsData | okToStorePiiDataElsewhere | blockGeolocationTracking | dontProfile | dontTrack | forgetThisIndividual | individualsAge |
+      | Mr.        | Paul     | Jake      | 01/01/2000 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 13 or Older    |
 
 
   @CreateIndividual @RegressionTest @DeleteIndividual
   Scenario Outline: Create an Individual with given parameters
     Given I navigate to the "Individual" page
     When I create a new individual with required fields
-      | lastname                  | <lastname>                  |
-   Then I verify Individual created and matches with values of table
+      | lastname | <lastname> |
+      And I navigate to the "Individual" page
+    Then I verify Individual created and matches with values of table
     Examples:
-       | lastname |
-       | Cascada  |
+      | lastname |
+      | Cascada  |

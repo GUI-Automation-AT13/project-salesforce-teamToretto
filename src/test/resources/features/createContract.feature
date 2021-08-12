@@ -191,4 +191,5 @@ Feature: Create Contract
       | Contract Term (months) | 2           |
       | Contract Start Date    | 7/15/2021   |
       | Status                 | Draft       |
+     And I navigate to the "Contract" page
     Then I verify Contract created and matches with values of table

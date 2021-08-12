@@ -84,7 +84,6 @@ public class featureSteps {
 
     @Then("^I verify (.*) created and matches with values of table$")
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
-        pageTransporter.navigateToFeaturePage(nameFeature);
         List<String> actual = featurePage.getValueTables(tableFeature);
         List<String> expected = tablesValuesDefect.getExpectedValues(nameFeature, tableFeature);
         Assert.assertEquals(actual, expected);
