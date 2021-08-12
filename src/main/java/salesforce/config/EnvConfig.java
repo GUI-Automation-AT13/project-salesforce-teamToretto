@@ -11,7 +11,7 @@ package salesforce.config;
 import core.utils.PropertiesReader;
 import java.util.Properties;
 import salesforce.config.users.AdminUser;
-import salesforce.config.users.StandarUser;
+import salesforce.config.users.StandardUser;
 
 /**
  * This class sets the environment configuration.
@@ -25,7 +25,7 @@ public final class EnvConfig {
     private String loginUrl;
     private String baseUrl;
     private AdminUser adminUser;
-    private StandarUser standarUser;
+    private StandardUser standardUser;
     private static EnvConfig envConfig;
     private String language;
 
@@ -70,8 +70,8 @@ public final class EnvConfig {
      *
      * @return StandarUser
      */
-    public StandarUser getStandarUser() {
-        return standarUser;
+    public StandardUser getStandardUser() {
+        return standardUser;
     }
 
     /**
@@ -95,7 +95,7 @@ public final class EnvConfig {
         baseUrl = properties.getProperty("baseURL");
         language = properties.getProperty("language");
         adminUser = new AdminUser();
-        standarUser = new StandarUser();
+        standardUser = new StandardUser();
     }
 
 }

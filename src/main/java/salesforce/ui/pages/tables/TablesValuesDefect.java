@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.InvalidArgumentException;
 import salesforce.config.EnvConfig;
+import salesforce.config.users.AdminUser;
 
 /**
  * This class contains expected values of tables.
