@@ -9,10 +9,8 @@
 package salesforce.ui.pages.lightning.campaign;
 
 import core.selenium.WebDriverManager;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureNew;
@@ -121,7 +119,7 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     }
 
     /**
-     * Sets value and select type and Status
+     * Sets value and select type and Status.
      *
      * @param nameComboBox is name of comboBox
      * @param selectValue  is a value in comboBox

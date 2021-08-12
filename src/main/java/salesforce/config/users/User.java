@@ -58,8 +58,6 @@ public abstract class User {
 
     /**
      * Gets the user's alias.
-     *
-     * @return String
      */
     public void setAlias(String alias) {
         this.alias = alias;

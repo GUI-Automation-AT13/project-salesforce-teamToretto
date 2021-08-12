@@ -11,7 +11,6 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -1,17 +1,27 @@
 package salesforce.ui.pages.tables;
 
-import org.openqa.selenium.InvalidArgumentException;
-import salesforce.config.EnvConfig;
+import static core.utils.date.DateManager.addMonthsDate;
+import static core.utils.date.DateManager.generateDateActual;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.openqa.selenium.InvalidArgumentException;
+import salesforce.config.EnvConfig;
 
-import static core.utils.date.DateManager.addMonthsDate;
-import static core.utils.date.DateManager.generateDateActual;
-
+/**
+ * This class contains expected values of tables.
+ */
 public class TablesValuesDefect {
-    public List<String> getExpectedValues(String factureName, Map<String, String> tableFeature){
+
+    /**
+     * Select the table according feature.
+     *
+     * @param factureName name of feature
+     * @param tableFeature is table with some values
+     * @return a list with expected values of table
+     */
+    public List<String> getExpectedValues(String factureName, Map<String, String> tableFeature) {
         switch (factureName.toLowerCase()) {
             case "worktype":
                 return workTypeTableValue(tableFeature);
@@ -26,23 +36,47 @@ public class TablesValuesDefect {
         }
     }
 
-    private List<String> workTypeTableValue( Map<String, String> tableFeature){
+    /**
+     * Sets some default or autogenerate value of work type.
+     *
+     * @param tableFeature is some values of table
+     * @return a list with values of table
+     */
+    private List<String> workTypeTableValue(Map<String, String> tableFeature) {
         return new ArrayList<String>(tableFeature.values());
     }
 
-    private List<String> contractTableValue( Map<String, String> tableFeature){
+    /**
+     * Sets some default or autogenerate value of contract.
+     *
+     * @param tableFeature is some values of table
+     * @return a list with values of table
+     */
+    private List<String> contractTableValue(Map<String, String> tableFeature) {
         tableFeature.put("Contract End Date", addMonthsDate(tableFeature.get("Contract Start Date"),
                 Integer.parseInt(tableFeature.get("Contract Term (months)"))));
         return new ArrayList<String>(tableFeature.values());
     }
 
-    private List<String> campaignTableValue( Map<String, String> tableFeature){
+    /**
+     * Sets some default or autogenerate value of campaign.
+     *
+     * @param tableFeature is some values of table
+     * @return a list with values of table
+     */
+    private List<String> campaignTableValue(Map<String, String> tableFeature) {
         tableFeature.put("Responses in Campaign", "0");
         tableFeature.put("Owner Alias", EnvConfig.getInstance().getAdminUser().getAlias());
         return new ArrayList<String>(tableFeature.values());
     }
 
-    private List<String> individualTableValue( Map<String, String> tableFeature){
+    /**
+     * Sets some default or autogenerate value of Individual.
+     *
+     * @param tableFeature is some values of table
+     * @return a list with values of table
+     */
+    private List<String> individualTableValue(Map<String, String> tableFeature) {
         tableFeature.put("Alias", EnvConfig.getInstance().getAdminUser().getAlias());
         tableFeature.put("Last Modified By Alias", EnvConfig.getInstance().getAdminUser().getAlias());
         tableFeature.put("Created By Alias", EnvConfig.getInstance().getAdminUser().getAlias());
