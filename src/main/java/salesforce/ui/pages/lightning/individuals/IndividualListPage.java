@@ -11,10 +11,12 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import salesforce.ui.entities.PersonalInformation;
@@ -28,7 +30,7 @@ import salesforce.utils.strategy.FeaturesPage;
 public class IndividualListPage extends BasePage implements FeaturesPage {
 
     private By recentlyViewedSpan = By.cssSelector("span.triggerLinkText");
-    private By deletedSuccessMessage = By.xpath("//span[contains(.,\"was deleted.\")]");
+    private By deletedSuccessMessage = By.xpath("//span[contains(.,'was deleted.')]");
     private By firstRowDropDownMenu = By.xpath(String.format("//tbody/tr[1]//span/span[contains"
             + "(.,'%s')]/preceding-sibling::span", translate("Show Actions")));
     private By firstRowDropDownMenuUpdated = By.xpath(String.format("//tbody/tr[1]//a[@title="
@@ -82,7 +84,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @param name represents a record name
      */
     public void clickOnRecordByName(final String name) {
-        webDriverActions.clickByLocator(By.cssSelector("[title=\"" + name + "\"]"));
+        webDriverActions.clickByLocator(By.cssSelector(String.format("[title='%s']", name)));
     }
 
     /**
@@ -92,7 +94,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @return boolean
      */
     public boolean isThereRecordWithName(final String name) {
-        return webDriverActions.getElement(By.cssSelector("[title=\"" + name + "\"]")).getText().equals(name);
+        return webDriverActions.getElement(By.cssSelector(String.format("[title='%s']", name))).getText().equals(name);
     }
 
     /**
@@ -101,33 +103,33 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @param name represent a record name
      */
     public void clickOnArecordDropDownMenuOption(final String name) {
-        webDriverActions.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//"
-                + "span/span[contains(.,\"Show Actions\")]/preceding-sibling::span\""));
-        webDriverActions.clickByLocator(By.xpath("//a[@title=\"" + name + "\"]/ancestor::tr//a[@title="
-                + "\"Show 2 more actions\"]/ancestor::div[@id and @data-interactive-uid]"));
+        webDriverActions.clickByLocator(By.xpath(String.format("//a[@title='%s']/ancestor::tr//"
+                + "span/span[contains(.,'Show Actions')]/preceding-sibling::span\"", name)));
+        webDriverActions.clickByLocator(By.xpath(String.format("//a[@title='%s']/ancestor::tr//a[@title="
+                + "'Show 2 more actions']/ancestor::div[@id and @data-interactive-uid]", name)));
     }
 
     /**
      * Click on a record Drop down menu Edit.
      */
     public void clickOnArecordDropDownMenuEdit() {
-        webDriverActions.clickByLocator(By.cssSelector("div[aria-labelledby=\""
-                + dropDownMenu.getAttribute("id") + "\"] a[title=\"Edit\"]"));
+        webDriverActions.clickByLocator(By.cssSelector(String.format("div[aria-labelledby='%s'] a[title='Edit']",
+                dropDownMenu.getAttribute("id"))));
     }
 
     /**
      * Click on a record Drop down menu Delete.
      */
     public void clickOnArecordDropDownMenuDelete() {
-        webDriverActions.clickByLocator(By.cssSelector(String.format("div[aria-labelledby="
-                + "\"" + dropDownMenu.getAttribute("id") + "\"] a[title='%s']", translate("Delete"))));
+        webDriverActions.clickByLocator(By.cssSelector(String.format("div[aria-labelledby='%s'] a[title='%s']",
+                dropDownMenu.getAttribute("id"), translate("Delete"))));
         webDriverActions.clickByLocator(deleteButtonDropDownMenu);
     }
 
     /**
      * Gets value of cell in table according the name of column header.
      *
-     * @param fieldUniqueName is field in arrow with is unique
+     * @param fieldUniqueName    is field in arrow with is unique
      * @param nameOfColumnHeader a name of column header on table
      * @return a value of one element of table
      */
@@ -170,10 +172,10 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     public List<String> getValues(List<String> valuesToGet, String unitName) {
         Map<String, String> mapNew = new HashMap<>();
         mapNew.put(fieldWithUniqueName, unitName);
-        mapNew.put("Alias", getValueInTable(unitName, "Alias"));
-        mapNew.put("Created By Alias", getValueInTable(unitName, "Created By Alias"));
-        mapNew.put("Last Modified By Alias", getValueInTable(unitName, "Last Modified By Alias"));
-        mapNew.put("Last Modified Date", getValueInTable(unitName, "Last Modified Date"));
+        mapNew.put("Alias", getValueInTable(unitName, translate("Alias")));
+        mapNew.put("Created By Alias", getValueInTable(unitName, translate("Created By Alias")));
+        mapNew.put("Last Modified By Alias", getValueInTable(unitName, translate("Last Modified By Alias")));
+        mapNew.put("Last Modified Date", getValueInTable(unitName, translate("Last Modified Date")));
         return new ArrayList<String>(mapNew.values());
     }
 

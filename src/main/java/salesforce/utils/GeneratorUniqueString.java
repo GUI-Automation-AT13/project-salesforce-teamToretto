@@ -3,6 +3,8 @@ package salesforce.utils;
 import static salesforce.utils.Internalization.translate;
 
 import core.utils.RandomCustom;
+import salesforce.utils.supplier.VoidSupplier;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ public final class GeneratorUniqueString {
                 break;
             }
         }
-        return mapNew;
+        return appliedInternalization(mapNew);
     }
 
     /**
@@ -37,8 +39,20 @@ public final class GeneratorUniqueString {
      * @param word a string
      * @return a boolean
      */
-    public static boolean containsName(final String word, final String nameFeature) {
+    private static boolean containsName(final String word, final String nameFeature) {
         return word.toLowerCase().matches(".*name.*") & !"contract".equals(nameFeature)
                 & !"individual".equals(nameFeature);
+    }
+
+    /**
+     * Translates maps with Internalization.
+     *
+     * @param mapAnalyzed a map to translates
+     * @return a new map with translate
+     */
+    private static Map<String, String> appliedInternalization(final Map<String, String> mapAnalyzed){
+        Map<String, String> mapNew = new HashMap<String, String>();
+        mapAnalyzed.keySet().forEach(key -> mapNew.put(key, translate(mapAnalyzed.get(key))));
+        return mapNew;
     }
 }

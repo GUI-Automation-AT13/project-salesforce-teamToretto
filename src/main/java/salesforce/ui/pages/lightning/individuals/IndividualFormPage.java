@@ -26,21 +26,20 @@ import salesforce.utils.supplier.VoidSupplier;
 public class IndividualFormPage extends BasePage implements FeatureNew {
 
 
-    private final String generalSalutationOptionSelector = "[title=\"%s\"]";
-    private final String generalCheckboxSelector = "//div[label[contains(.,\"%s\")]]/input";
-    private final String ageGeneralSelector = "//a[contains(text(),\'%s\')]";
-
+    private String generalSalutationOptionSelector = "[title='%s']";
+    private String generalCheckboxSelector = "//div[label[contains(.,'%s')]]/input";
+    private String ageGeneralSelector = "//a[contains(text(),'%s')]";
     private By salutationSelector = By.cssSelector(".salutation a");
     private By firstnameTextbox = By.cssSelector(".firstName");
     private By lastnameTextbox = By.cssSelector(".lastName");
     private By birthdateDateField = By.cssSelector("input[class=' input']");
     private By individualAgeSelector = By.xpath(String.format("//div[span[span[contains(text(),'%s')]]]/div//a",
             translate("Age")));
-    private By age13Option = By.xpath("//a[contains(text(),\'13 or Older\')]");
-    private By age16Option = By.xpath("//a[contains(text(),\'16 or Older\')]");
+    private By age13Option = By.xpath("//a[contains(text(),'13 or Older')]");
+    private By age16Option = By.xpath("//a[contains(text(),'16 or Older')]");
     private By saveButton = By.cssSelector(String.format("button[title='%s']", translate("Save")));
     private By createdIndividualLabel = By.cssSelector(".slds-page-header__title > .uiOutputText");
-    private By createdSuccessMessage = By.xpath("//span[contains(.,\"was created.\")]");
+    private By createdSuccessMessage = By.xpath("//span[contains(.,'was created.')]");
 
     /**
      * Initializes web element actions.

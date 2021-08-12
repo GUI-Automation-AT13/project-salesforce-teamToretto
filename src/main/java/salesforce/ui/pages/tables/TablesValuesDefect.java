@@ -10,6 +10,7 @@ package salesforce.ui.pages.tables;
 
 import static core.utils.date.DateManager.addMonthsDate;
 import static core.utils.date.DateManager.generateDateActual;
+import static salesforce.utils.Internalization.translate;
 
 import java.util.ArrayList;
 import java.util.List;

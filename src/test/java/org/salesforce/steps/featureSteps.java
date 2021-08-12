@@ -83,6 +83,8 @@ public class featureSteps {
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
         List<String> actual = featurePage.getValueTables(tableFeature);
         List<String> expected = tablesValuesDefect.getExpectedValues(nameFeature, tableFeature);
+        System.out.println(actual);
+        System.out.println(expected);
         Assert.assertEquals(actual, expected);
     }
 

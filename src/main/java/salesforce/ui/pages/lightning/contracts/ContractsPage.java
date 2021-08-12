@@ -9,6 +9,7 @@
 package salesforce.ui.pages.lightning.contracts;
 
 import static core.utils.date.DateManager.addMonthsDate;
+import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
@@ -96,9 +97,8 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     public List<String> getValues(List<String> valuesToGet) {
         Map<String, String> mapNew = new HashMap<>();
         valuesToGet.stream()
-                .forEach(key -> mapNew.put(key, getValueInTable(key)));
-        mapNew.put("Status", getValueInTable("Status"));
-        mapNew.put("Contract End Date", getValueInTable("Contract End Date"));
+                .forEach(key -> mapNew.put(key, getValueInTable(translate(key))));
+        mapNew.put("Contract End Date", getValueInTable(translate("Contract End Date")));
         return new ArrayList<String>(mapNew.values());
     }
 }
