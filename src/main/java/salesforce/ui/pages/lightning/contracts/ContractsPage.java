@@ -46,7 +46,7 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      * @return a value of one element of table
      */
     public String getValueInTable(final String nameOfColumnHeader) {
-        return webElementAction.getTextOfElementByField(String.format(xpathTable, nameOfColumnHeader));
+        return webDriverActions.getTextByXpathLocator(String.format(xpathTable, nameOfColumnHeader));
     }
 
     /**
@@ -54,7 +54,7 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(newContractButton);
+        webDriverActions.waitForVisibilityOfLocator(newContractButton);
     }
 
     /**
@@ -63,13 +63,13 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      * @return a ProductPage instance
      */
     public NewContractPage clickNewContractButton() {
-        webElementAction.clickByLocator(newContractButton);
+        webDriverActions.clickByLocator(newContractButton);
         return new NewContractPage(webDriverManager);
     }
 
     @Override
     public NewContractPage clickNewButton() {
-        webElementAction.clickByLocator(newContractButton);
+        webDriverActions.clickByLocator(newContractButton);
         return new NewContractPage(webDriverManager);
     }
 

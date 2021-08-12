@@ -44,12 +44,12 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      * @return a value of one element of table
      */
     public String getValueInTable(final String fieldUniqueName, final String nameOfColumnHeader) {
-        return webElementAction.getTextOfElementByField(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
+        return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(createCampaignBtn);
+        webDriverActions.waitForVisibilityOfLocator(createCampaignBtn);
     }
 
     /**
@@ -58,13 +58,13 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      * @return a object CreateCampaignPage.
      */
     public CreateCampaignPage clickCreateCampaignBtn() {
-        webElementAction.clickByLocator(createCampaignBtn);
+        webDriverActions.clickByLocator(createCampaignBtn);
         return new CreateCampaignPage(webDriverManager);
     }
 
     @Override
     public CreateCampaignPage clickNewButton() {
-        webElementAction.clickByLocator(createCampaignBtn);
+        webDriverActions.clickByLocator(createCampaignBtn);
         return new CreateCampaignPage(webDriverManager);
     }
 

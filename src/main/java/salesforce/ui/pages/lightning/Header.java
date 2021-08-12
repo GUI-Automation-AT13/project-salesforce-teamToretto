@@ -30,11 +30,11 @@ public class Header extends BasePage {
     }
 
     public void enterTextInSearchBar(final String text) {
-        webElementAction.setInputField(searchBar, text);
+        webDriverActions.setInputField(searchBar, text);
     }
 
     public void pressEnterforSearchBar() {
-        webElementAction.pressKey(searchBar, Keys.ENTER);
+        webDriverActions.pressKey(searchBar, Keys.ENTER);
     }
 
     @Override

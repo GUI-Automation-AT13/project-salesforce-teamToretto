@@ -8,15 +8,15 @@
 
 package salesforce.ui.pages;
 
+import core.selenium.WebDriverActions;
 import core.selenium.WebDriverManager;
-import core.selenium.WebElementAction;
 
 /**
  * Load home page.
  */
 public abstract class BasePage {
 
-    public WebElementAction webElementAction;
+    public WebDriverActions webDriverActions;
     public WebDriverManager webDriverManager;
 
     /**
@@ -26,7 +26,7 @@ public abstract class BasePage {
      */
     public BasePage(WebDriverManager webDriverManager) {
         this.webDriverManager = webDriverManager;
-        webElementAction = new WebElementAction(this.webDriverManager);
+        webDriverActions = new WebDriverActions(this.webDriverManager);
     }
 
     /**

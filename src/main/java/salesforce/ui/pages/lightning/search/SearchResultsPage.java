@@ -45,7 +45,7 @@ public class SearchResultsPage extends BasePage {
     }
 
     private void getTableCount() {
-        tableCount = webElementAction.getElements(allTablesSelector).size();
+        tableCount = webDriverActions.getElements(allTablesSelector).size();
     }
 
     /**
@@ -54,8 +54,8 @@ public class SearchResultsPage extends BasePage {
      * @param textToSearch represents the text to search for
      */
     public void search(final String textToSearch) {
-        webElementAction.setInputField(searchBox, textToSearch);
-        webElementAction.pressKey(searchBox, Keys.ENTER);
+        webDriverActions.setInputField(searchBox, textToSearch);
+        webDriverActions.pressKey(searchBox, Keys.ENTER);
         tableGroup = new TableGroup(webDriverManager);
     }
 
@@ -65,14 +65,14 @@ public class SearchResultsPage extends BasePage {
      * @param textToSearch is the text to search for
      */
     public void setTextToSearch(final String textToSearch) {
-        webElementAction.setInputField(searchBox, textToSearch);
+        webDriverActions.setInputField(searchBox, textToSearch);
     }
 
     /**
      * Sends the Enter key to the search.
      */
     public void pressEnter() {
-        webElementAction.pressKey(searchBox, Keys.ENTER);
+        webDriverActions.pressKey(searchBox, Keys.ENTER);
         tableGroup = new TableGroup(webDriverManager);
     }
 

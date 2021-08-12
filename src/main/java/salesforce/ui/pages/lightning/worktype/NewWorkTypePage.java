@@ -44,7 +44,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(estimatedDurationComboBox);
+        webDriverActions.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
 
     /**
@@ -53,7 +53,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      * @param fieldValue is value to set on textBox
      */
     public void setDescription(final String fieldValue) {
-        webElementAction.setInputField((descriptionTxtBox), fieldValue);
+        webDriverActions.setInputField((descriptionTxtBox), fieldValue);
     }
 
     /**
@@ -64,8 +64,8 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      * @param fieldValue is value to set on textBox
      */
     public void setInputField(final String fieldName, final String fieldValue) {
-        webElementAction.dropDownTillTheEnd();
-        webElementAction.setInputField(By.xpath(String.format(selectFieldTxtBox, fieldName)), fieldValue);
+        webDriverActions.scrollToBottom();
+        webDriverActions.setInputField(By.xpath(String.format(selectFieldTxtBox, fieldName)), fieldValue);
     }
 
     /**
@@ -74,8 +74,8 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      * @param selectValue is value in comboBox
      */
     public void setDurationTypeComboBox(final String selectValue) {
-        webElementAction.selectByAction(estimatedDurationComboBox);
-        webElementAction.clickByXpath(String.format(valueEstimatedDurationComboBox, selectValue));
+        webDriverActions.selectByAction(estimatedDurationComboBox);
+        webDriverActions.clickByXpath(String.format(valueEstimatedDurationComboBox, selectValue));
         countComboBox++;
     }
 
@@ -87,9 +87,9 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      * @param selectValue  is a value in comboBox
      */
     public void setComboBoxField(final String nameComboBox, final String selectValue) {
-        webElementAction.selectByAction(By.xpath(String.format(xpathComboBoxSomeFields, nameComboBox)));
+        webDriverActions.selectByAction(By.xpath(String.format(xpathComboBoxSomeFields, nameComboBox)));
         countComboBox++;
-        webElementAction.clickByXpath(String.format(xpathValueComboBoxSomeFields, countComboBox, selectValue));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, countComboBox, selectValue));
     }
 
     /**
@@ -98,7 +98,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      * @return WorkTypeInfo which is to pass other page.
      */
     public CreatedWorkTypePage clickSaveButton() {
-        webElementAction.clickByLocator(saveBtn);
+        webDriverActions.clickByLocator(saveBtn);
         return new CreatedWorkTypePage(webDriverManager);
     }
 

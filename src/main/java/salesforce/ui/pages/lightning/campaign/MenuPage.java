@@ -30,6 +30,6 @@ public class MenuPage extends BasePage {
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(deleteBtn);
+        webDriverActions.waitForVisibilityOfLocator(deleteBtn);
     }
 }
