@@ -11,8 +11,6 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
-import java.util.List;
-import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.CreatedFeature;
@@ -58,8 +56,8 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return a HomePage instance.
      */
     public IndividualListPage deleteCreatedIndividual() {
-        webElementAction.clickByLocator(deleteHeaderButton);
-        webElementAction.clickByLocator(confirmDeleteIndividualButton);
+        webDriverActions.clickByLocator(deleteHeaderButton);
+        webDriverActions.clickByLocator(confirmDeleteIndividualButton);
         return new IndividualListPage(webDriverManager);
     }
 
@@ -69,7 +67,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return String
      */
     public String getDeletedSuccessMessage() {
-        return webElementAction.getTextOfByFieldByLocator(deletedSuccessMessage);
+        return webDriverActions.getTextOfByFieldByLocator(deletedSuccessMessage);
     }
 
     /**
@@ -78,70 +76,70 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return String
      */
     public String getNameHeaderText() {
-        return webElementAction.getTextOfByFieldByLocator(nameHeaderLabel);
+        return webDriverActions.getTextOfByFieldByLocator(nameHeaderLabel);
     }
 
     /**
      * Clicks on the Edit button in the header.
      */
     public void clickEditHeaderButton() {
-        webElementAction.clickByLocator(editHeaderButton);
+        webDriverActions.clickByLocator(editHeaderButton);
     }
 
     /**
      * Clicks on the Delete button in the header.
      */
     public void clickDeleteHeaderButton() {
-        webElementAction.clickByLocator(deleteHeaderButton);
+        webDriverActions.clickByLocator(deleteHeaderButton);
     }
 
     /**
      * Clicks on the Clone button in the header.
      */
     public void clickCloneHeaderButton() {
-        webElementAction.clickByLocator(cloneHeaderButton);
+        webDriverActions.clickByLocator(cloneHeaderButton);
     }
 
     /**
      * Clicks on the relatedIndividualHistoryLink.
      */
     public void clickRelatedIndividualHistoryLink() {
-        webElementAction.clickOnElement(relatedFeatureLink, "Individual History");
+        webDriverActions.clickOnElement(relatedFeatureLink, "Individual History");
     }
 
     /**
      * Clicks on the relatedContactsLink.
      */
     public void clickRelatedContactsLink() {
-        webElementAction.clickOnElement(relatedFeatureLink, "Contacts");
+        webDriverActions.clickOnElement(relatedFeatureLink, "Contacts");
     }
 
     /**
      * Clicks on the relatedLeadsLink.
      */
     public void clickRelatedLeadsLink() {
-        webElementAction.clickOnElement(relatedFeatureLink, "Leads");
+        webDriverActions.clickOnElement(relatedFeatureLink, "Leads");
     }
 
     /**
      * Clicks on the relatedContactPointEmailsLink.
      */
     public void clickRelatedContactPointEmailsLink() {
-        webElementAction.clickOnElement(relatedFeatureLink, "Contact Point Emails");
+        webDriverActions.clickOnElement(relatedFeatureLink, "Contact Point Emails");
     }
 
     /**
      * Clicks on the relatedContactPointPhonesLink.
      */
     public void clickRelatedContactPointPhonesLink() {
-        webElementAction.clickOnElement(relatedFeatureLink, "Contact Point Phones");
+        webDriverActions.clickOnElement(relatedFeatureLink, "Contact Point Phones");
     }
 
     /**
      * Clicks on the Details tab.
      */
     public void clickonDetailsTab() {
-        webElementAction.clickByLocator(detailsTabButton);
+        webDriverActions.clickByLocator(detailsTabButton);
     }
 
     /**
@@ -150,7 +148,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return String
      */
     public String getNameDetail() {
-        return webElementAction.getTextOfByFieldByLocator(labelNameDetail);
+        return webDriverActions.getTextOfByFieldByLocator(labelNameDetail);
     }
 
     /**
@@ -159,7 +157,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return String
      */
     public String getBrithdateDetail() {
-        return webElementAction.getTextOfByFieldByLocator(labelBirthdateDetail);
+        return webDriverActions.getTextOfByFieldByLocator(labelBirthdateDetail);
     }
 
     /**
@@ -168,7 +166,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfDontProcess() {
-        return webElementAction.isSelected(checkboxDetail, "Don't Process");
+        return webDriverActions.isSelected(checkboxDetail, "Don't Process");
     }
 
     /**
@@ -177,7 +175,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfDontMarket() {
-        return webElementAction.isSelected(checkboxDetail, "Don't Market");
+        return webDriverActions.isSelected(checkboxDetail, "Don't Market");
     }
 
     /**
@@ -186,7 +184,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfExportIndividualsData() {
-        return webElementAction.isSelected(checkboxDetail, "Export Individual's Data");
+        return webDriverActions.isSelected(checkboxDetail, "Export Individual's Data");
     }
 
     /**
@@ -195,7 +193,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfOkToStorePiiDataElsewhere() {
-        return webElementAction.isSelected(checkboxDetail, "OK to Store PII Data Elsewhere");
+        return webDriverActions.isSelected(checkboxDetail, "OK to Store PII Data Elsewhere");
     }
 
     /**
@@ -204,7 +202,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfBlockGeolocationTracking() {
-        return webElementAction.isSelected(checkboxDetail, "Block Geolocation Tracking");
+        return webDriverActions.isSelected(checkboxDetail, "Block Geolocation Tracking");
     }
 
     /**
@@ -213,7 +211,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfDontProfile() {
-        return webElementAction.isSelected(checkboxDetail, "Don't Profile");
+        return webDriverActions.isSelected(checkboxDetail, "Don't Profile");
     }
 
     /**
@@ -222,7 +220,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfDontTrack() {
-        return webElementAction.isSelected(checkboxDetail, "Don't Track");
+        return webDriverActions.isSelected(checkboxDetail, "Don't Track");
     }
 
     /**
@@ -231,7 +229,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return boolean
      */
     public boolean checkIfForgetThisIndividual() {
-        return webElementAction.isSelected(checkboxDetail, "Forget This Individual");
+        return webDriverActions.isSelected(checkboxDetail, "Forget This Individual");
     }
 
     /**
@@ -240,35 +238,35 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      * @return String
      */
     public String getIndividualAgeDetail() {
-        return webElementAction.getTextOfByFieldByLocator(labelIndividualsAgeDetail);
+        return webDriverActions.getTextOfByFieldByLocator(labelIndividualsAgeDetail);
     }
 
     /**
      * Clicks on the new Contact button.
      */
     public void clickOnNewContactButton() {
-        webElementAction.clickOnElement(newFeatureButton, "Contact");
+        webDriverActions.clickOnElement(newFeatureButton, "Contact");
     }
 
     /**
      * Clicks on the new Lead button.
      */
     public void clickOnNewLeadButton() {
-        webElementAction.clickOnElement(newFeatureButton, "Lead");
+        webDriverActions.clickOnElement(newFeatureButton, "Lead");
     }
 
     /**
      * Clicks on the new Contact Point Emails button.
      */
     public void clickNewContactPointEmailButton() {
-        webElementAction.clickOnElement(newFeatureButton, "Contact Point Emails");
+        webDriverActions.clickOnElement(newFeatureButton, "Contact Point Emails");
     }
 
     /**
      * Clicks on the new Contact Point Phones button.
      */
     public void clickNewContactPointPhoneButton() {
-        webElementAction.clickOnElement(newFeatureButton, "Contact Point Phones");
+        webDriverActions.clickOnElement(newFeatureButton, "Contact Point Phones");
     }
 
     /**
@@ -276,7 +274,7 @@ public class IndividualRecordPage extends BasePage implements CreatedFeature {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(nameHeaderLabel);
+        webDriverActions.waitForVisibilityOfLocator(nameHeaderLabel);
     }
 
     @Override

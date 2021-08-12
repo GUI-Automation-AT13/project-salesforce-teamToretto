@@ -63,7 +63,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(save);
+        webDriverActions.waitForVisibilityOfLocator(save);
     }
 
     /**
@@ -72,7 +72,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newAccountName .
      */
     public void setAccountName(final String newAccountName) {
-        webElementAction.setInputField(this.accountName, newAccountName);
+        webDriverActions.setInputField(this.accountName, newAccountName);
         clickAccountSelector(newAccountName);
     }
 
@@ -83,7 +83,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void clickAccountSelector(final String newAccountName) {
         By account = By.xpath(String.format(accountSelector, newAccountName));
-        webElementAction.clickByLocator(account);
+        webDriverActions.clickByLocator(account);
     }
 
     /**
@@ -92,7 +92,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newCustomerSignedBy to be typed.
      */
     public void setCustomerSignedBy(final String newCustomerSignedBy) {
-        webElementAction.setInputField(this.customerSignedBy, newCustomerSignedBy);
+        webDriverActions.setInputField(this.customerSignedBy, newCustomerSignedBy);
         clickContactSelector(newCustomerSignedBy);
     }
 
@@ -103,7 +103,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void clickContactSelector(final String newContactSelector) {
         By contact = By.xpath(String.format(contactSelector, newContactSelector));
-        webElementAction.clickByLocator(contact);
+        webDriverActions.clickByLocator(contact);
     }
 
     /**
@@ -112,7 +112,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newCustomerSignedTittle to be typed.
      */
     public void setCustomerSignedTittle(final String newCustomerSignedTittle) {
-        webElementAction.setInputField(this.customerSignedTittle, newCustomerSignedTittle);
+        webDriverActions.setInputField(this.customerSignedTittle, newCustomerSignedTittle);
     }
 
     /**
@@ -121,7 +121,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newCustomerSignedDate to be typed.
      */
     public void setCustomerSignedDate(final String newCustomerSignedDate) {
-        webElementAction.setInputField(customerSignedDate, newCustomerSignedDate);
+        webDriverActions.setInputField(customerSignedDate, newCustomerSignedDate);
     }
 
     /**
@@ -130,7 +130,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newPriceBook to be typed.
      */
     public void setPriceBook(final String newPriceBook) {
-        webElementAction.setInputField(this.priceBook, newPriceBook);
+        webDriverActions.setInputField(this.priceBook, newPriceBook);
         selectPriceBook(newPriceBook);
     }
 
@@ -141,7 +141,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void selectPriceBook(final String newPriceBook) {
         By priceBook = By.xpath(String.format(priceBookSelector, newPriceBook));
-        webElementAction.clickByLocator(priceBook);
+        webDriverActions.clickByLocator(priceBook);
     }
 
     /**
@@ -150,7 +150,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newContractStartDate to be typed.
      */
     public void setContractStartDate(final String newContractStartDate) {
-        webElementAction.setInputField(this.contractStartDate, newContractStartDate);
+        webDriverActions.setInputField(this.contractStartDate, newContractStartDate);
     }
 
     /**
@@ -159,14 +159,14 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newContractTermMonths to be typed.
      */
     public void setContractTermMonths(final String newContractTermMonths) {
-        webElementAction.setInputField(this.contractTermMonths, newContractTermMonths);
+        webDriverActions.setInputField(this.contractTermMonths, newContractTermMonths);
     }
 
     /**
      * Sets the ownerExpirationNotice element.
      */
     public void clickOwnerExpirationNotice() {
-        webElementAction.clickByLocator(this.ownerExpirationNotice);
+        webDriverActions.clickByLocator(this.ownerExpirationNotice);
     }
 
     /**
@@ -176,14 +176,14 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void selectOwnerExpirationNotice(final String value) {
         clickOwnerExpirationNotice();
-        webElementAction.clickFieldByLinkText(value + " " + translate("Days"));
+        webDriverActions.clickFieldByLinkText(value + " " + translate("Days"));
     }
 
     /**
      * Sets the ownerExpirationNotice element.
      */
     public void clickStatusBtn() {
-        webElementAction.clickByLocator(this.status);
+        webDriverActions.clickByLocator(this.status);
     }
 
     /**
@@ -195,7 +195,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
         clickStatusBtn();
         String locator = String.format(statusSelector, translate(value));
         By statusSelector = By.xpath(locator);
-        webElementAction.clickByLocator(statusSelector);
+        webDriverActions.clickByLocator(statusSelector);
     }
 
     /**
@@ -204,7 +204,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newCompanySignedDate to be typed.
      */
     public void setCompanySignedDate(final String newCompanySignedDate) {
-        webElementAction.setInputField(this.companySignedDate, newCompanySignedDate);
+        webDriverActions.setInputField(this.companySignedDate, newCompanySignedDate);
     }
 
     /**
@@ -213,7 +213,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newBillingStreet to be typed.
      */
     public void setBillingStreet(final String newBillingStreet) {
-        webElementAction.setInputField(this.billingStreet, newBillingStreet);
+        webDriverActions.setInputField(this.billingStreet, newBillingStreet);
     }
 
     /**
@@ -222,7 +222,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newBillingCity to be typed.
      */
     public void setBillingCity(final String newBillingCity) {
-        webElementAction.setInputField(this.billingCity, newBillingCity);
+        webDriverActions.setInputField(this.billingCity, newBillingCity);
     }
 
     /**
@@ -231,7 +231,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newBillingState to be typed.
      */
     public void setBillingState(final String newBillingState) {
-        webElementAction.setInputField(this.billingState, newBillingState);
+        webDriverActions.setInputField(this.billingState, newBillingState);
     }
 
     /**
@@ -240,7 +240,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newBillingPostalCode to be typed.
      */
     public void setBillingPostalCode(final String newBillingPostalCode) {
-        webElementAction.setInputField(this.billingPostalCode, newBillingPostalCode);
+        webDriverActions.setInputField(this.billingPostalCode, newBillingPostalCode);
     }
 
     /**
@@ -249,7 +249,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newBillingCountry to be typed.
      */
     public void setBillingCountry(final String newBillingCountry) {
-        webElementAction.setInputField(this.billingCountry, newBillingCountry);
+        webDriverActions.setInputField(this.billingCountry, newBillingCountry);
     }
 
     /**
@@ -258,7 +258,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newSpecialTerms to be typed.
      */
     public void setSpecialTerms(final String newSpecialTerms) {
-        webElementAction.setInputField(this.specialTerms, newSpecialTerms);
+        webDriverActions.setInputField(this.specialTerms, newSpecialTerms);
     }
 
     /**
@@ -267,7 +267,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newDescription to be typed.
      */
     public void setDescription(final String newDescription) {
-        webElementAction.setInputField(this.description, newDescription);
+        webDriverActions.setInputField(this.description, newDescription);
     }
 
     /**
@@ -276,7 +276,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @return a CreatedContractPage.
      */
     public CreatedContractPage clickSave() {
-        webElementAction.clickByLocator(save);
+        webDriverActions.clickByLocator(save);
         return new CreatedContractPage(webDriverManager);
     }
 
@@ -286,7 +286,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @return a NewContractPage.
      */
     public NewContractPage clickSaveAndNew() {
-        webElementAction.clickByLocator(saveAndNew);
+        webDriverActions.clickByLocator(saveAndNew);
         return new NewContractPage(webDriverManager);
     }
 
@@ -296,7 +296,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @return a ContractsPage.
      */
     public ContractsPage clickCancel() {
-        webElementAction.clickByLocator(cancel);
+        webDriverActions.clickByLocator(cancel);
         return new ContractsPage(webDriverManager);
     }
 
@@ -341,7 +341,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
 
     @Override
     public CreatedFeature clickSaveButton() {
-        webElementAction.clickByLocator(save);
+        webDriverActions.clickByLocator(save);
         return new CreatedContractPage(webDriverManager);
     }
 }

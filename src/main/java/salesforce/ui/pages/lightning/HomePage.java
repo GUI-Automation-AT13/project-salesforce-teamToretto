@@ -35,7 +35,7 @@ public class HomePage extends BasePage {
      * @return boolean.
      */
     public boolean labelObjectManageriIsVisible() {
-        return webElementAction.isDisplayed(labelObjectManager);
+        return webDriverActions.isDisplayed(labelObjectManager);
     }
 
     @Override

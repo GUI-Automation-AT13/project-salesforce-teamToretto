@@ -20,27 +20,27 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * This class the common web element actions.
+ * This class executes the webDriver's interactions with elements.
  */
-public class WebElementAction {
+public class WebDriverActions {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected WebDriverManager webDriverManager;
 
     /**
-     * Selects initializes a wev element action.
+     * Selects and initializes a wev driver action.
      *
-     * @param webDriverManager type WebElement object.
+     * @param webDriverManager to be used for the interactions
      */
-    public WebElementAction(WebDriverManager webDriverManager) {
+    public WebDriverActions(WebDriverManager webDriverManager) {
         this.webDriverManager = webDriverManager;
         this.driver = this.webDriverManager.getWebDriver();
         this.wait = this.webDriverManager.getWait();
     }
 
     /**
-     * Waits until a text box is visible and writes a text.
+     * Waits until a web element is visible.
      *
      * @param webElement the web element to be waited.
      */
@@ -50,10 +50,10 @@ public class WebElementAction {
     }
 
     /**
-     * Sends keys to the given WebElement.
+     * Sends keys by element.
      *
      * @param selector represents a selector
-     * @param input    is the data to introduce
+     * @param input is the data to be set
      */
     public void setInputField(final By selector, final String input) {
         driver.findElement(selector).clear();
@@ -61,19 +61,19 @@ public class WebElementAction {
     }
 
     /**
-     * Clicks a webElement.
+     * Clicks an element by link text.
      *
-     * @param locator is what we want to click.
+     * @param linkText is the element to be clicked.
      */
-    public void clickFieldByLinkText(final String locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(By.linkText(locator)));
-        driver.findElement(By.linkText(locator)).click();
+    public void clickFieldByLinkText(final String linkText) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText(linkText)));
+        driver.findElement(By.linkText(linkText)).click();
     }
 
     /**
      * Scrolls to the end of the page.
      */
-    public void dropDownTillTheEnd() {
+    public void scrollToBottom() {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,250)");
     }
@@ -81,11 +81,11 @@ public class WebElementAction {
     /**
      * Gets the text of a web element.
      *
-     * @param field web element to get text.
+     * @param locator web element to get text.
      * @return web element's text
      */
-    public String getTextOfElementByField(final String field) {
-        return driver.findElement(By.xpath(field)).getText();
+    public String getTextByXpathLocator(final String locator) {
+        return driver.findElement(By.xpath(locator)).getText();
     }
 
     /**
@@ -241,17 +241,17 @@ public class WebElementAction {
     /**
      * Gets the text of a web element.
      *
-     * @param field web element to get text.
+     * @param locator web element to get text.
      */
-    public void clickByXpath(final String field) {
-        driver.findElement(By.xpath(field)).click();
+    public void clickByXpath(final String locator) {
+        driver.findElement(By.xpath(locator)).click();
     }
 
     /**
      * Gets the text of a web element.
      *
      * @param locator web element to get text
-     * @param key     represents the key to press
+     * @param key represents the key to press
      */
     public void pressKey(final By locator, Keys key) {
         driver.findElement(locator).sendKeys(key);

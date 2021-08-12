@@ -71,7 +71,7 @@ public class Table extends BasePage {
      * Gets the titles from the table and maps them with their index for the XML document.
      */
     private void fillColumnTitles() {
-        List<WebElement> titleElements = webElementAction.getElements(baseLocator.concat(columnTitleLocator));
+        List<WebElement> titleElements = webDriverActions.getElements(baseLocator.concat(columnTitleLocator));
         for (int i = 0; i < titleElements.size(); i++) {
             columnTitlesIndex.put(titleElements.get(i).getAttribute(columnNameAttributePartialSelector), i + 1);
             columnTitles.put(i + 1, titleElements.get(i).getAttribute(columnNameAttributePartialSelector));
@@ -83,7 +83,7 @@ public class Table extends BasePage {
      * Sets the number of record results.
      */
     private void getRecordsNumber() {
-        this.recordNumber = webElementAction.getElements(rowsSelector).size();
+        this.recordNumber = webDriverActions.getElements(rowsSelector).size();
     }
 
     /**
@@ -179,22 +179,22 @@ public class Table extends BasePage {
      * @return a String representing the table field value
      */
     private String getFieldValue(final String locator) {
-        String fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+        String fieldValue = webDriverActions.getTextIfElementExists(String.format(locator
                 .concat(nameContainingElementAselector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+        fieldValue = webDriverActions.getTextIfElementExists(String.format(locator
                 .concat(nameContainingElementSpanInSpanSelector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = webElementAction.getTextIfElementExists(String.format(locator
+        fieldValue = webDriverActions.getTextIfElementExists(String.format(locator
                 .concat(nameContainingElementSpanSelector)));
         if (fieldValue != null) {
             return fieldValue;
         }
-        fieldValue = webElementAction.getAttributeIfElementExists(locator
+        fieldValue = webDriverActions.getAttributeIfElementExists(locator
                 .concat(nameContainingElementAselector), titleAttribute);
         if (fieldValue != null) {
             return fieldValue;

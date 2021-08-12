@@ -34,11 +34,11 @@ public class PersonalInformationPage extends BasePage {
      * @return a String with alias.
      */
     public String getAliasTxt() {
-        return webElementAction.getTextOfByFieldByLocator(aliasTxtBox);
+        return webDriverActions.getTextOfByFieldByLocator(aliasTxtBox);
     }
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(aliasTxtBox);
+        webDriverActions.waitForVisibilityOfLocator(aliasTxtBox);
     }
 }

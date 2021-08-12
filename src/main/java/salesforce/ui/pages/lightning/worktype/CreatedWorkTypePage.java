@@ -33,13 +33,13 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
 
     @Override
     protected void waitForPageLoaded() {
-        webElementAction.waitForVisibilityOfLocator(detailsBtn);
+        webDriverActions.waitForVisibilityOfLocator(detailsBtn);
     }
 
     @Override
     public FeatureDetails clickDetails() {
-        webElementAction.clickByLocator(detailsBtn);
-        webElementAction.dropDownTillTheEnd();
+        webDriverActions.clickByLocator(detailsBtn);
+        webDriverActions.scrollToBottom();
         return new WorkTypeDetailsPage(webDriverManager);
     }
 }
