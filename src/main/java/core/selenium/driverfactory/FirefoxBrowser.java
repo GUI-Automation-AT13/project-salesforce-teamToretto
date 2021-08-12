@@ -16,6 +16,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Configures a Fire fox webDriver.
  */
 public class FirefoxBrowser implements Browser {
+
     /**
      * Gets the browser's driver.
      *
