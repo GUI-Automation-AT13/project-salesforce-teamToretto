@@ -132,7 +132,7 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
      * @return a value of one element of table
      */
     public String getValueInTable(final String fieldUniqueName, final String nameOfColumnHeader) {
-        return webElementAction.getTextOfElementByField(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
+        return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
     /**

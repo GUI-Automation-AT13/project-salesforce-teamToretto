@@ -125,8 +125,8 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @param selectValue  is a value in comboBox
      */
     public void setStatus(final String nameComboBox, final String selectValue) {
-        webElementAction.selectByAction(By.xpath(String.format(statusComboBox, nameComboBox)));
-        webElementAction.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+        webDriverActions.selectByAction(By.xpath(String.format(statusComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
     }
 
     /**
@@ -136,8 +136,8 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @param selectValue  is a value in comboBox
      */
     public void setType(final String nameComboBox, final String selectValue) {
-        webElementAction.selectByAction(By.xpath(String.format(typeComboBox, nameComboBox)));
-        webElementAction.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+        webDriverActions.selectByAction(By.xpath(String.format(typeComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
     }
 
     /**
