@@ -11,6 +11,8 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
@@ -35,6 +37,8 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     private By deleteButtonDropDownMenu = By.xpath(String.format("//span[contains(text(),'%s')]",
             translate("Delete")));
     private By newButton = By.xpath(String.format("//div[@title='%s']", translate("New")));
+    private String fieldWithUniqueName = "lastname";
+    private String xpathTable = "//*[contains(text(),'%s')]/../../..//*[contains(.,'%s')][@role='gridcell']";
 
     /**
      * Initializes web element actions.
@@ -121,6 +125,17 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
     }
 
     /**
+     * Gets value of cell in table according the name of column header.
+     *
+     * @param fieldUniqueName is field in arrow with is unique
+     * @param nameOfColumnHeader a name of column header on table
+     * @return a value of one element of table
+     */
+    public String getValueInTable(final String fieldUniqueName, final String nameOfColumnHeader) {
+        return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
+    }
+
+    /**
      * Method to wait for a page to load.
      */
     @Override
@@ -141,7 +156,25 @@ public class IndividualListPage extends BasePage implements FeaturesPage {
 
     @Override
     public List<String> getValueTables(Map<String, String> table) {
-        return null;
+        return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
+    }
+
+    /**
+     * Gets values of table according the name, this field is unique
+     * only select field of table.
+     *
+     * @param valuesToGet is values to get
+     * @param unitName    is value of work type name
+     * @return a values of tables
+     */
+    public List<String> getValues(List<String> valuesToGet, String unitName) {
+        Map<String, String> mapNew = new HashMap<>();
+        mapNew.put(fieldWithUniqueName, unitName);
+        mapNew.put("Alias", getValueInTable(unitName, "Alias"));
+        mapNew.put("Created By Alias", getValueInTable(unitName, "Created By Alias"));
+        mapNew.put("Last Modified By Alias", getValueInTable(unitName, "Last Modified By Alias"));
+        mapNew.put("Last Modified Date", getValueInTable(unitName, "Last Modified Date"));
+        return new ArrayList<String>(mapNew.values());
     }
 
     @Override

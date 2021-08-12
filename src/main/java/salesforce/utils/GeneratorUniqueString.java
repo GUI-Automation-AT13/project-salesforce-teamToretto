@@ -25,8 +25,7 @@ public final class GeneratorUniqueString {
         for (String value : mapNew.keySet()) {
             if (containsName(value, nameFeature)) {
                 mapNew.put(value, translate(mapNew.get(value)) + RandomCustom.random());
-            } else {
-                mapNew.put(value, translate(mapNew.get(value)));
+                break;
             }
         }
         return mapNew;
@@ -39,6 +38,7 @@ public final class GeneratorUniqueString {
      * @return a boolean
      */
     public static boolean containsName(final String word, final String nameFeature) {
-        return word.toLowerCase().matches(".*name.*") & !"contract".equals(nameFeature);
+        return word.toLowerCase().matches(".*name.*") & !"contract".equals(nameFeature)
+                & !"individual".equals(nameFeature);
     }
 }
