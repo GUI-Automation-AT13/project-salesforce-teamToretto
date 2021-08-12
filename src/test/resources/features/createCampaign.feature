@@ -23,7 +23,7 @@ Feature: Create Campaign
     Then I verify that the created Campaign contains the correct information
       And I verify that the date matches the creation date
 
-  @CreateCampaign
+  @CreateCampaign @DeleteCampaign
   Scenario: Create a campaign with all required fields
     Given I navigate to the "Campaign" page
     When I create a new campaign with all fields
@@ -31,3 +31,4 @@ Feature: Create Campaign
       | Start Date    | 8/15/2021    |
       | End Date      | 8/18/2021    |
     Then I verify Campaign created and matches with values of table
+      And I verify that the date matches the creation date
