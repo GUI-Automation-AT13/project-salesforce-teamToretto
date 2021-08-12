@@ -45,7 +45,7 @@ public class TablesValuesDefect {
     }
 
     /**
-     * Sets some default or autogenerate value of work type.
+     * Sets some default or autogenerate value of work type and gets this values.
      *
      * @param tableFeature is some values of table
      * @return a list with values of table
@@ -55,7 +55,7 @@ public class TablesValuesDefect {
     }
 
     /**
-     * Sets some default or autogenerate value of contract.
+     * Sets some default or autogenerate value of contract and gets this values.
      *
      * @param tableFeature is some values of table
      * @return a list with values of table
@@ -67,7 +67,7 @@ public class TablesValuesDefect {
     }
 
     /**
-     * Sets some default or autogenerate value of campaign.
+     * Sets some default or autogenerate value of campaign and gets this values.
      *
      * @param tableFeature is some values of table
      * @return a list with values of table
@@ -79,7 +79,7 @@ public class TablesValuesDefect {
     }
 
     /**
-     * Sets some default or autogenerate value of Individual.
+     * Sets some default or autogenerate value of Individual and gets this values.
      *
      * @param tableFeature is some values of table
      * @return a list with values of table

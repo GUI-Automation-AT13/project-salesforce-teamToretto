@@ -50,14 +50,16 @@ public abstract class User {
     }
 
     /**
-     * Sets the user's alias.
+     * Gets the user's alias.
+     *
+     * @return String
      */
     public String getAlias() {
         return alias;
     }
 
     /**
-     * Gets the user's alias.
+     * Sets the user's alias.
      */
     public void setAlias(String alias) {
         this.alias = alias;

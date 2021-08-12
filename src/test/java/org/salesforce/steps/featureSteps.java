@@ -5,16 +5,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
