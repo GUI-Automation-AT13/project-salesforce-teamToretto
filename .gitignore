@@ -28,7 +28,6 @@ build/
 .idea/
 
 config.properties
-users/
 
 .classpath
 .project

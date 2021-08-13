@@ -13,6 +13,7 @@ import salesforce.ui.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
+import salesforce.utils.encrypt.AesUtil;
 
 public class GeneralHooks {
 
@@ -38,7 +39,7 @@ public class GeneralHooks {
         String username = EnvConfig.getInstance().getAdminUser().getUsername();
         String password = EnvConfig.getInstance().getAdminUser().getPassword();
         loginpage.setUsernameTextbox(username);
-        loginpage.setPasswordTextbox(password);
+        loginpage.setPasswordTextbox(AesUtil.decryptText(password));
         HomePage homePage = loginpage.login();
     }
 

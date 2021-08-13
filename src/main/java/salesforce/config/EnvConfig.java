@@ -25,9 +25,11 @@ public final class EnvConfig {
     private String loginUrl;
     private String baseUrl;
     private AdminUser adminUser;
+    private AdminUser adminUserPassword;
     private StandardUser standardUser;
     private static EnvConfig envConfig;
     private String language;
+    private String key;
 
     /**
      * Returns the language.
@@ -86,6 +88,16 @@ public final class EnvConfig {
         return envConfig;
     }
 
+    public String getKey() {
+        String encryptKey = System.getenv("ENCRYPT_KEY");
+        if (encryptKey != null) {
+            return encryptKey;
+        } else {
+            Properties properties = PropertiesReader.getProperties("config.properties");
+            return properties.getProperty("encryptKey");
+        }
+    }
+
     /**
      * Sets the configuration.
      */
@@ -97,5 +109,4 @@ public final class EnvConfig {
         adminUser = new AdminUser();
         standardUser = new StandardUser();
     }
-
 }

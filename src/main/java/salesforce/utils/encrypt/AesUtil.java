@@ -8,9 +8,12 @@
 
 package salesforce.utils.encrypt;
 
+import salesforce.config.EnvConfig;
+
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.InvalidParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -52,7 +55,7 @@ public class AesUtil {
      * @throws InvalidAlgorithmParameterException when there is no match for the algorithm
      * @throws InvalidKeyException when the key is invalid
      */
-    public static String encrypt(String inputText, String key) throws InvalidAlgorithmParameterException,
+    public static String encrypt(final String inputText, final String key) throws InvalidAlgorithmParameterException,
             InvalidKeyException, BadPaddingException, IllegalBlockSizeException, NoSuchPaddingException,
             NoSuchAlgorithmException {
         byte[] decodedKey = Base64.getDecoder().decode(key);
@@ -63,11 +66,34 @@ public class AesUtil {
         return Base64.getEncoder().encodeToString(cipher.doFinal(inputText.getBytes(StandardCharsets.UTF_8)));
     }
 
+    public static void main(String[] args) throws BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException {
+        System.out.println(encrypt("1234qwer", "KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw="));
+        //System.out.println(decryptTextWithKey("KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw=","KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw="));
+    }
+
+    /**
+     * Decrypts a text with the retrieved key.
+     *
+     * @param inputText is the text to decrypt
+     */
+    public static String decryptText(final String inputText) {
+        String key = EnvConfig.getInstance().getKey();
+        return decrypt(inputText, key);
+    }
+
     /**
      * Decrypts a text with the provided key.
      *
      * @param inputText is the text to decrypt
-     * @param key       is the SecretKey to use
+     */
+    public static String decryptTextWithKey(final String inputText, final String key) {
+        return decrypt(inputText, key);
+    }
+
+    /**
+     * Decrypts a text with the provided key.
+     *
+     * @param inputText is the text to decrypt
      * @throws NoSuchAlgorithmException when algorithm is not found
      * @throws NoSuchPaddingException when padding match is not found
      * @throws BadPaddingException when the padding is not valid
@@ -75,14 +101,18 @@ public class AesUtil {
      * @throws InvalidAlgorithmParameterException when there is no match for the algorithm
      * @throws InvalidKeyException when the key is invalid
      */
-    public static String decrypt(String inputText, String key) throws NoSuchAlgorithmException, NoSuchPaddingException,
-            BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
-        byte[] decodedKey = Base64.getDecoder().decode(key);
-        SecretKey secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, cryptoSpecification);
-        IvParameterSpec ivspec = new IvParameterSpec(iv);
-        Cipher cipher = Cipher.getInstance(padding);
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
-        return new String(cipher.doFinal(Base64.getDecoder().decode(inputText)));
+
+    private static String decrypt(final String inputText, final String key) {
+        try {
+            byte[] decodedKey = Base64.getDecoder().decode(key);
+            SecretKey secretKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, cryptoSpecification);
+            IvParameterSpec ivspec = new IvParameterSpec(iv);
+            Cipher cipher = Cipher.getInstance(padding);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivspec);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(inputText)));
+        } catch (Exception e) {
+            throw new InvalidParameterException("Can't decrypt, invalid key or text");
+        }
     }
 
     /**
