@@ -74,7 +74,7 @@ public final class EnvConfig {
      *
      * @return a String
      */
-    public String getLogin() {
+    public String getLoginApi() {
         return login;
     }
 

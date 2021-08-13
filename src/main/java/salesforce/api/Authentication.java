@@ -16,14 +16,14 @@ import salesforce.api.entities.Token;
 /**
  * This class builds a token.
  */
-public class Authentication {
+public final class Authentication {
 
     public static Token token;
 
     /**
      * Sets the salesforce token.
      */
-    public void getAuth() {
+    public static void getAuth() {
         EnvConfig.getInstance();
         token = given().urlEncodingEnabled(true)
                 .param("username", EnvConfig.getInstance().getAdminUser().getUsername())
@@ -35,7 +35,7 @@ public class Authentication {
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .log().all()
                 .when()
-                .post(EnvConfig.getInstance().getLogin())
+                .post(EnvConfig.getInstance().getLoginApi())
                 .as(Token.class);
     }
 }
