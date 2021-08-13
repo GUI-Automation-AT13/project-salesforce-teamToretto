@@ -11,6 +11,7 @@ package core.config;
 import core.config.users.AdminUser;
 import core.config.users.StandardUser;
 import core.config.users.User;
+import core.selenium.driverfactory.Browser;
 import core.utils.PropertiesReader;
 import java.util.Properties;
 import salesforce.utils.encrypt.AesUtil;
@@ -84,7 +85,15 @@ public final class EnvConfig {
      * @return a String
      */
     public String getBrowser() {
-        return browser;
+        String browser = System.getenv("BROWSER");
+        if (browser != null) {
+            return browser;
+        }
+        browser = System.getProperty("BROWSER");
+        if (browser != null) {
+            return browser;
+        }
+        return this.browser;
     }
 
     /**
@@ -220,7 +229,7 @@ public final class EnvConfig {
         version = getProperty("VERSION");
         service = getProperty("SERVICE");
         login = getProperty("LOGIN");
-        browser = getProperty("CHROME");
+        browser = getProperty("browser");
         implicitTime = Integer.valueOf(getProperty("implicitTime"));
         explicitTime = Integer.valueOf(getProperty("explicitTime"));
         sleepTime = Integer.valueOf(getProperty("sleepTime"));
