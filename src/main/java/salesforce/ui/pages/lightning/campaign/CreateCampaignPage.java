@@ -41,6 +41,9 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     private By saveButton = By.xpath("//button[@title=\'Save\']");
     private By saveAndNewButton = By.xpath("//button[@title='Save & New']");
     private By cancelButton = By.xpath("//button[@title='Cancel']");
+    private String statusComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[2]";
+    private String typeComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[1]";
+    private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id]//*[contains(text(),'%s')]/..";
 
     private static final String INPUT_XPATH = "//label/span[text()='%s']/../..//input";
 
@@ -116,6 +119,28 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
     }
 
     /**
+     * Sets value and select type and Status.
+     *
+     * @param nameComboBox is name of comboBox
+     * @param selectValue  is a value in comboBox
+     */
+    public void setStatus(final String nameComboBox, final String selectValue) {
+        webDriverActions.selectByAction(By.xpath(String.format(statusComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+    }
+
+    /**
+     * Sets value and select type and Type.
+     *
+     * @param nameComboBox is name of comboBox
+     * @param selectValue  is a value in comboBox
+     */
+    public void setType(final String nameComboBox, final String selectValue) {
+        webDriverActions.selectByAction(By.xpath(String.format(typeComboBox, nameComboBox)));
+        webDriverActions.clickByXpath(String.format(xpathValueComboBoxSomeFields, selectValue));
+    }
+
+    /**
      * Clicks active check element.
      */
     public void clickActive() {
@@ -166,6 +191,10 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
         mapActions.put("Description", () -> setInputField(
                 "Description",
                 campaignMap.get("Description")));
+        mapActions.put("Status", () -> setStatus(
+                "Status", campaignMap.get("Status")));
+        mapActions.put("Type", () -> setType(
+                "Type", campaignMap.get("Type")));
         return mapActions;
     }
 }

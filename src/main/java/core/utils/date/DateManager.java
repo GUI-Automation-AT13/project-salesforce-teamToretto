@@ -9,7 +9,6 @@
 package core.utils.date;
 
 import static salesforce.utils.Internalization.translate;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +23,61 @@ public class DateManager {
     private String dateToConvert;
     public Calendar calendar;
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+    /**
+     * Converts a word to a Date.
+     *
+     * @param wordDate is the string with a date format
+     */
+    private void convertWordToDate(final String wordDate) {
+        switch (wordDate) {
+            case "today": calendar.add(Calendar.DAY_OF_MONTH, 0);
+                break;
+            case "tomorrow": calendar.add(Calendar.DAY_OF_MONTH, 1);
+                break;
+            case "yesterday": calendar.add(Calendar.DAY_OF_MONTH, -1);
+                break;
+            default:
+                throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+        }
+    }
+
+    /**
+     * Generates actual date.
+     *
+     * @param dataFormat is format of data
+     * @return a string with actual date
+     */
+    public static String generateDateActual(final String dataFormat) {
+        DateFormat dateFormat = new SimpleDateFormat(dataFormat);
+        Date date = new Date();
+        String dateType = dateFormat.format(date);
+        return dateType.contains("p. m.") ? dateType.replace("p. m.", translate("PM"))
+                : dateType.contains("a. m.") ? dateType.replace("a. m.", translate("AM"))
+                : dateType.contains("PM") ? dateType.replace("PM", translate("PM"))
+                : dateType.contains("AM") ? dateType.replace("AM", translate("AM"))
+                : null;
+    }
+
+    /**
+     * Modifies date and add months.
+     *
+     * @param date      to change
+     * @param addMonths adds months
+     * @return a new date
+     * @throws ParseException format is wrong or date
+     */
+    public static String addMonthsDate(final String date, final int addMonths) {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+        try {
+            calendar.setTime(dateFormat.parse(date));
+        } catch (ParseException e) {
+            throw new InvalidArgumentException("Format is wrong or date incorrect");
+        }
+        calendar.add(Calendar.DAY_OF_MONTH, addMonths * 30 + 1);
+        return dateFormat.format(calendar.getTime());
+    }
 
     /**
      * Converts a String to a Date.
@@ -63,71 +117,5 @@ public class DateManager {
             return date1;
         }
         throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
-    }
-
-    /**
-     * Converts a word to a Date.
-     *
-     * @param wordDate is the string with a date format
-     */
-    private void convertWordToDate(final String wordDate) {
-        switch (wordDate) {
-            case "today":
-                calendar.add(Calendar.DAY_OF_MONTH, 0);
-                break;
-            case "tomorrow":
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
-                break;
-            case "yesterday":
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
-                break;
-            default:
-                throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
-        }
-    }
-
-    /**
-     * Generates actual date.
-     *
-     * @param dataFormat is format of data
-     * @return a string with actual date
-     */
-    public static String generateDateActual(final String dataFormat) {
-        DateFormat dateFormat = new SimpleDateFormat(dataFormat);
-        Date date = new Date();
-        String dateType = dateFormat.format(date);
-        if (dateType.contains("p. m.")) {
-            dateType = dateType.replace("p. m.", translate("PM"));
-        }
-        if (dateType.contains("a. m.")) {
-            dateType = dateType.replace("a. m.", translate("AM"));
-        }
-        if (dateType.contains("PM")) {
-            dateType = dateType.replace("PM", translate("PM"));
-        }
-        if (dateType.contains("AM")) {
-            dateType = dateType.replace("AM", translate("AM"));
-        }
-        return dateType;
-    }
-
-    /**
-     * Modifies date and add months.
-     *
-     * @param date      to change
-     * @param addMonths adds months
-     * @return a new date
-     * @throws ParseException format is wrong or date
-     */
-    public static String addMonthsDate(final String date, final int addMonths) {
-        Calendar calendar = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
-        try {
-            calendar.setTime(dateFormat.parse(date));
-        } catch (ParseException e) {
-            throw new InvalidArgumentException("Format is wrong or date incorrect");
-        }
-        calendar.add(Calendar.DAY_OF_MONTH, addMonths * 30 + 1);
-        return dateFormat.format(calendar.getTime());
     }
 }

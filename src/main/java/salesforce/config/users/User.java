@@ -15,6 +15,7 @@ public abstract class User {
 
     private String username;
     private String password;
+    private String alias;
 
     /**
      * Gets the user's username.
@@ -46,5 +47,21 @@ public abstract class User {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * Gets the user's alias.
+     *
+     * @return String
+     */
+    public String getAlias() {
+        return alias;
+    }
+
+    /**
+     * Sets the user's alias.
+     */
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 }

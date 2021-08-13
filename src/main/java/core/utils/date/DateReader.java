@@ -16,7 +16,6 @@ import org.openqa.selenium.InvalidArgumentException;
  */
 public class DateReader {
 
-    private int timeUnit;
     private int quantity;
 
     /**
@@ -26,33 +25,31 @@ public class DateReader {
      * @return a integer that represents the time unit.
      */
     public int getTimeUnit(final String date) {
-        timeUnit = 0;
+        switch (getDate(date)) {
+            case "second": return Calendar.SECOND;
+            case "minute": return Calendar.MINUTE;
+            case "hour": return Calendar.HOUR;
+            case "day": return Calendar.DAY_OF_MONTH;
+            case "month": return Calendar.MONTH;
+            case "year": return Calendar.YEAR;
+            default: throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+        }
+    }
 
-        if (date.contains("second")) {
-            timeUnit = Calendar.SECOND;
-            return timeUnit;
-        }
-        if (date.contains("minute")) {
-            timeUnit = Calendar.MINUTE;
-            return timeUnit;
-        }
-        if (date.contains("hour")) {
-            timeUnit = Calendar.HOUR;
-            return timeUnit;
-        }
-        if (date.contains("day")) {
-            timeUnit = Calendar.DAY_OF_MONTH;
-            return timeUnit;
-        }
-        if (date.contains("month")) {
-            timeUnit = Calendar.MONTH;
-            return timeUnit;
-        }
-        if (date.contains("year")) {
-            timeUnit = Calendar.YEAR;
-            return timeUnit;
-        }
-        throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+    /**
+     * Gets a string as second or minute or hour or day or month or year.
+     *
+     * @param date is the string with a time unit.
+     * @return a string.
+     */
+    public String getDate(String date) {
+        return date.contains("second") ? "second"
+                : date.contains("minute") ? "minute"
+                : date.contains("hour") ? "hour"
+                : date.contains("day") ? "day"
+                : date.contains("month") ? "month"
+                : date.contains("year") ? "year"
+                : null;
     }
 
     /**

@@ -12,9 +12,8 @@ import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import salesforce.ui.PageTransporter;
+import salesforce.utils.PageTransporter;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
 
 public class IndividualScenarioHooks {

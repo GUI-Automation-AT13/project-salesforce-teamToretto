@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import salesforce.config.EnvConfig;
-import salesforce.ui.PageTransporter;
+import salesforce.utils.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
@@ -21,11 +21,10 @@ public class GeneralHooks {
     private WebDriverManager webDriverManager;
     private PersonalInformation personalInformation;
 
-    public GeneralHooks(final WebDriverManager webDriverManager, final PersonalInformation personalInformation) {
+    public GeneralHooks(final WebDriverManager webDriverManager) {
         log.info("GeneralHooks constructor");
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
-        this.personalInformation = personalInformation;
     }
 
     @Before(order  = 1)

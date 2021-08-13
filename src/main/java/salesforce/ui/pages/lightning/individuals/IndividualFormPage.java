@@ -17,7 +17,6 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import salesforce.ui.entities.IndividualEntity;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
 import salesforce.utils.strategy.FeatureNew;
 import salesforce.utils.supplier.VoidSupplier;
 
@@ -321,7 +320,7 @@ public class IndividualFormPage extends BasePage implements FeatureNew {
     }
 
     @Override
-    public CreatedFeature clickSaveButton() {
+    public IndividualRecordPage clickSaveButton() {
         webDriverActions.clickByLocator(saveButton);
         return new IndividualRecordPage(webDriverManager);
     }
