@@ -6,7 +6,9 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.config.users;
+package core.config.users;
+
+import salesforce.utils.encrypt.AesUtil;
 
 /**
  * Represents a Salesforce user.
@@ -16,6 +18,19 @@ public abstract class User {
     private String username;
     private String password;
     private String alias;
+
+    /**
+     * User constructor.
+     *
+     * @param username represents the user's username
+     * @param password represents the user's password
+     * @param alias    represents the user's alias
+     */
+    public User(final String username, final String password, final String alias) {
+        this.username = username;
+        this.password = password;
+        this.alias = alias;
+    }
 
     /**
      * Gets the user's username.
@@ -39,7 +54,7 @@ public abstract class User {
      * @return String
      */
     public String getPassword() {
-        return password;
+        return AesUtil.decryptText(password);
     }
 
     /**

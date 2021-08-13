@@ -1,5 +1,6 @@
 package org.salesforce.hooks;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -8,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import salesforce.config.EnvConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.lightning.HomePage;
@@ -39,7 +39,7 @@ public class GeneralHooks {
         String username = EnvConfig.getInstance().getAdminUser().getUsername();
         String password = EnvConfig.getInstance().getAdminUser().getPassword();
         loginpage.setUsernameTextbox(username);
-        loginpage.setPasswordTextbox(AesUtil.decryptText(password));
+        loginpage.setPasswordTextbox(password);
         HomePage homePage = loginpage.login();
     }
 

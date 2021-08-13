@@ -8,6 +8,7 @@
 
 package salesforce.utils.encrypt;
 
+import core.config.EnvConfig;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -27,7 +28,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import salesforce.config.EnvConfig;
 
 /**
  * Encrypts and decrypts a text with a given key.
@@ -47,12 +47,12 @@ public class AesUtil {
      *
      * @param inputText represents the text to encrypt
      * @param key       represents the SecretKey to encrypt with
-     * @throws NoSuchAlgorithmException when algorithm is not found
-     * @throws NoSuchPaddingException when padding match is not found
-     * @throws BadPaddingException when the padding is not valid
-     * @throws IllegalBlockSizeException when the block size is not valid
+     * @throws NoSuchAlgorithmException           when algorithm is not found
+     * @throws NoSuchPaddingException             when padding match is not found
+     * @throws BadPaddingException                when the padding is not valid
+     * @throws IllegalBlockSizeException          when the block size is not valid
      * @throws InvalidAlgorithmParameterException when there is no match for the algorithm
-     * @throws InvalidKeyException when the key is invalid
+     * @throws InvalidKeyException                when the key is invalid
      */
     public static String encrypt(final String inputText, final String key) throws InvalidAlgorithmParameterException,
             InvalidKeyException, BadPaddingException, IllegalBlockSizeException, NoSuchPaddingException,
@@ -88,12 +88,12 @@ public class AesUtil {
      * Decrypts a text with the provided key.
      *
      * @param inputText is the text to decrypt
-     * @throws NoSuchAlgorithmException when algorithm is not found
-     * @throws NoSuchPaddingException when padding match is not found
-     * @throws BadPaddingException when the padding is not valid
-     * @throws IllegalBlockSizeException when the block size is not valid
+     * @throws NoSuchAlgorithmException           when algorithm is not found
+     * @throws NoSuchPaddingException             when padding match is not found
+     * @throws BadPaddingException                when the padding is not valid
+     * @throws IllegalBlockSizeException          when the block size is not valid
      * @throws InvalidAlgorithmParameterException when there is no match for the algorithm
-     * @throws InvalidKeyException when the key is invalid
+     * @throws InvalidKeyException                when the key is invalid
      */
 
     private static String decrypt(final String inputText, final String key) {
@@ -113,7 +113,7 @@ public class AesUtil {
      * Converts the provided String key to SecretKey with the predefined salt, iterationCount and keyLength values.
      *
      * @throws NoSuchAlgorithmException when algorithm is not found
-     * @throws InvalidKeySpecException when the key is invalid
+     * @throws InvalidKeySpecException  when the key is invalid
      */
     public static String generateKey()
             throws NoSuchAlgorithmException, InvalidKeySpecException {
