@@ -26,6 +26,46 @@ public class DateManager {
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
     /**
+     * Converts a String to a Date.
+     *
+     * @param date is the string with a date format
+     * @return a Date object
+     */
+    public Date manageDate(final String date) {
+        if (date == null) {
+            throw new NullPointerException("Invalid Argument: Unsupported String Format.");
+        } else if (date.equals("")) {
+            throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+        }
+        dateToConvert = date.toLowerCase();
+        calendar = Calendar.getInstance();
+        if (dateToConvert.matches("today|tomorrow|yesterday")) {
+            convertWordToDate(dateToConvert);
+            return calendar.getTime();
+        }
+        if (dateToConvert.contains("ago")) {
+            DateReader dateReader = new DateReader();
+            calendar.add(dateReader.getTimeUnit(date), -1 * dateReader.getQuantity(date));
+            return calendar.getTime();
+        }
+        if (dateToConvert.contains("from now")) {
+            DateReader dateReader = new DateReader();
+            calendar.add(dateReader.getTimeUnit(date), dateReader.getQuantity(date));
+            return calendar.getTime();
+        }
+        if (dateToConvert.contains("/")) {
+            Date date1 = null;
+            try {
+                date1 = formatter.parse(date);
+            } catch (ParseException e) {
+                throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+            }
+            return date1;
+        }
+        throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
+    }
+
+    /**
      * Converts a word to a Date.
      *
      * @param wordDate is the string with a date format
@@ -78,45 +118,5 @@ public class DateManager {
         }
         calendar.add(Calendar.DAY_OF_MONTH, addMonths * 30 + 1);
         return dateFormat.format(calendar.getTime());
-    }
-
-    /**
-     * Converts a String to a Date.
-     *
-     * @param date is the string with a date format
-     * @return a Date object
-     */
-    public Date manageDate(final String date) {
-        if (date == null) {
-            throw new NullPointerException("Invalid Argument: Unsupported String Format.");
-        } else if (date.equals("")) {
-            throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
-        }
-        dateToConvert = date.toLowerCase();
-        calendar = Calendar.getInstance();
-        if (dateToConvert.matches("today|tomorrow|yesterday")) {
-            convertWordToDate(dateToConvert);
-            return calendar.getTime();
-        }
-        if (dateToConvert.contains("ago")) {
-            DateReader dateReader = new DateReader();
-            calendar.add(dateReader.getTimeUnit(date), -1 * dateReader.getQuantity(date));
-            return calendar.getTime();
-        }
-        if (dateToConvert.contains("from now")) {
-            DateReader dateReader = new DateReader();
-            calendar.add(dateReader.getTimeUnit(date), dateReader.getQuantity(date));
-            return calendar.getTime();
-        }
-        if (dateToConvert.contains("/")) {
-            Date date1 = null;
-            try {
-                date1 = formatter.parse(date);
-            } catch (ParseException e) {
-                throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
-            }
-            return date1;
-        }
-        throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
     }
 }
