@@ -9,6 +9,7 @@
 package salesforce.utils;
 
 import static core.utils.Converter.removeWhiteSpace;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 import salesforce.config.EnvConfig;
