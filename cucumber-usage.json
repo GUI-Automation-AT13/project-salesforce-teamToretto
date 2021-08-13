@@ -1,0 +1,69 @@
+[
+  {
+    "source": "^I enter the text (.*?) on the header\u0027s search box$",
+    "steps": [
+      {
+        "name": "I enter the text me on the header\u0027s search box",
+        "aggregatedDurations": {
+          "median": 7.1462203,
+          "average": 7.1462203
+        },
+        "durations": [
+          {
+            "duration": 7.1462203,
+            "location": "file:///F:/guiTesting/project-salesforce-teamToretto/src/test/resources/features/search.feature:5"
+          }
+        ]
+      },
+      {
+        "name": "I enter the text jake on the header\u0027s search box",
+        "aggregatedDurations": {
+          "median": 18.9185461,
+          "average": 18.9185461
+        },
+        "durations": [
+          {
+            "duration": 18.9185461,
+            "location": "file:///F:/guiTesting/project-salesforce-teamToretto/src/test/resources/features/search.feature:5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "I press the Enter key",
+    "steps": [
+      {
+        "name": "I press the Enter key",
+        "aggregatedDurations": {
+          "median": 3.5519678,
+          "average": 3.5519678
+        },
+        "durations": [
+          {
+            "duration": 3.5519678,
+            "location": "file:///F:/guiTesting/project-salesforce-teamToretto/src/test/resources/features/search.feature:6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "^All the result record\u0027s names should contain the text (.*?)$",
+    "steps": [
+      {
+        "name": "All the result record\u0027s names should contain the text me",
+        "aggregatedDurations": {
+          "median": 2.2247184,
+          "average": 2.2247184
+        },
+        "durations": [
+          {
+            "duration": 2.2247184,
+            "location": "file:///F:/guiTesting/project-salesforce-teamToretto/src/test/resources/features/search.feature:7"
+          }
+        ]
+      }
+    ]
+  }
+]

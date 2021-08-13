@@ -21,7 +21,10 @@ import salesforce.api.entities.Response;
 
 @CucumberOptions(
         features = {"src/test/resources/features/createContract.feature"},
-        plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
+        plugin = {"pretty",
+                "html:build/cucumber/cucumber-report.html",
+                "json:build/cucumber/cucumber.json",
+                "rerun:build/cucumber/rerun.txt"},
         glue = {"org.salesforce"}
 )
 public class RunTests extends AbstractTestNGCucumberTests {
@@ -43,8 +46,8 @@ public class RunTests extends AbstractTestNGCucumberTests {
     @BeforeTest
     public void loginAndSetup() throws JsonProcessingException {
         LOGGER.info("----------- Login And Setup -----------");
+        Authentication.getAuth();
         apiFacade = new ApiFacade();
-        apiFacade.getAuth();
     }
 
     @AfterTest(dependsOnMethods = {"deleteAccount", "deleteContact", "deletePriceBook"})

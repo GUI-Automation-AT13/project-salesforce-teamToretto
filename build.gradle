@@ -30,16 +30,6 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 }
 
-cucumber {
-    glue = 'org.salesforce'
-    featurePath = 'src/test/resources/features'
-    main = 'cucumber.api.cli.Main'
-    plugin = ["html:target/site/cucumber-pretty.html",
-              "json:target/cucumber.json",
-              "rerun:target/failedrerun.txt"]
-    main = 'io.cucumber.core.cli.Main'
-}
-
 checkstyle {
     toolVersion '8.44'
     configFile file('config/checkstyle/checkstyle.xml')
@@ -64,3 +54,57 @@ test {
     systemProperties System.getProperties()
 }
 
+cucumber {
+    glue = 'org.salesforce'
+    featurePath = 'src/test/resources/features'
+    plugin = ["pretty",
+              "html:build/cucumber/cucumber-report.html",
+              "json:build/cucumber/cucumber.json",
+              "rerun:build/cucumber/rerun.txt"]
+    main = 'io.cucumber.core.cli.Main'
+}
+
+task executeFeatures(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.glue=org.salesforce']
+        jvmArgs = ['-Dcucumber.features=src/test/resources/features']
+        jvmArgs = ['-Dcucumber.plugin=pretty,' +
+                           'html:build/cucumber/cucumber-report.html,' +
+                           'json:build/cucumber/cucumber.json,' +
+                           'rerun:build/cucumber/rerun.txt']
+    }
+    ignoreFailures = true
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumberFeatures() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            def tags = getProperty("tags")
+            args = [
+                    '--plugin', 'html:build/cucumber/cucumber-report.html',
+                    '--plugin', 'json:build/cucumber/cucumber.json',
+                    '--plugin', 'pretty',
+                    '--plugin', 'usage:cucumber-usage.json',
+                    '--glue', 'org.salesforce',
+                    'src/test/resources/features',
+                    '--tags', tags]
+            ignoreExitValue = true
+        }
+        ignoreFailures = true
+        scanForTestClasses = false
+        testLogging.showStandardStreams = true
+    }
+}

@@ -33,6 +33,7 @@ public final class EnvConfig {
     private String login;
     private String loginUrl;
     private String browser;
+    private String headless;
     private int implicitTime;
     private int explicitTime;
     private int sleepTime;
@@ -94,6 +95,23 @@ public final class EnvConfig {
             return browser;
         }
         return this.browser;
+    }
+
+    /**
+     * Gets of headless boolean value.
+     *
+     * @return a boolean
+     */
+    public String getHeadless() {
+        String headless = System.getenv("HEADLESS");
+        if (headless != null) {
+            return headless;
+        }
+        headless = System.getProperty("HEADLESS");
+        if (headless != null) {
+            return headless;
+        }
+        return this.headless;
     }
 
     /**
@@ -230,6 +248,7 @@ public final class EnvConfig {
         service = getProperty("SERVICE");
         login = getProperty("LOGIN");
         browser = getProperty("browser");
+        headless = getProperty("headless");
         implicitTime = Integer.valueOf(getProperty("implicitTime"));
         explicitTime = Integer.valueOf(getProperty("explicitTime"));
         sleepTime = Integer.valueOf(getProperty("sleepTime"));
