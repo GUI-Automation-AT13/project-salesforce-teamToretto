@@ -88,6 +88,11 @@ public final class EnvConfig {
         return envConfig;
     }
 
+    /**
+     * Retrieves the encryption key either from a property file or an env variable.
+     *
+     * @return a String representing the key
+     */
     public String getKey() {
         String encryptKey = System.getenv("ENCRYPT_KEY");
         if (encryptKey != null) {

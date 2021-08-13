@@ -8,8 +8,6 @@
 
 package salesforce.utils.encrypt;
 
-import salesforce.config.EnvConfig;
-
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -29,6 +27,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+import salesforce.config.EnvConfig;
 
 /**
  * Encrypts and decrypts a text with a given key.
@@ -64,11 +63,6 @@ public class AesUtil {
         Cipher cipher = Cipher.getInstance(padding);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivspec);
         return Base64.getEncoder().encodeToString(cipher.doFinal(inputText.getBytes(StandardCharsets.UTF_8)));
-    }
-
-    public static void main(String[] args) throws BadPaddingException, InvalidKeyException, NoSuchAlgorithmException, IllegalBlockSizeException, NoSuchPaddingException, InvalidAlgorithmParameterException {
-        System.out.println(encrypt("1234qwer", "KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw="));
-        //System.out.println(decryptTextWithKey("KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw=","KxZMLR7qYIkPL7WYspN0E3VaZQ6prHW22DIU5UpVHFw="));
     }
 
     /**
