@@ -95,7 +95,9 @@ public final class EnvConfig {
      */
     public String getKey() {
         String encryptKey = System.getenv("ENCRYPT_KEY");
+        System.out.println("System env===" + encryptKey);
         if (encryptKey != null) {
+            System.out.println("System en2===" + encryptKey);
             return encryptKey;
         } else {
             Properties properties = PropertiesReader.getProperties("config.properties");
