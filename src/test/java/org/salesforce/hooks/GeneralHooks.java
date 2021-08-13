@@ -2,6 +2,7 @@ package org.salesforce.hooks;
 
 import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
+import core.utils.ScreenshotUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -9,11 +10,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
-import salesforce.utils.encrypt.AesUtil;
 
 public class GeneralHooks {
 
@@ -43,12 +46,10 @@ public class GeneralHooks {
         HomePage homePage = loginpage.login();
     }
 
-    @After(order = 100)
+    @After(order = 1)
     public void tearDown(Scenario scenario) {
         log.info("Close Driver");
-        final byte[] screenshot = ((TakesScreenshot) webDriverManager.getWebDriver())
-                .getScreenshotAs(OutputType.BYTES);
-        scenario.attach(screenshot, "image/png", scenario.getName());
+        ScreenshotUtil.captureScreenshot(webDriverManager.getWebDriver(), scenario);
         webDriverManager.quitWebDriver();
     }
 }

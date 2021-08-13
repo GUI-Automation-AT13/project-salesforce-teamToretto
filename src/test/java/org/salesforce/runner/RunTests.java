@@ -3,11 +3,16 @@ package org.salesforce.runner;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import core.api.ApiFacade;
 import core.api.ApiResponse;
+import core.selenium.WebDriverManager;
 import core.utils.ReportGenerator;
+import core.utils.ScreenshotUtil;
+import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -101,6 +106,7 @@ public class RunTests extends AbstractTestNGCucumberTests {
         priceBook.setId(apiResponse.getBody(Response.class).getId());
         apiResponse = apiFacade.patchObject("PRICEBOOK_ID", "{\"IsActive\": \"true\"}", priceBook.getId(), ApiEndPoints.PRICEBOOK_ID);
     }
+
     @AfterSuite
     public void createReports(){
         ReportGenerator.generateReport();
