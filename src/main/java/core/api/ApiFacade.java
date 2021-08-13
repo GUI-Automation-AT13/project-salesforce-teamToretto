@@ -17,8 +17,6 @@ import org.apache.http.HttpHeaders;
 import salesforce.api.ApiEndPoints;
 import salesforce.api.Authentication;
 
-import java.util.Map;
-
 /**
  * Performs create, delete, patch operations with the api library.
  */
