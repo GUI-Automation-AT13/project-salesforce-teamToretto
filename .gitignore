@@ -27,8 +27,6 @@ hs_err_pid*
 build/
 .idea/
 
-config.properties
-
 .classpath
 .project
 .settings/
