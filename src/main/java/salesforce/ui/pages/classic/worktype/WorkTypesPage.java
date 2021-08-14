@@ -4,9 +4,8 @@ import core.selenium.WebDriverManager;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.strategy.FeaturesPage;
 
 /**
@@ -31,20 +30,15 @@ public class WorkTypePage extends BasePage implements FeaturesPage {
     }
 
     @Override
-    public FeatureNew clickNewButton() {
+    public FeatureForm clickNewButton() {
         webDriverActions.clickByLocator(closeAnnouncement);
         webDriverActions.clickByLocator(newBtn);
-        return new WorkTypeNew(webDriverManager);
+        return new WorkTypePageForm(webDriverManager);
     }
 
     @Override
-    public List<String> getValueTables(Map<String, String> table) {
+    public List<String> getTablesValues(Map<String, String> table) {
         return null;
     }
 
-
-    @Override
-    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
-        return null;
-    }
 }

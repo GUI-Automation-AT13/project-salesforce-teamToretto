@@ -64,7 +64,7 @@ public class WorkTypeDetails extends BasePage implements FeatureDetails {
     }
 
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsWorkTypeMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsWorkTypeMap.get(key).getAsString()));

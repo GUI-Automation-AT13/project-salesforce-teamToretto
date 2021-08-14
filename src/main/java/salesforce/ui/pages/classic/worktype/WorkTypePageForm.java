@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureCreated;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * This class has webElement for work types details.
  */
-public class WorkTypeNew extends BasePage implements FeatureNew {
+public class WorkTypePageForm extends BasePage implements FeatureForm {
 
     protected By nameTxtBox = By.id("Name");
     protected By estimatedDurationTxtBox = By.id("EstimatedDuration");
@@ -23,7 +23,7 @@ public class WorkTypeNew extends BasePage implements FeatureNew {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public WorkTypeNew(WebDriverManager webDriverManager) {
+    public WorkTypePageForm(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
@@ -46,7 +46,7 @@ public class WorkTypeNew extends BasePage implements FeatureNew {
     }
 
     @Override
-    public CreatedFeature clickSaveButton() {
+    public FeatureCreated clickSaveButton() {
         webDriverActions.clickByLocator(saveBtn);
         return new WorkTypeCreated(webDriverManager);
     }

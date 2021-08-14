@@ -2,13 +2,13 @@ package salesforce.ui.pages.classic.worktype;
 
 import core.selenium.WebDriverManager;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureCreated;
 import salesforce.utils.strategy.FeatureDetails;
 
 /**
  * This class has webElement for work types Created.
  */
-public class WorkTypeCreated extends BasePage implements CreatedFeature {
+public class WorkTypeCreated extends BasePage implements FeatureCreated {
     /**
      * Initializes web element actions.
      *
