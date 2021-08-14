@@ -3,11 +3,11 @@ package salesforce.ui.pages.lightning;
 import static core.utils.date.DateManager.addMonthsDate;
 import static core.utils.date.DateManager.generateDateActual;
 
+import core.config.EnvConfig;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.InvalidArgumentException;
-import salesforce.config.EnvConfig;
 
 /**
  * This class contains expected values of tables.

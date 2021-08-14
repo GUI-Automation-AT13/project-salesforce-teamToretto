@@ -8,13 +8,13 @@
 
 package core.selenium;
 
-import core.utils.PropertiesReader;
-import java.util.Properties;
+import core.config.EnvConfig;
 
 /**
  * This class specifies the web driver config.
  */
 public class WebDriverConfig {
+
     private String browser;
     private int implicitWaitTime;
     private int explicitWaitTime;
@@ -44,11 +44,10 @@ public class WebDriverConfig {
      * Sets all the values to be configured.
      */
     public void initialize() {
-        Properties properties = PropertiesReader.getProperties("config.properties");
-        browser = properties.getProperty("browser");
-        implicitWaitTime = Integer.parseInt(properties.getProperty("implicitTime"));
-        explicitWaitTime = Integer.parseInt(properties.getProperty("explicitTime"));
-        waitSleepTime = Integer.parseInt(properties.getProperty("sleepTime"));
+        browser = EnvConfig.getInstance().getBrowser();
+        implicitWaitTime = EnvConfig.getInstance().getImplicitTime();
+        explicitWaitTime = EnvConfig.getInstance().getExplicitTime();
+        waitSleepTime = EnvConfig.getInstance().getSleepTime();
     }
 
     /**

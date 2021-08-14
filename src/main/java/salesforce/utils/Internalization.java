@@ -10,9 +10,9 @@ package salesforce.utils;
 
 import static core.utils.Converter.removeWhiteSpace;
 
+import core.config.EnvConfig;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import salesforce.config.EnvConfig;
 
 /**
  * Class to read internationalization file.

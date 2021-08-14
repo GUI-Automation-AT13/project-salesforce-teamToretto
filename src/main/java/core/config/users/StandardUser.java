@@ -6,22 +6,17 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.config.users;
-
-import core.utils.PropertiesReader;
-import java.util.Properties;
+package core.config.users;
 
 /**
  * Salesforce user with standar profile.
  */
-public class StandarUser extends User {
+public class StandardUser extends User {
 
     /**
-     * Standar user constructor.
+     * Standard user constructor.
      */
-    public StandarUser() {
-        Properties properties = PropertiesReader.getProperties("users/StandardUser.properties");
-        setUsername(properties.getProperty("user"));
-        setPassword(properties.getProperty("password"));
+    public StandardUser(String username, String password, String alias) {
+        super(username, password, alias);
     }
 }

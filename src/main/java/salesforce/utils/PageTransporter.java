@@ -6,10 +6,10 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.ui;
+package salesforce.utils;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
-import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.LoginPage;
 import salesforce.ui.pages.lightning.campaign.CampaignsPage;

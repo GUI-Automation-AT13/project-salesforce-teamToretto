@@ -72,14 +72,11 @@ public class DateManager {
      */
     private void convertWordToDate(final String wordDate) {
         switch (wordDate) {
-            case "today":
-                calendar.add(Calendar.DAY_OF_MONTH, 0);
+            case "today": calendar.add(Calendar.DAY_OF_MONTH, 0);
                 break;
-            case "tomorrow":
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            case "tomorrow": calendar.add(Calendar.DAY_OF_MONTH, 1);
                 break;
-            case "yesterday":
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
+            case "yesterday": calendar.add(Calendar.DAY_OF_MONTH, -1);
                 break;
             default:
                 throw new InvalidArgumentException("Invalid Argument: Unsupported String Format.");
@@ -96,19 +93,11 @@ public class DateManager {
         DateFormat dateFormat = new SimpleDateFormat(dataFormat);
         Date date = new Date();
         String dateType = dateFormat.format(date);
-        if (dateType.contains("p. m.")) {
-            dateType = dateType.replace("p. m.", translate("PM"));
-        }
-        if (dateType.contains("a. m.")) {
-            dateType = dateType.replace("a. m.", translate("AM"));
-        }
-        if (dateType.contains("PM")) {
-            dateType = dateType.replace("PM", translate("PM"));
-        }
-        if (dateType.contains("AM")) {
-            dateType = dateType.replace("AM", translate("AM"));
-        }
-        return dateType;
+        return dateType.contains("p. m.") ? dateType.replace("p. m.", translate("PM"))
+                : dateType.contains("a. m.") ? dateType.replace("a. m.", translate("AM"))
+                : dateType.contains("PM") ? dateType.replace("PM", translate("PM"))
+                : dateType.contains("AM") ? dateType.replace("AM", translate("AM"))
+                : "";
     }
 
     /**
