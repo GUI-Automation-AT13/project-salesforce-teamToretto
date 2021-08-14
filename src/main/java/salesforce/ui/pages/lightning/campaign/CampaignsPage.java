@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +18,6 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * This class is of Campaign Page.

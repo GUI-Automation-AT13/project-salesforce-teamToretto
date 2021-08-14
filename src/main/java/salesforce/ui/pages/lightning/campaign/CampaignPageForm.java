@@ -8,6 +8,8 @@
 
 package salesforce.ui.pages.lightning.campaign;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +17,6 @@ import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * This class is for create a new Campaign element.
@@ -32,7 +32,7 @@ public class CampaignPageForm extends BasePage implements FeatureForm {
     private By saveButton = By.xpath(String.format("//button[@title='%s']", translate("Save")));
     private By saveAndNewButton = By.xpath(String.format("//button[@title='%s']", translate("Save & New")));
     private By cancelButton = By.xpath(String.format("//button[@title='%s']", translate("Cancel")));
-    private String INPUT_XPATH = "//label/span[text()='%s']/../..//input";
+    private String inputXpath = "//label/span[text()='%s']/../..//input";
     private String statusComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[2]";
     private String typeComboBox = "(//*[contains(text(),'%s')]/../..//a[@class='select'])[1]";
     private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id]//*[contains(text(),'%s')]/..";
@@ -54,7 +54,7 @@ public class CampaignPageForm extends BasePage implements FeatureForm {
      * @param value of the field.
      */
     public void setInputField(final String fieldName, final String value) {
-        webDriverActions.setInputField(By.xpath(String.format(INPUT_XPATH, fieldName)), value);
+        webDriverActions.setInputField(By.xpath(String.format(inputXpath, fieldName)), value);
     }
 
     /**

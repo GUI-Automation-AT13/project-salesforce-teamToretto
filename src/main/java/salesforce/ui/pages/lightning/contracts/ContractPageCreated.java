@@ -9,6 +9,7 @@
 package salesforce.ui.pages.lightning.contracts;
 
 import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
@@ -19,15 +20,15 @@ import salesforce.utils.strategy.FeatureCreated;
  */
 public class ContractPageCreated extends BasePage implements FeatureCreated {
 
-    private By details = By.xpath(String.format("(//span[text()='%s'])[last()]",translate("Details")));
+    private By details = By.xpath(String.format("(//span[text()='%s'])[last()]", translate("Details")));
     private By accountNameTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] "
-                   + "/following-sibling::div)[last()]", translate("Account Name")));
+            + "/following-sibling::div)[last()]", translate("Account Name")));
     private By contractStartDateTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] "
-                    + "/following-sibling::div)[last()]", translate("Contract Start Date")));
-    private By contractEndDateTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] /following-sibling::div)"
-                    + "[last()]", translate("Contract Start Date")));
-    private By statusTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] /following-sibling::div)[last()]",
-                    translate("Status")));
+            + "/following-sibling::div)[last()]", translate("Contract Start Date")));
+    private By contractEndDateTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] "
+            + "/following-sibling::div)[last()]", translate("Contract Start Date")));
+    private By statusTitle = By.xpath(String.format("(//ul//li//div//span[@title='%s'] "
+            + "/following-sibling::div)[last()]", translate("Status")));
 
     /**
      * Initializes web element actions.

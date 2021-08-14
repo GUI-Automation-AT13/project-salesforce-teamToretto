@@ -3,8 +3,6 @@ package salesforce.utils;
 import static salesforce.utils.Internalization.translate;
 
 import core.utils.RandomCustom;
-import salesforce.utils.supplier.VoidSupplier;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +48,7 @@ public final class GeneratorUniqueString {
      * @param mapAnalyzed a map to translates
      * @return a new map with translate
      */
-    private static Map<String, String> appliedInternalization(final Map<String, String> mapAnalyzed){
+    private static Map<String, String> appliedInternalization(final Map<String, String> mapAnalyzed) {
         Map<String, String> mapNew = new HashMap<String, String>();
         mapAnalyzed.keySet().forEach(key -> mapNew.put(key, translate(mapAnalyzed.get(key))));
         return mapNew;

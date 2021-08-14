@@ -1,14 +1,13 @@
 package salesforce.ui.pages.lightning;
 
-import org.openqa.selenium.InvalidArgumentException;
-import salesforce.config.EnvConfig;
+import static core.utils.date.DateManager.addMonthsDate;
+import static core.utils.date.DateManager.generateDateActual;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static core.utils.date.DateManager.addMonthsDate;
-import static core.utils.date.DateManager.generateDateActual;
+import org.openqa.selenium.InvalidArgumentException;
+import salesforce.config.EnvConfig;
 
 /**
  * This class contains expected values of tables.

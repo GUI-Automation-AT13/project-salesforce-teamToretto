@@ -11,15 +11,12 @@ package salesforce.ui.pages.lightning.individuals;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.strategy.FeaturesPage;

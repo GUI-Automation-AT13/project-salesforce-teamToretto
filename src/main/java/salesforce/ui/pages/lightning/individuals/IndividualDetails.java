@@ -1,13 +1,12 @@
 package salesforce.ui.pages.lightning.individuals;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.By;
 import salesforce.utils.strategy.FeatureDetails;
-
-import static salesforce.utils.Internalization.translate;
 
 /**
  * Page Object Model for the salesforce individual details record page.

@@ -1,5 +1,7 @@
 package salesforce.ui.pages.lightning.campaign;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +10,6 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.supplier.StringSupplier;
-import static salesforce.utils.Internalization.translate;
 
 /**
  * This class for elements of Campaign details page.
@@ -20,6 +21,7 @@ public class CampaignDetails extends CampaignPageCreated implements FeatureDetai
             translate("Created By")));
     protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
+
     static {
         XPATH_COMPLEMENTS.put("Campaign Name", "//span//span");
         XPATH_COMPLEMENTS.put("Start Date", "//span//span");
