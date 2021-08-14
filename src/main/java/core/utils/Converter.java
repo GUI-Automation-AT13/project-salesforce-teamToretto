@@ -28,7 +28,6 @@ public class Converter {
         return words.replaceAll("\\s+", "");
     }
 
-
     /**
      * Convert String to Url enum.
      *
