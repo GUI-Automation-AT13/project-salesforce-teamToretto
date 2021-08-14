@@ -123,7 +123,7 @@ public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetai
      * @return a list with some data of campaign
      */
     @Override
-    public List<String> getValueField(final Map<String, String> table) {
+    public List<String> getValuesFromFields(final Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsWorkTypeMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsWorkTypeMap.get(key).getAsString()));

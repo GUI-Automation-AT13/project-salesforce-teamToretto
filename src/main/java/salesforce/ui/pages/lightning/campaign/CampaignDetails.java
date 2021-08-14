@@ -81,7 +81,7 @@ public class CampaignDetails extends CampaignPageCreated implements FeatureDetai
      * @return a list with some data of campaign
      */
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsCampaignMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCampaignMap.get(key).getAsString()));

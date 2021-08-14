@@ -41,7 +41,7 @@ public class IndividualDetails extends IndividualPageCreated implements FeatureD
      * @return a list with some data of contract
      */
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         return null;
     }
 

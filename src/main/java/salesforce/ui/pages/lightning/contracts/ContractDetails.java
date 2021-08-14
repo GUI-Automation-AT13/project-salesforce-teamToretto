@@ -100,7 +100,7 @@ public class ContractDetails extends ContractPageCreated implements FeatureDetai
      * @return a list with some data of contract
      */
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsCreatedMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCreatedMap.get(key).getAsString()));
