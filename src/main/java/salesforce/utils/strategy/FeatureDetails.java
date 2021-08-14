@@ -7,7 +7,7 @@ import java.util.Map;
  * Implements details on a feature created.
  */
 public interface FeatureDetails {
-    List<String> getValueField(Map<String, String> table);
+    List<String> getValuesFromFields(Map<String, String> table);
 
     String getCreateDayTxt();
 

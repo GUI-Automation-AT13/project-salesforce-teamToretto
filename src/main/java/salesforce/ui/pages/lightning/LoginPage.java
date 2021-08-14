@@ -65,4 +65,5 @@ public class LoginPage extends BasePage {
     protected void waitForPageLoaded() {
         webDriverActions.waitForVisibilityOfLocator(loginButton);
     }
+
 }

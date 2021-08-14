@@ -8,7 +8,7 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
-import static core.utils.date.DateManager.addMonthsDate;
+import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
@@ -62,28 +61,21 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      *
      * @return a ProductPage instance
      */
-    public NewContractPage clickNewContractButton() {
+    @Override
+    public ContractPageForm clickNewButton() {
         webDriverActions.clickByLocator(newContractButton);
-        return new NewContractPage(webDriverManager);
+        return new ContractPageForm(webDriverManager);
     }
 
+    /**
+     * Gets values of tables.
+     *
+     * @param table is values to get
+     * @return a values of tables
+     */
     @Override
-    public NewContractPage clickNewButton() {
-        webDriverActions.clickByLocator(newContractButton);
-        return new NewContractPage(webDriverManager);
-    }
-
-    @Override
-    public List<String> getValueTables(Map<String, String> table) {
+    public List<String> getTablesValues(Map<String, String> table) {
         return getValues(new ArrayList<String>(table.keySet()));
-    }
-
-    @Override
-    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
-        tableFeature.put("Status", "Draft");
-        tableFeature.put("Contract End Date", addMonthsDate(tableFeature.get("Contract Start Date"),
-                Integer.parseInt(tableFeature.get("Contract Term (months)"))));
-        return new ArrayList<String>(tableFeature.values());
     }
 
     /**
@@ -96,9 +88,8 @@ public class ContractsPage extends BasePage implements FeaturesPage {
     public List<String> getValues(List<String> valuesToGet) {
         Map<String, String> mapNew = new HashMap<>();
         valuesToGet.stream()
-                .forEach(key -> mapNew.put(key, getValueInTable(key)));
-        mapNew.put("Status", getValueInTable("Status"));
-        mapNew.put("Contract End Date", getValueInTable("Contract End Date"));
+                .forEach(key -> mapNew.put(key, getValueInTable(translate(key))));
+        mapNew.put("Contract End Date", getValueInTable(translate("Contract End Date")));
         return new ArrayList<String>(mapNew.values());
     }
 }
