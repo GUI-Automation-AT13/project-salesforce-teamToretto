@@ -8,10 +8,13 @@
 
 package salesforce.utils.strategy;
 
+import java.util.Map;
 
 /**
- * Implements in feature created.
+ * Implements in feature new.
  */
-public interface CreatedFeature {
-    FeatureDetails clickDetails();
+public interface FeatureForm {
+    void fillUpField(Map<String, String> table);
+
+    FeatureCreated clickSaveButton();
 }

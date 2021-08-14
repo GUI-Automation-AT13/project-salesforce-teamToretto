@@ -12,9 +12,9 @@ import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
 import salesforce.ui.pages.classic.worktype.WorkTypePage;
-import salesforce.ui.pages.lightning.campaign.CampaignPage;
+import salesforce.ui.pages.lightning.campaign.CampaignsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
-import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
 /**
@@ -49,14 +49,14 @@ public class MapPages {
      */
     private FeaturesPage featuresLightning(final String featureName) {
         switch (featureName) {
-            case "workType":
+            case "WorkType":
                 return new WorkTypesPage(webDriverManager);
-            case "contract":
+            case "Contract":
                 return new ContractsPage(webDriverManager);
-            case "individual":
-                return new IndividualListPage(webDriverManager);
-            case "campaign":
-                return new CampaignPage(webDriverManager);
+            case "Individual":
+                return new IndividualsPage(webDriverManager);
+            case "Campaign":
+                return new CampaignsPage(webDriverManager);
             default:
                 throw new InvalidArgumentException("Invalid feature");
         }
@@ -77,4 +77,3 @@ public class MapPages {
         }
     }
 }
-

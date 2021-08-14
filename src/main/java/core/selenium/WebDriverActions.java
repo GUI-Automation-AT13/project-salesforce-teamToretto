@@ -244,6 +244,7 @@ public class WebDriverActions {
      * @param locator web element to get text.
      */
     public void clickByXpath(final String locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
         driver.findElement(By.xpath(locator)).click();
     }
 

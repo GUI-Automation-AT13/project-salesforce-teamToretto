@@ -114,6 +114,9 @@ public class SearchResultsPage extends BasePage {
         return recordsContainText;
     }
 
+    /**
+     * Method to wait for a page to load.
+     */
     @Override
     protected void waitForPageLoaded() {
         webDriverManager.getWait().until(ExpectedConditions.presenceOfElementLocated(tablesLocator));
