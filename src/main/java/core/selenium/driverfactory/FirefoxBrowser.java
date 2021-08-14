@@ -8,14 +8,30 @@
 
 package core.selenium.driverfactory;
 
+import core.config.EnvConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 /**
  * Configures a Fire fox webDriver.
  */
 public class FirefoxBrowser implements Browser {
+
+    FirefoxOptions firefoxOptions;
+
+    /**
+     * Configures Chrome browser's options.
+     */
+    public void setFirefoxOptions() {
+        firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--disable-web-security");
+        firefoxOptions.addArguments("--allow-running-insecure-content");
+        if (EnvConfig.getInstance().getHeadless().equals("true")) {
+            firefoxOptions.addArguments("--headless");
+        }
+    }
 
     /**
      * Gets the browser's driver.
@@ -25,6 +41,7 @@ public class FirefoxBrowser implements Browser {
     @Override
     public WebDriver getWebDriver() {
         WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
+        setFirefoxOptions();
+        return new FirefoxDriver(firefoxOptions);
     }
 }

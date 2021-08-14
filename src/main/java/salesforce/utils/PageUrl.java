@@ -8,7 +8,7 @@
 
 package salesforce.utils;
 
-import salesforce.config.EnvConfig;
+import core.config.EnvConfig;
 
 /**
  * This class is for concats baseUrl with feature page.

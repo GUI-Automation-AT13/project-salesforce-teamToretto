@@ -8,6 +8,7 @@
 
 package core.utils;
 
+import core.config.EnvConfig;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,15 +30,15 @@ public class ReportGenerator {
     public static void generateReport() {
         File reportOutputDirectory = new File("build/cucumber");
         List<String> jsonFiles = new ArrayList<>();
-        jsonFiles.add("target/cucumber.json");
+        jsonFiles.add("build/cucumber/cucumber.json");
         String buildNumber = "1";
-        String projectName = "cucumberProject";
+        String projectName = "SeleniumProject";
         Configuration configuration = new Configuration(reportOutputDirectory, projectName);
         configuration.addPresentationModes(PresentationMode.RUN_WITH_JENKINS);
         configuration.setNotFailingStatuses(Collections.singleton(Status.SKIPPED));
         configuration.setBuildNumber(buildNumber);
-        configuration.addClassifications("Platform", "Windows");
-        configuration.addClassifications("Browser", "Chrome");
+        configuration.addClassifications("Platform", System.getProperty("os.name"));
+        configuration.addClassifications("Browser", EnvConfig.getInstance().getBrowser().toLowerCase());
         configuration.addClassifications("Branch", "release/1.0");
         ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
         Reportable result = reportBuilder.generateReports();
