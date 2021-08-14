@@ -1,6 +1,6 @@
 package salesforce.utils;
 
-import salesforce.config.EnvConfig;
+import core.config.EnvConfig;
 
 /**
  * This class has urls salesforce.

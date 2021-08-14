@@ -8,6 +8,7 @@
 
 package salesforce.utils.strategy;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
 import salesforce.ui.pages.classic.worktype.WorkTypePage;
@@ -33,8 +34,7 @@ public class MapPages {
      * @return object feature page
      */
     public FeaturesPage featuresPage(final String featureName) {
-        String type = "Classic";
-        if ("Classic".equals(type)) {
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
             return featuresClassic(featureName);
         } else {
             return featuresLightning(featureName);

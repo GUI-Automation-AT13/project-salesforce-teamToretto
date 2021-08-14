@@ -133,9 +133,8 @@ public class PageTransporter {
      * Navigates to feature page on lightning version.
      */
     public void navigateToFeaturePage(String featureName) {
-        String type = "Classic";
-        if ("Classic".equals(type)) {
-            goToUrl(converterStringToEnum(featureName, type).getValue());
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
+            goToUrl(converterStringToEnum(featureName, EnvConfig.getInstance().getSkin()).getValue());
         } else {
             goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
         }
