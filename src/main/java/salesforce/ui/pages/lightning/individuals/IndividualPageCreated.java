@@ -38,7 +38,7 @@ public class IndividualPageCreated extends BasePage implements FeatureCreated {
             + "/../..//span[contains(@class,'test-id__field-value')]");
     private By deletedSuccessMessage = By.xpath("//span[contains(.,'was deleted.')]");
     private By detailsTabButton = By.xpath("//span[contains(.,'Details')]");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     /**

@@ -12,7 +12,7 @@ import salesforce.utils.strategy.FeatureDetails;
  * Page Object Model for the salesforce individual details record page.
  */
 public class IndividualDetails extends IndividualPageCreated implements FeatureDetails {
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     /**

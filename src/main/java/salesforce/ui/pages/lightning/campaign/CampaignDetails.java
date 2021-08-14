@@ -19,7 +19,7 @@ public class CampaignDetails extends CampaignPageCreated implements FeatureDetai
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
     private By createBy = By.xpath(String.format("//span[text()='%s']/../../div/span/span",
             translate("Created By")));
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {

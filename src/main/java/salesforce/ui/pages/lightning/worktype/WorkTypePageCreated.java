@@ -20,7 +20,7 @@ import salesforce.utils.strategy.FeatureDetails;
  * This class has webElement for work type created.
  */
 public class WorkTypePageCreated extends BasePage implements FeatureCreated {
-    protected By detailsBtn = By.xpath(String.format("(//span[text()='%s'])[last()]", translate("Details")));
+    private By detailsBtn = By.xpath(String.format("(//span[text()='%s'])[last()]", translate("Details")));
 
     /**
      * Initializes web element actions.

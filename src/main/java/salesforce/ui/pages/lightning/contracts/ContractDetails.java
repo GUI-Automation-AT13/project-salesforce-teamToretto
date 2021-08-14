@@ -19,7 +19,7 @@ public class ContractDetails extends ContractPageCreated implements FeatureDetai
             translate("Contract Start Date")));
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {

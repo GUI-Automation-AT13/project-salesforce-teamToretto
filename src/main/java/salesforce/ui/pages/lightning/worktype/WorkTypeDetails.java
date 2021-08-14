@@ -15,18 +15,19 @@ import salesforce.utils.supplier.StringSupplier;
  * This class has webElement for work type created.
  */
 public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetails {
-    protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
-    protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By nameWorkTypeTxt = By.xpath("//span[@class='uiOutputText']");
+    private By descriptionTxt = By.xpath("//span[@class='uiOutputTextArea']");
+    private By dateCreateByTxt = By.xpath(String.format("//span[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
-    protected By nameCreatorTxt = By.xpath("//span[contains(text(),'Created By')]/../..//a[@rel='noreferrer']");
-    protected String pathFieldTxt = "//*[contains(text(),'%s')]/../..//*[@class='uiOutputNumber']";
-    protected By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')]"
+    private By nameCreatorTxt = By.xpath(String.format("//span[contains(text(),'%s')]/../..//a[@rel='noreferrer']",
+            translate("Created By")));
+    private String pathFieldTxt = "//span[contains(text(),'%s')]/../..//span[@class='uiOutputNumber']";
+    private By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')]"
                     + "[@class='test-id__field-label']/../..//span[@class='uiOutputNumber']",
             translate("Estimated Duration")));
-    protected String unitTxt = "//span[contains(text(),'%s')]/../..//span[@class='test-id__field-value "
+    private String unitTxt = "//span[contains(text(),'%s')]/../..//span[@class='test-id__field-value "
             + "slds-form-element__static slds-grow ']";
-    protected String operatingHoursTxt = "//*[contains(text(),'%s')]/../..//a[@target='_blank'][@href]";
+    private String operatingHoursTxt = "//span[contains(text(),'%s')]/../..//a[@target='_blank'][@href]";
 
     /**
      * Initializes web element actions.
@@ -65,7 +66,7 @@ public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetai
     }
 
     /**
-     * Sets value and select in txt of Estimated Duration, Block Time Before Appointment, Block Time After Appointment.
+     * Sets value and select in txt of Block Time Before Appointment, Block Time After Appointment.
      * Timeframe Start and Timeframe End.
      *
      * @param nameTxtBox is name of textBox

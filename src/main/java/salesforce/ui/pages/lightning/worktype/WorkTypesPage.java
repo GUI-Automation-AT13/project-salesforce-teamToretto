@@ -23,9 +23,9 @@ import salesforce.utils.strategy.FeaturesPage;
  * This class has webElement for work types page.
  */
 public class WorkTypesPage extends BasePage implements FeaturesPage {
-    protected By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
-    protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
-    protected String fieldWithUniqueName = "Work Type Name";
+    private By newBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
+    private String xpathTable = "//a[text()='%s']/../../..//td[contains(.,'%s')][@role='gridcell']";
+    private String fieldWithUniqueName = "Work Type Name";
 
     /**
      * Initializes web element actions.

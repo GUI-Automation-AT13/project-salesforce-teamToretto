@@ -8,7 +8,6 @@
 
 package salesforce.ui.pages.lightning.contracts;
 
-import static core.utils.date.DateManager.addMonthsDate;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
@@ -17,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 

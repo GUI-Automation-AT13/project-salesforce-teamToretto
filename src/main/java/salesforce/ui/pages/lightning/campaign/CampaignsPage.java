@@ -24,9 +24,9 @@ import salesforce.utils.strategy.FeaturesPage;
  */
 public class CampaignsPage extends BasePage implements FeaturesPage {
 
-    protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
-    protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
-    protected String fieldWithUniqueName = "Campaign Name";
+    private By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
+    private String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
+    private String fieldWithUniqueName = "Campaign Name";
 
     /**
      * Initializes web element actions.
