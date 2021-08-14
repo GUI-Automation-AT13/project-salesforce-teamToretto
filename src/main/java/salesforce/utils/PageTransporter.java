@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.ui;
+package salesforce.utils;
 
 import core.config.EnvConfig;
 import core.selenium.WebDriverManager;

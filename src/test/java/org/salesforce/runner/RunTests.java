@@ -25,11 +25,8 @@ import salesforce.api.entities.PriceBook;
 import salesforce.api.entities.Response;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/createContract.feature"},
-        plugin = {"pretty",
-                "html:build/cucumber/cucumber-report.html",
-                "json:build/cucumber/cucumber.json",
-                "rerun:build/cucumber/rerun.txt"},
+        features = {"src/test/resources/features/"},
+        plugin = {"html:build/cucumber/cucumber-pretty.html", "json:build/cucumber/cucumber.json"},
         glue = {"org.salesforce"}
 )
 public class RunTests extends AbstractTestNGCucumberTests {

@@ -54,14 +54,11 @@ test {
     systemProperties System.getProperties()
 }
 
-cucumber {
-    glue = 'org.salesforce'
-    featurePath = 'src/test/resources/features'
-    plugin = ["pretty",
-              "html:build/cucumber/cucumber-report.html",
-              "json:build/cucumber/cucumber.json",
-              "rerun:build/cucumber/rerun.txt"]
-    main = 'io.cucumber.core.cli.Main'
+test {
+    scanForTestClasses = false
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    useTestNG()
 }
 
 task executeFeatures(type: Test) {
@@ -69,7 +66,7 @@ task executeFeatures(type: Test) {
     options {
         useDefaultListeners = false
         jvmArgs = ['-Dcucumber.glue=org.salesforce']
-        jvmArgs = ['-Dcucumber.features=src/test/resources/features']
+        jvmArgs = ['-Dcucumber.features=src/test/resources/features/']
         jvmArgs = ['-Dcucumber.plugin=pretty,' +
                            'html:build/cucumber/cucumber-report.html,' +
                            'json:build/cucumber/cucumber.json,' +
@@ -80,31 +77,3 @@ task executeFeatures(type: Test) {
     testLogging.showStandardStreams = true
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom testImplementation
-    }
-}
-
-task cucumberFeatures() {
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            def tags = getProperty("tags")
-            args = [
-                    '--plugin', 'html:build/cucumber/cucumber-report.html',
-                    '--plugin', 'json:build/cucumber/cucumber.json',
-                    '--plugin', 'pretty',
-                    '--plugin', 'usage:cucumber-usage.json',
-                    '--glue', 'org.salesforce',
-                    'src/test/resources/features',
-                    '--tags', tags]
-            ignoreExitValue = true
-        }
-        ignoreFailures = true
-        scanForTestClasses = false
-        testLogging.showStandardStreams = true
-    }
-}
