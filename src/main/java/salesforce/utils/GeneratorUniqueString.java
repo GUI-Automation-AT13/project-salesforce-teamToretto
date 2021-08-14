@@ -40,8 +40,8 @@ public final class GeneratorUniqueString {
      * @return a boolean
      */
     private static boolean containsName(final String word, final String nameFeature) {
-        return word.toLowerCase().matches(".*name.*") & !"contract".equals(nameFeature)
-                & !"individual".equals(nameFeature);
+        return word.toLowerCase().matches(".*name.*") & !"Contract".equals(nameFeature)
+                & !"Individual".equals(nameFeature);
     }
 
     /**

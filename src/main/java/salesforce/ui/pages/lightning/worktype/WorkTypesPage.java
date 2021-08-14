@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
@@ -49,29 +48,33 @@ public class WorkTypesPage extends BasePage implements FeaturesPage {
         return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
+    /**
+     * Changes the page to create work type.
+     *
+     * @return workTypeForm initialize.
+     */
+    public WorkTypePageForm clickNewButton() {
+        webDriverActions.clickByLocator(newBtn);
+        return new WorkTypePageForm(webDriverManager);
+    }
+
+    /**
+     * Waits to load new button to create work type appear.
+     */
     @Override
     protected void waitForPageLoaded() {
         webDriverActions.waitForVisibilityOfLocator(newBtn);
     }
 
     /**
-     * Changes the page to create work type.
+     * Gets values of tables.
      *
-     * @return workTypeForm initialize.
+     * @param table is values to get
+     * @return a values of tables
      */
-    public NewWorkTypePage clickNewButton() {
-        webDriverActions.clickByLocator(newBtn);
-        return new NewWorkTypePage(webDriverManager);
-    }
-
     @Override
-    public List<String> getValueTables(Map<String, String> table) {
+    public List<String> getTablesValues(Map<String, String> table) {
         return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
-    }
-
-    @Override
-    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
-        return new ArrayList<String>(tableFeature.values());
     }
 
     /**

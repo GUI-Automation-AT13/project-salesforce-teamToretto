@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
-import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.BasePage;
 import salesforce.utils.strategy.FeaturesPage;
 
@@ -23,7 +22,7 @@ import static salesforce.utils.Internalization.translate;
 /**
  * This class is of Campaign Page.
  */
-public class CampaignPage extends BasePage implements FeaturesPage {
+public class CampaignsPage extends BasePage implements FeaturesPage {
 
     protected By createCampaignBtn = By.xpath("//a[@class='forceActionLink'][@role='button']");
     protected String xpathTable = "//a[text()='%s']/../../..//*[contains(.,'%s')][@role='gridcell']";
@@ -34,7 +33,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public CampaignPage(WebDriverManager webDriverManager) {
+    public CampaignsPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
@@ -49,36 +48,34 @@ public class CampaignPage extends BasePage implements FeaturesPage {
         return webDriverActions.getTextByXpathLocator(String.format(xpathTable, fieldUniqueName, nameOfColumnHeader));
     }
 
+    /**
+     * Returns a Campaign page form to create.
+     *
+     * @return a object CreateCampaignPage.
+     */
+    @Override
+    public CampaignPageForm clickNewButton() {
+        webDriverActions.clickByLocator(createCampaignBtn);
+        return new CampaignPageForm(webDriverManager);
+    }
+
+    /**
+     * Waits to load new button to create campaign appear.
+     */
     @Override
     protected void waitForPageLoaded() {
         webDriverActions.waitForVisibilityOfLocator(createCampaignBtn);
     }
 
     /**
-     * Returns a Campaing page form to create.
+     * Gets values of tables.
      *
-     * @return a object CreateCampaignPage.
+     * @param table is values to get
+     * @return a values of tables
      */
-    public CreateCampaignPage clickCreateCampaignBtn() {
-        webDriverActions.clickByLocator(createCampaignBtn);
-        return new CreateCampaignPage(webDriverManager);
-    }
-
     @Override
-    public CreateCampaignPage clickNewButton() {
-        webDriverActions.clickByLocator(createCampaignBtn);
-        return new CreateCampaignPage(webDriverManager);
-    }
-
-    @Override
-    public List<String> getValueTables(Map<String, String> table) {
+    public List<String> getTablesValues(Map<String, String> table) {
         return getValues(new ArrayList<String>(table.keySet()), table.get(fieldWithUniqueName));
-    }
-
-    @Override
-    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
-        tableFeature.put("Responses in Campaign", "0");
-        return new ArrayList<String>(tableFeature.values());
     }
 
     /**
@@ -86,7 +83,7 @@ public class CampaignPage extends BasePage implements FeaturesPage {
      * only select field of table.
      *
      * @param valuesToGet is values to get
-     * @param unitName    is value of work type name
+     * @param unitName is value of work type name
      * @return a values of tables
      */
     public List<String> getValues(List<String> valuesToGet, String unitName) {

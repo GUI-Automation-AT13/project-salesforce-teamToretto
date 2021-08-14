@@ -11,50 +11,56 @@ package salesforce.ui.pages.lightning.contracts;
 import static salesforce.utils.Internalization.translate;
 
 import core.selenium.WebDriverManager;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureCreated;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
 
 /**
  * Page Object Model for the salesforce new contract page.
  */
-public class NewContractPage extends BasePage implements FeatureNew {
-    private By accountName = By.cssSelector("input[placeholder='" + translate("SearchAccounts") + "']");
+public class ContractPageForm extends BasePage implements FeatureForm {
+    private By accountName = By.cssSelector(String.format("input[placeholder='%s']", translate("SearchAccounts")));
     private String accountSelector = "//mark[normalize-space()='%s']";
     private By status = By.cssSelector(".select[aria-required='true']");
     private String statusSelector = "//a[normalize-space()='%s']";
-    private By customerSignedBy = By.cssSelector("input[placeholder='" + translate("SearchContacts") + "']");
+    private By customerSignedBy = By.cssSelector(String.format("input[placeholder='%s']",
+            translate("SearchContacts")));
     private String contactSelector = "//div[@title='%s']";
     private By customerSignedTittle = By.xpath("(//div/input[@class = ' input'])[2]");
     private By customerSignedDate = By.xpath("(//div/input[@class = ' input'])[3]");
-    private By priceBook = By.cssSelector("input[placeholder='" + translate("SearchPriceBooks") + "']");
+    private By priceBook = By.cssSelector(String.format("input[placeholder='%s']", translate("SearchPriceBooks")));
     private String priceBookSelector = "//mark[normalize-space()='%s']";
     private By contractStartDate = By.xpath("(//div/input[@class =' input'])[1]");
     private By contractTermMonths = By.cssSelector(".input.uiInputSmartNumber");
     private By ownerExpirationNotice = By.cssSelector(".select[aria-required='false']");
     private By companySignedDate = By.xpath("(//div/input[@class = ' input'])[4]");
-    private By billingStreet = By.cssSelector("textarea[placeholder='" + translate("BillingStreet") + "']");
-    private By billingCity = By.cssSelector("input[placeholder='" + translate("BillingCity") + "']");
-    private By billingState = By.cssSelector("input[placeholder='" + translate("BillingStateProvince") + "']");
-    private By billingPostalCode = By.cssSelector("input[placeholder='" + translate("BillingZipPostalCode") + "']");
-    private By billingCountry = By.cssSelector("input[placeholder='" + translate("BillingCountry") + "']");
-    private By specialTerms = By.xpath("(//textarea[@class=\" textarea\" ])[1]");
-    private By description = By.xpath("(//textarea[@class=\" textarea\" ])[last()]");
-    private By save = By.cssSelector("button[title='" + translate("Save") + "']");
-    private By saveAndNew = By.cssSelector("button[title='" + translate("SaveAndNew") + "']");
-    private By cancel = By.cssSelector("button[title='" + translate("Cancel") + "']");
-
+    private By billingStreet = By.cssSelector(String.format("textarea[placeholder='%s']",
+            translate("BillingStreet")));
+    private By billingCity = By.cssSelector(String.format("input[placeholder='%s']", translate("BillingCity")));
+    private By billingState = By.cssSelector(String.format("input[placeholder='%s']",
+            translate("BillingStateProvince")));
+    private By billingPostalCode = By.cssSelector(String.format("input[placeholder='%s']",
+            translate("BillingZipPostalCode")));
+    private By billingCountry = By.cssSelector(String.format("input[placeholder='%s']",
+            translate("BillingCountry")));
+    private By specialTerms = By.xpath("(//textarea[@class=' textarea' ])[1]");
+    private By description = By.xpath("(//textarea[@class=' textarea'])[last()]");
+    private By save = By.cssSelector(String.format("button[title='%s']", translate("Save")));
+    private By saveAndNew = By.cssSelector(String.format("button[title='%s']", translate("SaveAndNew")));
+    private By cancel = By.cssSelector(String.format("button[title='%s']", translate("Cancel")));
 
     /**
      * Initializes web element actions.
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public NewContractPage(WebDriverManager webDriverManager) {
+    public ContractPageForm(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
@@ -140,8 +146,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      * @param newPriceBook to create the locator
      */
     public void selectPriceBook(final String newPriceBook) {
-        By priceBook = By.xpath(String.format(priceBookSelector, newPriceBook));
-        webDriverActions.clickByLocator(priceBook);
+        webDriverActions.clickByLocator(By.xpath(String.format(priceBookSelector, newPriceBook)));
     }
 
     /**
@@ -193,9 +198,7 @@ public class NewContractPage extends BasePage implements FeatureNew {
      */
     public void selectStatus(final String value) {
         clickStatusBtn();
-        String locator = String.format(statusSelector, translate(value));
-        By statusSelector = By.xpath(locator);
-        webDriverActions.clickByLocator(statusSelector);
+        webDriverActions.clickByLocator(By.xpath(String.format(statusSelector, translate(value))));
     }
 
     /**
@@ -271,23 +274,13 @@ public class NewContractPage extends BasePage implements FeatureNew {
     }
 
     /**
-     * Clicks on the save button.
-     *
-     * @return a CreatedContractPage.
-     */
-    public CreatedContractPage clickSave() {
-        webDriverActions.clickByLocator(save);
-        return new CreatedContractPage(webDriverManager);
-    }
-
-    /**
      * Clicks on the save and new button and goes to a new contract to be created.
      *
      * @return a NewContractPage.
      */
-    public NewContractPage clickSaveAndNew() {
+    public ContractPageForm clickSaveAndNew() {
         webDriverActions.clickByLocator(saveAndNew);
-        return new NewContractPage(webDriverManager);
+        return new ContractPageForm(webDriverManager);
     }
 
     /**
@@ -300,15 +293,30 @@ public class NewContractPage extends BasePage implements FeatureNew {
         return new ContractsPage(webDriverManager);
     }
 
+    /**
+     * Clicks on the save button.
+     *
+     * @return a CreatedContractPage.
+     */
+    @Override
+    public FeatureCreated clickSaveButton() {
+        webDriverActions.clickByLocator(save);
+        return new ContractPageCreated(webDriverManager);
+    }
+
+    /**
+     * Sets values to create a new contract according key of map table input.
+     *
+     * @param table contains wish method is running
+     */
     @Override
     public void fillUpField(Map<String, String> table) {
         HashMap<String, VoidSupplier> actionsContractMap = mapActionsContract(table);
         table.keySet().forEach(key -> actionsContractMap.get(key).run());
     }
 
-
     /**
-     * Saves actions in New work type page in map.
+     * Saves actions in new contract page in map.
      *
      * @param contractMap is map
      * @return a map with action of fields
@@ -337,11 +345,5 @@ public class NewContractPage extends BasePage implements FeatureNew {
         mapActions.put("Special Terms", () -> setSpecialTerms(contractMap.get("Special Terms")));
         mapActions.put("Description", () -> setDescription(contractMap.get("Description")));
         return mapActions;
-    }
-
-    @Override
-    public CreatedFeature clickSaveButton() {
-        webDriverActions.clickByLocator(save);
-        return new CreatedContractPage(webDriverManager);
     }
 }

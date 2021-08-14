@@ -63,28 +63,21 @@ public class ContractsPage extends BasePage implements FeaturesPage {
      *
      * @return a ProductPage instance
      */
-    public NewContractPage clickNewContractButton() {
+    @Override
+    public ContractPageForm clickNewButton() {
         webDriverActions.clickByLocator(newContractButton);
-        return new NewContractPage(webDriverManager);
+        return new ContractPageForm(webDriverManager);
     }
 
+    /**
+     * Gets values of tables.
+     *
+     * @param table is values to get
+     * @return a values of tables
+     */
     @Override
-    public NewContractPage clickNewButton() {
-        webDriverActions.clickByLocator(newContractButton);
-        return new NewContractPage(webDriverManager);
-    }
-
-    @Override
-    public List<String> getValueTables(Map<String, String> table) {
+    public List<String> getTablesValues(Map<String, String> table) {
         return getValues(new ArrayList<String>(table.keySet()));
-    }
-
-    @Override
-    public List<String> getExpected(Map<String, String> tableFeature, PersonalInformation personalInformation) {
-        tableFeature.put("Status", "Draft");
-        tableFeature.put("Contract End Date", addMonthsDate(tableFeature.get("Contract Start Date"),
-                Integer.parseInt(tableFeature.get("Contract Term (months)"))));
-        return new ArrayList<String>(tableFeature.values());
     }
 
     /**

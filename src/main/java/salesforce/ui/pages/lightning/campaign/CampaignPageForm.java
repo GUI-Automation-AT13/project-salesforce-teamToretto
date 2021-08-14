@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
 
 import static salesforce.utils.Internalization.translate;
@@ -21,12 +21,12 @@ import static salesforce.utils.Internalization.translate;
 /**
  * This class is for create a new Campaign element.
  */
-public class CreateCampaignPage extends BasePage implements FeatureNew {
+public class CampaignPageForm extends BasePage implements FeatureForm {
 
     private By activeCheck = By.xpath(String.format("//label/span[text()='%s']/../..//input",
             translate("Active")));
-    private By expectedResponseTextBox = By
-            .xpath(String.format("//label/span[text()='%s']/../..//input", translate("Expected Response (%)")));
+    private By expectedResponseTextBox = By.xpath(String.format("//label/span[text()='%s']/../..//input",
+            translate("Expected Response (%)")));
     private By descriptionTextArea = By.xpath(String.format("//label/span[text()='%s']/../..//textarea",
             translate("Description")));
     private By saveButton = By.xpath(String.format("//button[@title='%s']", translate("Save")));
@@ -42,36 +42,19 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public CreateCampaignPage(WebDriverManager webDriverManager) {
+    public CampaignPageForm(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
-    @Override
-    protected void waitForPageLoaded() {
-        webDriverActions.waitForVisibilityOfLocator(saveButton);
-    }
 
     /**
      * Sets the inputs fields.
      *
      * @param fieldName the name field to set.
-     * @param value     the value of the field.
-     * @return a this object.
+     * @param value of the field.
      */
-    public CreateCampaignPage setInputField(final String fieldName, final String value) {
+    public void setInputField(final String fieldName, final String value) {
         webDriverActions.setInputField(By.xpath(String.format(INPUT_XPATH, fieldName)), value);
-        return this;
-    }
-
-    /**
-     * Sets Expected response element.
-     *
-     * @param expectedResponse is a expected response of new campaign.
-     * @return this class.
-     */
-    public CreateCampaignPage setExpectedResponse(final String expectedResponse) {
-        webDriverActions.setInputField(expectedResponseTextBox, expectedResponse);
-        return this;
     }
 
     /**
@@ -80,19 +63,9 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
      * @param description is a description of new campaign.
      * @return this class.
      */
-    public CreateCampaignPage setDescription(final String description) {
+    public CampaignPageForm setDescription(final String description) {
         webDriverActions.setInputField(descriptionTextArea, description);
         return this;
-    }
-
-    /**
-     * Returns a page of Campaign created.
-     *
-     * @return Object of new CampaignCreatedPage.
-     */
-    public CampaignCreatedPage clickSaveBtn() {
-        webDriverActions.clickByLocator(saveButton);
-        return new CampaignCreatedPage(webDriverManager);
     }
 
     /**
@@ -124,16 +97,44 @@ public class CreateCampaignPage extends BasePage implements FeatureNew {
         webDriverActions.clickByLocator(activeCheck);
     }
 
+    /**
+     * Sets Expected response element.
+     *
+     * @param expectedResponse is a expected response of new campaign.
+     */
+    public void setExpectedResponse(final String expectedResponse) {
+        webDriverActions.setInputField(expectedResponseTextBox, expectedResponse);
+    }
+
+    /**
+     * Returns a page of Campaign created.
+     *
+     * @return Object of new CampaignCreatedPage.
+     */
+    @Override
+    public CampaignPageCreated clickSaveButton() {
+        webDriverActions.clickByLocator(saveButton);
+        return new CampaignPageCreated(webDriverManager);
+    }
+
+
+    /**
+     * Waits to load save button appear.
+     */
+    @Override
+    protected void waitForPageLoaded() {
+        webDriverActions.waitForVisibilityOfLocator(saveButton);
+    }
+
+    /**
+     * Sets values to create a new campaign according key of map table input.
+     *
+     * @param table contains wish method is running
+     */
     @Override
     public void fillUpField(Map<String, String> table) {
         HashMap<String, VoidSupplier> actionsContractMap = mapActionsContract(table);
         table.keySet().forEach(key -> actionsContractMap.get(key).run());
-    }
-
-    @Override
-    public CampaignCreatedPage clickSaveButton() {
-        webDriverActions.clickByLocator(saveButton);
-        return new CampaignCreatedPage(webDriverManager);
     }
 
     /**

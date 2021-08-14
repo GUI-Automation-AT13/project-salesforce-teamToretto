@@ -27,8 +27,9 @@ import static salesforce.api.Authentication.token;
 import java.util.Properties;
 
 @CucumberOptions(
-        features = {"src/test/resources/features/createContract.feature"},
+        features = {"src/test/resources/features/"},
         plugin = {"html:target/site/cucumber-pretty.html", "json:target/cucumber.json"},
+        tags = "@RegressionTest",
         glue = {"org.salesforce"}
 )
 public class RunTests extends AbstractTestNGCucumberTests {

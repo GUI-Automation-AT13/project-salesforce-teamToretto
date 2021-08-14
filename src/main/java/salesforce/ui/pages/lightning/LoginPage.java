@@ -10,7 +10,16 @@ package salesforce.ui.pages.lightning;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
+import salesforce.config.EnvConfig;
 import salesforce.ui.pages.BasePage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static core.utils.date.DateManager.addMonthsDate;
+import static core.utils.date.DateManager.generateDateActual;
 
 /**
  * Page Object Model for the Salesforce's Login page.
@@ -65,4 +74,5 @@ public class LoginPage extends BasePage {
     protected void waitForPageLoaded() {
         webDriverActions.waitForVisibilityOfLocator(loginButton);
     }
+
 }

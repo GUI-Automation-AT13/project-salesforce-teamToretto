@@ -15,14 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
 
 
 /**
  * This class has webElement for work type page form.
  */
-public class NewWorkTypePage extends BasePage implements FeatureNew {
+public class WorkTypePageForm extends BasePage implements FeatureForm {
 
     private By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
     private By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
@@ -38,13 +38,8 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public NewWorkTypePage(WebDriverManager webDriverManager) {
+    public WorkTypePageForm(WebDriverManager webDriverManager) {
         super(webDriverManager);
-    }
-
-    @Override
-    protected void waitForPageLoaded() {
-        webDriverActions.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
 
     /**
@@ -97,11 +92,24 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      *
      * @return WorkTypeInfo which is to pass other page.
      */
-    public CreatedWorkTypePage clickSaveButton() {
+    public WorkTypePageCreated clickSaveButton() {
         webDriverActions.clickByLocator(saveBtn);
-        return new CreatedWorkTypePage(webDriverManager);
+        return new WorkTypePageCreated(webDriverManager);
     }
 
+    /**
+     * Waits to load estimated duration comboBox appear.
+     */
+    @Override
+    protected void waitForPageLoaded() {
+        webDriverActions.waitForVisibilityOfLocator(estimatedDurationComboBox);
+    }
+
+    /**
+     * Sets values to create a new work type according key of map table input.
+     *
+     * @param table contains wish method is running
+     */
     @Override
     public void fillUpField(final Map<String, String> table) {
         HashMap<String, VoidSupplier> actionsWorkTypeMap = mapActionsWorkType(table);

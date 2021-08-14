@@ -12,10 +12,9 @@ import core.selenium.WebDriverManager;
 import io.cucumber.java.After;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
-import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 
 public class IndividualScenarioHooks {
 
@@ -32,7 +31,7 @@ public class IndividualScenarioHooks {
     @After(value = "@CreateIndividual")
     public void deleteIndividual() {
         log.info("Delete Individual");
-        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
-        individualListPage.deleteLastModifiedRecord();
+        IndividualsPage individualsPage = pageTransporter.navigateToIndividualListPage();
+        individualsPage.deleteLastModifiedRecord();
     }
 }

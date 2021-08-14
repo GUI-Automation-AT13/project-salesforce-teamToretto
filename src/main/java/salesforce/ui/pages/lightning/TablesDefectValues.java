@@ -1,32 +1,24 @@
-/**
- * Copyright (c) 2021 Fundacion Jala.
- * This software is the confidential and proprietary information of Fundacion Jala
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with Fundacion Jala
- */
+package salesforce.ui.pages.lightning;
 
-package salesforce.ui.pages.tables;
-
-import static core.utils.date.DateManager.addMonthsDate;
-import static core.utils.date.DateManager.generateDateActual;
-import static salesforce.utils.Internalization.translate;
+import org.openqa.selenium.InvalidArgumentException;
+import salesforce.config.EnvConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.openqa.selenium.InvalidArgumentException;
-import salesforce.config.EnvConfig;
+
+import static core.utils.date.DateManager.addMonthsDate;
+import static core.utils.date.DateManager.generateDateActual;
 
 /**
  * This class contains expected values of tables.
  */
-public class TablesValuesDefect {
+public class TablesDefectValues {
 
     /**
      * Select the table according feature.
      *
-     * @param factureName name of feature
+     * @param factureName  name of feature
      * @param tableFeature is table with some values
      * @return a list with expected values of table
      */

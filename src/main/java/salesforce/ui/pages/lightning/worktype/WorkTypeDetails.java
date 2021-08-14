@@ -14,7 +14,7 @@ import salesforce.utils.supplier.StringSupplier;
 /**
  * This class has webElement for work type created.
  */
-public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureDetails {
+public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetails {
     protected By nameWorkTypeTxt = By.xpath("//*[@class='uiOutputText']");
     protected By descriptionTxt = By.xpath("//*[@class='uiOutputTextArea']");
     protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
@@ -30,43 +30,8 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public WorkTypeDetailsPage(WebDriverManager webDriverManager) {
+    public WorkTypeDetails(WebDriverManager webDriverManager) {
         super(webDriverManager);
-    }
-
-    @Override
-    public List<String> getValueField(final Map<String, String> table) {
-        List<String> result = new ArrayList<>();
-        HashMap<String, StringSupplier> actionsWorkTypeMap = getTxtFields();
-        table.keySet().forEach(key -> result.add(actionsWorkTypeMap.get(key).getAsString()));
-        return result;
-    }
-
-    /**
-     * Gets a date when workType is created.
-     *
-     * @return a String to date
-     */
-    @Override
-    public String getCreateDayTxt() {
-        return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
-    }
-
-    /**
-     * Gets text fields of workType.
-     *
-     * @return a map with methods of CreatedWorkType
-     */
-    private HashMap<String, StringSupplier> getTxtFields() {
-        HashMap<String, StringSupplier> mapValues = new HashMap<>();
-        mapValues.put("Work Type Name", this::getNameOfWorkType);
-        mapValues.put("Description", this::getDescription);
-        mapValues.put("Estimated Duration", this::getEstimatedDuration);
-        mapValues.put("Block Time Before Appointment", () -> getTxtField(translate("Block Time Before Appointment")));
-        mapValues.put("Block Time After Appointment", () -> getTxtField(translate("Block Time After Appointment")));
-        mapValues.put("Timeframe Start", () -> getTxtField(translate("Timeframe Start")));
-        mapValues.put("Timeframe End", () -> getTxtField(translate("Timeframe End")));
-        return mapValues;
     }
 
     /**
@@ -114,5 +79,46 @@ public class WorkTypeDetailsPage extends CreatedWorkTypePage implements FeatureD
      */
     public String getNameCreatorTxt() {
         return webDriverActions.getTextOfByFieldByLocator(nameCreatorTxt);
+    }
+
+    /**
+     * Gets a date when workType is created.
+     *
+     * @return a String to date
+     */
+    @Override
+    public String getCreateDayTxt() {
+        return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
+    }
+
+    /**
+     * Gets a list with values of work type.
+     *
+     * @param table a table with values which decide which text select
+     * @return a list with some data of campaign
+     */
+    @Override
+    public List<String> getValueField(final Map<String, String> table) {
+        List<String> result = new ArrayList<>();
+        HashMap<String, StringSupplier> actionsWorkTypeMap = getTxtFields();
+        table.keySet().forEach(key -> result.add(actionsWorkTypeMap.get(key).getAsString()));
+        return result;
+    }
+
+    /**
+     * Gets text fields of workType.
+     *
+     * @return a map with methods of CreatedWorkType
+     */
+    private HashMap<String, StringSupplier> getTxtFields() {
+        HashMap<String, StringSupplier> mapValues = new HashMap<>();
+        mapValues.put("Work Type Name", this::getNameOfWorkType);
+        mapValues.put("Description", this::getDescription);
+        mapValues.put("Estimated Duration", this::getEstimatedDuration);
+        mapValues.put("Block Time Before Appointment", () -> getTxtField(translate("Block Time Before Appointment")));
+        mapValues.put("Block Time After Appointment", () -> getTxtField(translate("Block Time After Appointment")));
+        mapValues.put("Timeframe Start", () -> getTxtField(translate("Timeframe Start")));
+        mapValues.put("Timeframe End", () -> getTxtField(translate("Timeframe End")));
+        return mapValues;
     }
 }

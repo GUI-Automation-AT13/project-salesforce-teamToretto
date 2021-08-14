@@ -13,13 +13,13 @@ import static salesforce.utils.Internalization.translate;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.CreatedFeature;
+import salesforce.utils.strategy.FeatureCreated;
 import salesforce.utils.strategy.FeatureDetails;
 
 /**
  * This class has webElement for work type created.
  */
-public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
+public class WorkTypePageCreated extends BasePage implements FeatureCreated {
     protected By detailsBtn = By.xpath(String.format("(//span[text()='%s'])[last()]", translate("Details")));
 
     /**
@@ -27,19 +27,27 @@ public class CreatedWorkTypePage extends BasePage implements CreatedFeature {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public CreatedWorkTypePage(WebDriverManager webDriverManager) {
+    public WorkTypePageCreated(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
-    @Override
-    protected void waitForPageLoaded() {
-        webDriverActions.waitForVisibilityOfLocator(detailsBtn);
-    }
-
+    /**
+     * Clicks details menu tabs.
+     *
+     * @return a FeatureDetails object
+     */
     @Override
     public FeatureDetails clickDetails() {
         webDriverActions.clickByLocator(detailsBtn);
         webDriverActions.scrollToBottom();
-        return new WorkTypeDetailsPage(webDriverManager);
+        return new WorkTypeDetails(webDriverManager);
+    }
+
+    /**
+     * Waits to load page and display the alert successful.
+     */
+    @Override
+    protected void waitForPageLoaded() {
+        webDriverActions.waitForVisibilityOfLocator(detailsBtn);
     }
 }

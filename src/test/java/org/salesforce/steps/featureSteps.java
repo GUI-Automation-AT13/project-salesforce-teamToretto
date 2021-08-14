@@ -13,13 +13,13 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.ui.PageTransporter;
-import salesforce.ui.pages.lightning.individuals.IndividualListPage;
-import salesforce.ui.pages.lightning.individuals.IndividualRecordPage;
-import salesforce.ui.pages.tables.TablesValuesDefect;
+import salesforce.ui.pages.lightning.TablesDefectValues;
+import salesforce.ui.pages.lightning.individuals.IndividualsPage;
+import salesforce.ui.pages.lightning.individuals.IndividualPageCreated;
 import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
-import salesforce.utils.strategy.CreatedFeature;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureCreated;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.strategy.FeaturesPage;
 import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.strategy.MapPages;
@@ -30,13 +30,13 @@ public class featureSteps {
     private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
-    private TablesValuesDefect tablesValuesDefect;
+    private TablesDefectValues tablesDefectValues;
     private SoftAssert softAssert;
     private Internalization internalization;
     private MapPages mapPages;
     private FeaturesPage featurePage;
-    private FeatureNew featureNew;
-    private CreatedFeature createdFeature;
+    private FeatureForm featureForm;
+    private FeatureCreated featureCreated;
     private FeatureDetails featureDetails;
     private Map<String, String> tableFeature;
 
@@ -46,10 +46,10 @@ public class featureSteps {
         this.pageTransporter = new PageTransporter(this.webDriverManager);
         this.mapPages = new MapPages(this.webDriverManager);
         this.softAssert = new SoftAssert();
-        tablesValuesDefect = new TablesValuesDefect();
+        tablesDefectValues = new TablesDefectValues();
     }
 
-    @Given("I navigate to the {string} page")
+    @Given("^I navigate to the (.*) page$")
     public void iNavigateToThePage(String featureName) {
         log.info("Navigate pages");
         internalization = new Internalization(featureName);
@@ -61,10 +61,10 @@ public class featureSteps {
         log.info("Create page");
         tableFeature = GeneratorUniqueString.nameUnique(table, nameFeature);
         featurePage = mapPages.featuresPage(nameFeature);
-        featureNew = featurePage.clickNewButton();
-        featureNew.fillUpField(tableFeature);
-        createdFeature = featureNew.clickSaveButton();
-        featureDetails = createdFeature.clickDetails();
+        featureForm = featurePage.clickNewButton();
+        featureForm.fillUpField(tableFeature);
+        featureCreated = featureForm.clickSaveButton();
+        featureDetails = featureCreated.clickDetails();
     }
 
     @Then("^I verify that the created (?:.*) contains the correct information")
@@ -81,23 +81,21 @@ public class featureSteps {
 
     @Then("^I verify (.*) created and matches with values of table$")
     public void iVerifyWorkTypeCreatedInTable(String nameFeature) {
-        List<String> actual = featurePage.getValueTables(tableFeature);
-        List<String> expected = tablesValuesDefect.getExpectedValues(nameFeature, tableFeature);
-        System.out.println(actual);
-        System.out.println(expected);
+        List<String> actual = featurePage.getTablesValues(tableFeature);
+        List<String> expected = tablesDefectValues.getExpectedValues(nameFeature, tableFeature);
         Assert.assertEquals(actual, expected);
     }
 
     @Then("The name displayed should contain {string}")
     public void theNameDisplayedShouldContain(final String text) {
-        IndividualRecordPage individualRecordPage = new IndividualRecordPage(webDriverManager);
-        String headerNameText = individualRecordPage.getNameHeaderText();
+        IndividualPageCreated individualPageCreated = new IndividualPageCreated(webDriverManager);
+        String headerNameText = individualPageCreated.getNameHeaderText();
         Assert.assertEquals(headerNameText, text);
     }
 
     @Then("The feature list Page should contain a record with {string}")
     public void theFeatureListPageShouldContainArecordWith(final String text) {
-        IndividualListPage individualListPage = pageTransporter.navigateToIndividualListPage();
-        Assert.assertTrue(individualListPage.isThereRecordWithName(text));
+        IndividualsPage individualsPage = pageTransporter.navigateToIndividualListPage();
+        Assert.assertTrue(individualsPage.isThereRecordWithName(text));
     }
 }
