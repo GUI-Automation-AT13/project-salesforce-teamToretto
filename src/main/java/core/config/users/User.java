@@ -24,7 +24,7 @@ public abstract class User {
      *
      * @param username represents the user's username
      * @param password represents the user's password
-     * @param alias    represents the user's alias
+     * @param alias represents the user's alias
      */
     public User(final String username, final String password, final String alias) {
         this.username = username;

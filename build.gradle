@@ -30,6 +30,16 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
 }
 
+cucumber {
+    glue = 'org.salesforce'
+    featurePath = 'src/test/resources/features'
+    plugin = ["pretty",
+              "html:build/cucumber/cucumber-report.html",
+              "json:build/cucumber/cucumber.json",
+              "rerun:build/cucumber/rerun.txt"]
+    main = 'io.cucumber.core.cli.Main'
+}
+
 checkstyle {
     toolVersion '8.44'
     configFile file('config/checkstyle/checkstyle.xml')
