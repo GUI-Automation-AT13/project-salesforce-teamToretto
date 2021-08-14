@@ -49,7 +49,7 @@ public class DateReader {
                 : date.contains("day") ? "day"
                 : date.contains("month") ? "month"
                 : date.contains("year") ? "year"
-                : null;
+                : "second";
     }
 
     /**

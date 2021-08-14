@@ -97,7 +97,7 @@ public class DateManager {
                 : dateType.contains("a. m.") ? dateType.replace("a. m.", translate("AM"))
                 : dateType.contains("PM") ? dateType.replace("PM", translate("PM"))
                 : dateType.contains("AM") ? dateType.replace("AM", translate("AM"))
-                : null;
+                : "";
     }
 
     /**
