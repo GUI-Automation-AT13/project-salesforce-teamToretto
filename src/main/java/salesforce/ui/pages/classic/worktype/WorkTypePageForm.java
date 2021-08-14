@@ -48,7 +48,7 @@ public class WorkTypePageForm extends BasePage implements FeatureForm {
     @Override
     public FeatureCreated clickSaveButton() {
         webDriverActions.clickByLocator(saveBtn);
-        return new WorkTypeCreated(webDriverManager);
+        return new WorkTypePageCreated(webDriverManager);
     }
 
     @Override

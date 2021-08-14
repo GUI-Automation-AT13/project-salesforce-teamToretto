@@ -8,13 +8,13 @@ import salesforce.utils.strategy.FeatureDetails;
 /**
  * This class has webElement for work types Created.
  */
-public class WorkTypeCreated extends BasePage implements FeatureCreated {
+public class WorkTypePageCreated extends BasePage implements FeatureCreated {
     /**
      * Initializes web element actions.
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public WorkTypeCreated(WebDriverManager webDriverManager) {
+    public WorkTypePageCreated(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 

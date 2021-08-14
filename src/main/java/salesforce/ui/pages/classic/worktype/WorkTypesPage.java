@@ -11,7 +11,7 @@ import salesforce.utils.strategy.FeaturesPage;
 /**
  * This class has webElement for work types pages.
  */
-public class WorkTypePage extends BasePage implements FeaturesPage {
+public class WorkTypesPage extends BasePage implements FeaturesPage {
     protected By newBtn = By.name("new");
     protected By closeAnnouncement = By.cssSelector("#tryLexDialogX");
 
@@ -20,7 +20,7 @@ public class WorkTypePage extends BasePage implements FeaturesPage {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public WorkTypePage(WebDriverManager webDriverManager) {
+    public WorkTypesPage(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
