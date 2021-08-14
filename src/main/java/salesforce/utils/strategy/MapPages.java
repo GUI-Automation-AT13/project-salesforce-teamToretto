@@ -10,6 +10,7 @@ package salesforce.utils.strategy;
 
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
+import salesforce.ui.pages.classic.worktype.WorkTypePage;
 import salesforce.ui.pages.lightning.campaign.CampaignPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualListPage;
@@ -32,6 +33,21 @@ public class MapPages {
      * @return object feature page
      */
     public FeaturesPage featuresPage(final String featureName) {
+        String type = "Classic";
+        if ("Classic".equals(type)) {
+            return featuresClassic(featureName);
+        } else {
+            return featuresLightning(featureName);
+        }
+    }
+
+    /**
+     * Creates a object to features page in mode Lightning.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresLightning(final String featureName) {
         switch (featureName) {
             case "workType":
                 return new WorkTypesPage(webDriverManager);
@@ -41,6 +57,21 @@ public class MapPages {
                 return new IndividualListPage(webDriverManager);
             case "campaign":
                 return new CampaignPage(webDriverManager);
+            default:
+                throw new InvalidArgumentException("Invalid feature");
+        }
+    }
+
+    /**
+     * Creates a object to features page in mode Classic.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresClassic(final String featureName) {
+        switch (featureName) {
+            case "workType":
+                return new WorkTypePage(webDriverManager);
             default:
                 throw new InvalidArgumentException("Invalid feature");
         }
