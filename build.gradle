@@ -33,10 +33,10 @@ dependencies {
 cucumber {
     glue = 'org.salesforce'
     featurePath = 'src/test/resources/features'
-    main = 'cucumber.api.cli.Main'
-    plugin = ["html:target/site/cucumber-pretty.html",
-              "json:target/cucumber.json",
-              "rerun:target/failedrerun.txt"]
+    plugin = ["pretty",
+              "html:build/cucumber/cucumber-report.html",
+              "json:build/cucumber/cucumber.json",
+              "rerun:build/cucumber/rerun.txt"]
     main = 'io.cucumber.core.cli.Main'
 }
 

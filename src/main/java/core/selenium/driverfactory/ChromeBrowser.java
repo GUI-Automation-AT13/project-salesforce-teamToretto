@@ -8,7 +8,10 @@
 
 package core.selenium.driverfactory;
 
+import core.config.EnvConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.groovy.json.internal.Chr;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,6 +20,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
  * Configures a Chrome webDriver.
  */
 public class ChromeBrowser implements Browser {
+
     private ChromeOptions chromeOptions;
 
     /**
@@ -24,7 +28,11 @@ public class ChromeBrowser implements Browser {
      */
     public void setChromeOptions() {
         chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-notifications");
+        chromeOptions.addArguments("--disable-notifications", "--ignore-certificate-errors",
+                "--disable-extensions", "--no-sandbox");
+        if (EnvConfig.getInstance().getHeadless().equals("true")) {
+            chromeOptions.addArguments("--headless", "--disable-gpu");
+        }
     }
 
     /**

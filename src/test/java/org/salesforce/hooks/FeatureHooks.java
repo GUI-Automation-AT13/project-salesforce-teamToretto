@@ -1,5 +1,6 @@
 package org.salesforce.hooks;
 
+import com.google.common.net.HttpHeaders;
 import core.api.ApiManager;
 import core.api.ApiMethod;
 import core.api.ApiRequest;
@@ -7,16 +8,16 @@ import core.api.ApiResponse;
 import core.utils.ExtractIds;
 import core.utils.PropertiesReader;
 import core.utils.SelectFeature;
+import java.util.List;
+import java.util.Properties;
 import io.cucumber.java.After;
 import salesforce.api.ApiEndPoints;
 import salesforce.api.Authentication;
 import salesforce.api.entities.Response;
-import com.google.common.net.HttpHeaders;
-import java.util.List;
-import java.util.Properties;
 import static salesforce.api.Authentication.token;
 
 public class FeatureHooks {
+
     private ApiRequest apiRequest;
     private ApiResponse apiResponse;
     private Response response;

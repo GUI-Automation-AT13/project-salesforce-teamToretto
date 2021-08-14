@@ -10,8 +10,8 @@ package salesforce.utils;
 
 import static core.utils.Converter.converterStringToEnum;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
-import salesforce.config.EnvConfig;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.LoginPage;
 import salesforce.ui.pages.lightning.campaign.CampaignPage;
