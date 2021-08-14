@@ -64,3 +64,26 @@ test {
     systemProperties System.getProperties()
 }
 
+test {
+    scanForTestClasses = false
+    ignoreFailures = true
+    testLogging.showStandardStreams = true
+    useTestNG()
+}
+
+task executeFeatures(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.glue=org.salesforce']
+        jvmArgs = ['-Dcucumber.features=src/test/resources/features/']
+        jvmArgs = ['-Dcucumber.plugin=pretty,' +
+                           'html:build/cucumber/cucumber-report.html,' +
+                           'json:build/cucumber/cucumber.json,' +
+                           'rerun:build/cucumber/rerun.txt']
+    }
+    ignoreFailures = true
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
+}
+

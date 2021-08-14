@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import salesforce.config.EnvConfig;
-import salesforce.ui.PageTransporter;
+import salesforce.utils.PageTransporter;
 import salesforce.ui.entities.PersonalInformation;
 import salesforce.ui.pages.lightning.HomePage;
 import salesforce.ui.pages.lightning.LoginPage;
