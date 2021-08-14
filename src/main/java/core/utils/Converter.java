@@ -8,6 +8,8 @@
 
 package core.utils;
 
+import salesforce.utils.Urls;
+
 /**
  * Removes all white space in string.
  */
@@ -24,5 +26,16 @@ public class Converter {
             return "";
         }
         return words.replaceAll("\\s+", "");
+    }
+
+    /**
+     * Convert String to Url enum.
+     *
+     * @param namePage is string with name page
+     * @param mode is classic or Lightning to salesforce
+     * @return enum type Urls
+     */
+    public static Urls converterStringToEnum(final String namePage, final String mode) {
+        return Urls.valueOf((namePage + "_" + mode).replace(' ', '_').toUpperCase());
     }
 }

@@ -33,6 +33,7 @@ public final class EnvConfig {
     private String login;
     private String loginUrl;
     private String browser;
+    private String skin;
     private String headless;
     private int implicitTime;
     private int explicitTime;
@@ -112,6 +113,15 @@ public final class EnvConfig {
             return headless;
         }
         return this.headless;
+    }
+
+    /**
+     * Gets the skin.
+     *
+     * @return String represents type of skin in app
+     */
+    public String getSkin() {
+        return skin;
     }
 
     /**
@@ -248,6 +258,7 @@ public final class EnvConfig {
         service = getProperty("SERVICE");
         login = getProperty("LOGIN");
         browser = getProperty("browser");
+        skin = getProperty("skin");
         headless = getProperty("headless");
         implicitTime = Integer.valueOf(getProperty("implicitTime"));
         explicitTime = Integer.valueOf(getProperty("explicitTime"));

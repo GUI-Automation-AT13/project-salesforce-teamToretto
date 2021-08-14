@@ -1,6 +1,6 @@
 Feature: Create workType
 
-  @WorkType @CreateWorkType @DeleteWorkType
+  @WorkType @CreateWorkType @DeleteWorkType @Classic
   Scenario: Create an workType with only required fields
     Given I navigate to the WorkType page
     When I create a new WorkType with required fields

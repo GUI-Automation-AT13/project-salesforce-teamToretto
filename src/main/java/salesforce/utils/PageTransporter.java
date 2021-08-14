@@ -8,6 +8,8 @@
 
 package salesforce.utils;
 
+import static core.utils.Converter.converterStringToEnum;
+
 import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
@@ -18,7 +20,6 @@ import salesforce.ui.pages.lightning.individuals.IndividualPageForm;
 import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
-import salesforce.utils.PageUrl;
 
 /**
  * Navigates to a page's url.
@@ -26,7 +27,7 @@ import salesforce.utils.PageUrl;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
-    private String featureUrl = "lightning/o/%s/list?filterName=Recent";
+    private String featureUrl = Urls.FEATURE_URL_LIGHTNING.getValue();
     private PageUrl pageUrl;
     private WebDriverManager webDriverManager;
 
@@ -132,7 +133,11 @@ public class PageTransporter {
      * Navigates to feature page on lightning version.
      */
     public void navigateToFeaturePage(String featureName) {
-        goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
+            goToUrl(converterStringToEnum(featureName, EnvConfig.getInstance().getSkin()).getValue());
+        } else {
+            goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
+        }
     }
 
     public SearchResultsPage getSearchResultPage() {

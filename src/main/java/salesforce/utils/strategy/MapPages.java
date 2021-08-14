@@ -8,12 +8,13 @@
 
 package salesforce.utils.strategy;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
+import salesforce.ui.pages.classic.worktype.WorkTypesPage;
 import salesforce.ui.pages.lightning.campaign.CampaignsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
 import salesforce.ui.pages.lightning.individuals.IndividualsPage;
-import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
 
 /**
  * Create new instances object.
@@ -32,9 +33,23 @@ public class MapPages {
      * @return object feature page
      */
     public FeaturesPage featuresPage(final String featureName) {
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
+            return featuresClassic(featureName);
+        } else {
+            return featuresLightning(featureName);
+        }
+    }
+
+    /**
+     * Creates a object to features page in mode Lightning.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresLightning(final String featureName) {
         switch (featureName) {
             case "WorkType":
-                return new WorkTypesPage(webDriverManager);
+                return new salesforce.ui.pages.lightning.worktype.WorkTypesPage(webDriverManager);
             case "Contract":
                 return new ContractsPage(webDriverManager);
             case "Individual":
@@ -45,5 +60,19 @@ public class MapPages {
                 throw new InvalidArgumentException("Invalid feature");
         }
     }
-}
 
+    /**
+     * Creates a object to features page in mode Classic.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresClassic(final String featureName) {
+        switch (featureName) {
+            case "workType":
+                return new WorkTypesPage(webDriverManager);
+            default:
+                throw new InvalidArgumentException("Invalid feature");
+        }
+    }
+}
