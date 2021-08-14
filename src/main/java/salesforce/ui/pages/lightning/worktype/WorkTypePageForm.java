@@ -31,8 +31,10 @@ public class WorkTypePageForm extends BasePage implements FeatureForm {
     private String valueEstimatedDurationComboBox = "//a[normalize-space()='%s']";
     private String xpathComboBoxSomeFields = "//*[contains(text(),'%s')]/../..//a[@class='select']";
     private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id][%d]//*[contains(text(),'%s')]";
+    private String operatingHoursSelected = "//*[contains(text(),'%s')]/../.."
+                + "//*[@class='primaryLabel slds-truncate slds-lookup__result-text']";
     private int countComboBox = 0;
-
+    
     /**
      * Initializes web element actions.
      *
@@ -61,6 +63,11 @@ public class WorkTypePageForm extends BasePage implements FeatureForm {
     public void setInputField(final String fieldName, final String fieldValue) {
         webDriverActions.scrollToBottom();
         webDriverActions.setInputField(By.xpath(String.format(selectFieldTxtBox, fieldName)), fieldValue);
+    }
+
+    public void clickOperatingHours(final String operatingHours) {
+        webDriverActions.clickByXpath(String.format(selectFieldTxtBox, translate("Operating Hours")));
+        webDriverActions.clickByXpath(String.format(operatingHoursSelected, operatingHours));
     }
 
     /**
@@ -127,6 +134,7 @@ public class WorkTypePageForm extends BasePage implements FeatureForm {
         mapActions.put("Work Type Name", () -> setInputField(translate("Work Type Name"),
                 workTypeMap.get("Work Type Name")));
         mapActions.put("Description", () -> setDescription(workTypeMap.get("Description")));
+        mapActions.put("Operating Hours", () -> clickOperatingHours(workTypeMap.get("Operating Hours"))); //****
         mapActions.put("Estimated Duration", () -> setInputField(translate("Estimated Duration"),
                 workTypeMap.get("Estimated Duration")));
         mapActions.put("Duration Type", () -> setDurationTypeComboBox(translate(workTypeMap.get("Duration Type"))));

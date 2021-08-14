@@ -24,6 +24,9 @@ public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetai
     protected By estimatedDurationTxt = By.xpath(String.format("//span[contains(text(),'%s')]"
                     + "[@class='test-id__field-label']/../..//span[@class='uiOutputNumber']",
             translate("Estimated Duration")));
+    protected String unitTxt = "//span[contains(text(),'%s')]/../..//span[@class='test-id__field-value "
+            + "slds-form-element__static slds-grow ']";
+    protected String operatingHoursTxt = "//*[contains(text(),'%s')]/../..//a[@target='_blank'][@href]";
 
     /**
      * Initializes web element actions.
@@ -73,6 +76,27 @@ public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetai
     }
 
     /**
+     * Sets value and select in txt of Duration Type, Block Time Before Unit, Block Time After Unit,
+     * Time Frame Start Unit and Time Frame End Unit.
+     *
+     * @param nameTxtBox is name of textBox
+     * @return value of nameTxtBox
+     */
+    public String getUnitsOfTxtField(final String nameTxtBox) {
+        return webDriverActions.getTextByXpathLocator(String.format(unitTxt, nameTxtBox));
+    }
+
+    /**
+     * Gets values of Operating Hours txt box.
+     *
+     * @return value of TxtBox
+     */
+    public String getOperatingHoursTxtBox() {
+        return webDriverActions.getTextByXpathLocator(String.format(operatingHoursTxt,
+                translate("Operating Hours")));
+    }
+
+    /**
      * Gets a creator's name of workType.
      *
      * @return a String to date
@@ -115,10 +139,16 @@ public class WorkTypeDetails extends WorkTypePageCreated implements FeatureDetai
         mapValues.put("Work Type Name", this::getNameOfWorkType);
         mapValues.put("Description", this::getDescription);
         mapValues.put("Estimated Duration", this::getEstimatedDuration);
+        mapValues.put("Operating Hours", this::getOperatingHoursTxtBox);
         mapValues.put("Block Time Before Appointment", () -> getTxtField(translate("Block Time Before Appointment")));
         mapValues.put("Block Time After Appointment", () -> getTxtField(translate("Block Time After Appointment")));
         mapValues.put("Timeframe Start", () -> getTxtField(translate("Timeframe Start")));
         mapValues.put("Timeframe End", () -> getTxtField(translate("Timeframe End")));
+        mapValues.put("Duration Type", () -> getUnitsOfTxtField(translate("Duration Type")));
+        mapValues.put("Block Time Before Unit", () -> getUnitsOfTxtField(translate("Block Time Before Unit")));
+        mapValues.put("Block Time After Unit", () -> getUnitsOfTxtField(translate("Block Time After Unit")));
+        mapValues.put("Time Frame Start Unit", () -> getUnitsOfTxtField(translate("Time Frame Start Unit")));
+        mapValues.put("Time Frame End Unit", () -> getUnitsOfTxtField(translate("Time Frame End Unit")));
         return mapValues;
     }
 }
