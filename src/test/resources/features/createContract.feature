@@ -3,7 +3,7 @@ Feature: Create Contract
   @CreateContract @DeleteContract
   Scenario: create a contract with only required fields
     Given I navigate to the Contract page
-    When I create a new contract with required fields
+    When I create a new Contract with required fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
       | Contract Start Date    | 7/15/2021   |

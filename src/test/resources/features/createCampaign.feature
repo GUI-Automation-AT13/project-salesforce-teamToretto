@@ -11,7 +11,7 @@ Feature: Create Campaign
   @Campaign @CreateCampaign @DeleteCampaign @RegressionTest
   Scenario: Create a campaign with all required fields
     Given I navigate to the Campaign page
-    When I create a new campaign with all fields
+    When I create a new Campaign with all fields
       | Campaign Name                | New Campaign |
       | Start Date                   | 7/15/2021    |
       | End Date                     | 8/18/2021    |
