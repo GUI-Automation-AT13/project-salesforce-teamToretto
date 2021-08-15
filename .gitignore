@@ -34,3 +34,4 @@ bin/
 target/
 Key.properties
 cucumber-usage.json
+Config.properties
