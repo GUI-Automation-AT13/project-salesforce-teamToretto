@@ -2,7 +2,7 @@ Feature: Create Individual
 
   @CreateIndividual @RegressionTest @DeleteIndividual
   Scenario Outline: Create an Individual with given parameters
-    Given I navigate to the "Individual" page
+    Given I navigate to the Individual page
     When I create a new individual with required fields
       | salutation                | <salutation>                |
       | lastname                  | <lastname>                  |
@@ -39,10 +39,10 @@ Feature: Create Individual
 
   @CreateIndividual @RegressionTest @DeleteIndividual
   Scenario Outline: Create an Individual with given parameters
-    Given I navigate to the "Individual" page
+    Given I navigate to the Individual page
     When I create a new individual with required fields
       | lastname | <lastname> |
-      And I navigate to the "Individual" page
+      And I navigate to the Individual page
     Then I verify Individual created and matches with values of table
     Examples:
       | lastname |

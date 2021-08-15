@@ -12,18 +12,14 @@ import core.api.ApiFacade;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import salesforce.utils.PageTransporter;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
-import salesforce.utils.GeneratorUniqueString;
 import salesforce.utils.Internalization;
 import salesforce.utils.strategy.MapPages;
-
-import java.util.Map;
 
 public class SearchSteps {
 
@@ -44,35 +40,29 @@ public class SearchSteps {
         searchResultsPage = pageTransporter.getSearchResultPage();
     }
 
-    @Given("^I enter the text (.*?) on the header's search box$")
-    public void iEnterTheTextOnTheHeadersSearchBox(final String text) {
+    @Given("^I search the text \"(.*?)\" on the header's search box$")
+    public void iSearchTheTextOnTheHeadersSearchBox(final String text) {
         log.info("Given Get Table Fields");
-        searchResultsPage.setTextToSearch(text);
+        searchResultsPage.search(text);
     }
 
-    @When("I press the Enter key")
-    public void iPressTheEnterKey() {
-        log.info("When I press the Enter Key");
-        searchResultsPage.pressEnter();
+    @Then("^The results should be displayed$")
+    public void theResultsShouldBeDisplayed() {
+        log.info("Then The results should be displayed");
+        Assert.assertTrue(searchResultsPage.isThereResults());
     }
 
-    @Then("^All the result record's names should contain the text (.*?)$")
+    @Then("^A message notifying that the search term is too short should be displayed$")
+    public void aMessageNotifyingThatTheSearchTermIsTooShortShouldBeDisplayed() {
+        log.info("Then a message notifying that the search term is too short should be displayed");
+        String resultMessage = searchResultsPage.getNoSearchResultMessage();
+        Assert.assertEquals(resultMessage, "Your search term must have 2 or more characters.");
+    }
+
+    @Then("^All the result record's names should contain the text \"(.*?)\"$")
     public void allTheResultRecordsNamesShouldContainTheText(final String text) {
         log.info("Then all the result record's names should contain the text: ".concat(text));
         boolean recordsContainText = searchResultsPage.doAllRecordsContainTheText(text);
         Assert.assertTrue(recordsContainText);
-    }
-
-    @Then("^No results should be displayed for the (.*?) text$")
-    public void noResultsShouldBeDisplayed(final String text) {
-        log.info("Then no results should be displayed");
-        boolean isThereResults;
-        try {
-            searchResultsPage.doAllRecordsContainTheText(text);
-            isThereResults = true;
-        } catch (Exception e) {
-            isThereResults = false;
-        }
-        Assert.assertEquals(isThereResults, false);
     }
 }

@@ -49,7 +49,7 @@ public class featureSteps {
         tablesValuesDefect = new TablesValuesDefect();
     }
 
-    @Given("I navigate to the {string} page")
+    @Given("^I navigate to the (.*?) page$")
     public void iNavigateToThePage(String featureName) {
         log.info("Navigate pages");
         internalization = new Internalization(featureName);

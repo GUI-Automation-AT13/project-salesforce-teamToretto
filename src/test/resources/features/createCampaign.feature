@@ -2,7 +2,7 @@ Feature: Create Campaign
 
   @CreateCampaign @DeleteCampaign
   Scenario: Create a campaign with only required fields
-    Given I navigate to the "Campaign" page
+    Given I navigate to the Campaign page
     When I create a new campaign with required fields
       | Campaign Name | New Campaign 22222 |
     Then I verify that the created Campaign contains the correct information
@@ -11,7 +11,7 @@ Feature: Create Campaign
 
   @CreateCampaign @DeleteCampaign
   Scenario: Create a campaign with all required fields
-    Given I navigate to the "Campaign" page
+    Given I navigate to the Campaign page
     When I create a new campaign with all fields
       | Campaign Name                | New Campaign |
       | Start Date                   | 7/15/2021    |
@@ -25,7 +25,7 @@ Feature: Create Campaign
 
   @CreateCampaign @DeleteCampaign
   Scenario: Create a campaign with all required fields
-    Given I navigate to the "Campaign" page
+    Given I navigate to the Campaign page
     When I create a new campaign with all fields
       | Campaign Name | New Campaign |
       | Start Date    | 8/15/2021    |

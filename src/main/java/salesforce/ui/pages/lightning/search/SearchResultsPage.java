@@ -32,6 +32,7 @@ public class SearchResultsPage extends BasePage {
     private By searchBox = By.cssSelector("input[title]");
     private By allTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem");
     private By visibleTablesSelector = By.cssSelector("div.resultsWrapper div.resultsItem:not(.slds-hide)");
+    private By queryTooShortMessageLocator = By.cssSelector(".queryTooShort");
 
     /**
      * SearchResultsPage constructor.
@@ -56,24 +57,20 @@ public class SearchResultsPage extends BasePage {
     public void search(final String textToSearch) {
         webDriverActions.setInputField(searchBox, textToSearch);
         webDriverActions.pressKey(searchBox, Keys.ENTER);
-        tableGroup = new TableGroup(webDriverManager);
     }
 
     /**
-     * Sets the text in the search box.
+     * Checks if there are results in the page.
      *
-     * @param textToSearch is the text to search for
+     * @return a boolean
      */
-    public void setTextToSearch(final String textToSearch) {
-        webDriverActions.setInputField(searchBox, textToSearch);
-    }
-
-    /**
-     * Sends the Enter key to the search.
-     */
-    public void pressEnter() {
-        webDriverActions.pressKey(searchBox, Keys.ENTER);
-        tableGroup = new TableGroup(webDriverManager);
+    public boolean isThereResults() {
+        try {
+            tableGroup = new TableGroup(webDriverManager);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
@@ -112,6 +109,10 @@ public class SearchResultsPage extends BasePage {
             recordsContainText = false;
         }
         return recordsContainText;
+    }
+
+    public String getNoSearchResultMessage() {
+        return webDriverActions.getElement(queryTooShortMessageLocator).getText();
     }
 
     @Override

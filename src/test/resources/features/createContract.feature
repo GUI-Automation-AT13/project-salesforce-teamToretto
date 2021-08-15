@@ -2,7 +2,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: create a contract with only required fields
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with required fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -12,7 +12,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with all required fields
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount   |
       | Contract Term (months)  | 2             |
@@ -30,7 +30,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Test Account as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -41,7 +41,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and Customer as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -53,7 +53,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and Customer as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -66,7 +66,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount |
       | Contract Term (months)  | 2           |
@@ -81,7 +81,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount |
       | Contract Term (months)  | 2           |
@@ -97,7 +97,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount   |
       | Contract Term (months)  | 2             |
@@ -114,7 +114,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name, Customer and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount   |
       | Contract Term (months)  | 2             |
@@ -132,7 +132,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount   |
       | Contract Term (months)  | 2             |
@@ -148,7 +148,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount |
       | Contract Term (months)  | 2           |
@@ -161,7 +161,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |
@@ -173,7 +173,7 @@ Feature: Create Contract
 
   @CreateContract @DeleteContract
   Scenario: Create a contract with Account Name and price book as pre-postcondition
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with all fields
       | Account Name            | TestAccount |
       | Contract Term (months)  | 2           |
@@ -185,7 +185,7 @@ Feature: Create Contract
 
   @CreateContract
   Scenario: create a contract with only required fields
-    Given I navigate to the "Contract" page
+    Given I navigate to the Contract page
     When I create a new contract with required fields
       | Account Name           | TestAccount |
       | Contract Term (months) | 2           |

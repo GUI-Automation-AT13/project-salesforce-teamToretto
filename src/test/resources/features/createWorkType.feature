@@ -2,7 +2,7 @@ Feature: Create workType
 
   @CreateWorkType @DeleteWorkType
   Scenario: Create an workType with only required fields
-    Given I navigate to the "WorkType" page
+    Given I navigate to the WorkType page
     When I create a new workType with required fields
       | Work Type Name     | workType |
       | Estimated Duration | 2.00     |
@@ -11,7 +11,7 @@ Feature: Create workType
 
   @CreateWorkType @DeleteWorkType
   Scenario: Create an workType
-    Given I navigate to the "WorkType" page
+    Given I navigate to the WorkType page
     When I create a new workType with all fields
       | Work Type Name                | workType            |
       | Estimated Duration            | 25.00               |
@@ -25,7 +25,7 @@ Feature: Create workType
 
   @CreateWorkType
   Scenario: Create an workType
-    Given I navigate to the "WorkType" page
+    Given I navigate to the WorkType page
     When I create a new workType with all fields
       | Work Type Name     | workType |
       | Estimated Duration | 25.00    |
