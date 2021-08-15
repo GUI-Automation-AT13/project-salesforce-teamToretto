@@ -11,7 +11,6 @@ package org.salesforce.steps;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -43,24 +42,23 @@ public class SearchSteps {
         searchResultsPage = pageTransporter.getSearchResultPage();
     }
 
-    /**
-     * Types a text on a search box.
-     *
-     * @param text to be searched.
-     */
-    @Given("^I enter the text (.*?) on the header's search box$")
-    public void searchByText(final String text) {
+    @Given("^I search the text \"(.*?)\" on the header's search box$")
+    public void iSearchTheTextOnTheHeadersSearchBox(final String text) {
         log.info("Given Get Table Fields");
-        searchResultsPage.setTextToSearch(text);
+        searchResultsPage.search(text);
     }
 
-    /**
-     * Types a text on a search box.
-     */
-    @When("I press the Enter key")
-    public void pressTheEnterKey() {
-        log.info("When I press the Enter Key");
-        searchResultsPage.pressEnter();
+    @Then("^The results should be displayed$")
+    public void theResultsShouldBeDisplayed() {
+        log.info("Then The results should be displayed");
+        Assert.assertTrue(searchResultsPage.isThereResults());
+    }
+
+    @Then("^A message notifying that the search term is too short should be displayed$")
+    public void aMessageNotifyingThatTheSearchTermIsTooShortShouldBeDisplayed() {
+        log.info("Then a message notifying that the search term is too short should be displayed");
+        String resultMessage = searchResultsPage.getNoSearchResultMessage();
+        Assert.assertEquals(resultMessage, "Your search term must have 2 or more characters.");
     }
 
     /**
@@ -68,28 +66,10 @@ public class SearchSteps {
      *
      * @param text to be verified with.
      */
-    @Then("^All the result record's names should contain the text (.*?)$")
-    public void verifyTheResultsContent(final String text) {
+    @Then("^All the result record's names should contain the text \"(.*?)\"$")
+    public void allTheResultRecordsNamesShouldContainTheText(final String text) {
         log.info("Then all the result record's names should contain the text: ".concat(text));
         boolean recordsContainText = searchResultsPage.doAllRecordsContainTheText(text);
         Assert.assertTrue(recordsContainText);
-    }
-
-    /**
-     * Verifies that there are no values with an invalid search.
-     *
-     * @param text to be verified with.
-     */
-    @Then("^No results should be displayed for the (.*?) text$")
-    public void verifyResultsOnInvalidSearch(final String text) {
-        log.info("Then no results should be displayed");
-        boolean isThereResults;
-        try {
-            searchResultsPage.doAllRecordsContainTheText(text);
-            isThereResults = true;
-        } catch (Exception e) {
-            isThereResults = false;
-        }
-        Assert.assertEquals(isThereResults, false);
     }
 }

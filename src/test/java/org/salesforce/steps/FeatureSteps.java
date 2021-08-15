@@ -30,6 +30,7 @@ import salesforce.utils.strategy.MapPages;
  * This defines the features steps.
  */
 public class FeatureSteps {
+
     private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;

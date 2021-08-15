@@ -1,6 +1,6 @@
 Feature: Create Contract
 
-  @Contract @CreateContract @DeleteContract
+  @CreateContract @DeleteContract
   Scenario: create a contract with only required fields
     Given I navigate to the Contract page
     When I create a new Contract with required fields

@@ -8,7 +8,7 @@
 
 package salesforce.utils;
 
-import static core.utils.Converter.converterStringToEnum;
+import static core.utils.StringConverter.converterStringToEnum;
 
 import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
