@@ -72,7 +72,7 @@ public class ApiFacade {
     public void deleteObject(final String pathParam, final String id, final ApiEndPoints endpoint) {
         apiRequest.clearPathParam();
         apiRequest.method(ApiMethod.DELETE)
-                .endpoint(ApiEndPoints.ACCOUNT_ID)
+                .endpoint(endpoint)
                 .addPathParam(pathParam, id);
         apiResponse = new ApiResponse();
         ApiManager.execute(apiRequest, apiResponse);

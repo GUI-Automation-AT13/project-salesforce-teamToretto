@@ -16,6 +16,9 @@ import org.testng.asserts.SoftAssert;
 import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 import salesforce.utils.PageTransporter;
 
+/**
+ * This class defines hooks for the individuals feature.
+ */
 public class IndividualScenarioHooks {
 
     private Logger log = LogManager.getLogger(getClass());
@@ -23,11 +26,17 @@ public class IndividualScenarioHooks {
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
 
+    /**
+     * This class defines hooks for the individuals feature.
+     */
     public IndividualScenarioHooks(final WebDriverManager webDriverManager) {
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
     }
 
+    /**
+     * Deletes an individual via UI.
+     */
     @After(value = "@CreateIndividual")
     public void deleteIndividual() {
         log.info("Delete Individual");

@@ -8,7 +8,6 @@
 
 package org.salesforce.steps;
 
-import core.api.ApiFacade;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,25 +16,25 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import salesforce.utils.PageTransporter;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
-import salesforce.utils.GeneratorUniqueString;
-import salesforce.utils.Internalization;
+import salesforce.utils.PageTransporter;
 import salesforce.utils.strategy.MapPages;
 
-import java.util.Map;
-
+/**
+ * This defines the search's feature steps.
+ */
 public class SearchSteps {
 
     private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
-    private Internalization internalization;
     private MapPages mapPages;
     private SearchResultsPage searchResultsPage;
-    private ApiFacade apiFacade;
 
+    /**
+     * This defines the search's feature steps.
+     */
     public SearchSteps(final WebDriverManager webDriverManager) {
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
@@ -44,27 +43,45 @@ public class SearchSteps {
         searchResultsPage = pageTransporter.getSearchResultPage();
     }
 
+    /**
+     * Types a text on a search box.
+     *
+     * @param text to be searched.
+     */
     @Given("^I enter the text (.*?) on the header's search box$")
-    public void iEnterTheTextOnTheHeadersSearchBox(final String text) {
+    public void searchByText(final String text) {
         log.info("Given Get Table Fields");
         searchResultsPage.setTextToSearch(text);
     }
 
+    /**
+     * Types a text on a search box.
+     */
     @When("I press the Enter key")
-    public void iPressTheEnterKey() {
+    public void pressTheEnterKey() {
         log.info("When I press the Enter Key");
         searchResultsPage.pressEnter();
     }
 
+    /**
+     * Verifies the results on a search.
+     *
+     * @param text to be verified with.
+     */
     @Then("^All the result record's names should contain the text (.*?)$")
-    public void allTheResultRecordsNamesShouldContainTheText(final String text) {
+    public void verifyTheResultsContent(final String text) {
         log.info("Then all the result record's names should contain the text: ".concat(text));
         boolean recordsContainText = searchResultsPage.doAllRecordsContainTheText(text);
         Assert.assertTrue(recordsContainText);
     }
 
+    /**
+     * Verifies that there are no values with an invalid search.
+     *
+     * @param text to be verified with.
+     */
     @Then("^No results should be displayed for the (.*?) text$")
-    public void noResultsShouldBeDisplayed(final String text) {
+    public void verifyResultsOnInvalidSearch(final String text) {
         log.info("Then no results should be displayed");
         boolean isThereResults;
         try {
