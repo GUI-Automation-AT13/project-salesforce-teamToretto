@@ -15,22 +15,24 @@ import java.util.HashMap;
 import java.util.Map;
 import org.openqa.selenium.By;
 import salesforce.ui.pages.BasePage;
-import salesforce.utils.strategy.FeatureNew;
+import salesforce.utils.strategy.FeatureForm;
 import salesforce.utils.supplier.VoidSupplier;
 
 
 /**
  * This class has webElement for work type page form.
  */
-public class NewWorkTypePage extends BasePage implements FeatureNew {
+public class WorkTypePageForm extends BasePage implements FeatureForm {
 
     private By estimatedDurationComboBox = By.cssSelector(".select[aria-required='true']");
     private By saveBtn = By.xpath("//button[@data-aura-class='uiButton forceActionButton'][3]");
     private By descriptionTxtBox = By.cssSelector(".textarea");
-    private String selectFieldTxtBox = "//*[contains(text(),'%s')]/../..//*[@type='text']";
+    private String selectFieldTxtBox = "//span[contains(text(),'%s')]/../..//input[@type='text']";
     private String valueEstimatedDurationComboBox = "//a[normalize-space()='%s']";
-    private String xpathComboBoxSomeFields = "//*[contains(text(),'%s')]/../..//a[@class='select']";
-    private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id][%d]//*[contains(text(),'%s')]";
+    private String xpathComboBoxSomeFields = "//span[contains(text(),'%s')]/../..//a[@class='select']";
+    private String xpathValueComboBoxSomeFields = "//div[@aria-labelledby][@id][%d]//a[contains(text(),'%s')]";
+    private String operatingHoursSelected = "//div[contains(text(),'%s')]/../.."
+                + "//div[@class='primaryLabel slds-truncate slds-lookup__result-text']";
     private int countComboBox = 0;
 
     /**
@@ -38,13 +40,8 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public NewWorkTypePage(WebDriverManager webDriverManager) {
+    public WorkTypePageForm(WebDriverManager webDriverManager) {
         super(webDriverManager);
-    }
-
-    @Override
-    protected void waitForPageLoaded() {
-        webDriverActions.waitForVisibilityOfLocator(estimatedDurationComboBox);
     }
 
     /**
@@ -66,6 +63,11 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
     public void setInputField(final String fieldName, final String fieldValue) {
         webDriverActions.scrollToBottom();
         webDriverActions.setInputField(By.xpath(String.format(selectFieldTxtBox, fieldName)), fieldValue);
+    }
+
+    public void clickOperatingHours(final String operatingHours) {
+        webDriverActions.clickByXpath(String.format(selectFieldTxtBox, translate("Operating Hours")));
+        webDriverActions.clickByXpath(String.format(operatingHoursSelected, operatingHours));
     }
 
     /**
@@ -97,11 +99,24 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
      *
      * @return WorkTypeInfo which is to pass other page.
      */
-    public CreatedWorkTypePage clickSaveButton() {
+    public WorkTypePageCreated clickSaveButton() {
         webDriverActions.clickByLocator(saveBtn);
-        return new CreatedWorkTypePage(webDriverManager);
+        return new WorkTypePageCreated(webDriverManager);
     }
 
+    /**
+     * Waits to load estimated duration comboBox appear.
+     */
+    @Override
+    protected void waitForPageLoaded() {
+        webDriverActions.waitForVisibilityOfLocator(estimatedDurationComboBox);
+    }
+
+    /**
+     * Sets values to create a new work type according key of map table input.
+     *
+     * @param table contains wish method is running
+     */
     @Override
     public void fillUpField(final Map<String, String> table) {
         HashMap<String, VoidSupplier> actionsWorkTypeMap = mapActionsWorkType(table);
@@ -119,6 +134,7 @@ public class NewWorkTypePage extends BasePage implements FeatureNew {
         mapActions.put("Work Type Name", () -> setInputField(translate("Work Type Name"),
                 workTypeMap.get("Work Type Name")));
         mapActions.put("Description", () -> setDescription(workTypeMap.get("Description")));
+        mapActions.put("Operating Hours", () -> clickOperatingHours(workTypeMap.get("Operating Hours"))); //****
         mapActions.put("Estimated Duration", () -> setInputField(translate("Estimated Duration"),
                 workTypeMap.get("Estimated Duration")));
         mapActions.put("Duration Type", () -> setDurationTypeComboBox(translate(workTypeMap.get("Duration Type"))));

@@ -14,12 +14,12 @@ import salesforce.utils.supplier.StringSupplier;
 /**
  * Class to compose the details section inside a CreatedContractPage.
  */
-public class ContractsDetails extends CreatedContractPage implements FeatureDetails {
-    private By contractStartDate = By.xpath("(//div[./div[./span[text()='"
-            + translate("Contract Start Date") + "']]]//span//span)[last()]");
+public class ContractDetails extends ContractPageCreated implements FeatureDetails {
+    private By contractStartDate = By.xpath(String.format("(//div[./div[./span[text()='%s']]]//span//span)[last()]",
+            translate("Contract Start Date")));
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
-    protected By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
             + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {
@@ -40,7 +40,8 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
     }
 
     /**
-     * Gets the text inside the element.
+     * Gets the text inside the element of Account Name, Contract Term (months), Customer Signed By, Customer Signed
+     * Title, Customer Signed Date, Price Book, Company Signed Date, Special Terms and Description.
      *
      * @param field represents the text to be introduced
      * @return the text set on the field requested contract
@@ -48,12 +49,11 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
     public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
         String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
-        By xpathLocator = By.xpath(xpath);
-        return webDriverActions.getTextOfByFieldByLocator(xpathLocator);
+        return webDriverActions.getTextOfByFieldByLocator(By.xpath(xpath));
     }
 
     /**
-     * Gets the text inside the element.
+     * Gets the text inside the element of Owner Expiration Notice.
      *
      * @param field represents the text to be introduced
      * @return the text set on the field requested contract
@@ -66,16 +66,16 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
     }
 
     /**
-     * Initializes web element actions.
+     * Initializes web element actions of Details.
      *
      * @param webDriverManager to be managed for the webElementActions
      */
-    public ContractsDetails(WebDriverManager webDriverManager) {
+    public ContractDetails(WebDriverManager webDriverManager) {
         super(webDriverManager);
     }
 
     /**
-     * Gets the text inside the element.
+     * Gets the text inside the element of Contract Start Date.
      *
      * @return the text set on the field requested contract.
      */
@@ -93,8 +93,14 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
         return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
+    /**
+     * Gets a list with values of contract.
+     *
+     * @param table a table with values which decide which text select
+     * @return a list with some data of contract
+     */
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsCreatedMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCreatedMap.get(key).getAsString()));
@@ -102,9 +108,9 @@ public class ContractsDetails extends CreatedContractPage implements FeatureDeta
     }
 
     /**
-     * Gets text fields of workType.
+     * Gets text fields of contract.
      *
-     * @return a map with methods of CreatedWorkType
+     * @return a map with methods of contractDetails
      */
     private HashMap<String, StringSupplier> getTxtFields() {
         HashMap<String, StringSupplier> mapValues = new HashMap<>();

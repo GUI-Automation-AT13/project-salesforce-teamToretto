@@ -8,12 +8,13 @@
 
 package salesforce.utils.strategy;
 
+import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import org.openqa.selenium.InvalidArgumentException;
-import salesforce.ui.pages.lightning.campaign.CampaignPage;
+import salesforce.ui.pages.classic.worktype.WorkTypesPage;
+import salesforce.ui.pages.lightning.campaign.CampaignsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
-import salesforce.ui.pages.lightning.individuals.IndividualListPage;
-import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
+import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 
 /**
  * Create new instances object.
@@ -32,18 +33,46 @@ public class MapPages {
      * @return object feature page
      */
     public FeaturesPage featuresPage(final String featureName) {
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
+            return featuresClassic(featureName);
+        } else {
+            return featuresLightning(featureName);
+        }
+    }
+
+    /**
+     * Creates a object to features page in mode Lightning.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresLightning(final String featureName) {
+        switch (featureName) {
+            case "WorkType":
+                return new salesforce.ui.pages.lightning.worktype.WorkTypesPage(webDriverManager);
+            case "Contract":
+                return new ContractsPage(webDriverManager);
+            case "Individual":
+                return new IndividualsPage(webDriverManager);
+            case "Campaign":
+                return new CampaignsPage(webDriverManager);
+            default:
+                throw new InvalidArgumentException("Invalid feature");
+        }
+    }
+
+    /**
+     * Creates a object to features page in mode Classic.
+     *
+     * @param featureName name of feature
+     * @return object feature page
+     */
+    private FeaturesPage featuresClassic(final String featureName) {
         switch (featureName) {
             case "workType":
                 return new WorkTypesPage(webDriverManager);
-            case "contract":
-                return new ContractsPage(webDriverManager);
-            case "individual":
-                return new IndividualListPage(webDriverManager);
-            case "campaign":
-                return new CampaignPage(webDriverManager);
             default:
                 throw new InvalidArgumentException("Invalid feature");
         }
     }
 }
-

@@ -1,5 +1,7 @@
 package salesforce.ui.pages.lightning.campaign;
 
+import static salesforce.utils.Internalization.translate;
+
 import core.selenium.WebDriverManager;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,11 +12,15 @@ import salesforce.utils.strategy.FeatureDetails;
 import salesforce.utils.supplier.StringSupplier;
 
 /**
- * This class for elements of Campaign details page created.
+ * This class for elements of Campaign details page.
  */
-public class CampaignDetails extends CampaignCreatedPage implements FeatureDetails {
+public class CampaignDetails extends CampaignPageCreated implements FeatureDetails {
     private static final String BASE_XPATH = "//div[./div[./span[text()='%s']]]";
     private static final HashMap<String, String> XPATH_COMPLEMENTS = new HashMap<>();
+    private By createBy = By.xpath(String.format("//span[text()='%s']/../../div/span/span",
+            translate("Created By")));
+    private By dateCreateByTxt = By.xpath(String.format("//*[contains(text(),'%s')]/../.."
+            + "//*[@class='uiOutputDateTime forceOutputModStampWithPreview']", translate("Created By")));
 
     static {
         XPATH_COMPLEMENTS.put("Campaign Name", "//span//span");
@@ -37,16 +43,16 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
     }
 
     /**
-     * Gets the text inside the element.
+     * Gets the text inside the element of Campaign Name, Start Date, End Date, Expected Revenue in Campaign,
+     * Budgeted Cost in Campaign, Actual Cost in Campaign, Num Sent in Campaign and Description.
      *
      * @param field represents the text to be introduced
      * @return the text set on the field requested contract
      */
     public String getTextByFieldName(final String field) {
         String xpathComplement = XPATH_COMPLEMENTS.get(field);
-        String xpath = String.format(BASE_XPATH, field).concat(xpathComplement);
-        By xpathLocator = By.xpath(xpath);
-        return webDriverActions.getTextOfByFieldByLocator(xpathLocator);
+        String xpath = String.format(BASE_XPATH, translate(field)).concat(xpathComplement);
+        return webDriverActions.getTextOfByFieldByLocator(By.xpath(xpath));
     }
 
     /**
@@ -59,8 +65,23 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
         return webDriverActions.getTextOfByFieldByLocator(dateCreateByTxt);
     }
 
+    /**
+     * Returns created by.
+     *
+     * @return text of elements created by.
+     */
+    public String getCreatedByText() {
+        return webDriverActions.getTextOfByFieldByLocator(createBy);
+    }
+
+    /**
+     * Gets a list with values of campaign.
+     *
+     * @param table a table with values which decide which text select
+     * @return a list with some data of campaign
+     */
     @Override
-    public List<String> getValueField(Map<String, String> table) {
+    public List<String> getValuesFromFields(Map<String, String> table) {
         List<String> result = new ArrayList<>();
         HashMap<String, StringSupplier> actionsCampaignMap = getTxtFields();
         table.keySet().forEach(key -> result.add(actionsCampaignMap.get(key).getAsString()));
@@ -68,9 +89,9 @@ public class CampaignDetails extends CampaignCreatedPage implements FeatureDetai
     }
 
     /**
-     * Gets text fields of workType.
+     * Gets text fields of campaign.
      *
-     * @return a map with methods of CreatedWorkType
+     * @return a map with methods of campaign to get text
      */
     private HashMap<String, StringSupplier> getTxtFields() {
         HashMap<String, StringSupplier> mapValues = new HashMap<>();

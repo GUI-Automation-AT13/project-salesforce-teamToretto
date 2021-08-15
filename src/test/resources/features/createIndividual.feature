@@ -1,9 +1,9 @@
 Feature: Create Individual
 
-  @CreateIndividual @RegressionTest @DeleteIndividual
+  @Individual @CreateIndividual @RegressionTest @DeleteIndividual @RegressionTest
   Scenario Outline: Create an Individual with given parameters
     Given I navigate to the Individual page
-    When I create a new individual with required fields
+    When I create a new Individual with required fields
       | salutation                | <salutation>                |
       | lastname                  | <lastname>                  |
       | firstname                 | <firstname>                 |
@@ -36,11 +36,10 @@ Feature: Create Individual
       | Ms.        | Paul                     | 1234 !#$%   | 01/01/2020 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 16 or Older    |
       | Ms.        | Paul                     | +_)(*       | 01/01/2010 | true        | true       | true                  | true                      | true                     | true        | true      | true                 | 16 or Older    |
 
-
-  @CreateIndividual @RegressionTest @DeleteIndividual
+  @Individual @CreateIndividual @DeleteIndividual @Tables
   Scenario Outline: Create an Individual with given parameters
     Given I navigate to the Individual page
-    When I create a new individual with required fields
+    When I create a new Individual with required fields
       | lastname | <lastname> |
       And I navigate to the Individual page
     Then I verify Individual created and matches with values of table

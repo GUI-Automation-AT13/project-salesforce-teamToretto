@@ -37,6 +37,9 @@ public class PersonalInformationPage extends BasePage {
         return webDriverActions.getTextOfByFieldByLocator(aliasTxtBox);
     }
 
+    /**
+     * Method to wait for a page to load.
+     */
     @Override
     protected void waitForPageLoaded() {
         webDriverActions.waitForVisibilityOfLocator(aliasTxtBox);

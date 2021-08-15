@@ -8,17 +8,18 @@
 
 package salesforce.utils;
 
+import static core.utils.StringConverter.converterStringToEnum;
+
 import core.config.EnvConfig;
 import core.selenium.WebDriverManager;
 import salesforce.ui.pages.classic.contracts.ClassicContractsPage;
 import salesforce.ui.pages.lightning.LoginPage;
-import salesforce.ui.pages.lightning.campaign.CampaignPage;
+import salesforce.ui.pages.lightning.campaign.CampaignsPage;
 import salesforce.ui.pages.lightning.contracts.ContractsPage;
-import salesforce.ui.pages.lightning.individuals.IndividualFormPage;
-import salesforce.ui.pages.lightning.individuals.IndividualListPage;
+import salesforce.ui.pages.lightning.individuals.IndividualPageForm;
+import salesforce.ui.pages.lightning.individuals.IndividualsPage;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
 import salesforce.ui.pages.lightning.worktype.WorkTypesPage;
-import salesforce.utils.PageUrl;
 
 /**
  * Navigates to a page's url.
@@ -26,7 +27,7 @@ import salesforce.utils.PageUrl;
 public class PageTransporter {
 
     private String baseUrl = EnvConfig.getInstance().getBaseUrl();
-    private String featureUrl = "lightning/o/%s/list?filterName=Recent";
+    private String featureUrl = Urls.FEATURE_URL_LIGHTNING.getValue();
     private PageUrl pageUrl;
     private WebDriverManager webDriverManager;
 
@@ -73,9 +74,9 @@ public class PageTransporter {
      *
      * @return IndividualFormPage
      */
-    public IndividualFormPage navigateToIndividualFormPage() {
+    public IndividualPageForm navigateToIndividualFormPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/new?count=1"));
-        return new IndividualFormPage(webDriverManager);
+        return new IndividualPageForm(webDriverManager);
     }
 
     /**
@@ -83,9 +84,9 @@ public class PageTransporter {
      *
      * @return IndividualListPage
      */
-    public IndividualListPage navigateToIndividualListPage() {
+    public IndividualsPage navigateToIndividualListPage() {
         goToUrl(baseUrl.concat("lightning/o/Individual/list?filterName=Recent"));
-        return new IndividualListPage(webDriverManager);
+        return new IndividualsPage(webDriverManager);
     }
 
     /**
@@ -93,9 +94,9 @@ public class PageTransporter {
      *
      * @return a CampaignPage.
      */
-    public CampaignPage navigateToCampaignPage() {
+    public CampaignsPage navigateToCampaignPage() {
         goToUrl(baseUrl.concat("lightning/o/Campaign/list?filterName=Recent"));
-        return new CampaignPage(webDriverManager);
+        return new CampaignsPage(webDriverManager);
     }
 
     /**
@@ -103,10 +104,10 @@ public class PageTransporter {
      *
      * @return a CampaignPage.
      */
-    public CampaignPage navigateTofeaturePage(String nameFeature) {
+    public CampaignsPage navigateTofeaturePage(String nameFeature) {
         goToUrl(pageUrl.getFeaturePage(nameFeature));
         if (nameFeature.equals("Campaign")) {
-            return new CampaignPage(webDriverManager);
+            return new CampaignsPage(webDriverManager);
         }
         return null;
     }
@@ -132,7 +133,11 @@ public class PageTransporter {
      * Navigates to feature page on lightning version.
      */
     public void navigateToFeaturePage(String featureName) {
-        goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
+        if ("CLASSIC".equals(EnvConfig.getInstance().getSkin())) {
+            goToUrl(converterStringToEnum(featureName, EnvConfig.getInstance().getSkin()).getValue());
+        } else {
+            goToUrl(baseUrl.concat(String.format(featureUrl, featureName)));
+        }
     }
 
     public SearchResultsPage getSearchResultPage() {

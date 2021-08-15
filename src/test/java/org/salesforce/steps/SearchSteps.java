@@ -8,7 +8,6 @@
 
 package org.salesforce.steps;
 
-import core.api.ApiFacade;
 import core.selenium.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,22 +15,25 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
-import salesforce.utils.PageTransporter;
 import salesforce.ui.pages.lightning.search.SearchResultsPage;
-import salesforce.utils.Internalization;
+import salesforce.utils.PageTransporter;
 import salesforce.utils.strategy.MapPages;
 
+/**
+ * This defines the search's feature steps.
+ */
 public class SearchSteps {
 
     private Logger log = LogManager.getLogger(getClass());
     private WebDriverManager webDriverManager;
     private PageTransporter pageTransporter;
     private SoftAssert softAssert;
-    private Internalization internalization;
     private MapPages mapPages;
     private SearchResultsPage searchResultsPage;
-    private ApiFacade apiFacade;
 
+    /**
+     * This defines the search's feature steps.
+     */
     public SearchSteps(final WebDriverManager webDriverManager) {
         this.webDriverManager = webDriverManager;
         this.pageTransporter = new PageTransporter(this.webDriverManager);
@@ -59,6 +61,11 @@ public class SearchSteps {
         Assert.assertEquals(resultMessage, "Your search term must have 2 or more characters.");
     }
 
+    /**
+     * Verifies the results on a search.
+     *
+     * @param text to be verified with.
+     */
     @Then("^All the result record's names should contain the text \"(.*?)\"$")
     public void allTheResultRecordsNamesShouldContainTheText(final String text) {
         log.info("Then all the result record's names should contain the text: ".concat(text));
