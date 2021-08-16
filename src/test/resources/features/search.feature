@@ -13,6 +13,7 @@ Feature: Search bar
   @Search @RegressionTest
   Scenario Outline: Search input with spaces returns matching record names
     Given I search the text "<searchText>" on the header's search box
+    Then The results should be displayed
     Then All the result record's names should contain the text "<searchText>"
     Examples:
       | searchText    |

@@ -189,8 +189,7 @@ public final class EnvConfig {
 
     /**
      * Returns the Standard User.
-     *
-     * @return StandarUser
+     *     * @return StandarUser
      */
     public User getStandardUser() {
         return standardUser;

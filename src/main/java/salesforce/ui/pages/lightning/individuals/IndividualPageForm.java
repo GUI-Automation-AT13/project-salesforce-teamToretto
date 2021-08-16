@@ -27,7 +27,7 @@ public class IndividualPageForm extends BasePage implements FeatureForm {
 
 
     private String generalSalutationOptionSelector = "[title='%s']";
-    private String generalCheckboxSelector = "//div[label[contains(.,'%s')]]/input";
+    private String generalCheckboxSelector = "//div[label[contains(.,\"%s\")]]/input";
     private String ageGeneralSelector = "//a[contains(text(),'%s')]";
     private By salutationSelector = By.cssSelector(".salutation a");
     private By firstnameTextbox = By.cssSelector(".firstName");

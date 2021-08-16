@@ -59,12 +59,6 @@ test.finalizedBy("checkstyleMain")
 check.dependsOn build
 
 test {
-    useTestNG()
-    testLogging.showStandardStreams = true
-    systemProperties System.getProperties()
-}
-
-test {
     scanForTestClasses = false
     ignoreFailures = true
     testLogging.showStandardStreams = true

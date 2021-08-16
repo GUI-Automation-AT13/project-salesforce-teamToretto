@@ -24,8 +24,8 @@ import salesforce.api.entities.Response;
  */
 @CucumberOptions(
         features = {"src/test/resources/features"},
-        plugin = {"html:build/cucumber/cucumber-pretty.html", "json:build/cucumber/cucumber.json"},
-        tags = "@RegressionTest",
+        plugin = {"html:build/cucumber/cucumber-pretty.html",
+                "json:build/cucumber/cucumber.json"},
         glue = {"org.salesforce"}
 )
 public class RunTests extends AbstractTestNGCucumberTests {
